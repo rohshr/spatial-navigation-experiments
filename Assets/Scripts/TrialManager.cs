@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UXF;
 
@@ -20,4 +21,15 @@ public class TrialManager : MonoBehaviour
     {
         session.EndCurrentTrial();
     }
+
+    IEnumerator SetupTrial()
+    {
+        yield return new WaitForSeconds(0.5f);
+        session.BeginNextTrial();
+    }
+
+    // void Start()
+    // {
+    //     StartCoroutine(SetupTrial());
+    // }
 }

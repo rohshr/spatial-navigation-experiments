@@ -14,7 +14,8 @@ public class TimeControl : MonoBehaviour
     public void FreeExplorationStopCountdown()
     {
         Debug.Log("End time:" + DateTime.Now);
-        StopCoroutine(Countdown());
+        // StopCoroutine(Countdown());
+        StopAllCoroutines();
     }
 
     IEnumerator Countdown()
