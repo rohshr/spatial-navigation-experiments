@@ -15,7 +15,7 @@ public class SessionGenerator : MonoBehaviour
     public GameObject FreeTeleportPracticeSpawnPoint;
     public GameObject ContinuousPracticeSpawnPoint;
     string conditionAssignment;
-    bool isPractice = true;
+    public bool isPractice;
     public GameObject XROrigin;
 
     // Session Start
