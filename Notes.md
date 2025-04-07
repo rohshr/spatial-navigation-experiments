@@ -4,3 +4,16 @@
 * Account for time delays between teleportation.
 * Limit controls based on the condition
 * Figure out what's causing the offset in XR Origin
+
+## 4/7/2025
+* Different wall colors
+* Faster speed  on continuous/acceleration
+* Node point on the finish line
+* Curved path instead of straight
+* Separate spaces for the three practice areas
+    * Explain the purpose of each practice:
+        * Linear curved path: Movement
+        * Object area: Search and move
+            * Expand area
+            * Add some obstruction so people can't move to different targets directly
+        * Angled corridor: Turn and navigate
