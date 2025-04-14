@@ -17,3 +17,6 @@
             * Expand area
             * Add some obstruction so people can't move to different targets directly
         * Angled corridor: Turn and navigate
+
+## 4/14/2025
+* Create video of myself navigating through the practice environments
