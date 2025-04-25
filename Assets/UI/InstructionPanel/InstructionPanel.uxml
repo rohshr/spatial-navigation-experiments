@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/USS/Stylesheet.uss?fileID=7433441132597879392&amp;guid=25cad37d9b8e2ac4684aa3935758a69f&amp;type=3#Stylesheet" />
+    <ui:VisualElement style="flex-grow: 1; border-left-color: rgba(55, 55, 55, 0); border-right-color: rgba(55, 55, 55, 0); border-top-color: rgba(55, 55, 55, 0); border-bottom-color: rgba(55, 55, 55, 0); background-color: rgba(0, 0, 0, 0);">
+        <ui:VisualElement name="Container" style="flex-grow: 1; align-self: auto; align-content: auto; align-items: center; justify-content: center; margin-top: 200px; margin-right: 200px; margin-bottom: 200px; margin-left: 200px; padding-top: 64px; padding-right: 64px; padding-bottom: 64px; padding-left: 64px; background-color: rgba(0, 0, 0, 0);">
+            <ui:VisualElement name="InstructionWindow" class="instructionWindow" style="flex-grow: 1; align-self: center; align-content: center; align-items: center; justify-content: center; width: 100%; background-color: rgba(31, 31, 31, 0.55);">
+                <ui:VisualElement name="InstructionContainer" style="flex-grow: 0; align-items: center; height: auto; flex-direction: column; flex-shrink: 0; align-self: center; margin-top: 24px; margin-right: 24px; margin-bottom: 24px; margin-left: 24px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

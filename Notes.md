@@ -20,3 +20,7 @@
 
 ## 4/14/2025
 * Create video of myself navigating through the practice environments
+
+## 4/25/2025
+* Assign conditions for practice
+* Show briefing instructions between trials

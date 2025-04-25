@@ -13,11 +13,11 @@ public class SessionGenerator : MonoBehaviour
     // public GameObject ContinuousTrialSpawnPoint;
     // public GameObject NodePracticeSpawnPoint;
     // public GameObject FreeTeleportPracticeSpawnPoint;
-    // public GameObject ContinuousPracticeSpawnPoint;
-    public GameObject PlayerSpawnPoint;
-    string conditionAssignment;
-    public bool isPractice;
-    public GameObject XROrigin;
+    // public List<GameObject> StartingPlayerSpawnPoints;
+    // private int SpawnPointIndex = 0;
+    // List<string> conditionAssignments;
+    // public bool isPractice;
+    // public GameObject XROrigin;
 
     // Session Start
     public void GenerateExperiment(Session session)
@@ -34,43 +34,62 @@ public class SessionGenerator : MonoBehaviour
             2: Free teleportation
             3: Node-based teleportation
         */
+        String testString = session.settings.GetString("test_string");
+        Debug.Log("Test string: " + testString);
         int condition = UnityEngine.Random.Range(1, 4);
-        int nRouteFindingTrials = session.settings.GetInt("n_route_finding_trials");
+        // int nRouteFindingTrials = session.settings.GetInt("n_route_finding_trials");
 
-        if (condition == 1)
-        {
-            // Continuous movement
-            // session.CurrentTrial.result["condition"] = "continuous";
-            Debug.Log("Continuous movement");
-            conditionAssignment = "continuous";
-        }
-        else if (condition == 2)
-        {
-            // Free teleportation
-            // session.CurrentTrial.result["condition"] = "free-teleport";
-            Debug.Log("Free teleportation");
-            conditionAssignment = "free_teleport";
-        }
-        else
-        {
-            // Node-based teleportation
-            // session.CurrentTrial.result["condition"] = "node-teleport";
-            Debug.Log("Node-based teleportation");
-            conditionAssignment = "node_teleport";
-        }
+        // if (condition == 1)
+        // {
+        //     // Continuous movement
+        //     // session.CurrentTrial.result["condition"] = "continuous";
+        //     Debug.Log("Continuous movement");
+        //     conditionAssignment = "continuous";
+        // }
+        // else if (condition == 2)
+        // {
+        //     // Free teleportation
+        //     // session.CurrentTrial.result["condition"] = "free-teleport";
+        //     Debug.Log("Free teleportation");
+        //     conditionAssignment = "free_teleport";
+        // }
+        // else
+        // {
+        //     // Node-based teleportation
+        //     // session.CurrentTrial.result["condition"] = "node-teleport";
+        //     Debug.Log("Node-based teleportation");
+        //     conditionAssignment = "node_teleport";
+        // }
 
         // Create free exploration block
-        Block freeExplorationBlock = session.CreateBlock(2);
-        freeExplorationBlock.settings.SetValue("condition", "practice");
+        // Block freeExplorationBlock = session.CreateBlock(2);
+        // freeExplorationBlock.settings.SetValue("condition", "practice");
 
+        // Curved corridor practice block
+        Block curvedPracticeBlock = session.CreateBlock(1);
+
+        // Angle corridor practice block
+        Block angledPracticeBlock = session.CreateBlock(1);
+
+        // Open space practice block
+        Block openSpacePracticeBlock = session.CreateBlock(4);
         // Block routeFindingBlock = session.CreateBlock(nRouteFindingTrials);
         // routeFindingBlock.settings.SetValue("condition", "route-finding");
     }
 
-    public void SpawnPointSelection()
-    {
-        XROrigin.transform.position = PlayerSpawnPoint.transform.position;
-    }
+    // public void SpawnPointSelection()
+    // {
+    //     if (StartingPlayerSpawnPoints != null && StartingPlayerSpawnPoints.Count > 0)
+    //     {
+    //         XROrigin.transform.position = StartingPlayerSpawnPoints[SpawnPointIndex].transform.position;
+    //         Debug.Log("Spawn point selected: " + StartingPlayerSpawnPoints[SpawnPointIndex].name);
+    //         SpawnPointIndex++;
+    //     }
+    //     else
+    //     {
+    //         Debug.LogWarning("No spawn points available in the list.");
+    //     }
+    // }
     // public void SpawnPointSelection()
     // {
     //     if (isPractice)

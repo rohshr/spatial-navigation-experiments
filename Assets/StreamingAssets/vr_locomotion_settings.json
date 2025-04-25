@@ -1,4 +1,6 @@
 {
     "exploration_time": 10.0,
-    "n_route_finding_trials": 3
+    "n_route_finding_trials": 3,
+    "test_string": "This is a test string.",
+    "locomotion_method": "continuous"
 }
