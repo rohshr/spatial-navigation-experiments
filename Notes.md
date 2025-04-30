@@ -24,3 +24,9 @@
 ## 4/25/2025
 * Assign conditions for practice
 * Show briefing instructions between trials
+
+
+* Disable the raycast when using continuous method
+* studies on quality of path trace
+* pilot test to see how people interact
+* procedure and quantifying behavior

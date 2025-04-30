@@ -22,48 +22,16 @@ public class SessionGenerator : MonoBehaviour
     // Session Start
     public void GenerateExperiment(Session session)
     {
-        // // retrieve the n_practice_trials setting from the session settings
-        // int numPracticeTrials = session.settings.GetInt("n_practice_trials");
-        // // create block 1
-        // Block practiceBlock = session.CreateBlock(numPracticeTrials);
-        // practiceBlock.settings.SetValue("practice", true);
-
-        /*
-            3 conditions
-            1: Continuous movement
-            2: Free teleportation
-            3: Node-based teleportation
-        */
-        String testString = session.settings.GetString("test_string");
-        Debug.Log("Test string: " + testString);
-        int condition = UnityEngine.Random.Range(1, 4);
-        // int nRouteFindingTrials = session.settings.GetInt("n_route_finding_trials");
-
-        // if (condition == 1)
-        // {
-        //     // Continuous movement
-        //     // session.CurrentTrial.result["condition"] = "continuous";
-        //     Debug.Log("Continuous movement");
-        //     conditionAssignment = "continuous";
-        // }
-        // else if (condition == 2)
-        // {
-        //     // Free teleportation
-        //     // session.CurrentTrial.result["condition"] = "free-teleport";
-        //     Debug.Log("Free teleportation");
-        //     conditionAssignment = "free_teleport";
-        // }
-        // else
-        // {
-        //     // Node-based teleportation
-        //     // session.CurrentTrial.result["condition"] = "node-teleport";
-        //     Debug.Log("Node-based teleportation");
-        //     conditionAssignment = "node_teleport";
-        // }
-
-        // Create free exploration block
-        // Block freeExplorationBlock = session.CreateBlock(2);
-        // freeExplorationBlock.settings.SetValue("condition", "practice");
+        // String testString = session.settings.GetString("test_string");
+        // Debug.Log("Test string: " + testString);
+        String locomotionMethod = session.settings.GetString("locomotion_method");
+        String locomotionMethodFromUI = session.participantDetails["locomotion_method"].ToString();
+        String preferredHandFromUI = session.participantDetails["preferred_hand"].ToString();
+        // Debug.Log("Locomotion method from settings: " + locomotionMethod);
+        Debug.Log("Locomotion method from UI: " + locomotionMethodFromUI);
+        Debug.Log("Preferred hand from UI: " + preferredHandFromUI);
+        session.settings.SetValue("locomotion_method", locomotionMethodFromUI);
+        session.settings.SetValue("preferred_hand", preferredHandFromUI);
 
         // Curved corridor practice block
         Block curvedPracticeBlock = session.CreateBlock(1);

@@ -2,5 +2,6 @@
     "exploration_time": 10.0,
     "n_route_finding_trials": 3,
     "test_string": "This is a test string.",
-    "locomotion_method": "continuous"
+    "locomotion_method": "unset",
+    "preferred_hand": "unset"
 }

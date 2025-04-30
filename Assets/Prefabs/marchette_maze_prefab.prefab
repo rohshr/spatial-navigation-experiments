@@ -134,7 +134,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 1399b70bb9bb1d24dbc09340c161bfc2, type: 2}
     - target: {fileID: 919132149155446097, guid: c11d4674cda0daf4e8ecb24764900944, type: 3}
       propertyPath: m_Name
-      value: marchette_maze
+      value: marchette_maze_prefab
       objectReference: {fileID: 0}
     - target: {fileID: 1687793734654353202, guid: c11d4674cda0daf4e8ecb24764900944, type: 3}
       propertyPath: m_Name

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using TMPro;
 using UXF;
 
 [System.Serializable]
@@ -33,7 +34,7 @@ public class InstructionsController : MonoBehaviour
 
         // Example: Set the initial text
         // Update the text in the canvas to a specific text in the JSON file
-        updateInstruction("onboarding");
+        // updateInstruction("onboarding");
 
         // Subscribe to InputHandler events
         InputHandler.ProceedEvent += OnProceed;
@@ -116,7 +117,7 @@ public class InstructionsController : MonoBehaviour
         if (instructionsDictionary != null && instructionsDictionary.ContainsKey(scenario))
         {
             string text = instructionsDictionary[scenario];
-            Text canvasText = InstructionsCanvas.GetComponentInChildren<Text>();
+            TextMeshProUGUI canvasText = InstructionsCanvas.GetComponentInChildren<TextMeshProUGUI>();
             if (canvasText != null)
             {
                 canvasText.text = text;
@@ -140,7 +141,7 @@ public class InstructionsController : MonoBehaviour
         if (InstructionsCanvas.activeSelf)
         {
             // if the instructions canvas text is the onboarding text, show the practice briefing text
-            if (InstructionsCanvas.GetComponentInChildren<Text>().text == instructionsDictionary["onboarding"])
+            if (InstructionsCanvas.GetComponentInChildren<TextMeshProUGUI>().text == instructionsDictionary["onboarding"])
             {
                 updateInstruction("practice_briefing");
             }

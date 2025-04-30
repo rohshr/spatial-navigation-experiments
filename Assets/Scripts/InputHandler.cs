@@ -13,6 +13,20 @@ public class InputHandler : MonoBehaviour
     public delegate void OnBack();
     public static event OnBack BackEvent;
 
+    void Start()
+    {
+        // Enable the input actions
+        if (proceedAction != null)
+        {
+            proceedAction.action.Enable();
+        }
+
+        if (backAction != null)
+        {
+            backAction.action.Enable();
+        }   
+    }
+
     void Update()
     {
         if (proceedAction != null && proceedAction.action.triggered)
