@@ -34,7 +34,15 @@ public class SessionGenerator : MonoBehaviour
         session.settings.SetValue("preferred_hand", preferredHandFromUI);
 
         LocomotionMethod.UpdateFloors(locomotionMethodFromUI);
-        // InputHandler.UpdateHandPreference(preferredHandFromUI);
+
+        if (locomotionMethodFromUI == "Continuous")
+        {
+            InputHandler.UpdateHandPreference(preferredHandFromUI, true); // Smooth motion for continuous locomotion
+        }
+        else
+        {
+            InputHandler.UpdateHandPreference(preferredHandFromUI, false); // Snap motion for teleport and node-based locomotion
+        }
         // Curved corridor practice block
         Block curvedPracticeBlock = session.CreateBlock(1);
 
