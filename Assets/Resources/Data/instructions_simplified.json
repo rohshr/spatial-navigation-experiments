@@ -1,7 +1,7 @@
 [
     {
         "scenario": "onboarding",
-        "description": "Welcome to the VR spatial navigation experiment. Press any key in the handcontroller to start."
+        "description": "Welcome to the VR spatial navigation experiment. Press the trigger button on the handcontroller to start."
     },
     {
         "scenario": "practice_briefing",

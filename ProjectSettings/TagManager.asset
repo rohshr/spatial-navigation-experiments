@@ -8,6 +8,8 @@ TagManager:
   - SpawnPoint
   - Floor
   - FinishPoint
+  - LeftController
+  - RightController
   layers:
   - Default
   - TransparentFX

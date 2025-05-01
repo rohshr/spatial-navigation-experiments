@@ -13,6 +13,8 @@ public class InputHandler : MonoBehaviour
     public delegate void OnBack();
     public static event OnBack BackEvent;
 
+    public GameObject XRLocomotionMediator;
+
     void Start()
     {
         // Enable the input actions
@@ -24,7 +26,9 @@ public class InputHandler : MonoBehaviour
         if (backAction != null)
         {
             backAction.action.Enable();
-        }   
+        }
+
+        XRLocomotionMediator.SetActive(false); // Disable the XRLocomotionMediator at the start
     }
 
     void Update()
@@ -37,6 +41,14 @@ public class InputHandler : MonoBehaviour
         if (backAction != null && backAction.action.triggered)
         {
             BackEvent?.Invoke(); // Trigger the back event
+        }
+    }
+
+    public void EnableLocomotion()
+    {
+        if (!XRLocomotionMediator.activeSelf)
+        {
+            XRLocomotionMediator.SetActive(true); // Enable the XRLocomotionMediator
         }
     }
 }

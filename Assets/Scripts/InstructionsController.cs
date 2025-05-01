@@ -29,16 +29,10 @@ public class InstructionsController : MonoBehaviour
         // Load instructions from the JSON file
         instructionsDictionary = LoadInstructions();
 
-        Debug.Log("Instructions loaded: " + instructionsDictionary.Count + " entries found.");
-        Debug.Log(instructionsDictionary);
-
         // Example: Set the initial text
         // Update the text in the canvas to a specific text in the JSON file
         // updateInstruction("onboarding");
 
-        // Subscribe to InputHandler events
-        InputHandler.ProceedEvent += OnProceed;
-        InputHandler.BackEvent += OnBack;
     }
 
     // Update is called once per frame
@@ -47,6 +41,20 @@ public class InstructionsController : MonoBehaviour
         if (!Session.instance.InTrial)
         {
 
+        }
+    }
+
+    public void InstantiateControls()
+    {
+        if (Session.instance.hasInitialised)
+        {
+            // Subscribe to InputHandler events
+            InputHandler.ProceedEvent += OnProceed;
+            InputHandler.BackEvent += OnBack;
+        } 
+        else
+        {
+            Debug.LogError("Session instance has not been initialized. Cannot subscribe to events.");
         }
     }
 
@@ -172,4 +180,6 @@ public class InstructionsController : MonoBehaviour
     {
         public Instruction[] instructions;
     }
+
+
 }
