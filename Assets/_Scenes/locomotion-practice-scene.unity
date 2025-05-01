@@ -969,7 +969,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6557122797791980765, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6591501296780536771, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
       propertyPath: m_BlockUIOnInteractableSelection
@@ -5915,6 +5915,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2390190276886034246, guid: bd581c3632295294ca11be4bcf3345d0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4259425258560503364, guid: bd581c3632295294ca11be4bcf3345d0, type: 3}
       propertyPath: XROrigin
       value: 
