@@ -33,6 +33,8 @@ public class SessionGenerator : MonoBehaviour
         session.settings.SetValue("locomotion_method", locomotionMethodFromUI);
         session.settings.SetValue("preferred_hand", preferredHandFromUI);
 
+        LocomotionMethod.UpdateFloors(locomotionMethodFromUI);
+        // InputHandler.UpdateHandPreference(preferredHandFromUI);
         // Curved corridor practice block
         Block curvedPracticeBlock = session.CreateBlock(1);
 

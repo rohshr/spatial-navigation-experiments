@@ -1211,7 +1211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9118533941765365700, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 32
+      value: 96
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3715,7 +3715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57065b4609457584197a2bd10b52c8c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  locomotionChoice: 1
+  locomotionChoice: 0
 --- !u!114 &1598789364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5004,23 +5004,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 653059108743847710, guid: 0a3b6392f04558844bd340e68ced1ff9, type: 3}
       propertyPath: 'participantDataPoints.Array.data[0].dropDownOptions.Array.data[0]'
-      value: continuous
+      value: Continuous
       objectReference: {fileID: 0}
     - target: {fileID: 653059108743847710, guid: 0a3b6392f04558844bd340e68ced1ff9, type: 3}
       propertyPath: 'participantDataPoints.Array.data[0].dropDownOptions.Array.data[1]'
-      value: teleport
+      value: Teleport
       objectReference: {fileID: 0}
     - target: {fileID: 653059108743847710, guid: 0a3b6392f04558844bd340e68ced1ff9, type: 3}
       propertyPath: 'participantDataPoints.Array.data[0].dropDownOptions.Array.data[2]'
-      value: node-based
+      value: NodeBased
       objectReference: {fileID: 0}
     - target: {fileID: 653059108743847710, guid: 0a3b6392f04558844bd340e68ced1ff9, type: 3}
       propertyPath: 'participantDataPoints.Array.data[1].dropDownOptions.Array.data[0]'
-      value: right
+      value: Right
       objectReference: {fileID: 0}
     - target: {fileID: 653059108743847710, guid: 0a3b6392f04558844bd340e68ced1ff9, type: 3}
       propertyPath: 'participantDataPoints.Array.data[1].dropDownOptions.Array.data[1]'
-      value: left
+      value: Left
       objectReference: {fileID: 0}
     - target: {fileID: 653059108743847710, guid: 0a3b6392f04558844bd340e68ced1ff9, type: 3}
       propertyPath: 'participantDataPoints.Array.data[1].dropDownOptions.Array.data[2]'

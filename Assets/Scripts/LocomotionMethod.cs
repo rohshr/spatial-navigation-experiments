@@ -6,23 +6,53 @@ public class LocomotionMethod : MonoBehaviour
     public enum LocomotionType { Continuous, Teleport, NodeBased }
     public LocomotionType locomotionChoice; // Dropdown in the Unity Editor
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        UpdateFloors();
-    }
+    // // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // void Start()
+    // {
+    //     UpdateFloorsEditor(); // Call the method to update floors based on the initial choice
+    // }
 
-    // Update is called once per frame
-    void Update()
-    {
+    // // Update is called once per frame
+    // void Update()
+    // {
         
-    }
-    private void UpdateFloors()
+    // }
+
+    public static void UpdateFloors(string locomotionArgument)
     {
         // Find all GameObjects with the tag "Floor"
         GameObject[] floors = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.CompareTag("Floor")).ToArray();
 
-            // Enable or disable floors based on the locomotionChoice
+        // Enable or disable floors based on the locomotionChoice
+        foreach (GameObject floor in floors)
+        {
+            
+            if (locomotionArgument == "Continuous" && floor.name == "ContinuousFloor")
+            {
+                floor.SetActive(true);
+            }
+            else if (locomotionArgument == "Teleport" && floor.name == "TeleportFloor")
+            {
+                floor.SetActive(true);
+            }
+            else if (locomotionArgument == "NodeBased" && floor.name == "NodeFloor")
+            {
+                floor.SetActive(true);
+            }
+            else
+            {
+                floor.SetActive(false);
+            }
+        }
+    }
+
+    // Script for debugging purpose in the Editor
+    private void UpdateFloorsEditor()
+    {
+        // Find all GameObjects with the tag "Floor"
+        GameObject[] floors = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.CompareTag("Floor")).ToArray();
+
+        // Enable or disable floors based on the locomotionChoice
         foreach (GameObject floor in floors)
         {
             if (locomotionChoice == LocomotionType.Continuous && floor.name == "ContinuousFloor")
@@ -47,6 +77,6 @@ public class LocomotionMethod : MonoBehaviour
     // This method can be called manually in the Unity Editor to update floors when the choice changes
     private void OnValidate()
     {
-        UpdateFloors();
+        UpdateFloorsEditor();
     }
 }
