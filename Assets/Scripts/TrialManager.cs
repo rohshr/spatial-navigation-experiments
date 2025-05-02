@@ -12,11 +12,25 @@ public class TrialManager : MonoBehaviour
     public bool isPractice;
     public GameObject XROrigin;
 
+    public bool inUIView = true;
+
+    // getter and setter for inUIView
+    public bool InUIView
+    {
+        get { return inUIView; }
+        set { inUIView = value; }
+    }
+
     // IEnumerator SetupTrial()
     // {
     //     // yield return new WaitForSeconds(0.5f);
     //     // session.BeginNextTrial();
     // }
+
+    public void Update()
+    {
+        
+    }
 
     // Trial Start
     public void StartTrial()

@@ -20,12 +20,18 @@ public class SpawnPointCheck : MonoBehaviour
     // }
     void OnTriggerExit(Collider other)
     {
-        Debug.Log("OnTriggerExit called in SpawnPointCheck");
-        if (other.CompareTag("Player") && !Session.instance.InTrial)
+        if (other.CompareTag("Player") && Session.instance.InTrial)
         {
-            Debug.Log("Player exited the trigger zone in SpawnPointCheck");
-            Debug.Log("Start time:" + System.DateTime.Now);
-            // Session.instance.BeginNextTrial();
+            if (CompareTag("SpawnPoint"))
+            {
+                Debug.Log("Player exited the SpawnPoint.");
+                Debug.Log("Time:" + System.DateTime.Now);
+                Session.instance.BeginNextTrial();
+            } else if (CompareTag("UIViewpoint"))
+            {
+                Debug.Log("Player exited the UIViewpoint.");
+                Debug.Log("Time:" + System.DateTime.Now);
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ TagManager:
   - FinishPoint
   - LeftController
   - RightController
+  - UIViewpoint
   layers:
   - Default
   - TransparentFX

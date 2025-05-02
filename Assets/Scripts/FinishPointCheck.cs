@@ -7,15 +7,16 @@ public class FinishPointCheck : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("OnTriggerEnter called in PracticeTrialController");
         if (other.CompareTag("Player") && Session.instance.InTrial)
         {
             Debug.Log("Player reached the finish point");
             Debug.Log("End time:" + System.DateTime.Now);
             // Check if the player is in the practice trial area
             if (XROrigin != null)
-            {                
+            {
+                Debug.Log("Time:" + System.DateTime.Now);
                 Session.instance.CurrentTrial.End();
+                //  XROrigin.transform.position = instructionsUIViewpoint
             }
             else
             {
