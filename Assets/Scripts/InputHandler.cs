@@ -19,6 +19,7 @@ public class InputHandler : MonoBehaviour
 
     void Start()
     {
+
         // Enable the input actions
         if (proceedAction != null)
         {
@@ -29,8 +30,22 @@ public class InputHandler : MonoBehaviour
         {
             backAction.action.Enable();
         }
+        
+        DisableLocomotion();
+    }
 
-        XRLocomotionMediator.SetActive(false); // Disable the XRLocomotionMediator at the start
+    private void OnEnable()
+    {
+        InstructionsController.OnInstructionsCompleted += EnableLocomotion;
+        FinishPointCheck.OnFinishPointReached += DisableLocomotion; // Subscribe to the event when the finish point is reached
+        ObjectCollisionDetection.OnObjectCollided += DisableLocomotion; // Subscribe to the event when the object collision is detected
+    }
+
+    private void OnDisable()
+    {
+        InstructionsController.OnInstructionsCompleted -= EnableLocomotion;
+        FinishPointCheck.OnFinishPointReached -= DisableLocomotion; // Unsubscribe from the event when the finish point is reached
+        ObjectCollisionDetection.OnObjectCollided -= DisableLocomotion; // Unsubscribe from the event when the object collision is detected
     }
 
     void Update()
@@ -51,6 +66,14 @@ public class InputHandler : MonoBehaviour
         if (!XRLocomotionMediator.activeSelf)
         {
             XRLocomotionMediator.SetActive(true); // Enable the XRLocomotionMediator
+        }
+    }
+
+    public void DisableLocomotion()
+    {
+        if (XRLocomotionMediator.activeSelf)
+        {
+            XRLocomotionMediator.SetActive(false); // Disable the XRLocomotionMediator
         }
     }
 

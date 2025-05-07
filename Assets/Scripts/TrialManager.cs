@@ -6,69 +6,105 @@ using UXF;
 
 public class TrialManager : MonoBehaviour
 {
-    public List<GameObject> StartingPlayerSpawnPoints;
-    private int SpawnPointIndex = 0;
-    List<string> conditionAssignments;
-    public bool isPractice;
-    public GameObject XROrigin;
+    [Header("References")]
+    [SerializeField] private InstructionsController instructionsController;
+    [SerializeField] private GameObject XROrigin;
+    [SerializeField] private GameObject UIViewpoint;
 
-    public bool inUIView = true;
+    [Header("Settings")]
+    [SerializeField] private List<GameObject> SpawnPointsSequence;
+    [SerializeField] private List<GameObject> ObjectSearchSequence;
 
-    // getter and setter for inUIView
-    public bool InUIView
+    private int currentSpawnPointIndex = 0;
+    private int currentObjectSearchIndex = 0;
+    private GameObject pendingSpawnPoint;
+    private GameObject pendingObjectSearch;
+
+    private void OnEnable()
     {
-        get { return inUIView; }
-        set { inUIView = value; }
+        InstructionsController.OnInstructionsCompleted += HandleInstructionsCompleted;
+        FinishPointCheck.OnFinishPointReached += MoveToUIViewpoint; // Subscribe to the event when the finish point is reached
+        ObjectCollisionDetection.OnObjectCollided += MoveToUIViewpoint; // Subscribe to the event when the object collision is detected
     }
 
-    // IEnumerator SetupTrial()
-    // {
-    //     // yield return new WaitForSeconds(0.5f);
-    //     // session.BeginNextTrial();
-    // }
-
-    public void Update()
+    private void OnDisable()
     {
-        
+        InstructionsController.OnInstructionsCompleted -= HandleInstructionsCompleted;
+        FinishPointCheck.OnFinishPointReached -= MoveToUIViewpoint; // Unsubscribe from the event when the finish point is reached
+        ObjectCollisionDetection.OnObjectCollided -= MoveToUIViewpoint; // Unsubscribe from the event when the object collision is detected
     }
 
-    // Trial Start
-    public void StartTrial()
+    public void SetNextSpawnPoint()
     {
-        // session.BeginNextTrial();
-        // Debug.Log("Trial started");
-        // Debug.Log("Start time:" + DateTime.Now);
-    }
-
-    // Trial End
-    // public void StopTrial()
-    // {
-    //     StopAllCoroutines();
-    // }
-
-    
-
-    // void Start()
-    // {
-    //     StartCoroutine(SetupTrial());
-    // }
-
-    public void Testfunction()
-    {
-        Debug.Log("Trial test function called");
-    }
-
-    public void SpawnPointSelection()
-    {
-        if (StartingPlayerSpawnPoints != null && StartingPlayerSpawnPoints.Count > 0)
+        if (SpawnPointsSequence == null || SpawnPointsSequence.Count <= currentSpawnPointIndex)
         {
-            XROrigin.transform.position = StartingPlayerSpawnPoints[SpawnPointIndex].transform.position;
-            Debug.Log("Spawn point selected: " + StartingPlayerSpawnPoints[SpawnPointIndex].name);
-            SpawnPointIndex++;
+            Debug.LogWarning($"[{nameof(TrialManager)}] No more spawn points available.");
+            return;
+        }
+        else if (pendingSpawnPoint != null && pendingSpawnPoint.name == "OpenFloorSpawnPoint")
+        {
+            pendingObjectSearch = ObjectSearchSequence[currentObjectSearchIndex];
+            instructionsController.SetObjectSearchInstruction(pendingObjectSearch.name);
+            return;
+        }
+
+        pendingSpawnPoint = SpawnPointsSequence[currentSpawnPointIndex];
+        instructionsController.SetEnvironmentInstruction(pendingSpawnPoint.name);
+    }
+
+    public void SetNextObjectSearch()
+    {
+        if(ObjectSearchSequence == null || ObjectSearchSequence.Count <= currentObjectSearchIndex)
+        {
+            Debug.LogWarning($"[{nameof(TrialManager)}] No more objects to search.");
+            return;
+        }
+
+        pendingObjectSearch = ObjectSearchSequence[currentObjectSearchIndex];
+        instructionsController.SetObjectSearchInstruction(pendingObjectSearch.name);
+    }
+
+    private void HandleInstructionsCompleted()
+    {
+        if (pendingSpawnPoint != null)
+        {
+            MoveToSpawnPoint(pendingSpawnPoint);
+
+            if (pendingSpawnPoint.name != "OpenFloorSpawnPoint")
+            {
+                currentSpawnPointIndex++;
+                pendingSpawnPoint = null;
+            } else
+            {
+                SetNextObjectSearch();
+                currentObjectSearchIndex++;
+                pendingObjectSearch = null;
+            }
+        }
+    }
+
+    private void MoveToSpawnPoint(GameObject spawnPoint)
+    {
+        XROrigin.transform.SetPositionAndRotation(
+            spawnPoint.transform.position,
+            spawnPoint.transform.rotation
+        );
+        Debug.Log($"Moved to spawn point: {spawnPoint.name}");
+    }
+
+    public void MoveToUIViewpoint()
+    {
+        if (UIViewpoint != null)
+        {
+            XROrigin.transform.SetPositionAndRotation(
+                UIViewpoint.transform.position,
+                UIViewpoint.transform.rotation
+            );
+            Debug.Log($"Moved to UIViewpoint: {UIViewpoint.name}");
         }
         else
         {
-            Debug.LogWarning("No spawn points available in the list.");
+            Debug.LogWarning($"[{nameof(TrialManager)}] UIViewpoint is not assigned.");
         }
     }
 }

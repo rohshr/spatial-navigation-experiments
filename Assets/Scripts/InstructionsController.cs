@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
 using UXF;
+using System;
 
 [System.Serializable]
 public class Instruction
@@ -15,55 +16,164 @@ public class Instruction
 
 public class InstructionsController : MonoBehaviour
 {
+    [Header("References")]
     public Camera mainCamera;
-    public GameObject InstructionsCanvas; // Reference to the Instructions canvas
+    public GameObject InstructionsCanvas;
 
-    // Path to the instructions.json file
-    public TextAsset instructionsJson;
+    [Header("Settings")]
+    [SerializeField] private EnvironmentInstructions environmentInstructions;
+    [SerializeField] private ObjectSearchInstructions objectSearchInstructions;
+    [SerializeField] private TextAsset instructionsJson;
 
     // Dictionary to hold the instructions loaded from the JSON file
     private Dictionary<string, string> instructionsDictionary;
+    public static List<string> currentInstructions = new();
+    // public static List<string> objectInstructions = new() { "find_cube", "find_sphere", "find_statue", "find_star" };
 
-    public static List<string> instructions = new();
+    // Event to notify when instructions are completed
+    public static event Action OnInstructionsCompleted;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // Helper class to parse the JSON array
+    [System.Serializable]
+    private class InstructionArray
+    {
+        public Instruction[] instructions;
+    }
+
     void Start()
     {
-        // Load instructions from the JSON file
         instructionsDictionary = LoadInstructions();
-
-
-        // Example: Set the initial text
-        // Update the text in the canvas to a specific text in the JSON file
-        // updateInstruction("onboarding");
-
+        ValidateReferences();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void ValidateReferences()
     {
-        // if (Session.instance.hasInitialised)
-        // {
-            
-        // }
-        // else
-        // {
-
-        // }
+        if (InstructionsCanvas == null)
+            Debug.LogError($"[{nameof(InstructionsController)}] InstructionsCanvas is not assigned!");
+        if (environmentInstructions == null)
+            Debug.LogError($"[{nameof(InstructionsController)}] EnvironmentInstructions ScriptableObject is not assigned!");
     }
 
-    public void InstantiateControls()
+    public void SetInitialInstructions()
+    {
+        // initial intro text
+        List<string> initialInstructionKeys = Session.instance.settings.GetStringList("initial_instructions_set");
+
+        // adding the method instruction to the list
+        initialInstructionKeys.Add(Session.instance.settings.GetString("locomotion_method_instruction"));
+
+        foreach (string instructionKey in initialInstructionKeys)
+        {
+            if (instructionsDictionary != null && instructionsDictionary.ContainsKey(instructionKey))
+            {
+                currentInstructions.Add(instructionsDictionary[instructionKey]);
+            }
+            else
+            {
+                Debug.LogWarning($"Instruction '{instructionKey}' not found in the instruction dictionary.");
+            }
+        }
+
+    }
+
+    public void SetEnvironmentInstruction(string spawnPointId)
+    {
+        if (environmentInstructions != null)
+        {
+            var instruction = System.Array.Find(environmentInstructions.instructions, 
+                x => x.spawnPointId == spawnPointId);
+
+            if (instruction != null)
+            {
+                currentInstructions.Add(instruction.instructionText);
+                
+                if (instruction.instructionText == "OpenFloorSpawnPoint")
+                {
+                    SetObjectSearchInstruction(instruction.instructionText);
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"No instructions found for spawn point: {spawnPointId}");
+            }
+        }
+        else
+        {
+            Debug.LogError("SpawnPointInstructions ScriptableObject is not assigned!");
+        }
+    }
+
+    public void SetObjectSearchInstruction(string objectID)
+    {
+        if (objectSearchInstructions != null)
+        {
+            var instruction = System.Array.Find(objectSearchInstructions.instructions, 
+                x => x.objectId == objectID);
+
+            if (instruction != null)
+            {
+                currentInstructions.Add(instruction.instructionText);
+            }
+            else
+            {
+                Debug.LogWarning($"No instructions found for spawn point: {objectID}");
+            }
+        }
+        else
+        {
+            Debug.LogError("SpawnPointInstructions ScriptableObject is not assigned!");
+        }
+    }
+
+    // Method to set the InstructionsCanvas active or inactive
+    public void ShowInstructions()
+    {
+        if (!InstructionsCanvas || currentInstructions.Count == 0) return;
+
+        UpdateInstructionCanvasText(currentInstructions[0]);
+        InstructionsCanvas.SetActive(true);
+    }
+    public void HideInstructions()
+    {
+        if (!InstructionsCanvas) return;
+
+        currentInstructions = new();
+        InstructionsCanvas.SetActive(false);
+    }
+
+    // Method to handle the proceed button press
+    private void OnProceed()
+    {
+        if (!InstructionsCanvas || !InstructionsCanvas.activeSelf) return;
+
+        if (currentInstructions.Count > 1)
+        {
+            // Show next instruction
+            currentInstructions.RemoveAt(0);
+            UpdateInstructionCanvasText(currentInstructions[0]);
+        }
+        else
+        {
+            // No more instructions, complete the sequence
+            HideInstructions();
+            Debug.Log("Instructions completed, triggering OnInstructionsCompleted event");
+            OnInstructionsCompleted?.Invoke();
+        }
+    }
+
+    public void EnableControls()
     {
         if (Session.instance.hasInitialised)
         {
-            // Subscribe to InputHandler events
             InputHandler.ProceedEvent += OnProceed;
-            InputHandler.BackEvent += OnBack;
-        } 
-        else
-        {
-            Debug.LogError("Session instance has not been initialized. Cannot subscribe to events.");
+            FinishPointCheck.OnFinishPointReached += ShowInstructions;
         }
+    }
+
+    private void OnDisable()
+    {
+        InputHandler.ProceedEvent -= OnProceed;
+        FinishPointCheck.OnFinishPointReached -= ShowInstructions;
     }
 
     // Method to load instructions from the JSON file
@@ -74,7 +184,7 @@ public class InstructionsController : MonoBehaviour
             Debug.Log("Parsing JSON file...");
             InstructionArray instructionsArray = JsonUtility.FromJson<InstructionArray>("{\"instructions\":" + instructionsJson.text + "}");
 
-            Dictionary<string, string> instructionsDict = new Dictionary<string, string>();
+            Dictionary<string, string> instructionsDict = new();
             foreach (Instruction instruction in instructionsArray.instructions)
             {
                 if (!string.IsNullOrEmpty(instruction.scenario))
@@ -103,48 +213,17 @@ public class InstructionsController : MonoBehaviour
         }
     }
 
-    // Method to set the InstructionsCanvas active or inactive
-    public void SetInstructionsCanvasActive()
-    {
-        if (InstructionsCanvas != null)
-        {
-            if (instructions.Count == 0)
-            {
-                Debug.LogWarning("No instructions available to display.");
-                return;
-            }
-            UpdateInstructionCanvasText(instructionsDictionary[instructions[0]]); // Set the first scenario text
-            instructions.RemoveAt(0); // Remove the first scenario from the list
-            InstructionsCanvas.SetActive(true);
-        }
-        else
-        {
-            Debug.LogError("InstructionsCanvas is not assigned.");
-        }
-    }
-    public void SetInstructionsCanvasInactive()
-    {
-        if (InstructionsCanvas != null)
-        {
-            InstructionsCanvas.SetActive(false);
-        }
-        else
-        {
-            Debug.LogError("InstructionsCanvas is not assigned.");
-        }
-    }
-
     // Method to set the text in the InstructionsCanvas based on a scenario
     public void UpdateInstructionCanvasText(string text)
     {
-        TextMeshProUGUI canvasText = InstructionsCanvas.GetComponentInChildren<TextMeshProUGUI>();
+        TextMeshProUGUI canvasText = InstructionsCanvas.GetComponentInChildren<TMPro.TextMeshProUGUI>();
         if (canvasText != null)
         {
             canvasText.text = text;
         }
         else
         {
-            Debug.LogError("Text component not found in InstructionsCanvas.");
+            Debug.LogError($"[{nameof(InstructionsController)}] Text component not found in InstructionsCanvas");
         }
     }
 
@@ -168,78 +247,36 @@ public class InstructionsController : MonoBehaviour
     //     scenarios.RemoveAt(0); // Remove the first scenario from the list
     // }
 
-    //
-    public static void UpdateInstructionSet(List<string> instructionSet)
-    {
-        // instructions.Clear(); // Clear the previous scenarios
-        // foreach (string instruction in instructionSet)
-        // {
-        //     instructions.Add(instruction);
-        // }
-        instructions = instructionSet;
-    }
+    // public void SetEnvironmentInstructions()
+    // {
+    //     if (Session.instance.CurrentBlock != null)
+    //     {
+    //         instructions = new List<string>(); // Clear the instructions list
+    //         // string environment = Session.instance.CurrentBlock.settings.GetString("environment");
+    //         instructions = Session.instance.CurrentBlock.settings.GetStringList("next_instruction_set");
+    //         // Debug.Log($"Environment instructions set for '{environment}': " + string.Join(", ", instructions));
+    //         if (instructions.Contains("open_space_briefing"))
+    //         {
+    //             instructions.Add(objectInstructions[0]);
+    //             objectInstructions.RemoveAt(0); // Remove the first object instruction from the list
+    //         }
+    //         InstructionsCanvas.SetActive(true);
+    //     }
+    //     else
+    //     {
+    //         Debug.LogError("Current block is null. Cannot set environment instructions.");
+    //     }
+    // }
 
-    // Method that starts each block
-    public void UpdateBlockInstruction()
-    {
-        Session.instance.CurrentBlock.settings.GetString("environment");
-        // UpdateInstructionSet("value from the block's settings")
-    }
+    // public static void UpdateInstructionSet(List<string> instructionSet)
+    // {
+    //     instructions = instructionSet;
+    // }
 
-
-    // Method to handle the proceed button press
-    private void OnProceed()
-    {
-        // Check if the InstructionsCanvas is active before proceeding
-        if (InstructionsCanvas.activeSelf)
-        {
-            Debug.Log("Proceed button pressed.");
-            // // if the instructions canvas text is the onboarding text, show the practice briefing text
-            // if (InstructionsCanvas.GetComponentInChildren<TextMeshProUGUI>().text == instructionsDictionary["onboarding"])
-            // {
-            //     updateInstruction("practice_briefing");
-            // }
-            if (instructions.Count > 0)
-            {
-                // Update the text in the canvas to the next scenario in the list
-                UpdateInstructionCanvasText(instructionsDictionary[instructions[0]]);
-                instructions.RemoveAt(0); // Remove the first scenario from the list
-            }
-            else
-            {
-                // Hide the InstructionsCanvas and start the trial
-                SetInstructionsCanvasInactive();
-                if (mainCamera != null)
-                {
-                    mainCamera.cullingMask = -1; // -1 sets the culling mask to everything
-                }
-                else
-                {
-                    Debug.LogWarning("Main Camera is not assigned.");
-                }
-                // Move to the starting spawnpoint
-            }
-        }
-        // else
-        // {
-        //     Debug.LogWarning("InstructionsCanvas is not active. Cannot proceed.");
-        // }
-    }
-
-    // Method to handle the back button press
-    private void OnBack()
-    {
-        Debug.Log("Back button pressed.");
-        // Show the previous instruction or perform another action
-        // Example: updateInstruction("previous_scenario");
-    }
-
-    // Helper class to parse the JSON array
-    [System.Serializable]
-    private class InstructionArray
-    {
-        public Instruction[] instructions;
-    }
-
-
+    // // Method that starts each block
+    // public void UpdateBlockInstruction()
+    // {
+    //     Session.instance.CurrentBlock.settings.GetString("environment");
+    //     // UpdateInstructionSet("value from the block's settings")
+    // }
 }

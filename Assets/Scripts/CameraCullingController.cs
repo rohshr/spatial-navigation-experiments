@@ -15,6 +15,20 @@ public class CameraCullingController : MonoBehaviour
         
     }
 
+    private void OnEnable()
+    {
+        InstructionsController.OnInstructionsCompleted += SetCullingMaskToEverything;
+        FinishPointCheck.OnFinishPointReached += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the finish point is reached
+        ObjectCollisionDetection.OnObjectCollided += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the object collision is detected
+    }
+
+    private void OnDisable()
+    {
+        InstructionsController.OnInstructionsCompleted -= SetCullingMaskToEverything;
+        FinishPointCheck.OnFinishPointReached -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the finish point is reached
+        ObjectCollisionDetection.OnObjectCollided -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the object collision is detected
+    }
+
     public void SetCullingMaskToUIOnlyWithHandController()
     {
         if (mainCamera != null)

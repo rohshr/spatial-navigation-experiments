@@ -25,27 +25,27 @@
     },
     {
         "scenario": "angled_corridor_briefing",
-        "description": "You will be navigating through a passage with several turns. Please try to get to the door at the end of the passage as quickly as possible.\nPress the trigger button to continue."
+        "description": "Now, you will be navigating through a passage with several turns. Please try to get to the door at the end of the passage as quickly as possible.\nPress the trigger button to continue."
     },
     {
         "scenario": "open_space_briefing",
-        "description": "You will be navigating through an open space. There are four different objects in this environment. You will be prompted to find each object at a time. Your task is to find the objects and get close to them as quickly as possible.\nPress the trigger button to continue."
+        "description": "Now, you will be navigating through an open space. There are four different objects in this environment. You will be prompted to find each object at a time. Your task is to find the objects and get close to them as quickly as possible.\nPress the trigger button to continue."
     },
     {
         "scenario": "find_cube",
-        "description": "Find the green cube."
+        "description": "Find and walk towards the green cube."
     },
     {
         "scenario": "find_sphere",
-        "description": "Find the blue sphere."
+        "description": "Find and walk towards the blue sphere."
     },
     {
         "scenario": "find_statue",
-        "description": "Find the statue."
+        "description": "Find and walk towards the statue."
     },
     {
         "scenario": "find_star",
-        "description": "Find the yellow star."
+        "description": "Find and walk towards the yellow star."
     },
     {
         "scenario": "practice_complete_announcement",

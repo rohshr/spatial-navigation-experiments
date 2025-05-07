@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4230707235534669474
 Transform:
   m_ObjectHideFlags: 0
@@ -270,14 +270,14 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2016086282714232101}
-  - {fileID: 3117456439687176917}
-  - {fileID: 5884255728955019050}
-  - {fileID: 1091058793173672197}
-  - {fileID: 8775784245365899653}
   - {fileID: 3460456289980391722}
   - {fileID: 1654117224016045796}
   - {fileID: 435717425820161125}
   - {fileID: 8226222320106084533}
+  - {fileID: 8775784245365899653}
+  - {fileID: 1091058793173672197}
+  - {fileID: 5884255728955019050}
+  - {fileID: 3117456439687176917}
   m_Father: {fileID: 9087249586031060217}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6572325386540882074
@@ -560,7 +560,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1466122719058167016, guid: 178475642f50b474791a15a3ab93a46c, type: 3}
       propertyPath: m_Name
-      value: RoundLight (2)
+      value: RoundLight7
       objectReference: {fileID: 0}
     - target: {fileID: 6652453446812910645, guid: 178475642f50b474791a15a3ab93a46c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -808,7 +808,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1466122719058167016, guid: 178475642f50b474791a15a3ab93a46c, type: 3}
       propertyPath: m_Name
-      value: RoundLight (4)
+      value: RoundLight5
       objectReference: {fileID: 0}
     - target: {fileID: 6652453446812910645, guid: 178475642f50b474791a15a3ab93a46c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -944,7 +944,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1466122719058167016, guid: 178475642f50b474791a15a3ab93a46c, type: 3}
       propertyPath: m_Name
-      value: RoundLight (5)
+      value: RoundLight4
       objectReference: {fileID: 0}
     - target: {fileID: 6652453446812910645, guid: 178475642f50b474791a15a3ab93a46c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1250,7 +1250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1466122719058167016, guid: 178475642f50b474791a15a3ab93a46c, type: 3}
       propertyPath: m_Name
-      value: RoundLight
+      value: RoundLight0
       objectReference: {fileID: 0}
     - target: {fileID: 6652453446812910645, guid: 178475642f50b474791a15a3ab93a46c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1324,7 +1324,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1466122719058167016, guid: 178475642f50b474791a15a3ab93a46c, type: 3}
       propertyPath: m_Name
-      value: RoundLight (7)
+      value: RoundLight2
       objectReference: {fileID: 0}
     - target: {fileID: 6652453446812910645, guid: 178475642f50b474791a15a3ab93a46c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1659,7 +1659,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1466122719058167016, guid: 178475642f50b474791a15a3ab93a46c, type: 3}
       propertyPath: m_Name
-      value: RoundLight (3)
+      value: RoundLight6
       objectReference: {fileID: 0}
     - target: {fileID: 6652453446812910645, guid: 178475642f50b474791a15a3ab93a46c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1795,7 +1795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1466122719058167016, guid: 178475642f50b474791a15a3ab93a46c, type: 3}
       propertyPath: m_Name
-      value: RoundLight (8)
+      value: RoundLight3
       objectReference: {fileID: 0}
     - target: {fileID: 6652453446812910645, guid: 178475642f50b474791a15a3ab93a46c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1985,7 +1985,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1466122719058167016, guid: 178475642f50b474791a15a3ab93a46c, type: 3}
       propertyPath: m_Name
-      value: RoundLight (6)
+      value: RoundLight1
       objectReference: {fileID: 0}
     - target: {fileID: 6652453446812910645, guid: 178475642f50b474791a15a3ab93a46c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2161,21 +2161,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3818306001132767958}
     m_Modifications:
-    - target: {fileID: 546884740402873992, guid: 178475642f50b474791a15a3ab93a46c, type: 3}
-      propertyPath: m_BoundingSphereOverride.w
-      value: 9.1858e-41
-      objectReference: {fileID: 0}
-    - target: {fileID: 546884740402873992, guid: 178475642f50b474791a15a3ab93a46c, type: 3}
-      propertyPath: m_BoundingSphereOverride.x
-      value: 2.9209e-41
-      objectReference: {fileID: 0}
-    - target: {fileID: 546884740402873992, guid: 178475642f50b474791a15a3ab93a46c, type: 3}
-      propertyPath: m_BoundingSphereOverride.y
-      value: 2.524355e-29
-      objectReference: {fileID: 0}
     - target: {fileID: 1466122719058167016, guid: 178475642f50b474791a15a3ab93a46c, type: 3}
       propertyPath: m_Name
-      value: RoundLight (1)
+      value: RoundLight8
       objectReference: {fileID: 0}
     - target: {fileID: 6652453446812910645, guid: 178475642f50b474791a15a3ab93a46c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2276,6 +2264,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8252850634814663088, guid: cb951bcd3ade3c543814ffce3c26bb77, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8252850634814663088, guid: cb951bcd3ade3c543814ffce3c26bb77, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8252850634814663088, guid: cb951bcd3ade3c543814ffce3c26bb77, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: cc3a7de460900ca468c2ccf711232fb1, type: 2}
@@ -2309,7 +2305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4880099508911529307, guid: cb951bcd3ade3c543814ffce3c26bb77, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4880099508911529307, guid: cb951bcd3ade3c543814ffce3c26bb77, type: 3}
       propertyPath: m_TagString
