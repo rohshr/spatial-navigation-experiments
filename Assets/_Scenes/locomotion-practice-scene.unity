@@ -1023,6 +1023,10 @@ PrefabInstance:
       propertyPath: m_EnableTurnAround
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1977854662471631544, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
+      propertyPath: m_RightHandTurnInput.m_InputSourceMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2533446417400437292, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -1094,6 +1098,10 @@ PrefabInstance:
     - target: {fileID: 4121816459873954360, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378647236663882706, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
+      propertyPath: m_TeleportMode
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4378647236663882706, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
       propertyPath: m_SmoothMotionEnabled
@@ -1246,6 +1254,10 @@ PrefabInstance:
     - target: {fileID: 8982578575028120946, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
       propertyPath: m_EnableStrafe
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8982578575028120946, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
+      propertyPath: m_LeftHandMoveInput.m_InputSourceMode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9032423168556277738, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1915,10 +1927,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 726771627194686366, guid: f78ebfe796ecd0b4cbaa6f98f5352404, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1298240977941695015, guid: f78ebfe796ecd0b4cbaa6f98f5352404, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: a3bcf67f7c9ad1447a367fcad57f3ffa, type: 2}
+    - target: {fileID: 1314146508766396071, guid: f78ebfe796ecd0b4cbaa6f98f5352404, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1460931104400684514, guid: f78ebfe796ecd0b4cbaa6f98f5352404, type: 3}
       propertyPath: m_Name
       value: sphere
@@ -1969,7 +1989,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2786988586677157937, guid: f78ebfe796ecd0b4cbaa6f98f5352404, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3400291221016432716, guid: f78ebfe796ecd0b4cbaa6f98f5352404, type: 3}
       propertyPath: m_IsActive
@@ -1981,11 +2001,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3575548669815692516, guid: f78ebfe796ecd0b4cbaa6f98f5352404, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5844817123720263801, guid: f78ebfe796ecd0b4cbaa6f98f5352404, type: 3}
       propertyPath: m_Name
       value: OpenFloorSpawnPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017661010380776121, guid: f78ebfe796ecd0b4cbaa6f98f5352404, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6114892850417721878, guid: f78ebfe796ecd0b4cbaa6f98f5352404, type: 3}
       propertyPath: m_Name
@@ -4236,8 +4260,8 @@ MonoBehaviour:
   UIViewpoint: {fileID: 1331125828}
   SpawnPointsSequence:
   - {fileID: 5468407093221131391}
-  - {fileID: 1036584507}
   - {fileID: 1420146494}
+  - {fileID: 1036584507}
   ObjectSearchSequence:
   - {fileID: 1306354884}
   - {fileID: 608701271}
@@ -4255,9 +4279,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7a5dc17766ec6449b8d1bc633e373b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  XROrigin: {fileID: 7592203504741225942}
   proceedAction: {fileID: 9116136493208989681, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   backAction: {fileID: 2563229910848146978, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  XRLocomotionMediator: {fileID: 4121816460184959344}
 --- !u!1 &1615109192
 GameObject:
   m_ObjectHideFlags: 0
@@ -6534,7 +6558,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5884533412760349144, guid: 9d19cd6619d703a4a9ceb875d8dd1c24, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5884533412760349144, guid: 9d19cd6619d703a4a9ceb875d8dd1c24, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -6677,7 +6701,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4112399374049935799, guid: bd581c3632295294ca11be4bcf3345d0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4112399374049935799, guid: bd581c3632295294ca11be4bcf3345d0, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -6769,7 +6793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8405656520503295016, guid: bd581c3632295294ca11be4bcf3345d0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8455426896564469315, guid: bd581c3632295294ca11be4bcf3345d0, type: 3}
       propertyPath: m_Name

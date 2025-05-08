@@ -30,3 +30,12 @@
 * studies on quality of path trace
 * pilot test to see how people interact
 * procedure and quantifying behavior
+
+## 5/7/2024
+* Color for tile/path color coded for node-based: hot/cold (future addition)
+* Update trigger settings for Valve Index
+
+### Time Tracking Pilot Test
+participant 1: ~10 minutes (without detailed instructions)
+participant 2: 15 minutes (with instructions)
+participant 3: 8:16 minutes (with instructions)

@@ -3,20 +3,8 @@ using System.Linq;
 
 public class LocomotionMethod : MonoBehaviour
 {
-    public enum LocomotionType { Continuous, Teleport, NodeBased }
+    public enum LocomotionType { Unset, Continuous, Teleport, NodeBased }
     public LocomotionType locomotionChoice; // Dropdown in the Unity Editor
-
-    // // Start is called once before the first execution of Update after the MonoBehaviour is created
-    // void Start()
-    // {
-    //     UpdateFloorsEditor(); // Call the method to update floors based on the initial choice
-    // }
-
-    // // Update is called once per frame
-    // void Update()
-    // {
-        
-    // }
 
     public static void UpdateFloors(string locomotionArgument)
     {
@@ -64,6 +52,10 @@ public class LocomotionMethod : MonoBehaviour
                 floor.SetActive(true);
             }
             else if (locomotionChoice == LocomotionType.NodeBased && floor.name == "NodeFloor")
+            {
+                floor.SetActive(true);
+            }
+            else if (locomotionChoice == LocomotionType.Unset)
             {
                 floor.SetActive(true);
             }

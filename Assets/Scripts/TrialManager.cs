@@ -41,15 +41,22 @@ public class TrialManager : MonoBehaviour
             Debug.LogWarning($"[{nameof(TrialManager)}] No more spawn points available.");
             return;
         }
-        else if (pendingSpawnPoint != null && pendingSpawnPoint.name == "OpenFloorSpawnPoint")
+
+        pendingSpawnPoint = SpawnPointsSequence[currentSpawnPointIndex];
+        instructionsController.SetEnvironmentInstruction(pendingSpawnPoint.name);
+
+        if (ObjectSearchSequence == null || ObjectSearchSequence.Count <= currentObjectSearchIndex)
+        {
+            Debug.LogWarning($"[{nameof(TrialManager)}] No more objects to find.");
+            return;
+        }
+
+        if (pendingSpawnPoint.name == "OpenFloorSpawnPoint")
         {
             pendingObjectSearch = ObjectSearchSequence[currentObjectSearchIndex];
             instructionsController.SetObjectSearchInstruction(pendingObjectSearch.name);
             return;
         }
-
-        pendingSpawnPoint = SpawnPointsSequence[currentSpawnPointIndex];
-        instructionsController.SetEnvironmentInstruction(pendingSpawnPoint.name);
     }
 
     public void SetNextObjectSearch()
@@ -68,17 +75,18 @@ public class TrialManager : MonoBehaviour
     {
         if (pendingSpawnPoint != null)
         {
-            MoveToSpawnPoint(pendingSpawnPoint);
-
-            if (pendingSpawnPoint.name != "OpenFloorSpawnPoint")
+            if (ObjectSearchSequence == null || ObjectSearchSequence.Count <= currentObjectSearchIndex || pendingSpawnPoint.name != "OpenFloorSpawnPoint")
             {
+                MoveToSpawnPoint(pendingSpawnPoint);
                 currentSpawnPointIndex++;
                 pendingSpawnPoint = null;
-            } else
+            }
+            else
             {
                 SetNextObjectSearch();
                 currentObjectSearchIndex++;
                 pendingObjectSearch = null;
+                MoveToSpawnPoint(pendingSpawnPoint);
             }
         }
     }

@@ -6,6 +6,9 @@ using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 
 public class InputHandler : MonoBehaviour
 {
+    public GameObject XROrigin;
+    private GameObject XRLocomotionMediator;
+
     public InputActionReference proceedAction;
     public InputActionReference backAction;
 
@@ -14,12 +17,17 @@ public class InputHandler : MonoBehaviour
 
     public delegate void OnBack();
     public static event OnBack BackEvent;
-    public GameObject XRLocomotionMediator;
-
 
     void Start()
     {
-
+        if (XROrigin != null)
+        {
+            XRLocomotionMediator = XROrigin.transform.Find("Locomotion")?.gameObject;
+        }
+        else
+        {
+            Debug.LogError("XROrigin not found in the scene.");
+        }
         // Enable the input actions
         if (proceedAction != null)
         {
@@ -77,85 +85,119 @@ public class InputHandler : MonoBehaviour
         }
     }
 
-    public static void UpdateHandPreference(string handPreference, bool smoothMotion)
+    public static void UpdateLocomotionControls(string locomotionMethod)
     {
-        // WORKS ONLY WHEN THE HEADSET IS ACTIVE
-        // Update the hand preference in the InputHandler or any other relevant class
-        // This is a placeholder for the actual implementation
-        Debug.Log("Hand preference updated to: " + handPreference);
-
-        GameObject xrOrigin = GameObject.FindWithTag("Player"); // Find the XROrigin GameObject in the scene
-        if (xrOrigin != null)
+        GameObject XROrigin = GameObject.FindWithTag("Player"); // Find the XROrigin GameObject in the scene
+        if (XROrigin != null)
         {
-            GameObject[] leftHandControls = xrOrigin.GetComponentsInChildren<Transform>()
+            GameObject[] leftHandControls = XROrigin.GetComponentsInChildren<Transform>()
             .Where(t => t.CompareTag("LeftController"))
             .Select(t => t.gameObject)
             .ToArray();
-            GameObject[] rightHandControls = xrOrigin.GetComponentsInChildren<Transform>()
+            GameObject[] rightHandControls = XROrigin.GetComponentsInChildren<Transform>()
             .Where(t => t.CompareTag("RightController"))
             .Select(t => t.gameObject)
             .ToArray();
 
-            if (handPreference == "Left")
+            Debug.Log("Left hand controls: " + leftHandControls.Length);
+            Debug.Log("Right hand controls: " + rightHandControls.Length);
+            
+            var leftInputActionManager = leftHandControls.Length > 0 ? leftHandControls[0].GetComponent<ControllerInputActionManager>() : null;
+            var rightInputActionManager = rightHandControls.Length > 0 ? rightHandControls[0].GetComponent<ControllerInputActionManager>() : null;
+
+            if (locomotionMethod.ToLower() == "continuous")
             {
-                foreach (GameObject leftHandControl in leftHandControls)
-                {
-                    leftHandControl.SetActive(true);
-                    var controllerManager = leftHandControl.GetComponent<ControllerInputActionManager>();
-
-                    if (controllerManager == null)
-                    {
-                        continue;
-                    }
-                    if (smoothMotion)
-                    {
-                        controllerManager.smoothMotionEnabled = true;
-                    } else
-                    {
-                        controllerManager.smoothMotionEnabled = false;
-                    }
-                }
-                foreach (GameObject rightHandControl in rightHandControls)
-                {
-                    rightHandControl.SetActive(false);
-                }
+                rightInputActionManager.smoothMotionEnabled = true;
             }
-            else if (handPreference == "Right")
+            else
             {
-                foreach (GameObject leftHandControl in leftHandControls)
-                {
-                    leftHandControl.SetActive(false);
-                }
-                foreach (GameObject rightHandControl in rightHandControls)
-                {
-                    rightHandControl.SetActive(true);
-                    var controllerManager = rightHandControl.GetComponent<ControllerInputActionManager>();
-
-                    if (controllerManager == null)
-                    {
-                        continue;
-                    }
-
-                    Debug.Log("ControllerManager found: " + controllerManager.name);
-                    Debug.Log(controllerManager.smoothMotionEnabled);
-                    if (smoothMotion)
-                    {
-                        controllerManager.smoothMotionEnabled = true;
-                    } else
-                    {
-                        controllerManager.smoothMotionEnabled = false;
-                    }
-                }
+                rightInputActionManager.smoothMotionEnabled = false;
             }
+
         }
         else
         {
             Debug.LogError("XROrigin not found in the scene.");
+            return;
         }
     }
 
-    public static void SetSmoothMotion(bool isSmoothMotion, string handPreference)
-    {
+    // public static void UpdateHandPreference(string handPreference, bool smoothMotion)
+    // {
+    //     // WORKS ONLY WHEN THE HEADSET IS ACTIVE
+    //     // Update the hand preference in the InputHandler or any other relevant class
+    //     // This is a placeholder for the actual implementation
+    //     Debug.Log("Hand preference updated to: " + handPreference);
 
-    }
+    //     GameObject XROrigin = GameObject.FindWithTag("Player"); // Find the XROrigin GameObject in the scene
+    //     if (XROrigin != null)
+    //     {
+    //         GameObject[] leftHandControls = XROrigin.GetComponentsInChildren<Transform>()
+    //         .Where(t => t.CompareTag("LeftController"))
+    //         .Select(t => t.gameObject)
+    //         .ToArray();
+    //         GameObject[] rightHandControls = XROrigin.GetComponentsInChildren<Transform>()
+    //         .Where(t => t.CompareTag("RightController"))
+    //         .Select(t => t.gameObject)
+    //         .ToArray();
+
+    //         if (handPreference == "Left")
+    //         {
+    //             foreach (GameObject leftHandControl in leftHandControls)
+    //             {
+    //                 leftHandControl.SetActive(true);
+    //                 var controllerManager = leftHandControl.GetComponent<ControllerInputActionManager>();
+
+    //                 if (controllerManager == null)
+    //                 {
+    //                     continue;
+    //                 }
+    //                 if (smoothMotion)
+    //                 {
+    //                     controllerManager.smoothMotionEnabled = true;
+    //                 } else
+    //                 {
+    //                     controllerManager.smoothMotionEnabled = false;
+    //                 }
+    //             }
+    //             foreach (GameObject rightHandControl in rightHandControls)
+    //             {
+    //                 rightHandControl.SetActive(false);
+    //             }
+    //         }
+    //         else if (handPreference == "Right")
+    //         {
+    //             foreach (GameObject leftHandControl in leftHandControls)
+    //             {
+    //                 leftHandControl.SetActive(false);
+    //             }
+    //             foreach (GameObject rightHandControl in rightHandControls)
+    //             {
+    //                 rightHandControl.SetActive(true);
+    //                 var controllerManager = rightHandControl.GetComponent<ControllerInputActionManager>();
+
+    //                 if (controllerManager == null)
+    //                 {
+    //                     continue;
+    //                 }
+
+    //                 Debug.Log("ControllerManager found: " + controllerManager.name);
+    //                 Debug.Log(controllerManager.smoothMotionEnabled);
+    //                 if (smoothMotion)
+    //                 {
+    //                     controllerManager.smoothMotionEnabled = true;
+    //                 } else
+    //                 {
+    //                     controllerManager.smoothMotionEnabled = false;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     else
+    //     {
+    //         Debug.LogError("XROrigin not found in the scene.");
+    //     }
+    // }
+
+    
 }

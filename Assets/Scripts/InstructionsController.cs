@@ -87,10 +87,10 @@ public class InstructionsController : MonoBehaviour
             {
                 currentInstructions.Add(instruction.instructionText);
                 
-                if (instruction.instructionText == "OpenFloorSpawnPoint")
-                {
-                    SetObjectSearchInstruction(instruction.instructionText);
-                }
+                // if (spawnPointId == "OpenFloorSpawnPoint")
+                // {
+                //     SetObjectSearchInstruction(instruction.instructionText);
+                // }
             }
             else
             {
@@ -167,6 +167,7 @@ public class InstructionsController : MonoBehaviour
         {
             InputHandler.ProceedEvent += OnProceed;
             FinishPointCheck.OnFinishPointReached += ShowInstructions;
+            ObjectCollisionDetection.OnObjectCollided += ShowInstructions;
         }
     }
 
@@ -174,6 +175,7 @@ public class InstructionsController : MonoBehaviour
     {
         InputHandler.ProceedEvent -= OnProceed;
         FinishPointCheck.OnFinishPointReached -= ShowInstructions;
+        ObjectCollisionDetection.OnObjectCollided -= ShowInstructions;
     }
 
     // Method to load instructions from the JSON file

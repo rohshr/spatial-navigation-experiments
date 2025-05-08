@@ -23,6 +23,7 @@ public class SessionGenerator : MonoBehaviour
         session.settings.SetValue("preferred_hand", preferredHandFromUI);
 
         LocomotionMethod.UpdateFloors(locomotionMethodFromUI);
+        InputHandler.UpdateLocomotionControls(locomotionMethodFromUI);
 
         if (locomotionMethodFromUI.ToLower() == "continuous")
         {
