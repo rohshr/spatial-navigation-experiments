@@ -46,6 +46,7 @@ public class InputHandler : MonoBehaviour
     {
         InstructionsController.OnInstructionsCompleted += EnableLocomotion;
         FinishPointCheck.OnFinishPointReached += DisableLocomotion; // Subscribe to the event when the finish point is reached
+        ExperimenterControlScript.OnTrialSkipped += DisableLocomotion; // Subscribe to the event when the session is ended
         ObjectCollisionDetection.OnObjectCollided += DisableLocomotion; // Subscribe to the event when the object collision is detected
     }
 
@@ -53,6 +54,7 @@ public class InputHandler : MonoBehaviour
     {
         InstructionsController.OnInstructionsCompleted -= EnableLocomotion;
         FinishPointCheck.OnFinishPointReached -= DisableLocomotion; // Unsubscribe from the event when the finish point is reached
+        ExperimenterControlScript.OnTrialSkipped -= DisableLocomotion; // Unsubscribe from the event when the session is ended
         ObjectCollisionDetection.OnObjectCollided -= DisableLocomotion; // Unsubscribe from the event when the object collision is detected
     }
 
@@ -107,11 +109,11 @@ public class InputHandler : MonoBehaviour
 
             if (locomotionMethod.ToLower() == "continuous")
             {
-                rightInputActionManager.smoothMotionEnabled = true;
+                leftInputActionManager.smoothMotionEnabled = true;
             }
             else
             {
-                rightInputActionManager.smoothMotionEnabled = false;
+                leftInputActionManager.smoothMotionEnabled = false;
             }
 
         }

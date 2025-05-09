@@ -19,11 +19,13 @@ public class TrialManager : MonoBehaviour
     private int currentObjectSearchIndex = 0;
     private GameObject pendingSpawnPoint;
     private GameObject pendingObjectSearch;
+    private bool objectSearchTrialsActive = false; // Flag to check if object search trials are active
 
     private void OnEnable()
     {
         InstructionsController.OnInstructionsCompleted += HandleInstructionsCompleted;
         FinishPointCheck.OnFinishPointReached += MoveToUIViewpoint; // Subscribe to the event when the finish point is reached
+        ExperimenterControlScript.OnTrialSkipped += MoveToUIViewpoint; // Subscribe to the event when the session is ended
         ObjectCollisionDetection.OnObjectCollided += MoveToUIViewpoint; // Subscribe to the event when the object collision is detected
     }
 
@@ -31,6 +33,7 @@ public class TrialManager : MonoBehaviour
     {
         InstructionsController.OnInstructionsCompleted -= HandleInstructionsCompleted;
         FinishPointCheck.OnFinishPointReached -= MoveToUIViewpoint; // Unsubscribe from the event when the finish point is reached
+        ExperimenterControlScript.OnTrialSkipped -= MoveToUIViewpoint; // Unsubscribe from the event when the session is ended
         ObjectCollisionDetection.OnObjectCollided -= MoveToUIViewpoint; // Unsubscribe from the event when the object collision is detected
     }
 
@@ -42,12 +45,23 @@ public class TrialManager : MonoBehaviour
             return;
         }
 
-        pendingSpawnPoint = SpawnPointsSequence[currentSpawnPointIndex];
-        instructionsController.SetEnvironmentInstruction(pendingSpawnPoint.name);
-
-        if (ObjectSearchSequence == null || ObjectSearchSequence.Count <= currentObjectSearchIndex)
+        if (!objectSearchTrialsActive)
+        {
+            pendingSpawnPoint = SpawnPointsSequence[currentSpawnPointIndex];
+            instructionsController.SetEnvironmentInstruction(pendingSpawnPoint.name);
+        }
+        else if (ObjectSearchSequence == null || ObjectSearchSequence.Count <= currentObjectSearchIndex)
         {
             Debug.LogWarning($"[{nameof(TrialManager)}] No more objects to find.");
+            objectSearchTrialsActive = false; // Reset the flag when no more object search trials are available
+            currentSpawnPointIndex++;
+            if (SpawnPointsSequence == null || SpawnPointsSequence.Count <= currentSpawnPointIndex)
+            {
+                Debug.LogWarning($"[{nameof(TrialManager)}] No more spawn points available.");
+                return;
+            }
+            pendingSpawnPoint = SpawnPointsSequence[currentSpawnPointIndex];
+            instructionsController.SetEnvironmentInstruction(pendingSpawnPoint.name);
             return;
         }
 
@@ -55,6 +69,7 @@ public class TrialManager : MonoBehaviour
         {
             pendingObjectSearch = ObjectSearchSequence[currentObjectSearchIndex];
             instructionsController.SetObjectSearchInstruction(pendingObjectSearch.name);
+            objectSearchTrialsActive = true; // Set the flag to true when object search trials are active
             return;
         }
     }
@@ -75,7 +90,7 @@ public class TrialManager : MonoBehaviour
     {
         if (pendingSpawnPoint != null)
         {
-            if (ObjectSearchSequence == null || ObjectSearchSequence.Count <= currentObjectSearchIndex || pendingSpawnPoint.name != "OpenFloorSpawnPoint")
+            if (pendingSpawnPoint.name != "OpenFloorSpawnPoint")
             {
                 MoveToSpawnPoint(pendingSpawnPoint);
                 currentSpawnPointIndex++;
@@ -83,10 +98,18 @@ public class TrialManager : MonoBehaviour
             }
             else
             {
-                SetNextObjectSearch();
+                if (ObjectSearchSequence == null || ObjectSearchSequence.Count <= currentObjectSearchIndex)
+                {
+                    Debug.LogWarning($"[{nameof(TrialManager)}] No more objects to search.");
+                    MoveToSpawnPoint(pendingSpawnPoint);
+                    currentSpawnPointIndex++;
+                    pendingSpawnPoint = null;
+                    objectSearchTrialsActive = false; // Reset the flag when no more object search trials are available
+                    return;
+                }
+                MoveToSpawnPoint(pendingSpawnPoint);
                 currentObjectSearchIndex++;
                 pendingObjectSearch = null;
-                MoveToSpawnPoint(pendingSpawnPoint);
             }
         }
     }

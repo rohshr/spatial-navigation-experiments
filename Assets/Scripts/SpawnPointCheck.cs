@@ -7,7 +7,7 @@ public class SpawnPointCheck : MonoBehaviour
 {
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") && Session.instance.hasInitialised)
+        if (other.CompareTag("Player") && Session.instance.hasInitialised && !Session.instance.InTrial)
         {
             if (CompareTag("SpawnPoint"))
             {

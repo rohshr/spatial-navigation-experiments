@@ -28,7 +28,6 @@ public class InstructionsController : MonoBehaviour
     // Dictionary to hold the instructions loaded from the JSON file
     private Dictionary<string, string> instructionsDictionary;
     public static List<string> currentInstructions = new();
-    // public static List<string> objectInstructions = new() { "find_cube", "find_sphere", "find_statue", "find_star" };
 
     // Event to notify when instructions are completed
     public static event Action OnInstructionsCompleted;
@@ -76,6 +75,14 @@ public class InstructionsController : MonoBehaviour
 
     }
 
+    public void ShowEndMessage()
+    {
+        if (InstructionsCanvas == null) return;
+
+        UpdateInstructionCanvasText(instructionsDictionary["practice_end_message"]);
+        InstructionsCanvas.SetActive(true);
+    }
+
     public void SetEnvironmentInstruction(string spawnPointId)
     {
         if (environmentInstructions != null)
@@ -86,11 +93,6 @@ public class InstructionsController : MonoBehaviour
             if (instruction != null)
             {
                 currentInstructions.Add(instruction.instructionText);
-                
-                // if (spawnPointId == "OpenFloorSpawnPoint")
-                // {
-                //     SetObjectSearchInstruction(instruction.instructionText);
-                // }
             }
             else
             {
@@ -112,6 +114,7 @@ public class InstructionsController : MonoBehaviour
 
             if (instruction != null)
             {
+                Debug.Log($"Instruction count from setobjectsearchinstructions: {currentInstructions.Count}");
                 currentInstructions.Add(instruction.instructionText);
             }
             else
@@ -131,13 +134,16 @@ public class InstructionsController : MonoBehaviour
         if (!InstructionsCanvas || currentInstructions.Count == 0) return;
 
         UpdateInstructionCanvasText(currentInstructions[0]);
+        Debug.Log($"Instruction Count: {currentInstructions.Count}");
         InstructionsCanvas.SetActive(true);
     }
     public void HideInstructions()
     {
         if (!InstructionsCanvas) return;
 
-        currentInstructions = new();
+        currentInstructions.RemoveAt(0);
+        UpdateInstructionCanvasText("");
+
         InstructionsCanvas.SetActive(false);
     }
 
@@ -156,7 +162,6 @@ public class InstructionsController : MonoBehaviour
         {
             // No more instructions, complete the sequence
             HideInstructions();
-            Debug.Log("Instructions completed, triggering OnInstructionsCompleted event");
             OnInstructionsCompleted?.Invoke();
         }
     }
@@ -167,6 +172,7 @@ public class InstructionsController : MonoBehaviour
         {
             InputHandler.ProceedEvent += OnProceed;
             FinishPointCheck.OnFinishPointReached += ShowInstructions;
+            ExperimenterControlScript.OnTrialSkipped += ShowInstructions;
             ObjectCollisionDetection.OnObjectCollided += ShowInstructions;
         }
     }
@@ -175,6 +181,7 @@ public class InstructionsController : MonoBehaviour
     {
         InputHandler.ProceedEvent -= OnProceed;
         FinishPointCheck.OnFinishPointReached -= ShowInstructions;
+        ExperimenterControlScript.OnTrialSkipped -= ShowInstructions;
         ObjectCollisionDetection.OnObjectCollided -= ShowInstructions;
     }
 
@@ -228,57 +235,4 @@ public class InstructionsController : MonoBehaviour
             Debug.LogError($"[{nameof(InstructionsController)}] Text component not found in InstructionsCanvas");
         }
     }
-
-    // Method to get the array of scenarios to show in sequence
-    // public void GetInstructionsArray(string textScenarios)
-    // {
-    //     scenarios.Clear(); // Clear the previous scenarios
-    //     List<string> textScenariosList = new List<string>(textScenarios.Split(','));
-    //     foreach (string scenario in textScenariosList)
-    //     {
-    //         if (instructionsDictionary.ContainsKey(scenario))
-    //         {
-    //             scenarios.Add(scenario);
-    //         }
-    //         else
-    //         {
-    //             Debug.LogWarning($"Scenario '{scenario}' not found in the instructions dictionary.");
-    //         }
-    //     }
-    //     UpdateInstruction(instructionsDictionary[scenarios[0]]); // Set the first scenario text
-    //     scenarios.RemoveAt(0); // Remove the first scenario from the list
-    // }
-
-    // public void SetEnvironmentInstructions()
-    // {
-    //     if (Session.instance.CurrentBlock != null)
-    //     {
-    //         instructions = new List<string>(); // Clear the instructions list
-    //         // string environment = Session.instance.CurrentBlock.settings.GetString("environment");
-    //         instructions = Session.instance.CurrentBlock.settings.GetStringList("next_instruction_set");
-    //         // Debug.Log($"Environment instructions set for '{environment}': " + string.Join(", ", instructions));
-    //         if (instructions.Contains("open_space_briefing"))
-    //         {
-    //             instructions.Add(objectInstructions[0]);
-    //             objectInstructions.RemoveAt(0); // Remove the first object instruction from the list
-    //         }
-    //         InstructionsCanvas.SetActive(true);
-    //     }
-    //     else
-    //     {
-    //         Debug.LogError("Current block is null. Cannot set environment instructions.");
-    //     }
-    // }
-
-    // public static void UpdateInstructionSet(List<string> instructionSet)
-    // {
-    //     instructions = instructionSet;
-    // }
-
-    // // Method that starts each block
-    // public void UpdateBlockInstruction()
-    // {
-    //     Session.instance.CurrentBlock.settings.GetString("environment");
-    //     // UpdateInstructionSet("value from the block's settings")
-    // }
 }
