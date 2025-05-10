@@ -1017,7 +1017,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1977854662471631544, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
       propertyPath: m_TurnAmount
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1977854662471631544, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
       propertyPath: m_EnableTurnAround
@@ -1046,6 +1046,10 @@ PrefabInstance:
     - target: {fileID: 2646259011447449114, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2844961482191006884, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
+      propertyPath: m_LeftHandTurnInput.m_InputSourceMode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2890065512971000353, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
       propertyPath: m_Layer
@@ -4157,7 +4161,7 @@ PrefabInstance:
       objectReference: {fileID: 7592203504741225942}
     - target: {fileID: 8085443599274712418, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
       propertyPath: NonVRMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8085443599274712418, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
       propertyPath: m_Enabled
