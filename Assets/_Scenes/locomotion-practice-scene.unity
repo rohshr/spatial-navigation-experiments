@@ -4161,7 +4161,7 @@ PrefabInstance:
       objectReference: {fileID: 7592203504741225942}
     - target: {fileID: 8085443599274712418, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
       propertyPath: NonVRMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8085443599274712418, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
       propertyPath: m_Enabled

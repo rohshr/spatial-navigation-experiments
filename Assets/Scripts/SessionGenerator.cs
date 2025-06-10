@@ -28,8 +28,8 @@ public class SessionGenerator : MonoBehaviour
     // Session Start
     public void GenerateExperiment(Session session)
     {
-        String locomotionMethodFromUI = session.participantDetails["locomotion_method"].ToString();
-        String preferredHandFromUI = session.participantDetails["preferred_hand"].ToString();
+        String locomotionMethodFromUI = session.participantDetails["locomotion_method"].ToString().ToLower();
+        String preferredHandFromUI = session.participantDetails["preferred_hand"].ToString().ToLower();
 
         session.settings.SetValue("locomotion_method", locomotionMethodFromUI);
         session.settings.SetValue("preferred_hand", preferredHandFromUI);
@@ -44,13 +44,13 @@ public class SessionGenerator : MonoBehaviour
             Debug.Log("Dev mode is enabled. Skipping InputHandler.UpdateLocomotionControls()");
         }
 
-        if (locomotionMethodFromUI.ToLower() == "continuous")
+        if (locomotionMethodFromUI == "continuous")
         {
             session.settings.SetValue("locomotion_method_instruction", "continuous_locomotion_instruction");
         }
         else
         {
-            session.settings.SetValue("locomotion_method_instruction", locomotionMethodFromUI.ToLower() == "teleport" ? "teleport_locomotion_instruction" : "node_locomotion_instruction");
+            session.settings.SetValue("locomotion_method_instruction", locomotionMethodFromUI == "teleport" ? "teleport_locomotion_instruction" : "node_locomotion_instruction");
         }
 
         foreach (UXFBlock block in blocks)

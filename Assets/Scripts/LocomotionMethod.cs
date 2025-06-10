@@ -15,15 +15,15 @@ public class LocomotionMethod : MonoBehaviour
         foreach (GameObject floor in floors)
         {
             
-            if (locomotionArgument == "Continuous" && floor.name == "ContinuousFloor")
+            if (locomotionArgument == "continuous" && floor.name == "ContinuousFloor")
             {
                 floor.SetActive(true);
             }
-            else if (locomotionArgument == "Teleport" && floor.name == "TeleportFloor")
+            else if (locomotionArgument == "teleport" && floor.name == "TeleportFloor")
             {
                 floor.SetActive(true);
             }
-            else if (locomotionArgument == "NodeBased" && floor.name == "NodeFloor")
+            else if (locomotionArgument == "nodebased" && floor.name == "NodeFloor")
             {
                 floor.SetActive(true);
             }
