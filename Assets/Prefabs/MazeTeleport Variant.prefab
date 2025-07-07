@@ -8,17 +8,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 996609007426183379, guid: ffe13b7989fe40447b485064367952f7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8160239364677756836, guid: ffe13b7989fe40447b485064367952f7, type: 3}
       propertyPath: m_Name
       value: MazeTeleport Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8625373827207377296, guid: ffe13b7989fe40447b485064367952f7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16
+      value: -75
       objectReference: {fileID: 0}
     - target: {fileID: 8625373827207377296, guid: ffe13b7989fe40447b485064367952f7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8625373827207377296, guid: ffe13b7989fe40447b485064367952f7, type: 3}
       propertyPath: m_LocalPosition.z

@@ -88,29 +88,27 @@ public class TrialManager : MonoBehaviour
 
     private void HandleInstructionsCompleted()
     {
-        if (pendingSpawnPoint != null)
+        if (pendingSpawnPoint == null) return;
+        if (pendingSpawnPoint.name != "OpenFloorSpawnPoint")
         {
-            if (pendingSpawnPoint.name != "OpenFloorSpawnPoint")
+            MoveToSpawnPoint(pendingSpawnPoint);
+            currentSpawnPointIndex++;
+            pendingSpawnPoint = null;
+        }
+        else
+        {
+            if (ObjectSearchSequence == null || ObjectSearchSequence.Count <= currentObjectSearchIndex)
             {
+                Debug.LogWarning($"[{nameof(TrialManager)}] No more objects to search.");
                 MoveToSpawnPoint(pendingSpawnPoint);
                 currentSpawnPointIndex++;
                 pendingSpawnPoint = null;
+                objectSearchTrialsActive = false; // Reset the flag when no more object search trials are available
+                return;
             }
-            else
-            {
-                if (ObjectSearchSequence == null || ObjectSearchSequence.Count <= currentObjectSearchIndex)
-                {
-                    Debug.LogWarning($"[{nameof(TrialManager)}] No more objects to search.");
-                    MoveToSpawnPoint(pendingSpawnPoint);
-                    currentSpawnPointIndex++;
-                    pendingSpawnPoint = null;
-                    objectSearchTrialsActive = false; // Reset the flag when no more object search trials are available
-                    return;
-                }
-                MoveToSpawnPoint(pendingSpawnPoint);
-                currentObjectSearchIndex++;
-                pendingObjectSearch = null;
-            }
+            MoveToSpawnPoint(pendingSpawnPoint);
+            currentObjectSearchIndex++;
+            pendingObjectSearch = null;
         }
     }
 

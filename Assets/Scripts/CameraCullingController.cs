@@ -3,18 +3,6 @@ using UnityEngine;
 public class CameraCullingController : MonoBehaviour
 {
     public Camera mainCamera; // Reference to the main camera
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnEnable()
     {
         InstructionsController.OnInstructionsCompleted += SetCullingMaskToEverything;
@@ -35,8 +23,8 @@ public class CameraCullingController : MonoBehaviour
     {
         if (mainCamera != null)
         {
-            int uiLayer = LayerMask.NameToLayer("UI");
-            int controllerLayer = LayerMask.NameToLayer("Controller");
+            var uiLayer = LayerMask.NameToLayer("UI");
+            var controllerLayer = LayerMask.NameToLayer("Controller");
             mainCamera.cullingMask = (1 << uiLayer) | (1 << controllerLayer);
         }
         else

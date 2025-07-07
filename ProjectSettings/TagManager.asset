@@ -11,6 +11,7 @@ TagManager:
   - LeftController
   - RightController
   - UIViewpoint
+  - FloorTile
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - UI
   - Controller
   - UXFUI
-  - 
+  - FloorTile
   - 
   - 
   - 
