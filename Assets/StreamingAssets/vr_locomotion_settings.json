@@ -1,0 +1,9 @@
+{
+    "exploration_time": 10.0,
+    "n_route_finding_trials": 3,
+    "test_string": "This is a test string.",
+    "locomotion_method": "unset",
+    "locomotion_method_instruction": "unset",
+    "preferred_hand": "unset",
+    "initial_instructions_set": ["onboarding", "practice_briefing"]
+}

@@ -5,16 +5,23 @@ TagManager:
   serializedVersion: 3
   tags:
   - Anchor
+  - SpawnPoint
+  - Floor
+  - FinishPoint
+  - LeftController
+  - RightController
+  - UIViewpoint
+  - FloorTile
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Overlay UI
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Controller
+  - UXFUI
+  - FloorTile
   - 
   - 
   - 

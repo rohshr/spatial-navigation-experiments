@@ -1,0 +1,71 @@
+[
+    {
+        "scenario": "onboarding",
+        "description": "Welcome to the VR spatial navigation experiment. Press any key in the handcontroller to start."
+    },
+    {
+        "scenario": "navigation_methods_briefing",
+        "types": [
+            {
+                "name": "continuous_navigation",
+                "instruction": "You will now be using the continuous navigation method. Use the analog joystick to move around the environment and turn your head to look around.\nPress any key to continue."
+            }, 
+            {
+                "name": "teleport_navigation",
+                "instruction": "You will now be using the teleport navigation method. Move the pointer using the controller and point to where you want to move. Then press the trigger button to teleport.\nPress any key to continue."
+            },
+            {
+                "name": "node_navigation",
+                "instruction": "You will now be using the teleport navigation method. Move the pointer using the controller and point to where you want to move. Then press the trigger button to teleport.\nPress any key to continue."
+            }
+        ]
+    },
+    {
+        "scenario": "practice_environment_briefing",
+        "description": "Before we begin, you will be exploring three different virtual environments to learn how to move yourself. You will be navigating each of these environments using three different navigation methods. You will be informed what technique you will be using before each environment and then you will be asked to complete a series of tasks in each environment. Please pay attention to the instructions and follow them carefully.\nPress any key to continue.",
+        "types":[
+            {
+                "name": "curved_corridor",
+                "instruction": "You will be navigating through a curved corridor. Please try to get to the door at the end of the corridor as quickly as possible.\nPress any key to continue."
+            },
+            {
+                "name": "angled_corridor",
+                "instruction": "You will be navigating through a passage with several turns. Please try to get to the door at the end of the passage as quickly as possible.\nPress any key to continue."
+            },
+            {
+                "name": "open_space",
+                "instruction": "You will be navigating through an open space. There are four different objects in this environment. You will be prompted to find each object at a time. Your task is to find the objects and get close to them as quickly as possible.\nPress any key to continue.",
+                "objects": [
+                    {
+                        "name": "cube",
+                        "instruction": "Find the green cube."
+                    },
+                    {
+                        "name": "sphere",
+                        "instruction": "Find the blue sphere."
+                    },
+                    {
+                        "name": "statue",
+                        "instruction": "Find the statue."
+                    },
+                    {
+                        "name": "star",
+                        "instruction": "Find the yellow star."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "scenario": "practice_complete_announcement",
+        "description": "You have completed the practice session. You will now be using one of the locomotion techniques to complete the actual experiment.\nPress any key to continue."
+    },
+    {
+        "sceanario": "experiment_briefing",
+        "description": "You will now navigate through a maze. There are 12 different objects placed across the maze. \nPress any key to continue."
+    },
+    {
+        "scenario": "experiment_complete",
+        "description": "Congratulations! You have successfully completed the experiment. Thank you for your participation."
+    }
+]

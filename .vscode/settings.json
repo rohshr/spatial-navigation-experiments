@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "spatial-navigation-experiments.sln"
+    "dotnet.defaultSolution": "spatial-navigation-experiments.sln",
+    "dotnet.preferCSharpExtension": true
 }

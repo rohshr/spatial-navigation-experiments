@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ab87534606d1b248838143c1778710c, type: 3}
+  m_Name: PracticeEnvironmentInstructions
+  m_EditorClassIdentifier: 
+  instructions:
+  - spawnPointId: CurvedCorridorSpawnPoint
+    instructionText: You will be navigating through a curved corridor. Please try
+      to get to the door at the end of the corridor as quickly as possible.\nPress
+      the trigger button to continue.
+  - spawnPointId: AngledCorridorSpawnPoint
+    instructionText: Now, you will be navigating through a passage with several turns.
+      Please try to get to the door at the end of the passage as quickly as possible.\nPress
+      the trigger button to continue.
+  - spawnPointId: OpenFloorSpawnPoint
+    instructionText: Now, you will be navigating through an open space. There are
+      four different objects in this environment. You will be prompted to find each
+      object at a time. Your task is to find the objects and get close to them as
+      quickly as possible.\nPress the trigger button to continue.
