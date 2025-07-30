@@ -2091,9 +2091,67 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 546426777046696989, guid: ffe13b7989fe40447b485064367952f7, type: 3}
+      propertyPath: boundsDisplay
+      value: 'Center: (-38.91, 2.00, 0.51)
+
+        Min: (-39.01, 0.00, -10.59)
+
+        Max:
+        (-38.81, 4.00, 11.61)'
+      objectReference: {fileID: 0}
     - target: {fileID: 996609007426183379, guid: ffe13b7989fe40447b485064367952f7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.5
+      value: -4.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2247772952066708641, guid: ffe13b7989fe40447b485064367952f7, type: 3}
+      propertyPath: boundsDisplay
+      value: 'Center: (-50.11, 2.00, -10.50)
+
+        Min: (-61.21, 0.03, -10.59)
+
+        Max:
+        (-39.01, 3.97, -10.40)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861853223491566631, guid: ffe13b7989fe40447b485064367952f7, type: 3}
+      propertyPath: m_Name
+      value: SpawnPointNode
+      objectReference: {fileID: 0}
+    - target: {fileID: 3237158283159276030, guid: ffe13b7989fe40447b485064367952f7, type: 3}
+      propertyPath: boundsDisplay
+      value: 'Center: (-49.91, 2.00, 11.71)
+
+        Min: (-61.01, 0.00, 11.61)
+
+        Max:
+        (-38.81, 4.00, 11.81)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4919952124868642065, guid: ffe13b7989fe40447b485064367952f7, type: 3}
+      propertyPath: boundsDisplay
+      value: 'Center: (-60.01, 0.10, -9.39)
+
+        Min: (-61.01, 0.00, -10.39)
+
+        Max:
+        (-59.01, 0.20, -8.39)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033048129034384727, guid: ffe13b7989fe40447b485064367952f7, type: 3}
+      propertyPath: boundsDisplay
+      value: 'Center: (-50.01, -0.10, 0.61)
+
+        Min: (-61.21, -0.20, -10.59)
+
+        Max:
+        (-38.81, 0.00, 11.81)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7411801316009412122, guid: ffe13b7989fe40447b485064367952f7, type: 3}
+      propertyPath: boundsDisplay
+      value: 'Center: (-61.11, 2.00, 0.70)
+
+        Min: (-61.21, 0.00, -10.39)
+
+        Max:
+        (-61.01, 4.00, 11.80)'
       objectReference: {fileID: 0}
     - target: {fileID: 8160239364677756836, guid: ffe13b7989fe40447b485064367952f7, type: 3}
       propertyPath: m_Name
@@ -2105,7 +2163,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8625373827207377296, guid: ffe13b7989fe40447b485064367952f7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8625373827207377296, guid: ffe13b7989fe40447b485064367952f7, type: 3}
       propertyPath: m_LocalPosition.z
