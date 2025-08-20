@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.InputSystem;
 using Unity.XR.CoreUtils;
+using UXF;
 
 public class VRDialogFlowManager : MonoBehaviour
 {
@@ -40,9 +41,9 @@ public class VRDialogFlowManager : MonoBehaviour
     private Coroutine followCoroutine;
     
     // Events
-    public System.Action OnDialogFlowComplete;
-    public System.Action<int> OnDialogChanged;
-    public System.Action OnExperimentStart;
+    public static event System.Action OnDialogFlowComplete;
+    public static event System.Action<int> OnDialogChanged;
+    public static event System.Action OnExperimentStart;
     
     private void Start()
     {
@@ -275,13 +276,13 @@ public class VRDialogFlowManager : MonoBehaviour
     
     private void OnAdvanceInputPerformed(InputAction.CallbackContext context)
     {
-        if (!experimentStarted && !isTransitioning)
+        if (!experimentStarted && !isTransitioning && Session.instance.hasInitialised)
         {
             AdvanceDialog();
         }
     }
     
-    private void AdvanceDialog()
+    public void AdvanceDialog()
     {
         if (isTransitioning) return;
         

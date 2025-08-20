@@ -24,6 +24,8 @@ public class TrialManager : MonoBehaviour
     private void OnEnable()
     {
         InstructionsController.OnInstructionsCompleted += HandleInstructionsCompleted;
+        VRDialogFlowManager.OnDialogFlowComplete += HandleInstructionsCompleted; // Subscribe to the event when dialog flow is completed
+        VRDialogFlowManager.OnExperimentStart += HandleInstructionsCompleted; // Subscribe to the event when the experiment starts
         FinishPointCheck.OnFinishPointReached += MoveToUIViewpoint; // Subscribe to the event when the finish point is reached
         ExperimenterControlScript.OnTrialSkipped += MoveToUIViewpoint; // Subscribe to the event when the session is ended
         ObjectCollisionDetection.OnObjectCollided += MoveToUIViewpoint; // Subscribe to the event when the object collision is detected
@@ -32,6 +34,8 @@ public class TrialManager : MonoBehaviour
     private void OnDisable()
     {
         InstructionsController.OnInstructionsCompleted -= HandleInstructionsCompleted;
+        VRDialogFlowManager.OnDialogFlowComplete -= HandleInstructionsCompleted; // Unsubscribe from the event when dialog flow is completed
+        VRDialogFlowManager.OnExperimentStart -= HandleInstructionsCompleted; // Unsubscribe from the event when the experiment starts
         FinishPointCheck.OnFinishPointReached -= MoveToUIViewpoint; // Unsubscribe from the event when the finish point is reached
         ExperimenterControlScript.OnTrialSkipped -= MoveToUIViewpoint; // Unsubscribe from the event when the session is ended
         ObjectCollisionDetection.OnObjectCollided -= MoveToUIViewpoint; // Unsubscribe from the event when the object collision is detected

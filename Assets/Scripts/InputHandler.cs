@@ -45,6 +45,8 @@ public class InputHandler : MonoBehaviour
     private void OnEnable()
     {
         InstructionsController.OnInstructionsCompleted += EnableLocomotion;
+        VRDialogFlowManager.OnDialogFlowComplete += EnableLocomotion; // Subscribe to the event when dialog flow is completed
+        VRDialogFlowManager.OnExperimentStart += EnableLocomotion; // Subscribe to the event when the experiment starts
         FinishPointCheck.OnFinishPointReached += DisableLocomotion; // Subscribe to the event when the finish point is reached
         ExperimenterControlScript.OnTrialSkipped += DisableLocomotion; // Subscribe to the event when the session is ended
         ObjectCollisionDetection.OnObjectCollided += DisableLocomotion; // Subscribe to the event when the object collision is detected
@@ -53,6 +55,8 @@ public class InputHandler : MonoBehaviour
     private void OnDisable()
     {
         InstructionsController.OnInstructionsCompleted -= EnableLocomotion;
+        VRDialogFlowManager.OnDialogFlowComplete -= EnableLocomotion; // Unsubscribe from the event when dialog flow is completed
+        VRDialogFlowManager.OnExperimentStart -= EnableLocomotion; // Unsubscribe from the event when the experiment starts
         FinishPointCheck.OnFinishPointReached -= DisableLocomotion; // Unsubscribe from the event when the finish point is reached
         ExperimenterControlScript.OnTrialSkipped -= DisableLocomotion; // Unsubscribe from the event when the session is ended
         ObjectCollisionDetection.OnObjectCollided -= DisableLocomotion; // Unsubscribe from the event when the object collision is detected
@@ -86,7 +90,9 @@ public class InputHandler : MonoBehaviour
             XRLocomotionMediator.SetActive(false); // Disable the XRLocomotionMediator
         }
     }
-
+    
+    
+    // Update the locomotion controls based on the selected locomotion method
     public static void UpdateLocomotionControls(string locomotionMethod)
     {
         GameObject XROrigin = GameObject.FindWithTag("Player"); // Find the XROrigin GameObject in the scene
@@ -106,7 +112,12 @@ public class InputHandler : MonoBehaviour
             
             var leftInputActionManager = leftHandControls.Length > 0 ? leftHandControls[0].GetComponent<ControllerInputActionManager>() : null;
             var rightInputActionManager = rightHandControls.Length > 0 ? rightHandControls[0].GetComponent<ControllerInputActionManager>() : null;
-
+            
+            if (leftInputActionManager is null) 
+            {
+                Debug.LogError("LeftInputActionManager not found in the left hand controls.");
+                return;
+            }
             if (locomotionMethod.ToLower() == "continuous")
             {
                 leftInputActionManager.smoothMotionEnabled = true;
