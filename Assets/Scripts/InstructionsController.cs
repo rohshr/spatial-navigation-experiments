@@ -171,18 +171,18 @@ public class InstructionsController : MonoBehaviour
         if (Session.instance.hasInitialised)
         {
             InputHandler.ProceedEvent += OnProceed;
-            FinishPointCheck.OnFinishPointReached += ShowInstructions;
+            // FinishPointCheck.OnFinishPointReached += ShowInstructions;
             ExperimenterControlScript.OnTrialSkipped += ShowInstructions;
-            ObjectCollisionDetection.OnObjectCollided += ShowInstructions;
+            // ObjectCollisionDetection.OnObjectCollided += ShowInstructions;
         }
     }
 
     private void OnDisable()
     {
         InputHandler.ProceedEvent -= OnProceed;
-        FinishPointCheck.OnFinishPointReached -= ShowInstructions;
+        // FinishPointCheck.OnFinishPointReached -= ShowInstructions;
         ExperimenterControlScript.OnTrialSkipped -= ShowInstructions;
-        ObjectCollisionDetection.OnObjectCollided -= ShowInstructions;
+        // ObjectCollisionDetection.OnObjectCollided -= ShowInstructions;
     }
 
     // Method to load instructions from the JSON file

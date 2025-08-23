@@ -788,13 +788,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4091649840815363893, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_text
-      value: 'Use the analog stick on the left hand controller to move forward, back,
-        left, right or diagonally.
+      value: 'Push and hold the analog stick on the left hand controller forward
+        to aim at one of the nodes on the ground. Then, release the stick to teleport
+        to the position at the selected node.
 
 
-        Use the analog stick on the right hand
-        controller to turn your gaze left or right. You can also turn your head or
-        torso to look around to turn your gaze.'
+        Use the analog stick on the
+        right hand controller to turn your gaze left or right. You can also turn
+        your head or torso to look around to turn your gaze.'
       objectReference: {fileID: 0}
     - target: {fileID: 4091649840815363893, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_fontSize
@@ -986,7 +987,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5077339543274052338, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -364.32
+      value: -386.1
       objectReference: {fileID: 0}
     - target: {fileID: 5085223240326603171, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1034,7 +1035,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5747508646960527232, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_text
-      value: Continuous Locomotion
+      value: Node-based Locomotion
       objectReference: {fileID: 0}
     - target: {fileID: 5747508646960527232, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_margin.x

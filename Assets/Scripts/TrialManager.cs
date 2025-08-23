@@ -7,38 +7,44 @@ using UXF;
 public class TrialManager : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private InstructionsController instructionsController;
+    // [SerializeField] private InstructionsController instructionsController;
     [SerializeField] private GameObject XROrigin;
     [SerializeField] private GameObject UIViewpoint;
+    [SerializeField] private SessionGenerator SessionGenerator;
 
-    [Header("Settings")]
-    [SerializeField] private List<GameObject> SpawnPointsSequence;
-    [SerializeField] private List<GameObject> ObjectSearchSequence;
+    private List<GameObject> SpawnPointsSequence;
+    private List<GameObject> ObjectSearchSequence;
 
     private int currentSpawnPointIndex = 0;
     private int currentObjectSearchIndex = 0;
     private GameObject pendingSpawnPoint;
     private GameObject pendingObjectSearch;
     private bool objectSearchTrialsActive = false; // Flag to check if object search trials are active
-
+    
+    private VRDialogFlowManager dialogFlowManager;
+    
+    private void Start()
+    {
+        dialogFlowManager = FindFirstObjectByType<VRDialogFlowManager>();
+        SpawnPointsSequence = SessionGenerator.GetSpawnPointsSequence();
+        ObjectSearchSequence = SessionGenerator.GetObjectSearchSequence();
+        SetNextSpawnPoint();
+    }
+    
     private void OnEnable()
     {
-        InstructionsController.OnInstructionsCompleted += HandleInstructionsCompleted;
         VRDialogFlowManager.OnDialogFlowComplete += HandleInstructionsCompleted; // Subscribe to the event when dialog flow is completed
-        VRDialogFlowManager.OnExperimentStart += HandleInstructionsCompleted; // Subscribe to the event when the experiment starts
-        FinishPointCheck.OnFinishPointReached += MoveToUIViewpoint; // Subscribe to the event when the finish point is reached
-        ExperimenterControlScript.OnTrialSkipped += MoveToUIViewpoint; // Subscribe to the event when the session is ended
-        ObjectCollisionDetection.OnObjectCollided += MoveToUIViewpoint; // Subscribe to the event when the object collision is detected
+        // VRDialogFlowManager.OnExperimentStart += HandleInstructionsCompleted; // Subscribe to the event when the experiment starts
+        // ExperimenterControlScript.OnTrialSkipped += MoveToUIViewpoint; // Subscribe to the event when the session is ended
+        // ObjectCollisionDetection.OnObjectCollided += MoveToUIViewpoint; // Subscribe to the event when the object collision is detected
     }
 
     private void OnDisable()
     {
-        InstructionsController.OnInstructionsCompleted -= HandleInstructionsCompleted;
         VRDialogFlowManager.OnDialogFlowComplete -= HandleInstructionsCompleted; // Unsubscribe from the event when dialog flow is completed
-        VRDialogFlowManager.OnExperimentStart -= HandleInstructionsCompleted; // Unsubscribe from the event when the experiment starts
-        FinishPointCheck.OnFinishPointReached -= MoveToUIViewpoint; // Unsubscribe from the event when the finish point is reached
-        ExperimenterControlScript.OnTrialSkipped -= MoveToUIViewpoint; // Unsubscribe from the event when the session is ended
-        ObjectCollisionDetection.OnObjectCollided -= MoveToUIViewpoint; // Unsubscribe from the event when the object collision is detected
+        // VRDialogFlowManager.OnExperimentStart -= HandleInstructionsCompleted; // Unsubscribe from the event when the experiment starts
+        // ExperimenterControlScript.OnTrialSkipped -= MoveToUIViewpoint; // Unsubscribe from the event when the session is ended
+        // ObjectCollisionDetection.OnObjectCollided -= MoveToUIViewpoint; // Unsubscribe from the event when the object collision is detected
     }
 
     public void SetNextSpawnPoint()
@@ -52,7 +58,7 @@ public class TrialManager : MonoBehaviour
         if (!objectSearchTrialsActive)
         {
             pendingSpawnPoint = SpawnPointsSequence[currentSpawnPointIndex];
-            instructionsController.SetEnvironmentInstruction(pendingSpawnPoint.name);
+            // instructionsController.SetEnvironmentInstruction(pendingSpawnPoint.name);
         }
         else if (ObjectSearchSequence == null || ObjectSearchSequence.Count <= currentObjectSearchIndex)
         {
@@ -65,14 +71,14 @@ public class TrialManager : MonoBehaviour
                 return;
             }
             pendingSpawnPoint = SpawnPointsSequence[currentSpawnPointIndex];
-            instructionsController.SetEnvironmentInstruction(pendingSpawnPoint.name);
+            // instructionsController.SetEnvironmentInstruction(pendingSpawnPoint.name);
             return;
         }
 
         if (pendingSpawnPoint.name == "OpenFloorSpawnPoint")
         {
             pendingObjectSearch = ObjectSearchSequence[currentObjectSearchIndex];
-            instructionsController.SetObjectSearchInstruction(pendingObjectSearch.name);
+            // instructionsController.SetObjectSearchInstruction(pendingObjectSearch.name);
             objectSearchTrialsActive = true; // Set the flag to true when object search trials are active
             return;
         }
@@ -87,12 +93,18 @@ public class TrialManager : MonoBehaviour
         }
 
         pendingObjectSearch = ObjectSearchSequence[currentObjectSearchIndex];
-        instructionsController.SetObjectSearchInstruction(pendingObjectSearch.name);
+        // instructionsController.SetObjectSearchInstruction(pendingObjectSearch.name);
     }
 
     private void HandleInstructionsCompleted()
     {
-        if (pendingSpawnPoint == null) return;
+        SetNextSpawnPoint();
+        if (pendingSpawnPoint == null)
+        {
+            Debug.LogWarning($"[{nameof(TrialManager)}] No pending spawn point to move to.");
+            return;
+        }
+        
         if (pendingSpawnPoint.name != "OpenFloorSpawnPoint")
         {
             MoveToSpawnPoint(pendingSpawnPoint);
@@ -116,6 +128,82 @@ public class TrialManager : MonoBehaviour
         }
     }
 
+    // Method to handle specific dialog completions
+    // private void HandleSpecificDialogComplete(string dialogKey)
+    // {
+    //     Debug.Log($"Specific dialog completed: {dialogKey}");
+    //     
+    //     // Handle finish point completion dialogs (like "TrialComplete", "CurvedComplete", etc.)
+    //     if (IsFinishPointCompletionDialog(dialogKey))
+    //     {
+    //         // Continue to next dialog in sequence (next trial instructions)
+    //         if (dialogFlowManager != null)
+    //         {
+    //             dialogFlowManager.ContinueToNextDialog();
+    //         }
+    //         return;
+    //     }
+    //
+    //     // Handle environment and object search instructions
+    //     if (!IsEnvironmentInstruction(dialogKey) && !IsObjectSearchInstruction(dialogKey)) return;
+    //     
+    //     // Trigger the same logic as HandleInstructionsCompleted
+    //     HandleInstructionsCompleted();
+    //         
+    //     // Pause the dialog flow - player will be moved to environment
+    //     if (dialogFlowManager != null)
+    //     {
+    //         dialogFlowManager.PauseDialogFlow();
+    //     }
+    //
+    // }
+    //
+    // Helper methods to identify dialog types
+    private bool IsEnvironmentInstruction(string dialogKey)
+    {
+        string[] environmentDialogs = {
+            "CurvedEnvironmentInstructions",
+            "AngledEnvironmentInstructions", 
+            "OpenEnvironmentInstructions"
+        };
+    
+        return System.Array.Exists(environmentDialogs, dialog => dialog == dialogKey);
+    }
+
+    private bool IsObjectSearchInstruction(string dialogKey)
+    {
+        string[] objectDialogs = {
+            "OpenObjectCube",
+            "OpenObjectSphere", 
+            "OpenObjectStar",
+            "OpenObjectStatue"
+        };
+    
+        return System.Array.Exists(objectDialogs, dialog => dialog == dialogKey);
+    }
+    
+    // Helper method to identify finish point completion dialogs
+    private bool IsFinishPointCompletionDialog(string dialogKey)
+    {
+        string[] completionDialogs = {
+            "CurvedComplete",
+            "AngledComplete",
+            "OpenComplete",
+            "TrialComplete",
+            "ObjectFound",
+            // Add other completion dialog keys here
+        };
+
+        return System.Array.Exists(completionDialogs, dialog => dialog == dialogKey);
+    }
+
+    
+    // This should be called from UXF's OnTrialEnd event or when trial is actually complete
+    public void OnTrialCompleted()
+    {
+        Debug.Log("Trial completed, continuing dialog flow");
+    }
+    
     private void MoveToSpawnPoint(GameObject spawnPoint)
     {
         XROrigin.transform.SetPositionAndRotation(
@@ -125,19 +213,19 @@ public class TrialManager : MonoBehaviour
         Debug.Log($"Moved to spawn point: {spawnPoint.name}");
     }
 
-    public void MoveToUIViewpoint()
-    {
-        if (UIViewpoint != null)
-        {
-            XROrigin.transform.SetPositionAndRotation(
-                UIViewpoint.transform.position,
-                UIViewpoint.transform.rotation
-            );
-            Debug.Log($"Moved to UIViewpoint: {UIViewpoint.name}");
-        }
-        else
-        {
-            Debug.LogWarning($"[{nameof(TrialManager)}] UIViewpoint is not assigned.");
-        }
-    }
+    // public void MoveToUIViewpoint()
+    // {
+    //     if (UIViewpoint != null)
+    //     {
+    //         XROrigin.transform.SetPositionAndRotation(
+    //             UIViewpoint.transform.position,
+    //             UIViewpoint.transform.rotation
+    //         );
+    //         Debug.Log($"Moved to UIViewpoint: {UIViewpoint.name}");
+    //     }
+    //     else
+    //     {
+    //         Debug.LogWarning($"[{nameof(TrialManager)}] UIViewpoint is not assigned.");
+    //     }
+    // }
 }

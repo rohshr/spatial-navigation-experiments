@@ -7,7 +7,10 @@ public class CameraCullingController : MonoBehaviour
     {
         InstructionsController.OnInstructionsCompleted += SetCullingMaskToEverything;
         VRDialogFlowManager.OnDialogFlowComplete += SetCullingMaskToEverything; // Subscribe to the event when dialog flow is completed
-        VRDialogFlowManager.OnExperimentStart += SetCullingMaskToEverything; // Subscribe to the event when the experiment starts        FinishPointCheck.OnFinishPointReached += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the finish point is reached
+        VRDialogFlowManager.OnSpecificDialogComplete += OnSpecificDialogCompleteHandler; // Subscribe to the event when a specific dialog is completed
+        // VRDialogFlowManager.OnExperimentStart += SetCullingMaskToEverything; // Subscribe to the event when the experiment starts        FinishPointCheck.OnFinishPointReached += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the finish point is reached
+        VRDialogFlowManager.OnDialogPrefabDisplay += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when a dialog prefab is displayed
+        FinishPointCheck.OnFinishPointReached += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the finish point is reached
         ExperimenterControlScript.OnTrialSkipped += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the session is ended
         ObjectCollisionDetection.OnObjectCollided += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the object collision is detected
     }
@@ -16,7 +19,9 @@ public class CameraCullingController : MonoBehaviour
     {
         InstructionsController.OnInstructionsCompleted -= SetCullingMaskToEverything;
         VRDialogFlowManager.OnDialogFlowComplete -= SetCullingMaskToEverything; // Unsubscribe from the event when dialog flow is completed
-        VRDialogFlowManager.OnExperimentStart -= SetCullingMaskToEverything; // Unsubscribe from the event when the experiment starts
+        VRDialogFlowManager.OnSpecificDialogComplete -= OnSpecificDialogCompleteHandler; // Unsubscribe from the event when a specific dialog is completed
+        // VRDialogFlowManager.OnExperimentStart -= SetCullingMaskToEverything; // Unsubscribe from the event when the experiment starts
+        VRDialogFlowManager.OnDialogPrefabDisplay -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when a dialog prefab is displayed
         FinishPointCheck.OnFinishPointReached -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the finish point is reached
         ExperimenterControlScript.OnTrialSkipped -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the session is ended
         ObjectCollisionDetection.OnObjectCollided -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the object collision is detected
@@ -46,5 +51,10 @@ public class CameraCullingController : MonoBehaviour
         {
             Debug.LogWarning("Main Camera is not assigned.");
         }
+    }
+    
+    private void OnSpecificDialogCompleteHandler(string _)
+    {
+        SetCullingMaskToEverything();
     }
 }
