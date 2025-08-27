@@ -11,12 +11,15 @@ public class InputHandler : MonoBehaviour
 
     public InputActionReference proceedAction;
     public InputActionReference backAction;
-
+    public InputActionReference skipTrial;
     public delegate void OnProceed();
     public static event OnProceed ProceedEvent;
 
     public delegate void OnBack();
     public static event OnBack BackEvent;
+    
+    public delegate void OnSkipTrial();
+    public static event OnSkipTrial SkipTrialEvent;
 
     void Start()
     {
@@ -38,6 +41,11 @@ public class InputHandler : MonoBehaviour
         {
             backAction.action.Enable();
         }
+
+        if (skipTrial != null)
+        {
+            skipTrial.action.Enable();
+        }
         
         DisableLocomotion();
     }
@@ -50,6 +58,7 @@ public class InputHandler : MonoBehaviour
         // VRDialogFlowManager.OnExperimentStart += EnableLocomotion; // Subscribe to the event when the experiment starts
         VRDialogFlowManager.OnDialogPrefabDisplay += DisableLocomotion;
         FinishPointCheck.OnFinishPointReached += DisableLocomotion; // Subscribe to the event when the finish point is reached
+        TrialManager.OnExplorationBlockCompleted += DisableLocomotion; // Subscribe to the event when the exploration block is completed
         ExperimenterControlScript.OnTrialSkipped += DisableLocomotion; // Subscribe to the event when the session is ended
         ObjectCollisionDetection.OnObjectCollided += DisableLocomotion; // Subscribe to the event when the object collision is detected
     }
@@ -62,6 +71,7 @@ public class InputHandler : MonoBehaviour
         // VRDialogFlowManager.OnExperimentStart -= EnableLocomotion; // Unsubscribe from the event when the experiment starts
         VRDialogFlowManager.OnDialogPrefabDisplay -= DisableLocomotion;
         FinishPointCheck.OnFinishPointReached -= DisableLocomotion; // Unsubscribe from the event when the finish point is reached
+        TrialManager.OnExplorationBlockCompleted -= DisableLocomotion; // Unsubscribe from the event when the exploration block is completed       
         ExperimenterControlScript.OnTrialSkipped -= DisableLocomotion; // Unsubscribe from the event when the session is ended
         ObjectCollisionDetection.OnObjectCollided -= DisableLocomotion; // Unsubscribe from the event when the object collision is detected
     }
@@ -76,6 +86,12 @@ public class InputHandler : MonoBehaviour
         if (backAction != null && backAction.action.triggered)
         {
             BackEvent?.Invoke(); // Trigger the back event
+        }
+
+        if (skipTrial != null && skipTrial.action.triggered)
+        {
+            DisableLocomotion();
+            SkipTrialEvent?.Invoke(); // Trigger the skip trial event
         }
     }
 

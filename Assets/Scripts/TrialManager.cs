@@ -25,11 +25,11 @@ public class TrialManager : MonoBehaviour
     private GameObject nextSpawnPoint;
     private GameObject nextObjectSearch;
     // private bool objectSearchTrialsActive = false; // Flag to check if object search trials are active
-    
     private VRDialogFlowManager dialogFlowManager;
     
     // Events
     public static event Action OnBlocksCompleted;
+    public static event Action OnExplorationBlockCompleted;
     
     private void Start()
     {
@@ -123,6 +123,14 @@ public class TrialManager : MonoBehaviour
                 // objectSearchTrialsActive = true;
                 objectSearchIndex = 0; // Reset the object search index for new object search block
             }
+
+            if (currentBlock?.GetBlockType() == "Exploration")
+            {
+                var timeTrialBlock = currentBlock as SessionGenerator.ExplorationBlock;
+                var timeForExploration = timeTrialBlock.GetTimeForExplorationInSeconds();
+                Debug.Log($"Time for exploration: {timeForExploration} seconds.");
+                StartCoroutine(EndTrialAfterDelay(timeForExploration)); // Start the timer for the exploration block (after the object search block)
+            }
             SetSpawnPoint(currentBlock);
         }
         else
@@ -144,6 +152,17 @@ public class TrialManager : MonoBehaviour
         // instructionsController.SetObjectSearchInstruction(pendingObjectSearch.name);
     }
 
+    public void InstantiateExplorationTrial()
+    {
+        if (currentBlock?.GetBlockType() == "Exploration")
+        {
+            var timeTrialBlock = currentBlock as SessionGenerator.ExplorationBlock;
+            var timeForExploration = timeTrialBlock.GetTimeForExplorationInSeconds();
+            Debug.Log($"Time for exploration: {timeForExploration} seconds.");
+            StartCoroutine(EndTrialAfterDelay(timeForExploration)); // Start the timer for the exploration block (after the object search block)
+        }
+    }
+
     public void SetupNextTrial()
     {
         
@@ -153,6 +172,15 @@ public class TrialManager : MonoBehaviour
     {
         SetSpawnPoint(currentBlock);
         MoveToSpawnPoint(currentSpawnPoint);
+        InstantiateExplorationTrial();
+    }
+
+    private IEnumerator EndTrialAfterDelay(float timeInSeconds)
+    {
+        Debug.Log($"Ending trial after {timeInSeconds} seconds.");
+        yield return new WaitForSeconds(timeInSeconds);
+        SetupNextBlock();
+        OnExplorationBlockCompleted?.Invoke(); // Trigger the event to notify that the exploration block is completed
     }
 
     // Method to handle specific dialog completions

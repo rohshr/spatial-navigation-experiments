@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.InputSystem;
 using UXF;
 
 public class SessionGenerator : MonoBehaviour
@@ -84,6 +85,15 @@ public class SessionGenerator : MonoBehaviour
             return objectSearchSequence;
         }
     }
+
+    public class ExplorationBlock : UXFBlock
+    {
+        [Tooltip("Time to allow exploration in minutes")]
+        public float timeForExploration = 5f; // Default to 5 minutes
+        
+        public override string GetBlockType() => "Exploration";
+        public float GetTimeForExplorationInSeconds() => (timeForExploration * 60f);
+    }
     
     #region Inspector Fields
     [Header("---- LOCOMOTION METHOD INSTRUCTIONS ----")]
@@ -148,12 +158,16 @@ public class SessionGenerator : MonoBehaviour
     {
         FinishPointCheck.OnFinishPointReached += ShowNextInstructions;
         ObjectCollisionDetection.OnObjectCollided += ShowNextObjectSearchInstructions;
+        TrialManager.OnExplorationBlockCompleted += ShowNextInstructions;
+        InputHandler.SkipTrialEvent += ShowNextInstructions;
     }
     
     private void OnDisable()
     {
         FinishPointCheck.OnFinishPointReached -= ShowNextInstructions;
         ObjectCollisionDetection.OnObjectCollided -= ShowNextObjectSearchInstructions;
+        TrialManager.OnExplorationBlockCompleted -= ShowNextInstructions;
+        InputHandler.SkipTrialEvent -= ShowNextInstructions;
     }
     
     // Session Start

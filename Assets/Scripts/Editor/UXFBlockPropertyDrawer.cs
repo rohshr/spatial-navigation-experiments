@@ -139,6 +139,8 @@ public class UxfBlockPropertyDrawer : PropertyDrawer
             return "Generic Block";
         if (type == typeof(SessionGenerator.ObjectSearchTrialsBlock))
             return "Object Search Block";
+        if (type == typeof(SessionGenerator.ExplorationBlock))
+            return "Exploration Block";
         return type.Name;
     }
 

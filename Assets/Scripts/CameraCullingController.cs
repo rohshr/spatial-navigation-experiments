@@ -11,8 +11,10 @@ public class CameraCullingController : MonoBehaviour
         // VRDialogFlowManager.OnExperimentStart += SetCullingMaskToEverything; // Subscribe to the event when the experiment starts        FinishPointCheck.OnFinishPointReached += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the finish point is reached
         VRDialogFlowManager.OnDialogPrefabDisplay += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when a dialog prefab is displayed
         FinishPointCheck.OnFinishPointReached += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the finish point is reached
+        TrialManager.OnExplorationBlockCompleted += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the exploration block is completed
         ExperimenterControlScript.OnTrialSkipped += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the session is ended
         ObjectCollisionDetection.OnObjectCollided += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the object collision is detected
+        InputHandler.SkipTrialEvent += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the skip trial button is pressed
     }
 
     private void OnDisable()
@@ -23,8 +25,10 @@ public class CameraCullingController : MonoBehaviour
         // VRDialogFlowManager.OnExperimentStart -= SetCullingMaskToEverything; // Unsubscribe from the event when the experiment starts
         VRDialogFlowManager.OnDialogPrefabDisplay -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when a dialog prefab is displayed
         FinishPointCheck.OnFinishPointReached -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the finish point is reached
+        TrialManager.OnExplorationBlockCompleted -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the exploration block is completed       
         ExperimenterControlScript.OnTrialSkipped -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the session is ended
         ObjectCollisionDetection.OnObjectCollided -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the object collision is detected
+        InputHandler.SkipTrialEvent -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the skip trial button is pressed       
     }
 
     public void SetCullingMaskToUIOnlyWithHandController()
