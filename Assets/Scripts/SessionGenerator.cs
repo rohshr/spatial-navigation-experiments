@@ -50,7 +50,7 @@ public class SessionGenerator : MonoBehaviour
         [Header("Trial Settings")]
         [Space(5)]
         [Tooltip("Enable this to randomize the order of trial tasks within the block. Only applicable if multiple tasks are defined.")]
-        private bool randomizeTrialTasksSequence = false;
+        public bool randomizeTrialTasksSequence = false;
         
         public virtual int GetTrialCount() => 1;
         public virtual string GetBlockType() => "Generic";
