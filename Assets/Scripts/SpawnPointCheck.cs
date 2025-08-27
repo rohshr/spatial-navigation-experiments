@@ -13,7 +13,8 @@ public class SpawnPointCheck : MonoBehaviour
             {
                 Debug.Log("Player exited a trial SpawnPoint at" + DateTime.Now);
                 Session.instance.BeginNextTrial();
-            } else if (CompareTag("UIViewpoint"))
+            }
+            else if (CompareTag("UIViewpoint"))
             {
                 Debug.Log("Player exited the UIViewpoint at " + DateTime.Now);
             }

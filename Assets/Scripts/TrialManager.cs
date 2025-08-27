@@ -10,25 +10,37 @@ public class TrialManager : MonoBehaviour
     // [SerializeField] private InstructionsController instructionsController;
     [SerializeField] private GameObject XROrigin;
     [SerializeField] private GameObject UIViewpoint;
-    [SerializeField] private SessionGenerator SessionGenerator;
-
-    private List<GameObject> SpawnPointsSequence;
+    private SessionGenerator sessionGenerator;
+    
+    // private List<GameObject> SpawnPointsSequence;
     private List<GameObject> ObjectSearchSequence;
 
-    private int currentSpawnPointIndex = 0;
-    private int currentObjectSearchIndex = 0;
-    private GameObject pendingSpawnPoint;
-    private GameObject pendingObjectSearch;
-    private bool objectSearchTrialsActive = false; // Flag to check if object search trials are active
+    private List<SessionGenerator.UXFBlock> currentTrialBlocks;
+    private string nextBlockType;
+    private int currentBlockIndex = 0;
+    private SessionGenerator.UXFBlock currentBlock;
+    private GameObject currentSpawnPoint;
+    private int nextSpawnPointIndex = 0;
+    private int objectSearchIndex = 0;
+    private GameObject nextSpawnPoint;
+    private GameObject nextObjectSearch;
+    // private bool objectSearchTrialsActive = false; // Flag to check if object search trials are active
     
     private VRDialogFlowManager dialogFlowManager;
     
+    // Events
+    public static event Action OnBlocksCompleted;
+    
     private void Start()
     {
+        sessionGenerator = FindFirstObjectByType<SessionGenerator>();
+        currentTrialBlocks = sessionGenerator.GetTrialBlocks();
+        currentBlock = currentTrialBlocks[currentBlockIndex];
         dialogFlowManager = FindFirstObjectByType<VRDialogFlowManager>();
-        SpawnPointsSequence = SessionGenerator.GetSpawnPointsSequence();
-        ObjectSearchSequence = SessionGenerator.GetObjectSearchSequence();
-        SetNextSpawnPoint();
+        // SpawnPointsSequence = SessionGenerator.GetSpawnPointsSequence();
+        // ObjectSearchSequence = SessionGenerator.GetObjectSearchSequence();
+        // SetNextSpawnPoint();
+        SetSpawnPoint(currentBlock);
     }
     
     private void OnEnable()
@@ -47,85 +59,100 @@ public class TrialManager : MonoBehaviour
         // ObjectCollisionDetection.OnObjectCollided -= MoveToUIViewpoint; // Unsubscribe from the event when the object collision is detected
     }
 
-    public void SetNextSpawnPoint()
+    // public void SetNextSpawnPoint()
+    // {
+    //     if (SpawnPointsSequence == null || SpawnPointsSequence.Count <= nextSpawnPointIndex)
+    //     {
+    //         Debug.LogWarning($"[{nameof(TrialManager)}] No more spawn points available.");
+    //         return;
+    //     }
+    //
+    //     if (!objectSearchTrialsActive)
+    //     {
+    //         nextSpawnPoint = SpawnPointsSequence[nextSpawnPointIndex];
+    //         // instructionsController.SetEnvironmentInstruction(pendingSpawnPoint.name);
+    //     }
+    //     else if (ObjectSearchSequence == null || ObjectSearchSequence.Count <= nextObjectSearchIndex)
+    //     {
+    //         Debug.LogWarning($"[{nameof(TrialManager)}] No more objects to find.");
+    //         objectSearchTrialsActive = false; // Reset the flag when no more object search trials are available
+    //         nextSpawnPointIndex++;
+    //         if (SpawnPointsSequence == null || SpawnPointsSequence.Count <= nextSpawnPointIndex)
+    //         {
+    //             Debug.LogWarning($"[{nameof(TrialManager)}] No more spawn points available.");
+    //             return;
+    //         }
+    //         nextSpawnPoint = SpawnPointsSequence[nextSpawnPointIndex];
+    //         // instructionsController.SetEnvironmentInstruction(pendingSpawnPoint.name);
+    //         return;
+    //     }
+    //
+    //     if (nextSpawnPoint.name == "OpenFloorSpawnPoint")
+    //     {
+    //         SetNextObjectSearch();
+    //         // instructionsController.SetObjectSearchInstruction(pendingObjectSearch.name);
+    //         objectSearchTrialsActive = true; // Set the flag to true when object search trials are active
+    //         return;
+    //     }
+    // }
+    
+    /// <summary>
+    /// Get the spawn point from the current block and set it as the current spawn point. Run at the start of the session and after each block ends.
+    /// </summary>
+    public void SetSpawnPoint(SessionGenerator.UXFBlock block)
     {
-        if (SpawnPointsSequence == null || SpawnPointsSequence.Count <= currentSpawnPointIndex)
+        if (block.GetSpawnPoint() == null)
         {
-            Debug.LogWarning($"[{nameof(TrialManager)}] No more spawn points available.");
+            Debug.LogWarning($"[{nameof(TrialManager)}]: The spawn point for block {currentBlock.blockName} is null.");
             return;
         }
+        currentSpawnPoint = block.GetSpawnPoint();
+    }
 
-        if (!objectSearchTrialsActive)
+    /// <summary>
+    /// Setup next block and spawn point for the block. Assign in UXF Rig On Block End event.
+    /// </summary>
+    public void SetupNextBlock()
+    {
+        currentBlockIndex++;
+        if (currentBlockIndex < currentTrialBlocks.Count)
         {
-            pendingSpawnPoint = SpawnPointsSequence[currentSpawnPointIndex];
-            // instructionsController.SetEnvironmentInstruction(pendingSpawnPoint.name);
-        }
-        else if (ObjectSearchSequence == null || ObjectSearchSequence.Count <= currentObjectSearchIndex)
-        {
-            Debug.LogWarning($"[{nameof(TrialManager)}] No more objects to find.");
-            objectSearchTrialsActive = false; // Reset the flag when no more object search trials are available
-            currentSpawnPointIndex++;
-            if (SpawnPointsSequence == null || SpawnPointsSequence.Count <= currentSpawnPointIndex)
+            currentBlock = currentTrialBlocks[currentBlockIndex];
+            if (currentBlock?.GetBlockType() == "ObjectSearch")
             {
-                Debug.LogWarning($"[{nameof(TrialManager)}] No more spawn points available.");
-                return;
+                // objectSearchTrialsActive = true;
+                objectSearchIndex = 0; // Reset the object search index for new object search block
             }
-            pendingSpawnPoint = SpawnPointsSequence[currentSpawnPointIndex];
-            // instructionsController.SetEnvironmentInstruction(pendingSpawnPoint.name);
-            return;
+            SetSpawnPoint(currentBlock);
         }
-
-        if (pendingSpawnPoint.name == "OpenFloorSpawnPoint")
+        else
         {
-            pendingObjectSearch = ObjectSearchSequence[currentObjectSearchIndex];
-            // instructionsController.SetObjectSearchInstruction(pendingObjectSearch.name);
-            objectSearchTrialsActive = true; // Set the flag to true when object search trials are active
-            return;
+            Debug.Log("No more blocks available.");
+            OnBlocksCompleted?.Invoke(); // Trigger the event to notify that all blocks are completed
         }
     }
 
     public void SetNextObjectSearch()
     {
-        if(ObjectSearchSequence == null || ObjectSearchSequence.Count <= currentObjectSearchIndex)
+        if(ObjectSearchSequence == null || ObjectSearchSequence.Count <= objectSearchIndex)
         {
             Debug.LogWarning($"[{nameof(TrialManager)}] No more objects to search.");
             return;
         }
 
-        pendingObjectSearch = ObjectSearchSequence[currentObjectSearchIndex];
+        nextObjectSearch = ObjectSearchSequence[objectSearchIndex];
         // instructionsController.SetObjectSearchInstruction(pendingObjectSearch.name);
+    }
+
+    public void SetupNextTrial()
+    {
+        
     }
 
     private void HandleInstructionsCompleted()
     {
-        SetNextSpawnPoint();
-        if (pendingSpawnPoint == null)
-        {
-            Debug.LogWarning($"[{nameof(TrialManager)}] No pending spawn point to move to.");
-            return;
-        }
-        
-        if (pendingSpawnPoint.name != "OpenFloorSpawnPoint")
-        {
-            MoveToSpawnPoint(pendingSpawnPoint);
-            currentSpawnPointIndex++;
-            pendingSpawnPoint = null;
-        }
-        else
-        {
-            if (ObjectSearchSequence == null || ObjectSearchSequence.Count <= currentObjectSearchIndex)
-            {
-                Debug.LogWarning($"[{nameof(TrialManager)}] No more objects to search.");
-                MoveToSpawnPoint(pendingSpawnPoint);
-                currentSpawnPointIndex++;
-                pendingSpawnPoint = null;
-                objectSearchTrialsActive = false; // Reset the flag when no more object search trials are available
-                return;
-            }
-            MoveToSpawnPoint(pendingSpawnPoint);
-            currentObjectSearchIndex++;
-            pendingObjectSearch = null;
-        }
+        SetSpawnPoint(currentBlock);
+        MoveToSpawnPoint(currentSpawnPoint);
     }
 
     // Method to handle specific dialog completions
@@ -211,6 +238,7 @@ public class TrialManager : MonoBehaviour
             spawnPoint.transform.rotation
         );
         Debug.Log($"Moved to spawn point: {spawnPoint.name}");
+        nextSpawnPointIndex++;
     }
 
     // public void MoveToUIViewpoint()

@@ -172,7 +172,7 @@ public class InstructionsController : MonoBehaviour
         {
             InputHandler.ProceedEvent += OnProceed;
             // FinishPointCheck.OnFinishPointReached += ShowInstructions;
-            ExperimenterControlScript.OnTrialSkipped += ShowInstructions;
+            // ExperimenterControlScript.OnTrialSkipped += ShowInstructions;
             // ObjectCollisionDetection.OnObjectCollided += ShowInstructions;
         }
     }
@@ -181,7 +181,7 @@ public class InstructionsController : MonoBehaviour
     {
         InputHandler.ProceedEvent -= OnProceed;
         // FinishPointCheck.OnFinishPointReached -= ShowInstructions;
-        ExperimenterControlScript.OnTrialSkipped -= ShowInstructions;
+        // ExperimenterControlScript.OnTrialSkipped -= ShowInstructions;
         // ObjectCollisionDetection.OnObjectCollided -= ShowInstructions;
     }
 

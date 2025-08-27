@@ -7,7 +7,7 @@ public class CameraCullingController : MonoBehaviour
     {
         InstructionsController.OnInstructionsCompleted += SetCullingMaskToEverything;
         VRDialogFlowManager.OnDialogFlowComplete += SetCullingMaskToEverything; // Subscribe to the event when dialog flow is completed
-        VRDialogFlowManager.OnSpecificDialogComplete += OnSpecificDialogCompleteHandler; // Subscribe to the event when a specific dialog is completed
+        // VRDialogFlowManager.OnSpecificDialogComplete += OnSpecificDialogCompleteHandler; // Subscribe to the event when a specific dialog is completed
         // VRDialogFlowManager.OnExperimentStart += SetCullingMaskToEverything; // Subscribe to the event when the experiment starts        FinishPointCheck.OnFinishPointReached += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the finish point is reached
         VRDialogFlowManager.OnDialogPrefabDisplay += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when a dialog prefab is displayed
         FinishPointCheck.OnFinishPointReached += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the finish point is reached
@@ -19,7 +19,7 @@ public class CameraCullingController : MonoBehaviour
     {
         InstructionsController.OnInstructionsCompleted -= SetCullingMaskToEverything;
         VRDialogFlowManager.OnDialogFlowComplete -= SetCullingMaskToEverything; // Unsubscribe from the event when dialog flow is completed
-        VRDialogFlowManager.OnSpecificDialogComplete -= OnSpecificDialogCompleteHandler; // Unsubscribe from the event when a specific dialog is completed
+        // VRDialogFlowManager.OnSpecificDialogComplete -= OnSpecificDialogCompleteHandler; // Unsubscribe from the event when a specific dialog is completed
         // VRDialogFlowManager.OnExperimentStart -= SetCullingMaskToEverything; // Unsubscribe from the event when the experiment starts
         VRDialogFlowManager.OnDialogPrefabDisplay -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when a dialog prefab is displayed
         FinishPointCheck.OnFinishPointReached -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the finish point is reached

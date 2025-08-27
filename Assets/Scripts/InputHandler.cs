@@ -46,7 +46,7 @@ public class InputHandler : MonoBehaviour
     {
         InstructionsController.OnInstructionsCompleted += EnableLocomotion;
         VRDialogFlowManager.OnDialogFlowComplete += EnableLocomotion; // Subscribe to the event when dialog flow is completed
-        VRDialogFlowManager.OnSpecificDialogComplete += OnSpecificDialogCompleteHandler; // Subscribe to the event when a specific dialog is completed
+        // VRDialogFlowManager.OnSpecificDialogComplete += OnSpecificDialogCompleteHandler; // Subscribe to the event when a specific dialog is completed
         // VRDialogFlowManager.OnExperimentStart += EnableLocomotion; // Subscribe to the event when the experiment starts
         VRDialogFlowManager.OnDialogPrefabDisplay += DisableLocomotion;
         FinishPointCheck.OnFinishPointReached += DisableLocomotion; // Subscribe to the event when the finish point is reached
@@ -58,7 +58,7 @@ public class InputHandler : MonoBehaviour
     {
         InstructionsController.OnInstructionsCompleted -= EnableLocomotion;
         VRDialogFlowManager.OnDialogFlowComplete -= EnableLocomotion; // Unsubscribe from the event when dialog flow is completed
-        VRDialogFlowManager.OnSpecificDialogComplete -= OnSpecificDialogCompleteHandler;
+        // VRDialogFlowManager.OnSpecificDialogComplete -= OnSpecificDialogCompleteHandler;
         // VRDialogFlowManager.OnExperimentStart -= EnableLocomotion; // Unsubscribe from the event when the experiment starts
         VRDialogFlowManager.OnDialogPrefabDisplay -= DisableLocomotion;
         FinishPointCheck.OnFinishPointReached -= DisableLocomotion; // Unsubscribe from the event when the finish point is reached

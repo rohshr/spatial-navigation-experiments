@@ -126,10 +126,10 @@ public class VRDialogFlowManager : MonoBehaviour
     // };
     
     [Header("Triggered Dialogs")]
-    private bool isDialogFlowPaused = false;
+    // private bool isDialogFlowPaused = false;
     // private List<string> pausedDialogSequence = new List<string>();
-    private List<GameObject> pausedDialogPrefabsSequence = new List<GameObject>();
-    private int pausedDialogIndex = 0;
+    // private List<GameObject> pausedDialogPrefabsSequence = new List<GameObject>();
+    // private int pausedDialogIndex = 0;
     
     [Tooltip("Specify how far in front of the user the dialog should appear.")]
     [SerializeField] private float dialogDistance = 2.0f;
@@ -177,8 +177,8 @@ public class VRDialogFlowManager : MonoBehaviour
     
     // Events
     public static event System.Action OnDialogFlowComplete;
-    public static event System.Action<string> OnSpecificDialogComplete;
-    public static event System.Action<int> OnDialogChanged;
+    // public static event System.Action<string> OnSpecificDialogComplete;
+    // public static event System.Action<int> OnDialogChanged;
     public static event System.Action OnDialogPrefabChanged;
     // public static event System.Action OnExperimentStart;
     public static event Action OnDialogPrefabDisplay; // Event triggered when any dialog prefab is displayed
@@ -198,6 +198,7 @@ public class VRDialogFlowManager : MonoBehaviour
         SessionGenerator.OnPlayStart += ShowDialogPrefab;
         SessionGenerator.OnSessionGenerate += ShowDialogSequence;
         SessionGenerator.OnBlockEnd += ShowDialogSequence;
+        SessionGenerator.OnTrialEnd += ShowDialogSequence;
     }
     
     private void OnDisable()
@@ -209,6 +210,7 @@ public class VRDialogFlowManager : MonoBehaviour
         SessionGenerator.OnPlayStart -= ShowDialogPrefab;
         SessionGenerator.OnSessionGenerate -= ShowDialogSequence;
         SessionGenerator.OnBlockEnd -= ShowDialogSequence;
+        SessionGenerator.OnTrialEnd -= ShowDialogSequence;
     }
     
     private void Update()

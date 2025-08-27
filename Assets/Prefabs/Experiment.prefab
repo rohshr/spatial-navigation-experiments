@@ -10,6 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4538591397508838262}
   - component: {fileID: 8085443599274712418}
+  - component: {fileID: 1185954312039287275}
+  - component: {fileID: 2333921505403635390}
+  - component: {fileID: 8465520115350836622}
+  - component: {fileID: 7835494571524038803}
+  - component: {fileID: 8451305408182454192}
+  - component: {fileID: 5075208088239307515}
+  - component: {fileID: 6497813026224163051}
+  - component: {fileID: 880204704326797404}
   m_Layer: 0
   m_Name: Experiment
   m_TagString: Untagged
@@ -39,11 +47,177 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4130535618701150512}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec1a9cd1d25121b45bd90462ac68b08e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingPlayerSpawnPoint: {fileID: 0}
-  isPractice: 0
+  continuousLocomotionInstructionDialogPrefab: {fileID: 7133393797471011900, guid: 69e394da0423a7645b59d2b7dd810383, type: 3}
+  teleportLocomotionInstructionDialogPrefab: {fileID: 7133393797471011900, guid: 14480305668930d4c805ad6acd2562ff, type: 3}
+  nodeLocomotionInstructionDialogPrefab: {fileID: 7133393797471011900, guid: 0a80039928dcad44693b01ddcee33531, type: 3}
+  nonVRMode: 1
+  isPracticeSession: 1
+  sessionWaitingDialogPrefab: {fileID: 7133393797471011900, guid: e686f8d234ab5cf49975538119b2242f, type: 3}
+  sessionStartDialogPrefab: {fileID: 7133393797471011900, guid: 57f94090249dccb4286a455faa7f35d1, type: 3}
+  sessionEndDialogPrefab: {fileID: 7133393797471011900, guid: 3df364ba3cb3b7243ba8e8b83c8ea574, type: 3}
+  trialBlocks:
+  - rid: 9143267733335703844
+  - rid: 9143267733335703845
+  - rid: 9143267733335703846
+  references:
+    version: 2
+    RefIds:
+    - rid: 9143267733335703844
+      type: {class: SessionGenerator/UXFBlock, ns: , asm: Assembly-CSharp}
+      data:
+        blockName: practiceCurvedEnvironment
+        environment: 0
+        environmentSpawnPoint: {fileID: 0}
+        environmentFinishPoint: {fileID: 0}
+        startMessageDialogPrefab: {fileID: 7133393797471011900, guid: bbb70e64cde2be74183dfb4886a2ab25, type: 3}
+        endMessageDialogPrefab: {fileID: 7133393797471011900, guid: 203d226416e4b3d4294cb5282e73009f, type: 3}
+    - rid: 9143267733335703845
+      type: {class: SessionGenerator/UXFBlock, ns: , asm: Assembly-CSharp}
+      data:
+        blockName: practiceAngledEnvironment
+        environment: 0
+        environmentSpawnPoint: {fileID: 0}
+        environmentFinishPoint: {fileID: 0}
+        startMessageDialogPrefab: {fileID: 7133393797471011900, guid: 33922ef2ce5969d44af003f18b0f2c8a, type: 3}
+        endMessageDialogPrefab: {fileID: 7133393797471011900, guid: bd3a47e320d2e624896d1598d60e0066, type: 3}
+    - rid: 9143267733335703846
+      type: {class: SessionGenerator/ObjectSearchTrialsBlock, ns: , asm: Assembly-CSharp}
+      data:
+        blockName: practiceOpenEnvironment
+        environment: 0
+        environmentSpawnPoint: {fileID: 0}
+        environmentFinishPoint: {fileID: 0}
+        startMessageDialogPrefab: {fileID: 7133393797471011900, guid: e2b449a94008e924da70489fabb45a49, type: 3}
+        endMessageDialogPrefab: {fileID: 7133393797471011900, guid: 640e92b4e48582a4597a589c1c13c4f2, type: 3}
+        objectSearchTasks:
+        - taskName: findCube
+          taskInstructionsDialogPrefab: {fileID: 7133393797471011900, guid: 03b4a9b8eb9a3af43a5b4916e5bbf1a2, type: 3}
+          taskCompleteMessageDialogPrefab: {fileID: 7133393797471011900, guid: e62c473454e7f3848bad532c2521aabe, type: 3}
+          objectToFind: {fileID: 0}
+        - taskName: findSphere
+          taskInstructionsDialogPrefab: {fileID: 7133393797471011900, guid: 2972f374f0eed1c47a8f01f6003d80d4, type: 3}
+          taskCompleteMessageDialogPrefab: {fileID: 7133393797471011900, guid: e62c473454e7f3848bad532c2521aabe, type: 3}
+          objectToFind: {fileID: 0}
+        - taskName: findStar
+          taskInstructionsDialogPrefab: {fileID: 7133393797471011900, guid: 35c431a953daeab48821feea59849e47, type: 3}
+          taskCompleteMessageDialogPrefab: {fileID: 7133393797471011900, guid: e62c473454e7f3848bad532c2521aabe, type: 3}
+          objectToFind: {fileID: 0}
+        - taskName: findStatue
+          taskInstructionsDialogPrefab: {fileID: 7133393797471011900, guid: 37ee7d853b924c3439d89264b754ae75, type: 3}
+          taskCompleteMessageDialogPrefab: {fileID: 7133393797471011900, guid: e62c473454e7f3848bad532c2521aabe, type: 3}
+          objectToFind: {fileID: 0}
+--- !u!114 &1185954312039287275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4130535618701150512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448bfae33afaed74cb4d8149369f5867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   XROrigin: {fileID: 0}
+  UIViewpoint: {fileID: 0}
+--- !u!114 &2333921505403635390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4130535618701150512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57065b4609457584197a2bd10b52c8c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locomotionChoice: 0
+--- !u!114 &8465520115350836622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4130535618701150512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 376446ddb35005943a49f98c5e8c0835, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HUDCanvas: {fileID: 0}
+  toggleAction: {fileID: -3212938848165002803, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+--- !u!114 &7835494571524038803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4130535618701150512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efe75129af2c1054ba92e74d8da1a499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+--- !u!114 &8451305408182454192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4130535618701150512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a5dc17766ec6449b8d1bc633e373b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  XROrigin: {fileID: 0}
+  proceedAction: {fileID: 9116136493208989681, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  backAction: {fileID: 2563229910848146978, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+--- !u!114 &5075208088239307515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4130535618701150512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 364a26b2962f6094f936e5954aab89cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseTrial: {fileID: -3841162740300619328, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  forceEndCurrentTrial: {fileID: 9027206525812710111, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  forceEndSession: {fileID: -5300751169365110372, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+--- !u!114 &6497813026224163051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4130535618701150512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373facbf8028c5540be02809999eb9f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftHandController: {fileID: 0}
+  rightHandController: {fileID: 0}
+--- !u!114 &880204704326797404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4130535618701150512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d778ec9c292f1194a910cb94deb76b74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -11,38 +11,38 @@ public class DialogTriggerConfig
 
 public class VRDialogTrigger : MonoBehaviour
 {
-    [Header("Trigger Configuration")]
-    [SerializeField] private DialogTriggerConfig triggerConfig;
-    
-    [Header("Collision Settings")]
-    [SerializeField] private bool requiresPlayerTag = true;
-    [SerializeField] private string playerTag = "Player";
-    
-    private bool hasTriggered = false;
-    private VRDialogFlowManager dialogManager;
-
-    private void Start()
-    {
-        dialogManager = FindFirstObjectByType<VRDialogFlowManager>();
-        if (dialogManager == null)
-        {
-            Debug.LogError("VRDialogTrigger: No VRDialogFlowManager found in scene!");
-        }
-
-        // Ensure this object has a collider set as trigger
-        Collider col = GetComponent<Collider>();
-        if (col == null)
-        {
-            Debug.LogWarning("VRDialogTrigger: No collider found, adding BoxCollider as trigger");
-            BoxCollider boxCol = gameObject.AddComponent<BoxCollider>();
-            boxCol.isTrigger = true;
-        }
-        else if (!col.isTrigger)
-        {
-            Debug.LogWarning("VRDialogTrigger: Collider is not set as trigger, enabling isTrigger");
-            col.isTrigger = true;
-        }
-    }
+    // [Header("Trigger Configuration")]
+    // [SerializeField] private DialogTriggerConfig triggerConfig;
+    //
+    // [Header("Collision Settings")]
+    // [SerializeField] private bool requiresPlayerTag = true;
+    // [SerializeField] private string playerTag = "Player";
+    //
+    // private bool hasTriggered = false;
+    // private VRDialogFlowManager dialogManager;
+    //
+    // private void Start()
+    // {
+    //     dialogManager = FindFirstObjectByType<VRDialogFlowManager>();
+    //     if (dialogManager == null)
+    //     {
+    //         Debug.LogError("VRDialogTrigger: No VRDialogFlowManager found in scene!");
+    //     }
+    //
+    //     // Ensure this object has a collider set as trigger
+    //     Collider col = GetComponent<Collider>();
+    //     if (col == null)
+    //     {
+    //         Debug.LogWarning("VRDialogTrigger: No collider found, adding BoxCollider as trigger");
+    //         BoxCollider boxCol = gameObject.AddComponent<BoxCollider>();
+    //         boxCol.isTrigger = true;
+    //     }
+    //     else if (!col.isTrigger)
+    //     {
+    //         Debug.LogWarning("VRDialogTrigger: Collider is not set as trigger, enabling isTrigger");
+    //         col.isTrigger = true;
+    //     }
+    // }
 
     // private void OnTriggerEnter(Collider other)
     // {
