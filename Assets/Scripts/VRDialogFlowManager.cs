@@ -199,6 +199,7 @@ public class VRDialogFlowManager : MonoBehaviour
         SessionGenerator.OnSessionGenerate += ShowDialogSequence;
         SessionGenerator.OnBlockEnd += ShowDialogSequence;
         SessionGenerator.OnTrialEnd += ShowDialogSequence;
+        SessionGenerator.OnSessionEnd += ShowDialogPrefab;
     }
     
     private void OnDisable()
@@ -211,6 +212,7 @@ public class VRDialogFlowManager : MonoBehaviour
         SessionGenerator.OnSessionGenerate -= ShowDialogSequence;
         SessionGenerator.OnBlockEnd -= ShowDialogSequence;
         SessionGenerator.OnTrialEnd -= ShowDialogSequence;
+        SessionGenerator.OnSessionEnd -= ShowDialogPrefab;
     }
     
     private void Update()
@@ -524,7 +526,12 @@ public class VRDialogFlowManager : MonoBehaviour
         {
             StartFollowBehavior();
         }
-        
+
+        if (dialogPrefab.name == "sessionEndDialogPrefab")
+        {
+            // Do not allow advancing from session end dialog
+            yield break;
+        }
         yield return StartCoroutine(WaitForAdvanceInput());
     }
     

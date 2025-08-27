@@ -131,6 +131,7 @@ public class SessionGenerator : MonoBehaviour
     public static event Action<List<GameObject>> OnSessionGenerate; // Pass the list of dialog prefabs to show at the start of the session
     public static event Action<List<GameObject>> OnBlockEnd; // Pass the list of dialog prefabs to show at the end of each block
     public static event Action<List<GameObject>> OnTrialEnd; // Pass the list of dialog prefabs to show at the end of each trial (for object search tasks)
+    public static event Action<GameObject> OnSessionEnd; // Pass the dialog prefab to show at the end of the session
     
     // Private variables
     private string locomotionMethodFromUI;
@@ -437,6 +438,12 @@ public class SessionGenerator : MonoBehaviour
                 {
                     objectSearchInstructions.Add(nextBlock.startMessageDialogPrefab);
                 }
+            }
+            else
+            {
+                OnSessionEnd?.Invoke(sessionEndDialogPrefab);
+                Debug.Log("No more blocks available. Session ended.");
+                return;
             }
         }
         OnTrialEnd?.Invoke(objectSearchInstructions);

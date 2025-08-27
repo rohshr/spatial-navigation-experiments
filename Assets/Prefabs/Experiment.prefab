@@ -55,7 +55,7 @@ MonoBehaviour:
   continuousLocomotionInstructionDialogPrefab: {fileID: 7133393797471011900, guid: 69e394da0423a7645b59d2b7dd810383, type: 3}
   teleportLocomotionInstructionDialogPrefab: {fileID: 7133393797471011900, guid: 14480305668930d4c805ad6acd2562ff, type: 3}
   nodeLocomotionInstructionDialogPrefab: {fileID: 7133393797471011900, guid: 0a80039928dcad44693b01ddcee33531, type: 3}
-  nonVRMode: 1
+  nonVRMode: 0
   isPracticeSession: 1
   sessionWaitingDialogPrefab: {fileID: 7133393797471011900, guid: e686f8d234ab5cf49975538119b2242f, type: 3}
   sessionStartDialogPrefab: {fileID: 7133393797471011900, guid: 57f94090249dccb4286a455faa7f35d1, type: 3}
@@ -76,24 +76,27 @@ MonoBehaviour:
         environmentFinishPoint: {fileID: 0}
         startMessageDialogPrefab: {fileID: 7133393797471011900, guid: bbb70e64cde2be74183dfb4886a2ab25, type: 3}
         endMessageDialogPrefab: {fileID: 7133393797471011900, guid: 203d226416e4b3d4294cb5282e73009f, type: 3}
+        randomizeTrialTasksSequence: 0
     - rid: 9143267733335703845
       type: {class: SessionGenerator/UXFBlock, ns: , asm: Assembly-CSharp}
       data:
         blockName: practiceAngledEnvironment
-        environment: 0
+        environment: 1
         environmentSpawnPoint: {fileID: 0}
         environmentFinishPoint: {fileID: 0}
         startMessageDialogPrefab: {fileID: 7133393797471011900, guid: 33922ef2ce5969d44af003f18b0f2c8a, type: 3}
         endMessageDialogPrefab: {fileID: 7133393797471011900, guid: bd3a47e320d2e624896d1598d60e0066, type: 3}
+        randomizeTrialTasksSequence: 0
     - rid: 9143267733335703846
       type: {class: SessionGenerator/ObjectSearchTrialsBlock, ns: , asm: Assembly-CSharp}
       data:
         blockName: practiceOpenEnvironment
-        environment: 0
+        environment: 2
         environmentSpawnPoint: {fileID: 0}
         environmentFinishPoint: {fileID: 0}
         startMessageDialogPrefab: {fileID: 7133393797471011900, guid: e2b449a94008e924da70489fabb45a49, type: 3}
         endMessageDialogPrefab: {fileID: 7133393797471011900, guid: 640e92b4e48582a4597a589c1c13c4f2, type: 3}
+        randomizeTrialTasksSequence: 0
         objectSearchTasks:
         - taskName: findCube
           taskInstructionsDialogPrefab: {fileID: 7133393797471011900, guid: 03b4a9b8eb9a3af43a5b4916e5bbf1a2, type: 3}
