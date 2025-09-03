@@ -240,6 +240,15 @@ public class SessionGenerator : MonoBehaviour
     /// </summary>
     /// <returns>GameObject for object in current object search task.</returns>
     public GameObject GetCurrentObjectToFind() => objectToFind;
+
+    public string GetCurrentBlockType()
+    {
+        if (Session.instance != null)
+        {
+            return (trialBlocks[Session.instance.CurrentBlock.number - 1].GetBlockType());
+        }
+        return null;
+    }
     
     public void EndExperiment()
     {

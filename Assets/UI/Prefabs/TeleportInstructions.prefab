@@ -788,14 +788,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4091649840815363893, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_text
-      value: 'Push and hold the analog stick on the left hand controller forward
-        to aim  where you want to move on the ground. Then, release the stick to
-        teleport to the selected point.
-
-
-        Use the analog stick on the right
-        hand controller to turn your gaze left or right. You can also turn your head
-        or torso to look around to turn your gaze.'
+      value: "Moving:\n\u2022 Push and hold the analog stick on the left\n   hand
+        controller forward to aim where\n   you want to move on the ground.\n\u2022
+        Then, release the stick to teleport to the \n   position at the selected
+        node.\n\nGazing:\n\u2022 Push the analog stick on the right hand\n   controller
+        either left or right to turn your\n   gaze left or right by a few degrees.
+        \n\u2022 You can push and hold the analog stick in\n   either direction to
+        keep turning your gaze.\n\u2022 You can also turn your head or torso to\n  
+        look around to turn your gaze and look\n   around you."
       objectReference: {fileID: 0}
     - target: {fileID: 4091649840815363893, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_fontSize
@@ -828,6 +828,10 @@ PrefabInstance:
     - target: {fileID: 4091649840815363893, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 3875536895
+      objectReference: {fileID: 0}
+    - target: {fileID: 4091649840815363893, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4091649840815363893, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_hasFontAssetChanged
@@ -987,7 +991,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5077339543274052338, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -375.21002
+      value: -451.435
       objectReference: {fileID: 0}
     - target: {fileID: 5085223240326603171, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_AnchorMax.y

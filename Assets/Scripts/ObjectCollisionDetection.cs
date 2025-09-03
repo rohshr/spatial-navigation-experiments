@@ -16,10 +16,13 @@ public class ObjectCollisionDetection : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if(sessionGenerator.GetCurrentBlockType() != "ObjectSearch")
+            return;
+        
         objectToFind = sessionGenerator.GetCurrentObjectToFind();
         if (gameObject != objectToFind)
         {
-            Debug.Log($"Incorrect object found: {gameObject.name}. Expected: {objectToFind?.name}");
+            Debug.Log($"Incorrect object found: {gameObject.name} at {DateTime.Now}. Expected: {objectToFind?.name}");
             return;
         }
         if (other.CompareTag("Player") && Session.instance.InTrial)
