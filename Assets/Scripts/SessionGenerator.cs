@@ -134,6 +134,11 @@ public class SessionGenerator : MonoBehaviour
     [Tooltip("Mixed list of blocks that can be either Generic or ObjectSearch blocks")]
     [Space(5)]
     [SerializeReference] private List<UXFBlock> trialBlocks = new List<UXFBlock>();
+    
+    [Header("---- NEW TRIAL BLOCKS CONFIGURATION ----")]
+    [Tooltip("Mixed list of blocks that can be either Generic or ObjectSearch blocks")]
+    [Space(5)]
+    [SerializeReference] private List<LocomotionExperimentBlock> newTrialBlocks = new ();
     #endregion
     
     // Events
