@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: PracticeOpenEnvironment
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectSearchBlock
+  blockName: practiceOpenEnvironment
+  environment: 2
+  environmentSpawnPointID: OpenFloorSpawnPoint
+  environmentFinishPointID: 
+  startMessageDialogPrefab: {fileID: 7133393797471011900, guid: e2b449a94008e924da70489fabb45a49, type: 3}
+  endMessageDialogPrefab: {fileID: 7133393797471011900, guid: 640e92b4e48582a4597a589c1c13c4f2, type: 3}
+  objectSearchTasks:
+  - taskName: findCube
+    taskInstructionsDialogPrefab: {fileID: 7133393797471011900, guid: 03b4a9b8eb9a3af43a5b4916e5bbf1a2, type: 3}
+    taskCompleteMessageDialogPrefab: {fileID: 7133393797471011900, guid: e62c473454e7f3848bad532c2521aabe, type: 3}
+    objectToFindID: cube
+  - taskName: findSphere
+    taskInstructionsDialogPrefab: {fileID: 7133393797471011900, guid: 2972f374f0eed1c47a8f01f6003d80d4, type: 3}
+    taskCompleteMessageDialogPrefab: {fileID: 7133393797471011900, guid: e62c473454e7f3848bad532c2521aabe, type: 3}
+    objectToFindID: sphere
+  - taskName: findStar
+    taskInstructionsDialogPrefab: {fileID: 7133393797471011900, guid: 35c431a953daeab48821feea59849e47, type: 3}
+    taskCompleteMessageDialogPrefab: {fileID: 7133393797471011900, guid: e62c473454e7f3848bad532c2521aabe, type: 3}
+    objectToFindID: star
+  - taskName: findStatue
+    taskInstructionsDialogPrefab: {fileID: 7133393797471011900, guid: 37ee7d853b924c3439d89264b754ae75, type: 3}
+    taskCompleteMessageDialogPrefab: {fileID: 7133393797471011900, guid: e62c473454e7f3848bad532c2521aabe, type: 3}
+    objectToFindID: statue

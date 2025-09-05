@@ -15,10 +15,10 @@ public class TrialManager : MonoBehaviour
     // private List<GameObject> SpawnPointsSequence;
     private List<GameObject> ObjectSearchSequence;
 
-    private List<SessionGenerator.UXFBlock> currentTrialBlocks;
+    private List<LocomotionExperimentBlock> currentTrialBlocks;
     private string nextBlockType;
     private int currentBlockIndex = 0;
-    private SessionGenerator.UXFBlock currentBlock;
+    private LocomotionExperimentBlock currentBlock;
     private GameObject currentSpawnPoint;
     private int nextSpawnPointIndex = 0;
     private int objectSearchIndex = 0;
@@ -34,7 +34,7 @@ public class TrialManager : MonoBehaviour
     private void Start()
     {
         sessionGenerator = FindFirstObjectByType<SessionGenerator>();
-        currentTrialBlocks = sessionGenerator.GetTrialBlocks();
+        currentTrialBlocks = sessionGenerator.GetExperimentBlocks();
         currentBlock = currentTrialBlocks[currentBlockIndex];
         dialogFlowManager = FindFirstObjectByType<VRDialogFlowManager>();
         // SpawnPointsSequence = SessionGenerator.GetSpawnPointsSequence();
@@ -99,7 +99,7 @@ public class TrialManager : MonoBehaviour
     /// <summary>
     /// Get the spawn point from the current block and set it as the current spawn point. Run at the start of the session and after each block ends.
     /// </summary>
-    public void SetSpawnPoint(SessionGenerator.UXFBlock block)
+    public void SetSpawnPoint(LocomotionExperimentBlock block)
     {
         if (block.GetSpawnPoint() == null)
         {
@@ -126,7 +126,7 @@ public class TrialManager : MonoBehaviour
 
             if (currentBlock?.GetBlockType() == "Exploration")
             {
-                var timeTrialBlock = currentBlock as SessionGenerator.ExplorationBlock;
+                var timeTrialBlock = currentBlock as TimedExplorationBlock;
                 var timeForExploration = timeTrialBlock.GetTimeForExplorationInSeconds();
                 Debug.Log($"Time for exploration: {timeForExploration} seconds.");
                 StartCoroutine(EndTrialAfterDelay(timeForExploration)); // Start the timer for the exploration block (after the object search block)
@@ -156,7 +156,7 @@ public class TrialManager : MonoBehaviour
     {
         if (currentBlock?.GetBlockType() == "Exploration")
         {
-            var timeTrialBlock = currentBlock as SessionGenerator.ExplorationBlock;
+            var timeTrialBlock = currentBlock as TimedExplorationBlock;
             var timeForExploration = timeTrialBlock.GetTimeForExplorationInSeconds();
             Debug.Log($"Time for exploration: {timeForExploration} seconds.");
             StartCoroutine(EndTrialAfterDelay(timeForExploration)); // Start the timer for the exploration block (after the object search block)

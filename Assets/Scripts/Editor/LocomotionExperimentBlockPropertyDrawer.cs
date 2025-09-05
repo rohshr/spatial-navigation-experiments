@@ -107,7 +107,7 @@ public class LocomotionExperimentBlockPropertyDrawer : PropertyDrawer
     {
         var path = property.propertyPath;
         // Check if this property is within the trialBlocks array
-        return path.Contains("newTrialBlocks.Array.data[") && 
+        return path.Contains("experimentBlocks.Array.data[") && 
                path.Count(c => c == '.') <= 2; // Allow for trialBlocks.Array.data[X] pattern
     }
     
@@ -139,7 +139,7 @@ public class LocomotionExperimentBlockPropertyDrawer : PropertyDrawer
             return "Generic Block";
         if (type == typeof(ObjectSearchBlock))
             return "Object Search Block";
-        if (type == typeof(ExplorationBlock))
+        if (type == typeof(TimedExplorationBlock))
             return "Exploration Block";
         return type.Name;
     }

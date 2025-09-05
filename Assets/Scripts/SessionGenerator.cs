@@ -8,93 +8,6 @@ using UXF;
 
 public class SessionGenerator : MonoBehaviour
 {
-    // The type of environment for the block
-    public enum EnvironmentType { Curved, Angled, OpenSpace, Maze }
-    
-    [System.Serializable]
-    public class TrialTask
-    {
-        public string taskName;
-        public GameObject taskInstructionsDialogPrefab;
-        public GameObject taskCompleteMessageDialogPrefab;
-    }
-
-    [System.Serializable]
-    public class ObjectSearchTask : TrialTask
-    {
-        [Tooltip("Object to be found")]
-        public GameObject objectToFind; // Reference to the object to be found
-    }
-
-    [System.Serializable]
-    public class UXFBlock
-    {
-        [Tooltip("Unique name for UXF block")]
-        public string blockName;
-        
-        [Header("Environment Configuration")]
-        [Space(5)]
-        [Tooltip("Type of environment for the block")]
-        public EnvironmentType environment;
-        [Tooltip("Reference to the environment spawn point")]
-        public GameObject environmentSpawnPoint; // Reference to the environment spawn point
-        [Tooltip("Reference to the environment finish point. Not applicable for tasks with multiple possible end points, like the object search task.")]
-        public GameObject environmentFinishPoint; // Reference to the environment finish point
-        
-        [Header("Block Instructions Configuration")]
-        [Space(5)]
-        [Tooltip("Dialog prefab to show at the start of block")]
-        public GameObject startMessageDialogPrefab;
-        [Tooltip("Dialog prefab to show at the end of block")]
-        public GameObject endMessageDialogPrefab;
-        
-        [Header("Trial Settings")]
-        [Space(5)]
-        [Tooltip("Enable this to randomize the order of trial tasks within the block. Only applicable if multiple tasks are defined.")]
-        public bool randomizeTrialTasksSequence = false;
-        
-        public virtual int GetTrialCount() => 1;
-        public virtual string GetBlockType() => "Generic";
-        public virtual GameObject GetSpawnPoint() => environmentSpawnPoint;
-    }
-    
-    [System.Serializable]
-    public class ObjectSearchTrialsBlock : UXFBlock
-    {
-        [Header("Object Search Configuration")]
-        [Tooltip("List of object search tasks to include in the block. Each task should specify the object to find and associated instructions.")]
-        public List<ObjectSearchTask> objectSearchTasks = new List<ObjectSearchTask>();
-        
-        public override int GetTrialCount() => objectSearchTasks.Count;
-        public override string GetBlockType() => "ObjectSearch";
-        
-        /// <summary>
-        /// Get the instrcutions sequence for an object searches in an object search block.
-        /// </summary>
-        /// <returns></returns>
-        public List<GameObject> GetObjectSearchSequence()
-        {
-            var objectSearchSequence = new List<GameObject>();
-
-            objectSearchSequence.AddRange(
-                objectSearchTasks
-                    .Where(task => task.objectToFind != null)
-                    .Select(task => task.objectToFind)
-            );
-
-            return objectSearchSequence;
-        }
-    }
-
-    public class ExplorationBlock : UXFBlock
-    {
-        [Tooltip("Time to allow exploration in minutes")]
-        public float timeForExploration = 5f; // Default to 5 minutes
-        
-        public override string GetBlockType() => "Exploration";
-        public float GetTimeForExplorationInSeconds() => (timeForExploration * 60f);
-    }
-    
     #region Inspector Fields
     [Header("---- LOCOMOTION METHOD INSTRUCTIONS ----")]
     [Space(5)]
@@ -126,19 +39,11 @@ public class SessionGenerator : MonoBehaviour
     [Tooltip("Dialog prefab to show when the session ends")]
     [SerializeField] private GameObject sessionEndDialogPrefab;
     
-    // [Header("Block Configuration Old")]
-    // [Tooltip("Specify block sequence and number of trials for each block")]
-    // [SerializeField] private UXFBlock[] blocks;
-    
-    [Header("---- TRIAL BLOCKS CONFIGURATION ----")]
+    // TODO: Create scriptable object for experiment blocks
+    [Header("---- EXPERIMENT BLOCKS CONFIGURATION ----")]
     [Tooltip("Mixed list of blocks that can be either Generic or ObjectSearch blocks")]
     [Space(5)]
-    [SerializeReference] private List<UXFBlock> trialBlocks = new List<UXFBlock>();
-    
-    [Header("---- NEW TRIAL BLOCKS CONFIGURATION ----")]
-    [Tooltip("Mixed list of blocks that can be either Generic or ObjectSearch blocks")]
-    [Space(5)]
-    [SerializeReference] private List<LocomotionExperimentBlock> newTrialBlocks = new ();
+    [SerializeReference] private List<LocomotionExperimentBlock> experimentBlocks = new ();
     #endregion
     
     // Events
@@ -194,7 +99,7 @@ public class SessionGenerator : MonoBehaviour
     /// Get the list of trial blocks defined for the session.
     /// </summary>
     /// <returns></returns>
-    public List<UXFBlock> GetTrialBlocks() => trialBlocks;
+    public List<LocomotionExperimentBlock> GetExperimentBlocks() => experimentBlocks;
     
     /// <summary>
     /// Get the spawn points sequence for the environments in the blocks.
@@ -203,7 +108,7 @@ public class SessionGenerator : MonoBehaviour
     public List<GameObject> GetSpawnPointsSequence()
     {
         var spawnPointsSequence = new List<GameObject>();
-        foreach (var block in trialBlocks)
+        foreach (var block in experimentBlocks)
         {
             if (block?.environmentSpawnPoint != null)
             {
@@ -221,13 +126,13 @@ public class SessionGenerator : MonoBehaviour
     /// Get the instrcutions sequence for an object searches in an object search block.
     /// </summary>
     /// <returns></returns>
-    public List<GameObject> GetObjectSearchSequence(UXFBlock block)
+    public List<GameObject> GetObjectSearchSequence(LocomotionExperimentBlock block)
     {
         var objectSearchSequence = new List<GameObject>();
         
-        if (block is not ObjectSearchTrialsBlock objectSearchBlock)
+        if (block is not ObjectSearchBlock objectSearchBlock)
         {
-            Debug.LogWarning($"Block {block} is not an ObjectSearchTrialsBlock.");
+            Debug.LogWarning($"Block {block} is not an ObjectSearchBlock.");
             return new List<GameObject>();
         }
 
@@ -250,7 +155,7 @@ public class SessionGenerator : MonoBehaviour
     {
         if (Session.instance != null)
         {
-            return (trialBlocks[Session.instance.CurrentBlock.number - 1].GetBlockType());
+            return (experimentBlocks[Session.instance.CurrentBlock.number - 1].GetBlockType());
         }
         return null;
     }
@@ -323,13 +228,13 @@ public class SessionGenerator : MonoBehaviour
         else
             Debug.LogWarning($"No locomotion instruction dialog found for method: {locomotionMethodFromUI}");
 
-        if (trialBlocks.Count > 0 && trialBlocks[0]?.startMessageDialogPrefab != null)
+        if (experimentBlocks.Count > 0 && experimentBlocks[0]?.startMessageDialogPrefab != null)
         {
-            instructionSequence.Add(trialBlocks[0].startMessageDialogPrefab);
-            if (trialBlocks[0]?.GetBlockType() == "ObjectSearch")
+            instructionSequence.Add(experimentBlocks[0].startMessageDialogPrefab);
+            if (experimentBlocks[0]?.GetBlockType() == "ObjectSearch")
             {
                 objectSearchIndex = 0;
-                var objectSearchBlock = trialBlocks[0] as ObjectSearchTrialsBlock;
+                var objectSearchBlock = experimentBlocks[0] as ObjectSearchBlock;
                 objectToFind = objectSearchBlock?.objectSearchTasks[objectSearchIndex].objectToFind;
                 var objectSearchInstruction = objectSearchBlock?.objectSearchTasks[objectSearchIndex]
                     .taskInstructionsDialogPrefab;
@@ -339,7 +244,7 @@ public class SessionGenerator : MonoBehaviour
                 }
             }
         }
-        else if (trialBlocks.Count == 0)
+        else if (experimentBlocks.Count == 0)
         {
             Debug.LogWarning("No blocks defined in the session generator.");
         }
@@ -353,7 +258,7 @@ public class SessionGenerator : MonoBehaviour
     /// <param name="session"></param>
     private void CreateBlocks(Session session)
     {
-        foreach (var block in trialBlocks)
+        foreach (var block in experimentBlocks)
         {
             var newBlock = session.CreateBlock(block.GetTrialCount());
             newBlock.settings.SetValue("block_type", block.GetBlockType());
@@ -372,15 +277,15 @@ public class SessionGenerator : MonoBehaviour
 
         if (previousBlockIndex >= 0)
         {
-            var lastBlock = trialBlocks[previousBlockIndex];
+            var lastBlock = experimentBlocks[previousBlockIndex];
             if (lastBlock?.endMessageDialogPrefab != null)
             {
                 instructionsSequence.Add(lastBlock.endMessageDialogPrefab);
             }
         }
-        if (nextBlockIndex < trialBlocks.Count)
+        if (nextBlockIndex < experimentBlocks.Count)
         {
-            var nextBlock = trialBlocks[nextBlockIndex];
+            var nextBlock = experimentBlocks[nextBlockIndex];
             
             if (nextBlock?.startMessageDialogPrefab != null)
             {
@@ -390,7 +295,7 @@ public class SessionGenerator : MonoBehaviour
             if (nextBlock?.GetBlockType() == "ObjectSearch")
             {
                 objectSearchIndex = 0;
-                var objectSearchBlock = nextBlock as ObjectSearchTrialsBlock;
+                var objectSearchBlock = nextBlock as ObjectSearchBlock;
                 objectToFind = objectSearchBlock?.objectSearchTasks[objectSearchIndex].objectToFind;
                 var objectSearchInstruction = objectSearchBlock?.objectSearchTasks[objectSearchIndex]
                     .taskInstructionsDialogPrefab;
@@ -421,12 +326,12 @@ public class SessionGenerator : MonoBehaviour
     private void ShowNextObjectSearchInstructions()
     {
         // Debug.Log($"current block number: {Session.instance.CurrentBlock.number}, current object search index: {currentObjectSearchIndex}");
-        if (Session.instance.CurrentBlock.number - 1 < 0 || Session.instance.CurrentBlock.number - 1 >= trialBlocks.Count)
+        if (Session.instance.CurrentBlock.number - 1 < 0 || Session.instance.CurrentBlock.number - 1 >= experimentBlocks.Count)
         {
-            Debug.LogWarning($"CurrentBlock.number {Session.instance.CurrentBlock.number} is out of bounds for trialBlocks (Count: {trialBlocks.Count}).");
+            Debug.LogWarning($"CurrentBlock.number {Session.instance.CurrentBlock.number} is out of bounds for experimentBlocks (Count: {experimentBlocks.Count}).");
             return;
         }
-        var currentBlock = trialBlocks[Session.instance.CurrentBlock.number - 1];
+        var currentBlock = experimentBlocks[Session.instance.CurrentBlock.number - 1];
         
         if (currentBlock?.GetBlockType() != "ObjectSearch")
         {
@@ -435,7 +340,7 @@ public class SessionGenerator : MonoBehaviour
         }
         var objectSearchInstructions = new List<GameObject>();
         var previousObjectSearchIndex = objectSearchIndex;
-        var previousObjectSearchTrial = (currentBlock as ObjectSearchTrialsBlock)
+        var previousObjectSearchTrial = (currentBlock as ObjectSearchBlock)
             ?.objectSearchTasks[previousObjectSearchIndex];
         if (previousObjectSearchIndex >=0 && previousObjectSearchTrial?.taskCompleteMessageDialogPrefab != null)
         {
@@ -445,7 +350,7 @@ public class SessionGenerator : MonoBehaviour
         var nextObjectSearchIndex = ++objectSearchIndex;
         if (nextObjectSearchIndex < currentBlock.GetTrialCount())
         {
-            var nextObjectSearchTrial = (currentBlock as ObjectSearchTrialsBlock)
+            var nextObjectSearchTrial = (currentBlock as ObjectSearchBlock)
                 ?.objectSearchTasks[nextObjectSearchIndex];
             if (nextObjectSearchTrial?.taskInstructionsDialogPrefab != null)
             {
@@ -459,9 +364,9 @@ public class SessionGenerator : MonoBehaviour
             Debug.LogWarning("No more object search tasks in the current block.");
             // Check if there is a next block and add its start message if it exists
             var nextBlockIndex = Session.instance.CurrentBlock.number; // CurrentBlock.number is 1-based index
-            if (nextBlockIndex < trialBlocks.Count)
+            if (nextBlockIndex < experimentBlocks.Count)
             {
-                var nextBlock = trialBlocks[nextBlockIndex];
+                var nextBlock = experimentBlocks[nextBlockIndex];
                 if (nextBlock?.startMessageDialogPrefab != null)
                 {
                     objectSearchInstructions.Add(nextBlock.startMessageDialogPrefab);
@@ -491,17 +396,23 @@ public class SessionGenerator : MonoBehaviour
     }
     #endregion
 
-    #region Context Menu Methods
-    [ContextMenu("Add Generic Block")]
-    private void AddGenericBlock()
-    {
-        trialBlocks.Add(new UXFBlock());
-    }
-
-    [ContextMenu("Add Object Search Block")]
-    private void AddObjectSearchBlock()
-    {
-        trialBlocks.Add(new ObjectSearchTrialsBlock());
-    }
-    #endregion
+    // #region Context Menu Methods
+    // [ContextMenu("Add Generic Block")]
+    // private void AddGenericBlock()
+    // {
+    //     experimentBlocks.Add(new LocomotionExperimentBlock());
+    // }
+    //
+    // [ContextMenu("Add Object Search Block")]
+    // private void AddObjectSearchBlock()
+    // {
+    //     experimentBlocks.Add(new ObjectSearchBlock());
+    // }
+    //
+    // [ContextMenu("Add Timed Exploration Block")]
+    // private void AddTimedExplorationBlock()
+    // {
+    //     experimentBlocks.Add(new TimedExplorationBlock());
+    // }
+    // #endregion
 }

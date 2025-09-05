@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b41bad1e17701364f8f5ba660c3b31d7, type: 3}
+  m_Name: PracticeCurvedEnvironment
+  m_EditorClassIdentifier: Assembly-CSharp::LocomotionExperimentBlock
+  blockName: practiceCurvedEnvironment
+  environment: 0
+  environmentSpawnPointID: CurvedCorridorSpawnPoint
+  environmentFinishPointID: CurvedCorridorEndPoint
+  startMessageDialogPrefab: {fileID: 7133393797471011900, guid: bbb70e64cde2be74183dfb4886a2ab25, type: 3}
+  endMessageDialogPrefab: {fileID: 7133393797471011900, guid: 203d226416e4b3d4294cb5282e73009f, type: 3}

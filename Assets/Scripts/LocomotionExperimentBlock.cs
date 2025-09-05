@@ -45,10 +45,10 @@ public class LocomotionExperimentBlock
     [Tooltip("Dialog prefab to show at the end of block")]
     public GameObject endMessageDialogPrefab;
             
-    [Header("Trial Settings")]
-    [Space(5)]
-    [Tooltip("Enable this to randomize the order of trial tasks within the block. Only applicable if multiple tasks are defined.")]
-    public bool randomizeTrialTasksSequence = false;
+    // [Header("Trial Settings")]
+    // [Space(5)]
+    // [Tooltip("Enable this to randomize the order of trial tasks within the block. Only applicable if multiple tasks are defined.")]
+    // public bool randomizeTrialTasksSequence = false;
             
     public virtual int GetTrialCount() => 1;
     public virtual string GetBlockType() => "Generic";
@@ -84,7 +84,7 @@ public class ObjectSearchBlock : LocomotionExperimentBlock
 }
     
 [System.Serializable]
-public class ExplorationBlock : LocomotionExperimentBlock
+public class TimedExplorationBlock : LocomotionExperimentBlock
 {
     [Tooltip("Time to allow exploration in minutes")]
     public float timeForExploration = 5f; // Default to 5 minutes
