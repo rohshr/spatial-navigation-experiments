@@ -105,7 +105,7 @@ public class PlayerPositionTracker : MonoBehaviour
             }
 
             // Check for turns if needed
-            if (beforePreviousTile != null && currentTile != null)
+            if (beforePreviousTile is not null && currentTile is not null)
             {
                 Vector3 beforePos = beforePreviousTile.transform.position;
                 Vector3 currentPos = currentTile.transform.position;

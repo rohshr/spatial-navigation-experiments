@@ -70,6 +70,7 @@ public class SessionGenerator : MonoBehaviour
         ObjectCollisionDetection.OnObjectCollided += ShowNextObjectSearchInstructions;
         TrialManager.OnExplorationBlockCompleted += ShowNextInstructions;
         InputHandler.SkipTrialEvent += ShowNextInstructions;
+        SpawnPointCheck.OnPlayerExitedSpawnPoint += SetupGuidedExplorationFinishPoint;
     }
     
     private void OnDisable()
@@ -78,6 +79,7 @@ public class SessionGenerator : MonoBehaviour
         ObjectCollisionDetection.OnObjectCollided -= ShowNextObjectSearchInstructions;
         TrialManager.OnExplorationBlockCompleted -= ShowNextInstructions;
         InputHandler.SkipTrialEvent -= ShowNextInstructions;
+        SpawnPointCheck.OnPlayerExitedSpawnPoint -= SetupGuidedExplorationFinishPoint;
     }
     
     // Session Start
@@ -307,21 +309,6 @@ public class SessionGenerator : MonoBehaviour
         }
         OnBlockEnd?.Invoke(instructionsSequence);
     }
-    
-    // private void CheckTargetObjectFound()
-    // {
-    //     // if (collidedObject == currentObjectToFind)
-    //     // {
-    //     //     Debug.Log($"Correct object found: {collidedObject.name}");
-    //         ShowNextInstructions();
-    //         ShowNextObjectSearchInstructions();
-    //         OnCorrectObjectFound?.Invoke();
-    //     // }
-    //     // else
-    //     // {
-    //     //     Debug.Log($"Incorrect object found: {collidedObject.name}. Expected: {currentObjectToFind?.name}");
-    //     // }
-    // }
 
     private void ShowNextObjectSearchInstructions()
     {
@@ -382,6 +369,11 @@ public class SessionGenerator : MonoBehaviour
         OnTrialEnd?.Invoke(objectSearchInstructions);
     }
     
+    private void SetupGuidedExplorationFinishPoint()
+    {
+        var currentBlock = experimentBlocks[Session.instance.CurrentBlock.number - 1] as GuidedExplorationBlock;
+        currentBlock?.EnableFinishPoint();
+    }
     
     /// <summary>
     /// End the session after a specified delay.

@@ -66,7 +66,7 @@ public class ObjectSearchBlock : LocomotionExperimentBlock
     public override string GetBlockType() => "ObjectSearch";
         
     /// <summary>
-    /// Get the instrcutions sequence for an object searches in an object search block.
+    /// Get the instruction sequence for an object searches in an object search block.
     /// </summary>
     /// <returns></returns>
     public List<GameObject> GetObjectSearchSequence()
@@ -89,6 +89,33 @@ public class TimedExplorationBlock : LocomotionExperimentBlock
     [Tooltip("Time to allow exploration in minutes")]
     public float timeForExploration = 5f; // Default to 5 minutes
         
-    public override string GetBlockType() => "Exploration";
+    public override string GetBlockType() => "TimedExploration";
     public float GetTimeForExplorationInSeconds() => (timeForExploration * 60f);
+}
+
+[System.Serializable]
+public class GuidedExplorationBlock : LocomotionExperimentBlock
+{
+    [Header("Guided Exploration Configuration")]
+    [Tooltip("Reference to the environment navigation guides (e.g., arrows, lights) to assist the participant in navigation. Assign the parent GameObject which contains all the guides as children.")]
+    public GameObject environmentNavigationGuides;
+    public override string GetBlockType() => "GuidedExploration";
+    
+    /// <summary>
+    /// Enable the finish point when the player exits the spawn point.
+    /// </summary>
+    public void EnableFinishPoint()
+    {
+        Debug.Log("Enabling finish point...");
+        if (environmentFinishPoint != null)
+            environmentFinishPoint.SetActive(true);
+    }
+    
+    public void EnableNavigationGuides()
+    {
+        if (environmentNavigationGuides != null)
+            environmentNavigationGuides.SetActive(true);
+    }
+    // TODO: When guided exploration block ends, disable the navigation guides and finish point.
+    
 }

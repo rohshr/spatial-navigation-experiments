@@ -124,7 +124,7 @@ public class TrialManager : MonoBehaviour
                 objectSearchIndex = 0; // Reset the object search index for new object search block
             }
 
-            if (currentBlock?.GetBlockType() == "Exploration")
+            if (currentBlock?.GetBlockType() == "TimedExploration")
             {
                 var timeTrialBlock = currentBlock as TimedExplorationBlock;
                 var timeForExploration = timeTrialBlock.GetTimeForExplorationInSeconds();
@@ -154,12 +154,18 @@ public class TrialManager : MonoBehaviour
 
     public void InstantiateExplorationTrial()
     {
-        if (currentBlock?.GetBlockType() == "Exploration")
+        if (currentBlock?.GetBlockType() == "TimedExploration")
         {
             var timeTrialBlock = currentBlock as TimedExplorationBlock;
             var timeForExploration = timeTrialBlock.GetTimeForExplorationInSeconds();
             Debug.Log($"Time for exploration: {timeForExploration} seconds.");
             StartCoroutine(EndTrialAfterDelay(timeForExploration)); // Start the timer for the exploration block (after the object search block)
+        }
+        
+        if (currentBlock?.GetBlockType() == "GuidedExploration")
+        {
+            var guidedBlock = currentBlock as GuidedExplorationBlock;
+            guidedBlock?.EnableNavigationGuides();
         }
     }
 

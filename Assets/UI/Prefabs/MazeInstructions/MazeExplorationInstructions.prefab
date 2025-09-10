@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 185.86613, y: -29.04}
-  m_SizeDelta: {x: 348.26773, y: 58.08}
+  m_AnchoredPosition: {x: 185.86632, y: -29.04}
+  m_SizeDelta: {x: 348.26733, y: 58.08}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8613838426163948380
 CanvasRenderer:
@@ -417,8 +417,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1.8661346, y: -29.04}
-  m_SizeDelta: {x: 3.732276, y: 58.08}
+  m_AnchoredPosition: {x: 1.8663177, y: -29.04}
+  m_SizeDelta: {x: 3.7326505, y: 58.08}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8545717051154042047
 CanvasRenderer:
@@ -1188,7 +1188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1407521649246656951, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 3.6497495
+      value: 3.650063
       objectReference: {fileID: 0}
     - target: {fileID: 1407521649246656951, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1196,7 +1196,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1407521649246656951, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1.8248748
+      value: 1.8250275
       objectReference: {fileID: 0}
     - target: {fileID: 1407521649246656951, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1273,7 +1273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3198279237137671034, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 185.82487
+      value: 185.82504
       objectReference: {fileID: 0}
     - target: {fileID: 3198279237137671034, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_AnchoredPosition.y

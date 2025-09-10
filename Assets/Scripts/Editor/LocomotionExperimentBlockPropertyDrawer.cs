@@ -140,7 +140,9 @@ public class LocomotionExperimentBlockPropertyDrawer : PropertyDrawer
         if (type == typeof(ObjectSearchBlock))
             return "Object Search Block";
         if (type == typeof(TimedExplorationBlock))
-            return "Exploration Block";
+            return "Timed Exploration Block";
+        if (type == typeof(GuidedExplorationBlock))
+            return "Guided Exploration Block";
         return type.Name;
     }
 
