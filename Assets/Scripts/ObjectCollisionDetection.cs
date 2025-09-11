@@ -1,10 +1,11 @@
 using System;
 using UnityEngine;
+using Unity.XR.CoreUtils;
 using UXF;
 
 public class ObjectCollisionDetection : MonoBehaviour
 {
-    public GameObject XROrigin; // XROrigin player gameobject
+    [SerializeField] private XROrigin xrOrigin;
     private SessionGenerator sessionGenerator;
     private GameObject objectToFind;
     public static event Action OnObjectCollided;
@@ -12,6 +13,11 @@ public class ObjectCollisionDetection : MonoBehaviour
     private void Awake()
     {
         sessionGenerator = FindFirstObjectByType<SessionGenerator>();
+        // Get XR Origin reference if not assigned
+        if (xrOrigin == null)
+        {
+            xrOrigin = FindFirstObjectByType<XROrigin>();
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -28,7 +34,7 @@ public class ObjectCollisionDetection : MonoBehaviour
         if (other.CompareTag("Player") && Session.instance.InTrial)
         {
             // Check if the player is in the practice trial area
-            if (XROrigin != null)
+            if (xrOrigin != null)
             {
                 Session.instance.CurrentTrial.settings.SetValue("object",gameObject.name);
                 Debug.Log($"Collision detected with object: {gameObject.name} at {DateTime.Now}");
