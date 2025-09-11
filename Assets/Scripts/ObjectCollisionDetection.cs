@@ -22,7 +22,7 @@ public class ObjectCollisionDetection : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(sessionGenerator.GetCurrentBlockType() != "ObjectSearch")
+        if(Session.instance.hasInitialised && sessionGenerator.GetCurrentBlockType() != "ObjectSearch")
             return;
         
         objectToFind = sessionGenerator.GetCurrentObjectToFind();

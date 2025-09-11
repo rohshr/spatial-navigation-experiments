@@ -12,6 +12,15 @@ TagManager:
   - RightController
   - UIViewpoint
   - FloorTile
+  - QDSUIBackplateGradient
+  - QDSUISharedThemeColor
+  - QDSUIPrimaryButton
+  - QDSUISecondaryButton
+  - QDSUIAccentColor
+  - QDSUITextInvertedColor
+  - QDSUIIcon
+  - QDSUITextSecondaryInvertedColor
+  - Maze
   layers:
   - Default
   - TransparentFX
@@ -22,7 +31,7 @@ TagManager:
   - Controller
   - UXFUI
   - FloorTile
-  - 
+  - NavigationGuides
   - 
   - 
   - 

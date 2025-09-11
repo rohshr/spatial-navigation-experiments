@@ -16,6 +16,8 @@ public class TrialTask
 [System.Serializable]
 public class ObjectSearchTask : TrialTask
 {
+    [Tooltip("Location to start object search from")]   
+    public GameObject objectSearchStartLocation;
     [Tooltip("Object to be found")]
     public GameObject objectToFind; // Reference to the object to be found
 }
@@ -52,6 +54,7 @@ public class LocomotionExperimentBlock
             
     public virtual int GetTrialCount() => 1;
     public virtual string GetBlockType() => "Generic";
+    public virtual string GetEnvironmentType() => environment.ToString();
     public virtual GameObject GetSpawnPoint() => environmentSpawnPoint;
 }
     

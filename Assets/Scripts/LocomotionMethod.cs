@@ -3,7 +3,7 @@ using System.Linq;
 
 public class LocomotionMethod : MonoBehaviour
 {
-    public enum LocomotionType { Unset, Continuous, Teleport, NodeBased }
+    // public enum LocomotionType { Unset, Continuous, Teleport, NodeBased }
     // public LocomotionType locomotionChoice; // Dropdown in the Unity Editor
 
     public static void UpdateFloors(string locomotionArgument)
@@ -33,6 +33,37 @@ public class LocomotionMethod : MonoBehaviour
             }
         }
     }
+
+    // /// <summary>
+    // /// Selects the maze based on the locomotion argument.
+    // /// </summary>
+    // /// <param name="locomotionArgument"></param>
+    // /// <returns></returns>
+    // public static GameObject SelectMaze(string locomotionArgument)
+    // {
+    //     GameObject[] mazes = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.CompareTag("Maze")).ToArray();
+    //     
+    //     if (mazes.Length == 0) return null;
+    //     
+    //     GameObject currentMaze = null;
+    //     
+    //     foreach (GameObject mazeObject in mazes)
+    //     {
+    //         if (locomotionArgument == "continuous" && mazeObject.name == "ContinuousMaze" ||
+    //             locomotionArgument == "teleport" && mazeObject.name == "TeleportMaze" ||
+    //             locomotionArgument == "nodebased" && mazeObject.name == "NodeMaze")
+    //         {
+    //             mazeObject.SetActive(true);
+    //             currentMaze = mazeObject;
+    //         }
+    //         else
+    //         {
+    //             mazeObject.SetActive(false);
+    //         }
+    //     }
+    //
+    //     return currentMaze;
+    // }
 
     // // Script for debugging purpose in the Editor
     // private void UpdateFloorsEditor()
