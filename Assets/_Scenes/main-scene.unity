@@ -6958,6 +6958,14 @@ PrefabInstance:
       propertyPath: m_RenderingLayerMask
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2793919377081729439, guid: fa21d370d4e698642b2d8b9cdf66a047, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128165751053832727, guid: fa21d370d4e698642b2d8b9cdf66a047, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3274632612897978635, guid: fa21d370d4e698642b2d8b9cdf66a047, type: 3}
       propertyPath: XROrigin
       value: 
@@ -6993,6 +7001,10 @@ PrefabInstance:
     - target: {fileID: 4325576482293360484, guid: fa21d370d4e698642b2d8b9cdf66a047, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433876118624522533, guid: fa21d370d4e698642b2d8b9cdf66a047, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4491008948007517918, guid: fa21d370d4e698642b2d8b9cdf66a047, type: 3}
       propertyPath: XROrigin
@@ -7130,6 +7142,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 6852509586181128645, guid: fa21d370d4e698642b2d8b9cdf66a047, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6869822504430458449, guid: fa21d370d4e698642b2d8b9cdf66a047, type: 3}
       propertyPath: m_Layer
       value: 9
@@ -7154,6 +7170,10 @@ PrefabInstance:
       propertyPath: xrOrigin
       value: 
       objectReference: {fileID: 311137099}
+    - target: {fileID: 7129096198299617338, guid: fa21d370d4e698642b2d8b9cdf66a047, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7284779412281479838, guid: fa21d370d4e698642b2d8b9cdf66a047, type: 3}
       propertyPath: m_CastShadows
       value: 0
@@ -7188,6 +7208,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7995181918618338617, guid: fa21d370d4e698642b2d8b9cdf66a047, type: 3}
       propertyPath: m_RenderingLayerMask
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8055630727691101385, guid: fa21d370d4e698642b2d8b9cdf66a047, type: 3}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8125370548708114015, guid: fa21d370d4e698642b2d8b9cdf66a047, type: 3}
