@@ -56,8 +56,8 @@ public class SessionGenerator : MonoBehaviour
     // Private variables
     private string locomotionMethodFromUI;
     private string preferredHandFromUI;
-    private int objectSearchIndex = 0;
-    private GameObject objectToFind;
+    private ObjectSearchHandler objectSearchHandler = new ObjectSearchHandler();
+    
     
     void Start()
     {
@@ -71,6 +71,7 @@ public class SessionGenerator : MonoBehaviour
         TrialManager.OnExplorationBlockCompleted += ShowNextInstructions;
         InputHandler.SkipTrialEvent += ShowNextInstructions;
         SpawnPointCheck.OnPlayerExitedSpawnPoint += SetupGuidedExplorationFinishPoint;
+        FinishPointCheck.OnPlayerFinishedGuidedExploration += EndGuidedExploration;
     }
     
     private void OnDisable()
@@ -80,6 +81,7 @@ public class SessionGenerator : MonoBehaviour
         TrialManager.OnExplorationBlockCompleted -= ShowNextInstructions;
         InputHandler.SkipTrialEvent -= ShowNextInstructions;
         SpawnPointCheck.OnPlayerExitedSpawnPoint -= SetupGuidedExplorationFinishPoint;
+        FinishPointCheck.OnPlayerFinishedGuidedExploration -= EndGuidedExploration;
     }
     
     // Session Start
@@ -151,7 +153,7 @@ public class SessionGenerator : MonoBehaviour
     /// Return the current object that the participant needs to find in an object search task.
     /// </summary>
     /// <returns>GameObject for object in current object search task.</returns>
-    public GameObject GetCurrentObjectToFind() => objectToFind;
+    public GameObject GetCurrentObjectToFind() => objectSearchHandler.CurrentObjectToFind;
 
     public string GetCurrentBlockType()
     {
@@ -233,18 +235,8 @@ public class SessionGenerator : MonoBehaviour
         if (experimentBlocks.Count > 0 && experimentBlocks[0]?.startMessageDialogPrefab != null)
         {
             instructionSequence.Add(experimentBlocks[0].startMessageDialogPrefab);
-            if (experimentBlocks[0]?.GetBlockType() == "ObjectSearch")
-            {
-                objectSearchIndex = 0;
-                var objectSearchBlock = experimentBlocks[0] as ObjectSearchBlock;
-                objectToFind = objectSearchBlock?.objectSearchTasks[objectSearchIndex].objectToFind;
-                var objectSearchInstruction = objectSearchBlock?.objectSearchTasks[objectSearchIndex]
-                    .taskInstructionsDialogPrefab;
-                if (objectSearchBlock != null && objectSearchBlock.objectSearchTasks.Count > 0)
-                {
-                    instructionSequence.Add(objectSearchInstruction);
-                }
-            }
+            var objectSearchInstructions = objectSearchHandler.GetInitialObjectSearchInstructions(experimentBlocks[0]);
+            instructionSequence.AddRange(objectSearchInstructions);
         }
         else if (experimentBlocks.Count == 0)
         {
@@ -273,7 +265,7 @@ public class SessionGenerator : MonoBehaviour
     /// </summary>
     private void ShowNextInstructions()
     {
-        var instructionsSequence = new List<GameObject>();
+        var instructionSequence = new List<GameObject>();
         var nextBlockIndex = Session.instance.CurrentBlock.number; // CurrentBlock.number is 1-based index
         var previousBlockIndex = nextBlockIndex - 1;
 
@@ -282,7 +274,7 @@ public class SessionGenerator : MonoBehaviour
             var lastBlock = experimentBlocks[previousBlockIndex];
             if (lastBlock?.endMessageDialogPrefab != null)
             {
-                instructionsSequence.Add(lastBlock.endMessageDialogPrefab);
+                instructionSequence.Add(lastBlock.endMessageDialogPrefab);
             }
         }
         if (nextBlockIndex < experimentBlocks.Count)
@@ -291,81 +283,35 @@ public class SessionGenerator : MonoBehaviour
             
             if (nextBlock?.startMessageDialogPrefab != null)
             {
-                instructionsSequence.Add(nextBlock.startMessageDialogPrefab);
+                instructionSequence.Add(nextBlock.startMessageDialogPrefab);
             }
             // If the next block is an ObjectSearch block, add the instructions for the first object search task.
             if (nextBlock?.GetBlockType() == "ObjectSearch")
             {
-                objectSearchIndex = 0;
-                var objectSearchBlock = nextBlock as ObjectSearchBlock;
-                objectToFind = objectSearchBlock?.objectSearchTasks[objectSearchIndex].objectToFind;
-                var objectSearchInstruction = objectSearchBlock?.objectSearchTasks[objectSearchIndex]
-                    .taskInstructionsDialogPrefab;
-                if (objectSearchBlock != null && objectSearchBlock.objectSearchTasks.Count > 0)
-                {
-                    instructionsSequence.Add(objectSearchInstruction);
-                }
+                var objectSearchInstructions = objectSearchHandler.GetInitialObjectSearchInstructions(experimentBlocks[0]);
+                instructionSequence.AddRange(objectSearchInstructions);
             }
         }
-        OnBlockEnd?.Invoke(instructionsSequence);
+        OnBlockEnd?.Invoke(instructionSequence);
     }
 
     private void ShowNextObjectSearchInstructions()
     {
-        // Debug.Log($"current block number: {Session.instance.CurrentBlock.number}, current object search index: {currentObjectSearchIndex}");
-        if (Session.instance.CurrentBlock.number - 1 < 0 || Session.instance.CurrentBlock.number - 1 >= experimentBlocks.Count)
+        var (objectSearchInstructions, isSessionComplete) = objectSearchHandler.GetNextObjectSearchInstructions(experimentBlocks); //isSessionComplete specifies if the session should complete after the last object search task/ when there is no more blocks after the current object search block.
+        
+        if (isSessionComplete)
         {
-            Debug.LogWarning($"CurrentBlock.number {Session.instance.CurrentBlock.number} is out of bounds for experimentBlocks (Count: {experimentBlocks.Count}).");
+            // Add any remaining instructions first, then trigger session end
+            if (objectSearchInstructions.Count > 0)
+            {
+                OnTrialEnd?.Invoke(objectSearchInstructions);
+            }
+            
+            OnSessionEnd?.Invoke(sessionEndDialogPrefab);
+            Debug.Log("No more blocks available. Session ended.");
             return;
         }
-        var currentBlock = experimentBlocks[Session.instance.CurrentBlock.number - 1];
         
-        if (currentBlock?.GetBlockType() != "ObjectSearch")
-        {
-            Debug.LogWarning("Current block is not an ObjectSearch block.");
-            return;
-        }
-        var objectSearchInstructions = new List<GameObject>();
-        var previousObjectSearchIndex = objectSearchIndex;
-        var previousObjectSearchTrial = (currentBlock as ObjectSearchBlock)
-            ?.objectSearchTasks[previousObjectSearchIndex];
-        if (previousObjectSearchIndex >=0 && previousObjectSearchTrial?.taskCompleteMessageDialogPrefab != null)
-        {
-            objectSearchInstructions.Add(previousObjectSearchTrial.taskCompleteMessageDialogPrefab);
-        }
-        
-        var nextObjectSearchIndex = ++objectSearchIndex;
-        if (nextObjectSearchIndex < currentBlock.GetTrialCount())
-        {
-            var nextObjectSearchTrial = (currentBlock as ObjectSearchBlock)
-                ?.objectSearchTasks[nextObjectSearchIndex];
-            if (nextObjectSearchTrial?.taskInstructionsDialogPrefab != null)
-            {
-                objectSearchInstructions.Add(nextObjectSearchTrial.taskInstructionsDialogPrefab);
-                objectToFind = nextObjectSearchTrial.objectToFind;
-                
-            }
-        }
-        else
-        {
-            Debug.LogWarning("No more object search tasks in the current block.");
-            // Check if there is a next block and add its start message if it exists
-            var nextBlockIndex = Session.instance.CurrentBlock.number; // CurrentBlock.number is 1-based index
-            if (nextBlockIndex < experimentBlocks.Count)
-            {
-                var nextBlock = experimentBlocks[nextBlockIndex];
-                if (nextBlock?.startMessageDialogPrefab != null)
-                {
-                    objectSearchInstructions.Add(nextBlock.startMessageDialogPrefab);
-                }
-            }
-            else
-            {
-                OnSessionEnd?.Invoke(sessionEndDialogPrefab);
-                Debug.Log("No more blocks available. Session ended.");
-                return;
-            }
-        }
         OnTrialEnd?.Invoke(objectSearchInstructions);
     }
     
@@ -373,6 +319,13 @@ public class SessionGenerator : MonoBehaviour
     {
         var currentBlock = experimentBlocks[Session.instance.CurrentBlock.number - 1] as GuidedExplorationBlock;
         currentBlock?.EnableFinishPoint();
+    }
+
+    private void EndGuidedExploration()
+    {
+        var currentBlock = experimentBlocks[Session.instance.CurrentBlock.number - 1] as GuidedExplorationBlock;
+        currentBlock?.DisableNavigationGuides();
+        currentBlock?.DisableFinishPoint();
     }
     
     /// <summary>

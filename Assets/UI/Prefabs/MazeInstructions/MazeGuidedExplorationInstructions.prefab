@@ -320,7 +320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6463722155400916179
 RectTransform:
   m_ObjectHideFlags: 0
@@ -988,7 +988,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1569900997318300915
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1008,7 +1008,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 180, y: -166.88}
-  m_SizeDelta: {x: 360, y: 38.72}
+  m_SizeDelta: {x: 360, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6343669762585236949
 MonoBehaviour:
@@ -1202,21 +1202,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -29.04
       objectReference: {fileID: 0}
-    - target: {fileID: 2027352841987767475, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2530358099111936329, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2699596848748449909, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2773451168524272047, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_text
-      value: The objects will be in the same location in the maze as before.
+      value: You will be guided through the maze with yellow arrows directing you
+        where to go.
       objectReference: {fileID: 0}
     - target: {fileID: 2829103649757504240, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1228,7 +1217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2829103649757504240, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 6.4961667
+      value: 6.5830064
       objectReference: {fileID: 0}
     - target: {fileID: 2829103649757504240, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1236,7 +1225,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2829103649757504240, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 3.2480774
+      value: 3.2915032
       objectReference: {fileID: 0}
     - target: {fileID: 2829103649757504240, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1244,7 +1233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974783233159548869, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_VerticalFit
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2989204703536924660, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1260,7 +1249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2989204703536924660, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 58.08
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2989204703536924660, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1328,7 +1317,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5100348326615530041, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 345.5038
+      value: 345.417
       objectReference: {fileID: 0}
     - target: {fileID: 5100348326615530041, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1336,7 +1325,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5100348326615530041, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 187.24808
+      value: 187.2915
       objectReference: {fileID: 0}
     - target: {fileID: 5100348326615530041, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1372,7 +1361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5714081434377328052, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 248.32
       objectReference: {fileID: 0}
     - target: {fileID: 5714081434377328052, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1408,7 +1397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5714081434377328052, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -171.64
+      value: -235.72
       objectReference: {fileID: 0}
     - target: {fileID: 5714081434377328052, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1422,10 +1411,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6545764975429396515, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7901303854429908784, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -1436,7 +1421,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7901303854429908784, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 6.5349884
+      value: 4.9572506
       objectReference: {fileID: 0}
     - target: {fileID: 7901303854429908784, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1444,7 +1429,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7901303854429908784, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 3.2674866
+      value: 2.4786224
       objectReference: {fileID: 0}
     - target: {fileID: 7901303854429908784, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1460,7 +1445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8497135403651550198, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 345.46503
+      value: 347.04272
       objectReference: {fileID: 0}
     - target: {fileID: 8497135403651550198, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1468,7 +1453,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8497135403651550198, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 187.2675
+      value: 186.4786
       objectReference: {fileID: 0}
     - target: {fileID: 8497135403651550198, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1476,7 +1461,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8732271549195005586, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_text
-      value: Your goal is to find the prompted object as quickly as possible.
+      value: There are twelve different objects scattered around the maze.
       objectReference: {fileID: 0}
     - target: {fileID: 9036380461256032203, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_text
@@ -1881,7 +1866,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4091649840815363893, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_text
-      value: Now you will be asked to find each of the 12 objects in the maze.
+      value: 'You will be navigating through a maze. '
       objectReference: {fileID: 0}
     - target: {fileID: 4091649840815363893, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_fontSize
@@ -1965,7 +1950,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4298166796836279053, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_Name
-      value: MazeObjectSearchInstructions
+      value: MazeGuidedExplorationInstructions
       objectReference: {fileID: 0}
     - target: {fileID: 4425304403864267992, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2073,7 +2058,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5077339543274052338, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -103.56
+      value: -93.88
       objectReference: {fileID: 0}
     - target: {fileID: 5085223240326603171, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2121,7 +2106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5747508646960527232, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_text
-      value: 'Object search '
+      value: Maze exploration
       objectReference: {fileID: 0}
     - target: {fileID: 5747508646960527232, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_fontAsset

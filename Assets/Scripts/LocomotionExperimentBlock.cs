@@ -113,12 +113,23 @@ public class GuidedExplorationBlock : LocomotionExperimentBlock
         if (environmentFinishPoint != null)
             environmentFinishPoint.SetActive(true);
     }
+
+    public void DisableFinishPoint()
+    {
+        Debug.Log("Disabling finish point...");
+        if (environmentFinishPoint != null)
+            environmentFinishPoint.SetActive(false);
+    }
     
     public void EnableNavigationGuides()
     {
         if (environmentNavigationGuides != null)
             environmentNavigationGuides.SetActive(true);
     }
-    // TODO: When guided exploration block ends, disable the navigation guides and finish point.
     
+    public void DisableNavigationGuides()
+    {
+        if (environmentNavigationGuides != null)
+            environmentNavigationGuides.SetActive(false);
+    }
 }
