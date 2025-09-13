@@ -91,6 +91,22 @@ public class ObjectSearchHandler
     }
     
     /// <summary>
+    /// Get the spawn location for the current object search task using a specific block
+    /// </summary>
+    public GameObject GetCurrentObjectSearchSpawnLocation(LocomotionExperimentBlock block)
+    {
+        if (!IsObjectSearchBlock(block, out var objectSearchBlock))
+        {
+            return null;
+        }
+        
+        var currentTask = GetObjectSearchTask(objectSearchBlock, objectSearchIndex);
+        
+        // Return task-specific spawn location if set, otherwise return block's spawn point
+        return currentTask?.objectSearchStartLocation ?? block.environmentSpawnPoint;
+    }
+    
+    /// <summary>
     /// Reset the handler for a new session
     /// </summary>
     public void Reset()
@@ -113,7 +129,13 @@ public class ObjectSearchHandler
         
         if (Session.instance == null || experimentBlocks == null)
             return false;
-            
+        
+        if (!Session.instance.hasInitialised)
+        {
+            Debug.LogWarning("Session not fully initialized or no blocks created yet.");
+            return false;
+        }
+
         var blockIndex = Session.instance.CurrentBlock.number - 1;
         if (blockIndex < 0 || blockIndex >= experimentBlocks.Count)
         {

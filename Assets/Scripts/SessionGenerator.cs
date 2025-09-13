@@ -87,6 +87,9 @@ public class SessionGenerator : MonoBehaviour
     // Session Start
     public void GenerateExperiment(Session session)
     {
+        // Reset the object search handler for a new session
+        objectSearchHandler.Reset();
+        
         ConfigureSessionSettings(session);
         ConfigureLocomotion();
         var instructionSequence = BuildSessionInstructionSequence();
@@ -163,6 +166,17 @@ public class SessionGenerator : MonoBehaviour
         }
         return null;
     }
+    
+    //// <summary>
+    /// Get the spawn location for the current object search task using a specific block
+    /// </summary>
+    /// <param name="block">The block to get the spawn location from</param>
+    /// <returns>GameObject for the current object search task spawn location, or null if not applicable</returns>
+    public GameObject GetCurrentObjectSearchSpawnLocation(LocomotionExperimentBlock block)
+    {
+        return objectSearchHandler.GetCurrentObjectSearchSpawnLocation(block);
+    }
+
     
     public void EndExperiment()
     {
@@ -288,7 +302,9 @@ public class SessionGenerator : MonoBehaviour
             // If the next block is an ObjectSearch block, add the instructions for the first object search task.
             if (nextBlock?.GetBlockType() == "ObjectSearch")
             {
-                var objectSearchInstructions = objectSearchHandler.GetInitialObjectSearchInstructions(experimentBlocks[0]);
+                objectSearchHandler.Reset();
+
+                var objectSearchInstructions = objectSearchHandler.GetInitialObjectSearchInstructions(nextBlock);
                 instructionSequence.AddRange(objectSearchInstructions);
             }
         }
