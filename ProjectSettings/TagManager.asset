@@ -21,6 +21,7 @@ TagManager:
   - QDSUIIcon
   - QDSUITextSecondaryInvertedColor
   - Maze
+  - Target
   layers:
   - Default
   - TransparentFX
