@@ -1244,7 +1244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974783233159548869, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_VerticalFit
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2989204703536924660, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1372,7 +1372,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5714081434377328052, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 81.44
       objectReference: {fileID: 0}
     - target: {fileID: 5714081434377328052, guid: 2e7add2c449f1ca4f85694862be6b79e, type: 3}
       propertyPath: m_LocalPosition.x

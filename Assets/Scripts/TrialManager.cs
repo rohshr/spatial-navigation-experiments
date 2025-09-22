@@ -11,9 +11,8 @@ public class TrialManager : MonoBehaviour
     [SerializeField] private GameObject XROrigin;
     [SerializeField] private GameObject UIViewpoint;
     private SessionGenerator sessionGenerator;
+    private PlayerPositionTracker playerPositionTracker;
     
-    // private List<GameObject> SpawnPointsSequence;
-    private List<GameObject> ObjectSearchSequence;
 
     private List<LocomotionExperimentBlock> currentTrialBlocks;
     private string nextBlockType;
@@ -30,6 +29,7 @@ public class TrialManager : MonoBehaviour
     private void Start()
     {
         sessionGenerator = FindFirstObjectByType<SessionGenerator>();
+        playerPositionTracker = FindFirstObjectByType<PlayerPositionTracker>();
         currentTrialBlocks = sessionGenerator.GetExperimentBlocks();
         currentBlock = currentTrialBlocks[currentBlockIndex];
         SetSpawnPoint(currentBlock);
@@ -68,13 +68,13 @@ public class TrialManager : MonoBehaviour
         {
             currentBlock = currentTrialBlocks[currentBlockIndex];
 
-            if (currentBlock?.GetBlockType() == "TimedExploration")
-            {
-                var timeTrialBlock = currentBlock as TimedExplorationBlock;
-                var timeForExploration = timeTrialBlock.GetTimeForExplorationInSeconds();
-                Debug.Log($"Time for exploration: {timeForExploration} seconds.");
-                StartCoroutine(EndTrialAfterDelay(timeForExploration)); // Start the timer for the exploration block (after the object search block)
-            }
+            // if (currentBlock?.GetBlockType() == "TimedExploration")
+            // {
+            //     var timeTrialBlock = currentBlock as TimedExplorationBlock;
+            //     var timeForExploration = timeTrialBlock.GetTimeForExplorationInSeconds();
+            //     Debug.Log($"Time for exploration: {timeForExploration} seconds.");
+            //     StartCoroutine(EndTrialAfterDelay(timeForExploration)); // Start the timer for the exploration block (after the object search block)
+            // }
             SetSpawnPoint(currentBlock);
         }
         else
@@ -145,7 +145,12 @@ public class TrialManager : MonoBehaviour
     {
         Debug.Log($"Ending trial after {timeInSeconds} seconds.");
         yield return new WaitForSeconds(timeInSeconds);
-        SetupNextBlock();
+        float distanceTravelled = playerPositionTracker.GetDistanceTravelled();
+        int tileChanges  = playerPositionTracker.GetTileChanges();
+        
+        Session.instance.CurrentTrial.result["distance_travelled"] = distanceTravelled;
+        Session.instance.CurrentTrial.result["tile_changes"] = tileChanges;
+        Session.instance.CurrentTrial.End();
         OnExplorationBlockCompleted?.Invoke(); // Trigger the event to notify that the exploration block is completed
     }
     

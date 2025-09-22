@@ -7,12 +7,14 @@ public class ObjectCollisionDetection : MonoBehaviour
 {
     [SerializeField] private XROrigin xrOrigin;
     private SessionGenerator sessionGenerator;
+    private PlayerPositionTracker playerPositionTracker;
     private GameObject objectToFind;
     public static event Action OnObjectCollided;
 
     private void Awake()
     {
         sessionGenerator = FindFirstObjectByType<SessionGenerator>();
+        playerPositionTracker = FindFirstObjectByType<PlayerPositionTracker>();
         // Get XR Origin reference if not assigned
         if (xrOrigin == null)
         {
@@ -37,6 +39,12 @@ public class ObjectCollisionDetection : MonoBehaviour
             if (xrOrigin != null)
             {
                 Session.instance.CurrentTrial.settings.SetValue("object",gameObject.name);
+                float distanceTravelled = playerPositionTracker.GetDistanceTravelled();
+                int tileChanges  = playerPositionTracker.GetTileChanges();
+        
+                Session.instance.CurrentTrial.result["distance_travelled"] = distanceTravelled;
+                Session.instance.CurrentTrial.result["tile_changes"] = tileChanges;
+                
                 Debug.Log($"Collision detected with object: {gameObject.name} at {DateTime.Now}");
                 Session.instance.CurrentTrial.End();
                 OnObjectCollided?.Invoke(); // Trigger the event

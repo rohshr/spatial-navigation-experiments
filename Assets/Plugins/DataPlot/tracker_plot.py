@@ -547,21 +547,82 @@ class UXFTrackerPlotter:
             
             self.print_statistics(df, title_base)
 
+    # Analyze all files with overlay
+    def analyze_all_files_with_overlay(self, background_image, world_coordinates, save_plots=True):
+        """
+        Analyze all CSV files in the directory with background image overlay.
+        This method processes all CSV files found in the specified directory, applying
+        background image overlay analysis to each file. Each file's plots are saved
+        in a separate subfolder named after the file.
+        
+        Args:
+            background_image: The background image to overlay on the analysis plots
+            world_coordinates: Coordinate system mapping for the world space
+            save_plots (bool, optional): Whether to save the generated plots to disk.
+                                       Defaults to True.
+        Returns:
+            None
+        Prints:
+            - Number of CSV files found
+            - List of all CSV file names
+            - Progress indicators for each file being analyzed
+            - Warning message if no CSV files are found
+        Note:
+            If no CSV files are found in the directory, the method will print a warning
+            message and return early without processing.
+        """
+        csv_files = self.get_all_csv_files()
+        
+        if not csv_files:
+            print("No CSV files found in the directory!")
+            return
+        
+        print(f"Found {len(csv_files)} CSV files:")
+        for file_path in csv_files:
+            print(f"  - {file_path.name}")
+        
+        # Store original output directory
+        original_output_dir = self.output_directory
+        
+        for file_path in csv_files:
+            print(f"\n{'='*50}")
+            print(f"Analyzing with overlay: {file_path.name}")
+            print(f"{'='*50}")
+            
+            # Create file-specific output directory
+            file_specific_dir = original_output_dir / file_path.stem
+            file_specific_dir.mkdir(parents=True, exist_ok=True)
+            
+            # Temporarily change output directory
+            self.output_directory = file_specific_dir
+            print(f"Plots for {file_path.name} will be saved to: {file_specific_dir}")
+            
+            self.analyze_single_file_with_overlay(
+                file_path, background_image, world_coordinates, save_plots=save_plots
+            )
+        
+        # Restore original output directory
+        self.output_directory = original_output_dir
+
 # Usage example
 def main():
     # Set your data directory path
-    data_directory = r"C:\Users\rohan\Documents\spatial_nav_data\vr_locomotion_settings\ebony-3f1e7031-785e-4b5e-a137-f9aad064cb22\S001\trackers"
+    participant_id = input("Enter participant ID (same ID as folder name for participant): ")
+    session_id = input("Enter session ID (e.g., S001): ")
+    base_data_path = r"C:\Users\rohan\Documents\spatial_nav_data\vr_locomotion"
+    data_directory = os.path.join(base_data_path, participant_id, session_id, "trackers")
     background_image = r"C:\Users\rohan\Documents\spatial_nav_data\map.png"
     
     # Optional: specify custom output directory
     output_directory = r"C:\Users\rohan\Documents\spatial_nav_data\analysis_plots"
+    participant_results = os.path.join(output_directory, participant_id, session_id)
 
     # Define world coordinates that match your image
     # [x_min, x_max, z_min, z_max] in Unity world units
     world_coordinates = [-86.2, -63.8, -10.6, 11.8]  # Adjust to your environment
     
     # Create plotter instance
-    plotter = UXFTrackerPlotter(data_directory, output_directory)
+    plotter = UXFTrackerPlotter(data_directory, participant_results)
     
     # Analyze all CSV files and save plots
     # plotter.analyze_all_files(save_plots=True)
@@ -578,6 +639,13 @@ def main():
     csv_file = Path(data_directory) / "locomotion_movement_T001.csv"
     plotter.analyze_single_file_with_overlay(
         csv_file, 
+        background_image=background_image,
+        world_coordinates=world_coordinates,
+        save_plots=True
+    )
+    
+    # Analyze all files with overlay (if needed)
+    plotter.analyze_all_files_with_overlay(
         background_image=background_image,
         world_coordinates=world_coordinates,
         save_plots=True

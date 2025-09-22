@@ -253,7 +253,7 @@ namespace UXF
         /// <summary>
         /// The headers that are always included in the trial_results output.
         /// </summary>
-        static List<string> baseHeaders = new List<string> { "experiment", "ppid", "session_num", "trial_num", "block_num", "trial_num_in_block", "start_time", "end_time" };
+        static List<string> baseHeaders = new List<string> { "experiment", "ppid", "session_num", "trial_num", "block_num", "trial_num_in_block", "start_time", "end_time", "duration" };
 
         /// <summary>
         /// Reference to the associated DataHandlers which handles saving data to the cloud, etc.

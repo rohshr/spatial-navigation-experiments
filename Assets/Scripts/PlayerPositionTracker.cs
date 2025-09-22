@@ -1,10 +1,14 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
+using UXF;
 
 public class PlayerPositionTracker : MonoBehaviour
 {
     [Header("Tracking Settings")]
     [SerializeField] private GameObject xrOrigin;
+
+    // [SerializeField] private GameObject locomotionGameObject;
     [SerializeField] private string floorTileTag = "FloorTile"; // Tag for floor tiles
     [SerializeField] private LayerMask floorLayerMask = -1;
 
@@ -17,6 +21,10 @@ public class PlayerPositionTracker : MonoBehaviour
     private GameObject beforePreviousTile;
     private Vector3 currentPosition;
     private Vector3 previousPosition;
+    
+    // Distance and tile change tracking
+    private float distanceTravelled = 0f;
+    private int tileChanges = 0;
 
     // Timing
     private float lastUpdateTime;
@@ -59,8 +67,20 @@ public class PlayerPositionTracker : MonoBehaviour
         }
         triggerHandler.Initialize(this, floorTileTag, floorLayerMask);
         
-        // Initial position tracking
-        UpdatePlayerPosition();
+        // // Initial position tracking
+        // UpdatePlayerPosition();
+    }
+
+    void OnEnable()
+    {
+        ObjectCollisionDetection.OnObjectCollided += ResetTracking;
+        FinishPointCheck.OnFinishPointReached += ResetTracking;
+    }
+    
+    void OnDisable()
+    {
+        ObjectCollisionDetection.OnObjectCollided -= ResetTracking;
+        FinishPointCheck.OnFinishPointReached -= ResetTracking;
     }
 
     void Update()
@@ -75,10 +95,17 @@ public class PlayerPositionTracker : MonoBehaviour
     private void UpdatePlayerPosition()
     {
         if (xrOrigin == null) return;
+
+        if (!Session.instance.InTrial) return;
         
         // Store previous position
         previousPosition = currentPosition;
         currentPosition = xrOrigin.transform.position;
+            
+        // Update distance travelled in meters
+        if (currentPosition != previousPosition && previousPosition != Vector3.zero && currentPosition != Vector3.zero)
+            distanceTravelled += Vector3.Distance(previousPosition, currentPosition);
+
     }
     
     private void CheckForTileChange()
@@ -97,6 +124,9 @@ public class PlayerPositionTracker : MonoBehaviour
 
             // Trigger event
             OnTileChanged?.Invoke(currentTile, previousTile, beforePreviousTile);
+            
+            // Increment tile change count
+            tileChanges++;
 
             if (showDebugInfo)
             {
@@ -104,19 +134,30 @@ public class PlayerPositionTracker : MonoBehaviour
                          (previousTile != null ? $" (from: {previousTile.name})" : ""));
             }
 
-            // Check for turns if needed
-            if (beforePreviousTile is not null && currentTile is not null)
-            {
-                Vector3 beforePos = beforePreviousTile.transform.position;
-                Vector3 currentPos = currentTile.transform.position;
-                
-                // Check if player changed direction (not moving in straight line)
-                if (beforePos.x != currentPos.x && beforePos.z != currentPos.z)
-                {
-                    Debug.Log("Player made a turn.");
-                }
-            }
+            // // Check for turns if needed
+            // if (beforePreviousTile is not null && currentTile is not null)
+            // {
+            //     Vector3 beforePos = beforePreviousTile.transform.position;
+            //     Vector3 currentPos = currentTile.transform.position;
+            //     
+            //     // Check if player changed direction (not moving in straight line)
+            //     if (beforePos.x != currentPos.x && beforePos.z != currentPos.z)
+            //     {
+            //         Debug.Log("Player made a turn.");
+            //     }
+            // }
         }
+    }
+    
+    private void ResetTracking()
+    {
+        currentTile = null;
+        previousTile = null;
+        beforePreviousTile = null;
+        currentPosition = Vector3.zero;
+        previousPosition = Vector3.zero;
+        distanceTravelled = 0f;
+        tileChanges = 0;
     }
 
     private void CheckForTurns()
@@ -169,6 +210,8 @@ public class PlayerPositionTracker : MonoBehaviour
     public string GetPreviousTileName() => previousTile != null ? previousTile.name : "None";
     public bool IsOnTile(GameObject tile) => currentTile == tile;
     public bool WasOnTile(GameObject tile) => previousTile == tile;
+    public float GetDistanceTravelled() => distanceTravelled;
+    public int GetTileChanges() => tileChanges;
     
     void OnDrawGizmos()
     {
