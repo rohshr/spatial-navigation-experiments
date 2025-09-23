@@ -162,6 +162,13 @@ public class PlayerPositionTracker : MonoBehaviour
         tileChanges = 0;
     }
 
+    // For debugging
+    public void LogDistanceTravelled()
+    {
+        Session.instance.CurrentTrial.result["distance_travelled"] = distanceTravelled;
+        Session.instance.CurrentTrial.result["tile_changes"] = tileChanges;
+    }
+
     private void CheckForTurns()
     {
         
