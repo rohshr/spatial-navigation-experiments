@@ -201,7 +201,11 @@ public class VRDialogFlowManager : MonoBehaviour
     
     private IEnumerator SmoothFollowDialog()
     {
-        if (currentDialogInstance == null) yield break;
+        if (currentDialogInstance == null)
+        {
+            followCoroutine = null;
+            yield break;
+        }
         
         Transform dialogTransform = currentDialogInstance.transform;
         Vector3 startPosition = dialogTransform.position;
@@ -224,8 +228,11 @@ public class VRDialogFlowManager : MonoBehaviour
             yield return null;
         }
         
-        dialogTransform.position = targetPosition;
-        dialogTransform.rotation = targetRotation;
+        if (currentDialogInstance != null && dialogTransform != null)
+        {
+            dialogTransform.position = targetPosition;
+            dialogTransform.rotation = targetRotation;
+        }
         
         followCoroutine = null;
     }
@@ -330,6 +337,7 @@ public class VRDialogFlowManager : MonoBehaviour
         // Hide current dialog with fade out
         if (currentDialogInstance != null)
         {
+            StopFollowBehavior();
             yield return StartCoroutine(FadeDialog(currentDialogInstance, false));
             Destroy(currentDialogInstance);
         }

@@ -75,12 +75,14 @@ public class PlayerPositionTracker : MonoBehaviour
     {
         ObjectCollisionDetection.OnObjectCollided += ResetTracking;
         FinishPointCheck.OnFinishPointReached += ResetTracking;
+        TrialManager.OnExplorationBlockCompleted += ResetTracking;
     }
     
     void OnDisable()
     {
         ObjectCollisionDetection.OnObjectCollided -= ResetTracking;
         FinishPointCheck.OnFinishPointReached -= ResetTracking;
+        TrialManager.OnExplorationBlockCompleted -= ResetTracking;
     }
 
     void Update()
