@@ -2,6 +2,7 @@
   "dependencies": {
     "com.atteneder.gltfast": "https://github.com/atteneder/glTFast.git",
     "com.meta.xr.sdk.interaction": "77.0.0",
+    "com.starasgames.tmpro-dynamic-data-cleaner": "https://github.com/STARasGAMES/tmpro-dynamic-data-cleaner.git#upm",
     "com.unity.2d.enhancers": "1.0.0",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.ai.assistant": "1.0.0-pre.12",

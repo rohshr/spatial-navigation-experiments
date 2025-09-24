@@ -181,6 +181,7 @@ public class SessionGenerator : MonoBehaviour
     public void EndExperiment()
     {
         Debug.Log("Starting end session delay...");
+        Debug.Log("Total tile visits: " + FloorTile.GetTotalVisitsCount());
         // Wait for 5 seconds before ending the session
         StartCoroutine(EndSessionAfterDelay(5f));
     }
@@ -192,9 +193,7 @@ public class SessionGenerator : MonoBehaviour
         preferredHandFromUI = session.participantDetails["preferred_hand"].ToString().ToLower();
         
         // Logging session details into session data
-        session.settings.SetValue("is_practice", isPracticeSession);
         session.settings.SetValue("locomotion_method", locomotionMethodFromUI);
-        session.settings.SetValue("preferred_hand", preferredHandFromUI);
     }
     
     /// <summary>

@@ -10,15 +10,11 @@ public class PlayerPositionTracker : MonoBehaviour
 
     // [SerializeField] private GameObject locomotionGameObject;
     [SerializeField] private string floorTileTag = "FloorTile"; // Tag for floor tiles
-    [SerializeField] private LayerMask floorLayerMask = -1;
 
     [Header("Debug")]
     [SerializeField] private bool showDebugInfo = true;
 
-    // Current and previous tile tracking
-    private GameObject currentTile;
-    private GameObject previousTile;
-    private GameObject beforePreviousTile;
+
     private Vector3 currentPosition;
     private Vector3 previousPosition;
     
@@ -59,14 +55,6 @@ public class PlayerPositionTracker : MonoBehaviour
             characterController.stepOffset = 0.3f;
         }
         
-        // Add trigger handler to the XR Origin
-        FloorTriggerHandler triggerHandler = xrOrigin.GetComponent<FloorTriggerHandler>();
-        if (triggerHandler == null)
-        {
-            triggerHandler = xrOrigin.AddComponent<FloorTriggerHandler>();
-        }
-        triggerHandler.Initialize(this, floorTileTag, floorLayerMask);
-        
         // // Initial position tracking
         // UpdatePlayerPosition();
     }
@@ -89,9 +77,6 @@ public class PlayerPositionTracker : MonoBehaviour
     {
         // Update position tracking
         UpdatePlayerPosition();
-        
-        // Check for tile changes
-        CheckForTileChange();
     }
     
     private void UpdatePlayerPosition()
@@ -110,52 +95,15 @@ public class PlayerPositionTracker : MonoBehaviour
 
     }
     
-    private void CheckForTileChange()
-    {
-        GameObject newCurrentTile = GetClosestTile();
-
-        if (newCurrentTile is not null && newCurrentTile != currentTile)
-        {
-            // Update tile tracking
-            if (previousTile is not null)
-            {
-                beforePreviousTile = previousTile;
-            }
-            previousTile = currentTile;
-            currentTile = newCurrentTile;
-
-            // Trigger event
-            OnTileChanged?.Invoke(currentTile, previousTile, beforePreviousTile);
-            
-            // Increment tile change count
-            tileChanges++;
-
-            if (showDebugInfo)
-            {
-                Debug.Log($"Player moved to tile: {(currentTile?.name ?? "None")}" +
-                         (previousTile != null ? $" (from: {previousTile.name})" : ""));
-            }
-
-            // // Check for turns if needed
-            // if (beforePreviousTile is not null && currentTile is not null)
-            // {
-            //     Vector3 beforePos = beforePreviousTile.transform.position;
-            //     Vector3 currentPos = currentTile.transform.position;
-            //     
-            //     // Check if player changed direction (not moving in straight line)
-            //     if (beforePos.x != currentPos.x && beforePos.z != currentPos.z)
-            //     {
-            //         Debug.Log("Player made a turn.");
-            //     }
-            // }
-        }
-    }
-    
     private void ResetTracking()
     {
-        currentTile = null;
-        previousTile = null;
-        beforePreviousTile = null;
+        // Log final results before resetting
+        Session.instance.CurrentTrial.result["distance_travelled"] = distanceTravelled;
+        tileChanges = FloorTile.GetTotalVisitsCount();
+        Session.instance.CurrentTrial.result["tile_changes"] = tileChanges + 1; // +1 to account for ending tile
+        Session.instance.CurrentTrial.result["tile_travel_sequence"] = FloorTile.GetVisitHistoryString();
+        FloorTile.ClearVisitHistory();
+        
         currentPosition = Vector3.zero;
         previousPosition = Vector3.zero;
         distanceTravelled = 0f;
@@ -174,28 +122,6 @@ public class PlayerPositionTracker : MonoBehaviour
         
     }
     
-    private GameObject GetClosestTile()
-    {
-        if (overlappingTiles.Count == 0) return null;
-
-        GameObject closestTile = null;
-        float closestDistance = float.MaxValue;
-
-        foreach (GameObject tile in overlappingTiles)
-        {
-            if (tile == null) continue;
-
-            float distance = Vector3.Distance(currentPosition, tile.transform.position);
-            if (distance < closestDistance)
-            {
-                closestDistance = distance;
-                closestTile = tile;
-            }
-        }
-
-        return closestTile;
-    }
-    
     // Called by FloorTriggerHandler
     public void OnTileEnter(GameObject tile)
     {
@@ -211,14 +137,8 @@ public class PlayerPositionTracker : MonoBehaviour
     }
     
     // Public methods to get current state
-    public GameObject GetCurrentTile() => currentTile;
-    public GameObject GetPreviousTile() => previousTile;
     public Vector3 GetCurrentPosition() => currentPosition;
     public Vector3 GetPreviousPosition() => previousPosition;
-    public string GetCurrentTileName() => currentTile != null ? currentTile.name : "None";
-    public string GetPreviousTileName() => previousTile != null ? previousTile.name : "None";
-    public bool IsOnTile(GameObject tile) => currentTile == tile;
-    public bool WasOnTile(GameObject tile) => previousTile == tile;
     public float GetDistanceTravelled() => distanceTravelled;
     public int GetTileChanges() => tileChanges;
     
@@ -238,56 +158,5 @@ public class PlayerPositionTracker : MonoBehaviour
         // Draw current position
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(xrOrigin.transform.position, 0.2f);
-        
-        // Draw connection to current tile
-        if (currentTile != null)
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawLine(xrOrigin.transform.position, currentTile.transform.position);
-        }
-    }
-}
-
-// Helper class to handle trigger events
-public class FloorTriggerHandler : MonoBehaviour
-{
-    private PlayerPositionTracker tracker;
-    private string floorTileTag;
-    private LayerMask floorLayerMask;
-    
-    public void Initialize(PlayerPositionTracker positionTracker, string tileTag, LayerMask layerMask)
-    {
-        tracker = positionTracker;
-        floorTileTag = tileTag;
-        floorLayerMask = layerMask;
-    }
-    
-    void OnTriggerEnter(Collider other)
-    {
-        if (IsFloorTile(other.gameObject))
-        {
-            tracker.OnTileEnter(other.gameObject);
-        }
-    }
-    
-    void OnTriggerExit(Collider other)
-    {
-        if (IsFloorTile(other.gameObject))
-        {
-            tracker.OnTileExit(other.gameObject);
-        }
-    }
-    
-    private bool IsFloorTile(GameObject obj)
-    {
-        // Check by tag
-        if (!string.IsNullOrEmpty(floorTileTag) && !obj.CompareTag(floorTileTag))
-            return false;
-        
-        // Check by layer
-        if (floorLayerMask != -1 && (floorLayerMask & (1 << obj.layer)) == 0)
-            return false;
-        
-        return true;
     }
 }

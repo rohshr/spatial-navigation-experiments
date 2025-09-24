@@ -23,16 +23,23 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.starasgames.tmpro-dynamic-data-cleaner": {
+      "version": "https://github.com/STARasGAMES/tmpro-dynamic-data-cleaner.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "3016fca9cfdebe8c5aa04102195d4fed7947dee2"
+    },
     "com.unity.2d.common": {
       "version": "11.0.1",
       "depth": 1,
       "source": "registry",
       "dependencies": {
+        "com.unity.burst": "1.8.4",
         "com.unity.2d.sprite": "1.0.0",
         "com.unity.mathematics": "1.1.0",
-        "com.unity.modules.uielements": "1.0.0",
         "com.unity.modules.animation": "1.0.0",
-        "com.unity.burst": "1.8.4"
+        "com.unity.modules.uielements": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },

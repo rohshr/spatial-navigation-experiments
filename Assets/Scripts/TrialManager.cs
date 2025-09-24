@@ -11,8 +11,6 @@ public class TrialManager : MonoBehaviour
     [SerializeField] private GameObject XROrigin;
     [SerializeField] private GameObject UIViewpoint;
     private SessionGenerator sessionGenerator;
-    private PlayerPositionTracker playerPositionTracker;
-    
 
     private List<LocomotionExperimentBlock> currentTrialBlocks;
     private string nextBlockType;
@@ -28,8 +26,7 @@ public class TrialManager : MonoBehaviour
     
     private void Start()
     {
-        sessionGenerator = FindFirstObjectByType<SessionGenerator>();
-        playerPositionTracker = FindFirstObjectByType<PlayerPositionTracker>();
+        sessionGenerator = FindFirstObjectByType<SessionGenerator>(); 
         currentTrialBlocks = sessionGenerator.GetExperimentBlocks();
         currentBlock = currentTrialBlocks[currentBlockIndex];
         SetSpawnPoint(currentBlock);
@@ -145,13 +142,9 @@ public class TrialManager : MonoBehaviour
     {
         Debug.Log($"Ending trial after {timeInSeconds} seconds.");
         yield return new WaitForSeconds(timeInSeconds);
-        float distanceTravelled = playerPositionTracker.GetDistanceTravelled();
-        int tileChanges  = playerPositionTracker.GetTileChanges();
         
-        Session.instance.CurrentTrial.result["distance_travelled"] = distanceTravelled;
-        Session.instance.CurrentTrial.result["tile_changes"] = tileChanges;
-        Session.instance.CurrentTrial.End();
         OnExplorationBlockCompleted?.Invoke(); // Trigger the event to notify that the exploration block is completed
+        Session.instance.CurrentTrial.End();
     }
     
     // This should be called from UXF's OnTrialEnd event or when trial is actually complete
