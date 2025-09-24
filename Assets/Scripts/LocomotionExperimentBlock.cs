@@ -109,27 +109,45 @@ public class GuidedExplorationBlock : LocomotionExperimentBlock
     /// </summary>
     public void EnableFinishPoint()
     {
-        Debug.Log("Enabling finish point...");
         if (environmentFinishPoint != null)
+        {
+            Debug.Log("Enabling finish point...");
             environmentFinishPoint.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("Finish point not found in the scene.");
+        }
     }
 
     public void DisableFinishPoint()
     {
-        Debug.Log("Disabling finish point...");
         if (environmentFinishPoint != null)
+        {
+            Debug.Log("Disabling finish point...");
             environmentFinishPoint.SetActive(false);
+        }
     }
     
     public void EnableNavigationGuides()
     {
         if (environmentNavigationGuides != null)
+        {
+            Debug.Log("Enabling navigation guides...");
             environmentNavigationGuides.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("Navigation guides not found in the scene.");
+        }
     }
     
     public void DisableNavigationGuides()
     {
         if (environmentNavigationGuides != null)
+        {
+            Debug.Log("Enabling navigation guides...");
             environmentNavigationGuides.SetActive(false);
+        }
     }
 }

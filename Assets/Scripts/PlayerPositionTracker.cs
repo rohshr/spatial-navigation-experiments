@@ -76,14 +76,17 @@ public class PlayerPositionTracker : MonoBehaviour
     void Update()
     {
         // Update position tracking
-        UpdatePlayerPosition();
+        if (Session.instance.InTrial)
+            UpdatePlayerPosition();
     }
     
     private void UpdatePlayerPosition()
     {
-        if (xrOrigin == null) return;
-
-        if (!Session.instance.InTrial) return;
+        if (xrOrigin == null)
+        {
+            Debug.LogError("XR Origin not found! Please assign it in the inspector.");
+            return;  
+        }
         
         // Store previous position
         previousPosition = currentPosition;
