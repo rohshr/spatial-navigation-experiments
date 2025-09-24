@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class HandControllerForceActive : MonoBehaviour
 {
-    public GameObject leftHandController;
-    public GameObject rightHandController;
+    public static GameObject LeftHandController;
+    public static GameObject RightHandController;
 
     void Start()
     {
@@ -11,15 +11,17 @@ public class HandControllerForceActive : MonoBehaviour
         SetHandControllersActive(true);
     }
 
-    private void SetHandControllersActive(bool isActive)
+    public static void SetHandControllersActive(bool isActive)
     {
-        if (leftHandController != null)
+        if (LeftHandController != null)
         {
-            leftHandController.SetActive(isActive);
+            LeftHandController.SetActive(isActive);
+            Debug.Log("Left hand controller: " + isActive);
         }
-        if (rightHandController != null)
+        if (RightHandController != null)
         {
-            rightHandController.SetActive(isActive);
+            RightHandController.SetActive(isActive);
+            Debug.Log("Right hand controller: " + isActive);
         }
     }
 }

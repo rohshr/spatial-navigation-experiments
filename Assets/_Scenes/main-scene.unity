@@ -587,9 +587,17 @@ PrefabInstance:
       propertyPath: m_IncludeLayers.m_Bits
       value: 256
       objectReference: {fileID: 0}
+    - target: {fileID: 3728978319723717164, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 6260963692082533174, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408444573464341097, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7592203504968009373, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
       propertyPath: m_LocalPosition.x
