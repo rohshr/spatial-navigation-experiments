@@ -347,7 +347,6 @@ public class VRDialogFlowManager : MonoBehaviour
         
         // Instantiate new dialog
         currentDialogInstance = Instantiate(dialogPrefab, dialogCanvas.transform);
-        Debug.Log($"Showing dialog: {currentDialogInstance.name}");
         
         // Immediately set transform without any interpolation
         var rectTransform = currentDialogInstance.GetComponent<RectTransform>();

@@ -86,8 +86,16 @@ public class TrialManager : MonoBehaviour
         if (currentBlock?.GetBlockType() == "TimedExploration")
         {
             var timeTrialBlock = currentBlock as TimedExplorationBlock;
+
+            if (timeTrialBlock == null)
+            {
+                Debug.LogError("Time trial block not initialized.");
+                return;
+            }
             var timeForExploration = timeTrialBlock.GetTimeForExplorationInSeconds();
+            Debug.Log("Starting timed exploration...");
             Debug.Log($"Time for exploration: {timeForExploration} seconds.");
+            Session.instance.BeginNextTrial();
             StartCoroutine(EndTrialAfterDelay(timeForExploration)); // Start the timer for the exploration block (after the object search block)
         }
         

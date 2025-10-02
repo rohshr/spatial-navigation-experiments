@@ -28,7 +28,7 @@ public class ObjectCollisionDetection : MonoBehaviour
         objectToFind = sessionGenerator.GetCurrentObjectToFind();
         if (gameObject != objectToFind)
         {
-            Debug.Log($"Incorrect object found: {gameObject.name} at {DateTime.Now}. Expected: {objectToFind?.name}");
+            Debug.Log($"Encountered non-target object: {gameObject.name} at {DateTime.Now}");
             return;
         }
         if (other.CompareTag("Player") && Session.instance.InTrial)

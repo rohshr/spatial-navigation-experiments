@@ -146,7 +146,7 @@ public class GuidedExplorationBlock : LocomotionExperimentBlock
     {
         if (environmentNavigationGuides != null)
         {
-            Debug.Log("Enabling navigation guides...");
+            Debug.Log("Disabling navigation guides...");
             environmentNavigationGuides.SetActive(false);
         }
     }
