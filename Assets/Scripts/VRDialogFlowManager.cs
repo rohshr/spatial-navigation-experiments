@@ -75,6 +75,8 @@ public class VRDialogFlowManager : MonoBehaviour
         }
         SessionGenerator.OnPlayStart += ShowDialogPrefab;
         SessionGenerator.OnSessionGenerate += ShowDialogSequence;
+        PointingEstimationSessionGenerator.OnSessionGenerate += ShowDialogSequence;
+        PointingEstimationSessionGenerator.OnShowNextInstruction += ShowDialogPrefab;
         SessionGenerator.OnBlockEnd += ShowDialogSequence;
         SessionGenerator.OnTrialEnd += ShowDialogSequence;
         SessionGenerator.OnSessionEnd += ShowDialogPrefab;
@@ -88,6 +90,8 @@ public class VRDialogFlowManager : MonoBehaviour
         }
         SessionGenerator.OnPlayStart -= ShowDialogPrefab;
         SessionGenerator.OnSessionGenerate -= ShowDialogSequence;
+        PointingEstimationSessionGenerator.OnSessionGenerate -= ShowDialogSequence;
+        PointingEstimationSessionGenerator.OnShowNextInstruction -= ShowDialogPrefab;
         SessionGenerator.OnBlockEnd -= ShowDialogSequence;
         SessionGenerator.OnTrialEnd -= ShowDialogSequence;
         SessionGenerator.OnSessionEnd -= ShowDialogPrefab;
