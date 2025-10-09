@@ -17,8 +17,6 @@ public class TrialManager : MonoBehaviour
     private int currentBlockIndex = 0;
     private LocomotionExperimentBlock currentBlock;
     private GameObject currentSpawnPoint;
-    private GameObject nextSpawnPoint;
-    private GameObject nextObjectSearch;
     
     // Events
     public static event Action OnBlocksCompleted;

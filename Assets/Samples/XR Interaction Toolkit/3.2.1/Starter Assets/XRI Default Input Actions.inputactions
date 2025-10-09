@@ -3473,12 +3473,21 @@
                 },
                 {
                     "name": "Proceed",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "ed36bccf-6218-4608-8fd5-3859e619eabe",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Proceed1",
+                    "type": "Value",
+                    "id": "bafd6215-a2de-4c2a-9dde-c5978d11c032",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Back",
@@ -3586,9 +3595,9 @@
                 },
                 {
                     "name": "",
-                    "id": "34f11431-f64a-4d49-8695-c54d443d3cc4",
-                    "path": "<XRInputV1::Valve::IndexControllerOpenXR>{LeftHand}/triggerpressed",
-                    "interactions": "",
+                    "id": "c7bb7d9b-3deb-4616-8903-fe057fde69e5",
+                    "path": "<ValveIndexController>/trigger",
+                    "interactions": "Press(pressPoint=0.7)",
                     "processors": "",
                     "groups": "",
                     "action": "Proceed",
@@ -3597,12 +3606,12 @@
                 },
                 {
                     "name": "",
-                    "id": "029793fc-edf2-4b82-bb88-e6b8708d8382",
-                    "path": "<ValveIndexController>{RightHand}/triggerPressed",
-                    "interactions": "",
+                    "id": "1428524e-f520-41c4-9f13-5f8d51abbbce",
+                    "path": "<ValveIndexController>/trigger",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
-                    "action": "Proceed",
+                    "action": "Proceed1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

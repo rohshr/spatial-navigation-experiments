@@ -170,7 +170,7 @@ public class InstructionsController : MonoBehaviour
     {
         if (Session.instance.hasInitialised)
         {
-            InputHandler.ProceedEvent += OnProceed;
+            // InputHandler.ProceedEvent += OnProceed;
             // FinishPointCheck.OnFinishPointReached += ShowInstructions;
             // ExperimenterControlScript.OnTrialSkipped += ShowInstructions;
             // ObjectCollisionDetection.OnObjectCollided += ShowInstructions;
@@ -179,7 +179,7 @@ public class InstructionsController : MonoBehaviour
 
     private void OnDisable()
     {
-        InputHandler.ProceedEvent -= OnProceed;
+        // InputHandler.ProceedEvent -= OnProceed;
         // FinishPointCheck.OnFinishPointReached -= ShowInstructions;
         // ExperimenterControlScript.OnTrialSkipped -= ShowInstructions;
         // ObjectCollisionDetection.OnObjectCollided -= ShowInstructions;

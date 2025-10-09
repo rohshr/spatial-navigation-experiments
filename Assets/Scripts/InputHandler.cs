@@ -13,7 +13,7 @@ public class InputHandler : MonoBehaviour
     private static GameObject _leftHandController;
     private static GameObject _rightHandController;
 
-    public InputActionReference proceedAction;
+    // public InputActionReference proceedAction;
     public InputActionReference backAction;
     public InputActionReference skipTrial;
     public delegate void OnProceed();
@@ -47,11 +47,6 @@ public class InputHandler : MonoBehaviour
         SetHandControllers(true);
         
         // Enable the input actions
-        if (proceedAction != null)
-        {
-            proceedAction.action.Enable();
-        }
-
         if (backAction != null)
         {
             backAction.action.Enable();
@@ -67,7 +62,6 @@ public class InputHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        InstructionsController.OnInstructionsCompleted += EnableLocomotion;
         VRDialogFlowManager.OnDialogFlowComplete += EnableLocomotion; // Subscribe to the event when dialog flow is completed
         // VRDialogFlowManager.OnSpecificDialogComplete += OnSpecificDialogCompleteHandler; // Subscribe to the event when a specific dialog is completed
         // VRDialogFlowManager.OnExperimentStart += EnableLocomotion; // Subscribe to the event when the experiment starts
@@ -80,7 +74,6 @@ public class InputHandler : MonoBehaviour
 
     private void OnDisable()
     {
-        InstructionsController.OnInstructionsCompleted -= EnableLocomotion;
         VRDialogFlowManager.OnDialogFlowComplete -= EnableLocomotion; // Unsubscribe from the event when dialog flow is completed
         // VRDialogFlowManager.OnSpecificDialogComplete -= OnSpecificDialogCompleteHandler;
         // VRDialogFlowManager.OnExperimentStart -= EnableLocomotion; // Unsubscribe from the event when the experiment starts
@@ -93,10 +86,10 @@ public class InputHandler : MonoBehaviour
 
     void Update()
     {
-        if (proceedAction != null && proceedAction.action.triggered)
-        {
-            ProceedEvent?.Invoke(); // Trigger the proceed event
-        }
+        // if (proceedAction != null && proceedAction.action.triggered)
+        // {
+        //     ProceedEvent?.Invoke(); // Trigger the proceed event
+        // } // Handled in VRDialogFlowManager
 
         if (backAction != null && backAction.action.triggered)
         {

@@ -20,6 +20,7 @@ public class FloorTile : MonoBehaviour
     
     void OnTriggerEnter(Collider other)
     {
+        StartCoroutine(DelayedTriggerEnter(other));
         if (other.CompareTag(playerTag) && Session.instance.InTrial)
         {
             // Add to visit queue (tracks order and allows duplicates)
@@ -39,7 +40,12 @@ public class FloorTile : MonoBehaviour
             OnTileVisited?.Invoke(gameObject, visitedTilesHash.Count);
         }
     }
-    
+
+    private System.Collections.IEnumerator DelayedTriggerEnter(Collider other)
+    {
+        yield return new WaitForFixedUpdate(); // Wait one physics frame
+    }
+
     // Utility methods you can call from anywhere
     public static int GetTotalVisitsCount()
     {

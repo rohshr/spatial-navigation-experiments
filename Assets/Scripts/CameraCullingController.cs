@@ -5,7 +5,6 @@ public class CameraCullingController : MonoBehaviour
     public Camera mainCamera; // Reference to the main camera
     private void OnEnable()
     {
-        InstructionsController.OnInstructionsCompleted += SetCullingMaskToEverything;
         VRDialogFlowManager.OnDialogFlowComplete += SetCullingMaskToEverything; // Subscribe to the event when dialog flow is completed
         // VRDialogFlowManager.OnSpecificDialogComplete += OnSpecificDialogCompleteHandler; // Subscribe to the event when a specific dialog is completed
         // VRDialogFlowManager.OnExperimentStart += SetCullingMaskToEverything; // Subscribe to the event when the experiment starts        FinishPointCheck.OnFinishPointReached += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the finish point is reached
@@ -19,7 +18,6 @@ public class CameraCullingController : MonoBehaviour
 
     private void OnDisable()
     {
-        InstructionsController.OnInstructionsCompleted -= SetCullingMaskToEverything;
         VRDialogFlowManager.OnDialogFlowComplete -= SetCullingMaskToEverything; // Unsubscribe from the event when dialog flow is completed
         // VRDialogFlowManager.OnSpecificDialogComplete -= OnSpecificDialogCompleteHandler; // Unsubscribe from the event when a specific dialog is completed
         // VRDialogFlowManager.OnExperimentStart -= SetCullingMaskToEverything; // Unsubscribe from the event when the experiment starts

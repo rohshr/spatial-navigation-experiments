@@ -188,6 +188,7 @@ public class SessionGenerator : MonoBehaviour
     #region Private Methods
     private void ConfigureSessionSettings(Session session)
     {
+        session.participantDetails["is_practice"] = isPracticeSession;
         locomotionMethodFromUI = session.participantDetails["locomotion_method"].ToString().ToLower();
         preferredHandFromUI = session.participantDetails["preferred_hand"].ToString().ToLower();
         

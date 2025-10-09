@@ -455,7 +455,7 @@ MonoBehaviour:
   enableFollowBehavior: 1
   followThresholdAngle: 30
   followSpeed: 2
-  advanceInputAction: {fileID: 9116136493208989681, guid: ecfceb69aaf2217438303cafcc21ca21, type: 3}
+  advanceInputAction: {fileID: 9116136493208989681, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   xrOrigin: {fileID: 311137099}
   cameraTransform: {fileID: 311137098}
   dialogCanvas: {fileID: 1232560589}
@@ -2534,7 +2534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6189342430593712535, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: participantDataPoints.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6189342430593712535, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: participantDataPoints.Array.data[0].dataType
@@ -5352,6 +5352,10 @@ PrefabInstance:
       propertyPath: XROrigin
       value: 
       objectReference: {fileID: 1240300395}
+    - target: {fileID: 8451305408182454192, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
+      propertyPath: proceedAction
+      value: 
+      objectReference: {fileID: 4743686973034679782, guid: c348712bda248c246b8c49b3db54643f, type: 3}
     - target: {fileID: 8465520115350836622, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
       propertyPath: HUDCanvas
       value: 
