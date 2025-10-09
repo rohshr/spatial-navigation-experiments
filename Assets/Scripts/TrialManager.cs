@@ -122,8 +122,7 @@ public class TrialManager : MonoBehaviour
     {
         if (Session.instance == null || !Session.instance.hasInitialised)
         {
-            Debug.Log("Session not ready, using current block spawn point");
-            return currentSpawnPoint;
+            Debug.LogError("Session instance is not initialized.");
         }
         if (currentBlock?.GetBlockType() == "ObjectSearch")
         {

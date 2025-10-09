@@ -6177,7 +6177,6 @@ PrefabInstance:
       objectReference: {fileID: 1426540232}
     m_RemovedComponents:
     - {fileID: 2333921505403635390, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
-    - {fileID: 8085443599274712418, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
     - {fileID: 1185954312039287275, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8313,11 +8312,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44cb94669fec25046babdd6431a16fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PointingEstimationSessionGenerator
+  xrOrigin: {fileID: 0}
   nonVRMode: 0
   sessionWaitingDialogPrefab: {fileID: 7133393797471011900, guid: 516b46763a0fab940bb84aea994632ee, type: 3}
   sessionStartDialogPrefab: {fileID: 7133393797471011900, guid: f8bccfb628443b346958a9c86b022f49, type: 3}
   sessionEndDialogPrefab: {fileID: 0}
   instructionUIPrefab: {fileID: 7133393797471011900, guid: 555f1db11a41aa742b72f799ce412bf3, type: 3}
+  spawnPoint: {fileID: 0}
   objectPointingTasks:
   - referenceObject: {fileID: 1045325668}
     targetObject: {fileID: 1046976746}
