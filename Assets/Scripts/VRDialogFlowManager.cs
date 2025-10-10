@@ -388,12 +388,10 @@ public class VRDialogFlowManager : MonoBehaviour
             StartFollowBehavior();
         }
 
-        if (sessionEnded)
+        if (dialogPrefab != endSessionDialogPrefab)
         {
-            // Do not allow advancing from session end dialog
-            yield break;
+            yield return StartCoroutine(WaitForAdvanceInput());
         }
-        yield return StartCoroutine(WaitForAdvanceInput());
     }
     
     // Method to call at the end of the session
@@ -434,7 +432,7 @@ public class VRDialogFlowManager : MonoBehaviour
         // All dialogs complete
         if (sessionEnded)
         {
-            ShowDialogPrefab(endSessionDialogPrefab);
+            yield return StartCoroutine(ShowDialogPrefabCoroutine(endSessionDialogPrefab));
             yield break;
         }
         

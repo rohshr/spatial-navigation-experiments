@@ -267,9 +267,12 @@ public class SessionGenerator : MonoBehaviour
     {
         foreach (var block in experimentBlocks)
         {
-            var newBlock = session.CreateBlock(block.GetTrialCount());
-            newBlock.settings.SetValue("block_type", block.GetBlockType());
-            newBlock.settings.SetValue("environment", block.environment.ToString().ToLower());
+            if (!block.skipBlock)
+            {
+                var newBlock = session.CreateBlock(block.GetTrialCount());
+                newBlock.settings.SetValue("block_type", block.GetBlockType());
+                newBlock.settings.SetValue("environment", block.environment.ToString().ToLower());
+            }
         }
     }
     
@@ -290,7 +293,7 @@ public class SessionGenerator : MonoBehaviour
                 instructionSequence.Add(lastBlock.endMessageDialogPrefab);
             }
         }
-        if (nextBlockIndex < experimentBlocks.Count)
+        if (nextBlockIndex < Session.instance.blocks.Count)
         {
             var nextBlock = experimentBlocks[nextBlockIndex];
             
@@ -306,6 +309,10 @@ public class SessionGenerator : MonoBehaviour
                 var objectSearchInstructions = objectSearchHandler.GetInitialObjectSearchInstructions(nextBlock);
                 instructionSequence.AddRange(objectSearchInstructions);
             }
+        }
+        else
+        {
+            OnSessionEnd?.Invoke(sessionEndDialogPrefab);
         }
         OnBlockEnd?.Invoke(instructionSequence);
     }

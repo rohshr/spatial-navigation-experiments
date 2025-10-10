@@ -30,7 +30,10 @@ public class LocomotionExperimentBlock
 {
     [Tooltip("Unique name for Locomotion Experiment Block")]
     public string blockName;
-            
+
+    [Tooltip("For debugging.")]
+    public bool skipBlock = false;
+    
     [Header("Environment Configuration")]
     [Space(5)]
     [Tooltip("Type of environment for the block")]

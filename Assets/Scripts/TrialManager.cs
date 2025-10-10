@@ -59,7 +59,7 @@ public class TrialManager : MonoBehaviour
     public void SetupNextBlock()
     {
         currentBlockIndex++;
-        if (currentBlockIndex < currentTrialBlocks.Count)
+        if (currentBlockIndex < Session.instance.blocks.Count)
         {
             currentBlock = currentTrialBlocks[currentBlockIndex];
 
