@@ -1330,7 +1330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8d3dfed628fb341a0bee6e8a66a511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  XROrigin: {fileID: 7592203504741225942}
+  xrOrigin: {fileID: 0}
 --- !u!65 &537562825
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1425,7 +1425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8d3dfed628fb341a0bee6e8a66a511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  XROrigin: {fileID: 7592203504741225942}
+  xrOrigin: {fileID: 0}
 --- !u!114 &608701281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1438,7 +1438,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155becbdfa346c640815586702a38c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RegisterableObject
-  objectId: 
 --- !u!1 &742344419
 GameObject:
   m_ObjectHideFlags: 0
@@ -1486,7 +1485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8d3dfed628fb341a0bee6e8a66a511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  XROrigin: {fileID: 7592203504741225942}
+  xrOrigin: {fileID: 0}
 --- !u!135 &742344422
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1630,7 +1629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8d3dfed628fb341a0bee6e8a66a511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  XROrigin: {fileID: 7592203504741225942}
+  xrOrigin: {fileID: 0}
 --- !u!114 &875208875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1643,7 +1642,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155becbdfa346c640815586702a38c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RegisterableObject
-  objectId: 
 --- !u!114 &891549356 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8347303635092686104, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
@@ -1684,7 +1682,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155becbdfa346c640815586702a38c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RegisterableObject
-  objectId: AngledCorridorEndPoint
 --- !u!4 &1011274665 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2326192011944841262, guid: 9d19cd6619d703a4a9ceb875d8dd1c24, type: 3}
@@ -1835,7 +1832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8d3dfed628fb341a0bee6e8a66a511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  XROrigin: {fileID: 7592203504741225942}
+  xrOrigin: {fileID: 0}
 --- !u!114 &1306354894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1848,7 +1845,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155becbdfa346c640815586702a38c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RegisterableObject
-  objectId: 
 --- !u!1001 &1331125827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2412,11 +2408,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ec5c0b7ce4e9a840af6ae7c2e298c80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPositionTracker
-  XROrigin: {fileID: 7592203504741225942}
+  xrOrigin: {fileID: 7592203504741225942}
   floorTileTag: FloorTile
-  floorLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
   showDebugInfo: 1
 --- !u!1 &1629718725 stripped
 GameObject:
@@ -2555,7 +2548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8d3dfed628fb341a0bee6e8a66a511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  XROrigin: {fileID: 7592203504741225942}
+  xrOrigin: {fileID: 0}
 --- !u!114 &1634400034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2790,7 +2783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8d3dfed628fb341a0bee6e8a66a511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  XROrigin: {fileID: 7592203504741225942}
+  xrOrigin: {fileID: 0}
 --- !u!114 &1876330917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2803,7 +2796,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155becbdfa346c640815586702a38c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RegisterableObject
-  objectId: 
 --- !u!1 &2048367660
 GameObject:
   m_ObjectHideFlags: 0
@@ -2834,7 +2826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8d3dfed628fb341a0bee6e8a66a511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  XROrigin: {fileID: 7592203504741225942}
+  xrOrigin: {fileID: 0}
 --- !u!136 &2048367662
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3158,7 +3150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155becbdfa346c640815586702a38c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RegisterableObject
-  objectId: AngledCorridorSpawnPoint
 --- !u!1001 &524879270191243515
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3549,7 +3540,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155becbdfa346c640815586702a38c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RegisterableObject
-  objectId: CurvedCorridorEndPoint
 --- !u!114 &3794989458224354533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3562,7 +3552,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155becbdfa346c640815586702a38c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RegisterableObject
-  objectId: CurvedCorridorSpawnPoint
 --- !u!1001 &4277283733034881910
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3986,6 +3975,30 @@ PrefabInstance:
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: endAfterLastTrial
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
+      propertyPath: settingsToLog.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
+      propertyPath: 'settingsToLog.Array.data[0]'
+      value: locomotion_method
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
+      propertyPath: 'settingsToLog.Array.data[1]'
+      value: environment
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
+      propertyPath: 'settingsToLog.Array.data[2]'
+      value: block_type
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
+      propertyPath: 'settingsToLog.Array.data[3]'
+      value: object
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
+      propertyPath: 'settingsToLog.Array.data[4]'
+      value: object
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: 'trackedObjects.Array.data[0]'

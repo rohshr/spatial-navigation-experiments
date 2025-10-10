@@ -20,7 +20,7 @@ public class SpawnPointCheck : MonoBehaviour
             {
                 Debug.Log("Player exited a trial SpawnPoint at " + DateTime.Now);
                 Session.instance.BeginNextTrial();
-                Session.instance.CurrentTrial.settings.SetValue("object", sessionGenerator.GetCurrentObjectToFind());
+                Session.instance.CurrentTrial.settings.SetValue("object", sessionGenerator.GetCurrentObjectToFind()?.name);
 
                 if (sessionGenerator.GetCurrentBlockType() == "GuidedExploration")
                 {

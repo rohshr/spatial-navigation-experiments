@@ -316,13 +316,13 @@ public class SessionGenerator : MonoBehaviour
         
         if (isSessionComplete)
         {
+            OnSessionEnd?.Invoke(sessionEndDialogPrefab);
             // Add any remaining instructions first, then trigger session end
             if (objectSearchInstructions.Count > 0)
             {
                 OnTrialEnd?.Invoke(objectSearchInstructions);
             }
             
-            OnSessionEnd?.Invoke(sessionEndDialogPrefab);
             Debug.Log("No more blocks available. Session ended.");
             return;
         }

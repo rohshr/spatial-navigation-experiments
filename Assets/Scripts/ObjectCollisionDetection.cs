@@ -37,7 +37,7 @@ public class ObjectCollisionDetection : MonoBehaviour
             if (xrOrigin != null)
             {
                 // Session.instance.CurrentTrial.settings.SetValue("object",gameObject.name);
-                Debug.Log($"Collision detected with object: {gameObject.name} at {DateTime.Now}");
+                Debug.Log($"Collision detected with target object: {gameObject.name} at {DateTime.Now}");
                 OnObjectCollided?.Invoke();
                 Session.instance.CurrentTrial.End();
             }

@@ -49,6 +49,8 @@ public class VRDialogFlowManager : MonoBehaviour
     private GameObject currentDialogInstance;
     private bool isTransitioning = false;
     private bool trialStarted = false; // Flag to indicate if a trial is in session
+    private bool sessionEnded = false; // Flag to indicate if the session has ended
+    private GameObject endSessionDialogPrefab; // Dialog prefab to show at session end
     
     // Follow behavior variables
     private Vector3 targetPosition;
@@ -80,7 +82,7 @@ public class VRDialogFlowManager : MonoBehaviour
         PointingEstimationSessionGenerator.OnShowNextInstruction += ShowDialogPrefab;
         SessionGenerator.OnBlockEnd += ShowDialogSequence;
         SessionGenerator.OnTrialEnd += ShowDialogSequence;
-        SessionGenerator.OnSessionEnd += ShowDialogPrefab;
+        SessionGenerator.OnSessionEnd += EndSession;
     }
     
     private void OnDisable()
@@ -96,7 +98,7 @@ public class VRDialogFlowManager : MonoBehaviour
         PointingEstimationSessionGenerator.OnShowNextInstruction -= ShowDialogPrefab;
         SessionGenerator.OnBlockEnd -= ShowDialogSequence;
         SessionGenerator.OnTrialEnd -= ShowDialogSequence;
-        SessionGenerator.OnSessionEnd -= ShowDialogPrefab;
+        SessionGenerator.OnSessionEnd -= EndSession;
     }
     
     private void Update()
@@ -386,12 +388,19 @@ public class VRDialogFlowManager : MonoBehaviour
             StartFollowBehavior();
         }
 
-        if (dialogPrefab.name == "sessionEndDialogPrefab")
+        if (sessionEnded)
         {
             // Do not allow advancing from session end dialog
             yield break;
         }
         yield return StartCoroutine(WaitForAdvanceInput());
+    }
+    
+    // Method to call at the end of the session
+    private void EndSession(GameObject endDialogPrefab)
+    {
+        sessionEnded = true;
+        endSessionDialogPrefab = endDialogPrefab;
     }
     
     // Method to show multiple dialogs in sequence
@@ -423,6 +432,12 @@ public class VRDialogFlowManager : MonoBehaviour
         }
         
         // All dialogs complete
+        if (sessionEnded)
+        {
+            ShowDialogPrefab(endSessionDialogPrefab);
+            yield break;
+        }
+        
         StartCoroutine(CompleteDialogPrefabFlowCoroutine());
     }
     
