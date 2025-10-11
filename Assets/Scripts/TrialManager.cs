@@ -160,11 +160,35 @@ public class TrialManager : MonoBehaviour
     
     private void MoveToSpawnPoint(GameObject spawnPoint)
     {
+        StartCoroutine(MoveToSpawnPointCoroutine(spawnPoint));
+    }
+    
+    private IEnumerator MoveToSpawnPointCoroutine(GameObject spawnPoint)
+    {
+        // Wait for end of frame to ensure physics has settled
+        yield return new WaitForEndOfFrame();
+    
+        // Disable character controller if present
+        var characterController = XROrigin.GetComponent<CharacterController>();
+        if (characterController != null)
+        {
+            characterController.enabled = false;
+        }
+    
+        // Set position and rotation
         XROrigin.transform.SetPositionAndRotation(
             spawnPoint.transform.position,
             spawnPoint.transform.rotation
         );
-        Debug.Log($"Moved to spawn point: {spawnPoint.name}");
+    
+        // Re-enable character controller
+        if (characterController != null)
+        {
+            yield return null; // Wait one frame
+            characterController.enabled = true;
+        }
+    
+        Debug.Log($"Moved to spawn point: {spawnPoint.name} at position {spawnPoint.transform.position}");
     }
 
     // public void MoveToUIViewpoint()

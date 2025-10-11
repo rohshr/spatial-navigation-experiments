@@ -5703,6 +5703,33 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6224960678850204157, guid: af77953132a2bb047bb2eba2a770aaf4, type: 3}
   m_PrefabInstance: {fileID: 3692822013738086976}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &1767519827
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767519824}
+  serializedVersion: 5
+  m_Mass: 0.0000001
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &1780087598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6762,6 +6789,26 @@ PrefabInstance:
       propertyPath: xrOrigin
       value: 
       objectReference: {fileID: 311137099}
+    - target: {fileID: 1727953908423828460, guid: af77953132a2bb047bb2eba2a770aaf4, type: 3}
+      propertyPath: sizeDisplay
+      value: 'Width (X): 2.00 m (6'' 6.7")
+
+        Height (Y): 20.0 cm (7.9")
+
+        Depth
+        (Z): 2.00 m (6'' 6.7")
+
+        Diagonal: 2.84 m (9'' 3.6")'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1727953908423828460, guid: af77953132a2bb047bb2eba2a770aaf4, type: 3}
+      propertyPath: boundsDisplay
+      value: 'Center: (-110.01, 0.10, -9.39)
+
+        Min: (-111.01, 0.00, -10.39)
+
+        Max:
+        (-109.01, 0.20, -8.39)'
+      objectReference: {fileID: 0}
     - target: {fileID: 1920527215820261574, guid: af77953132a2bb047bb2eba2a770aaf4, type: 3}
       propertyPath: xrOrigin
       value: 
@@ -6814,10 +6861,130 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2642288774883649217, guid: af77953132a2bb047bb2eba2a770aaf4, type: 3}
+      propertyPath: sizeDisplay
+      value: 'Width (X): 22.40 m (73'' 5.9")
+
+        Height (Y): 20.0 cm (7.9")
+
+        Depth
+        (Z): 22.40 m (73'' 5.9")
+
+        Diagonal: 31.68 m (103'' 11.3")'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2642288774883649217, guid: af77953132a2bb047bb2eba2a770aaf4, type: 3}
+      propertyPath: boundsDisplay
+      value: 'Center: (-100.01, -0.10, 0.61)
+
+        Min: (-111.21, -0.20, -10.59)
+
+        Max:
+        (-88.81, 0.00, 11.81)'
+      objectReference: {fileID: 0}
     - target: {fileID: 3149654505994944175, guid: af77953132a2bb047bb2eba2a770aaf4, type: 3}
       propertyPath: xrOrigin
       value: 
       objectReference: {fileID: 311137099}
+    - target: {fileID: 3421249958410676653, guid: af77953132a2bb047bb2eba2a770aaf4, type: 3}
+      propertyPath: sizeDisplay
+      value: 'Width (X): 22.40 m (73'' 5.9")
+
+        Height (Y): 20.0 cm (7.9")
+
+        Depth
+        (Z): 22.40 m (73'' 5.9")
+
+        Diagonal: 31.68 m (103'' 11.3")'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3421249958410676653, guid: af77953132a2bb047bb2eba2a770aaf4, type: 3}
+      propertyPath: boundsDisplay
+      value: 'Center: (-100.01, -0.10, 0.61)
+
+        Min: (-111.21, -0.20, -10.59)
+
+        Max:
+        (-88.81, 0.00, 11.81)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3614044752618525610, guid: af77953132a2bb047bb2eba2a770aaf4, type: 3}
+      propertyPath: sizeDisplay
+      value: 'Width (X): 22.40 m (73'' 5.9")
+
+        Height (Y): 20.0 cm (7.9")
+
+        Depth
+        (Z): 22.40 m (73'' 5.9")
+
+        Diagonal: 31.68 m (103'' 11.3")'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3614044752618525610, guid: af77953132a2bb047bb2eba2a770aaf4, type: 3}
+      propertyPath: boundsDisplay
+      value: 'Center: (-100.01, -0.10, 0.61)
+
+        Min: (-111.21, -0.20, -10.59)
+
+        Max:
+        (-88.81, 0.00, 11.81)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3846567248238174439, guid: af77953132a2bb047bb2eba2a770aaf4, type: 3}
+      propertyPath: sizeDisplay
+      value: 'Width (X): 20.0 cm (7.9")
+
+        Height (Y): 4.00 m (13'' 1.5")
+
+        Depth
+        (Z): 22.20 m (72'' 9.8")
+
+        Diagonal: 22.55 m (73'' 12.0")'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3846567248238174439, guid: af77953132a2bb047bb2eba2a770aaf4, type: 3}
+      propertyPath: boundsDisplay
+      value: 'Center: (-111.11, 2.00, 0.70)
+
+        Min: (-111.21, 0.00, -10.39)
+
+        Max:
+        (-111.01, 4.00, 11.80)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5515910192665604700, guid: af77953132a2bb047bb2eba2a770aaf4, type: 3}
+      propertyPath: sizeDisplay
+      value: 'Width (X): 22.20 m (72'' 9.9")
+
+        Height (Y): 3.95 m (12'' 11.5")
+
+        Depth
+        (Z): 19.7 cm (7.8")
+
+        Diagonal: 22.55 m (73'' 11.7")'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5515910192665604700, guid: af77953132a2bb047bb2eba2a770aaf4, type: 3}
+      propertyPath: boundsDisplay
+      value: 'Center: (-100.11, 2.00, -10.50)
+
+        Min: (-111.21, 0.03, -10.59)
+
+        Max:
+        (-89.01, 3.97, -10.40)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064253911466877664, guid: af77953132a2bb047bb2eba2a770aaf4, type: 3}
+      propertyPath: sizeDisplay
+      value: 'Width (X): 20.0 cm (7.9")
+
+        Height (Y): 4.00 m (13'' 1.5")
+
+        Depth
+        (Z): 22.20 m (72'' 9.8")
+
+        Diagonal: 22.55 m (73'' 12.0")'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064253911466877664, guid: af77953132a2bb047bb2eba2a770aaf4, type: 3}
+      propertyPath: boundsDisplay
+      value: 'Center: (-88.91, 2.00, 0.51)
+
+        Min: (-89.01, 0.00, -10.59)
+
+        Max:
+        (-88.81, 4.00, 11.61)'
+      objectReference: {fileID: 0}
     - target: {fileID: 6458546127658628929, guid: af77953132a2bb047bb2eba2a770aaf4, type: 3}
       propertyPath: xrOrigin
       value: 
@@ -6846,6 +7013,26 @@ PrefabInstance:
       propertyPath: xrOrigin
       value: 
       objectReference: {fileID: 311137099}
+    - target: {fileID: 9174237893987462915, guid: af77953132a2bb047bb2eba2a770aaf4, type: 3}
+      propertyPath: sizeDisplay
+      value: 'Width (X): 22.20 m (72'' 9.9")
+
+        Height (Y): 4.00 m (13'' 1.5")
+
+        Depth
+        (Z): 20.0 cm (7.9")
+
+        Diagonal: 22.55 m (73'' 12.0")'
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174237893987462915, guid: af77953132a2bb047bb2eba2a770aaf4, type: 3}
+      propertyPath: boundsDisplay
+      value: 'Center: (-99.91, 2.00, 11.71)
+
+        Min: (-111.01, 0.00, 11.61)
+
+        Max:
+        (-88.81, 4.00, 11.81)'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -6883,6 +7070,9 @@ PrefabInstance:
       insertIndex: 14
       addedObject: {fileID: 2120884112}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8361665907866835674, guid: af77953132a2bb047bb2eba2a770aaf4, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 1767519827}
     - targetCorrespondingSourceObject: {fileID: 2194563408787419533, guid: af77953132a2bb047bb2eba2a770aaf4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3692822013738087102}
