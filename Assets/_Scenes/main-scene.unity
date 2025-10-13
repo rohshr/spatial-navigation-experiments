@@ -132,6 +132,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FloorTile
   playerTag: Player
+--- !u!1 &32506625 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6984213208406890749, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
+  m_PrefabInstance: {fileID: 311137096}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &35665944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1798,7 +1803,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7406562009004157276, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
   m_PrefabInstance: {fileID: 311137096}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 32506625}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01f69dc1cb084aa42b2f2f8cd87bc770, type: 3}
@@ -4268,6 +4273,10 @@ PrefabInstance:
       propertyPath: UIViewpoint
       value: 
       objectReference: {fileID: 239143786}
+    - target: {fileID: 1185954312039287275, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
+      propertyPath: TeleportationHandler
+      value: 
+      objectReference: {fileID: 32506625}
     - target: {fileID: 4130535618701150512, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
       propertyPath: m_Name
       value: Experiment

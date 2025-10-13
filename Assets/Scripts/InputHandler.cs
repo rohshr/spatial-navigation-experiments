@@ -164,4 +164,7 @@ public class InputHandler : MonoBehaviour
             return;
         }
     }
+    
+    public static GameObject GetLeftHandController() => _leftHandController;
+    public static GameObject GetRightHandController() => _rightHandController;
 }

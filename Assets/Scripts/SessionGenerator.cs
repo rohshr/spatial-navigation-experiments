@@ -201,7 +201,7 @@ public class SessionGenerator : MonoBehaviour
     /// </summary>
     private void ConfigureLocomotion()
     {
-        LocomotionMethod.UpdateFloors(locomotionMethodFromUI);
+        LocomotionManager.UpdateFloors(locomotionMethodFromUI);
 
         if (!nonVRMode)
         {

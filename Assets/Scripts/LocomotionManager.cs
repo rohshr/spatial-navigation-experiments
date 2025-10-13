@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Linq;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 
-public class LocomotionMethod : MonoBehaviour
+public class LocomotionManager : MonoBehaviour
 {
     // public enum LocomotionType { Unset, Continuous, Teleport, NodeBased }
     // public LocomotionType locomotionChoice; // Dropdown in the Unity Editor
