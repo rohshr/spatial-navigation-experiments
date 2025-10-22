@@ -70,6 +70,7 @@ public class InputHandler : MonoBehaviour
         TrialManager.OnExplorationBlockCompleted += DisableLocomotion; // Subscribe to the event when the exploration block is completed
         ExperimenterControlScript.OnTrialSkipped += DisableLocomotion; // Subscribe to the event when the session is ended
         ObjectCollisionDetection.OnObjectCollided += DisableLocomotion; // Subscribe to the event when the object collision is detected
+        // PointingEstimationSessionGenerator.OnPointingEstimationSessionStart += DisableLocomotion; // Subscribe to the event when the session starts
     }
 
     private void OnDisable()
@@ -82,6 +83,7 @@ public class InputHandler : MonoBehaviour
         TrialManager.OnExplorationBlockCompleted -= DisableLocomotion; // Unsubscribe from the event when the exploration block is completed       
         ExperimenterControlScript.OnTrialSkipped -= DisableLocomotion; // Unsubscribe from the event when the session is ended
         ObjectCollisionDetection.OnObjectCollided -= DisableLocomotion; // Unsubscribe from the event when the object collision is detected
+        // PointingEstimationSessionGenerator.OnPointingEstimationSessionStart -= DisableLocomotion; // Unsubscribe from the event when the session starts
     }
 
     void Update()
