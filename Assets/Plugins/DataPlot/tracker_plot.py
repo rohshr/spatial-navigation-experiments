@@ -779,12 +779,12 @@ def main():
     participant_id = input("Enter participant ID (same ID as folder name for participant): ")
     session_id = input("Enter session ID (e.g., S001): ")
     base_data_path = r"C:\Users\cogni\Documents\vr-experiment-data\vr_locomotion"
-    data_directory = os.path.join(base_data_path, participant_id, session_id, "trackers")
+    data_directory = os.path.join(base_data_path, participant_id, session_id.capitalize(), "trackers")
     background_image = r"C:\Users\cogni\Documents\vr-experiment-data\map.png"
     
     # Optional: specify custom output directory
     output_directory = r"C:\Users\cogni\Documents\vr-experiment-data\data_plots"
-    participant_results = os.path.join(output_directory, participant_id, session_id)
+    participant_results = os.path.join(output_directory, participant_id, session_id.capitalize())
 
     # Define world coordinates that match your image
     # [x_min, x_max, z_min, z_max] in Unity world units
