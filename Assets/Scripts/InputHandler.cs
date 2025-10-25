@@ -1,7 +1,10 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Linq;
+using PointingTask;
 using Unity.XR.CoreUtils;
+using UnityEngine.Serialization;
 using UXF;
 using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 
@@ -14,16 +17,11 @@ public class InputHandler : MonoBehaviour
     private static GameObject _rightHandController;
 
     // public InputActionReference proceedAction;
-    public InputActionReference backAction;
-    public InputActionReference skipTrial;
-    public delegate void OnProceed();
-    public static event OnProceed ProceedEvent;
-
-    public delegate void OnBack();
-    public static event OnBack BackEvent;
+    [Header("Experimenter Controls")]
+    [FormerlySerializedAs("skipTrial")] public InputActionReference proceedTrial;
     
-    public delegate void OnSkipTrial();
-    public static event OnSkipTrial SkipTrialEvent;
+    public delegate void OnProceedTrial();
+    public static event OnProceedTrial ProceedTrialEvent;
 
     void Start()
     {
@@ -47,14 +45,9 @@ public class InputHandler : MonoBehaviour
         SetHandControllers(true);
         
         // Enable the input actions
-        if (backAction != null)
+        if (proceedTrial != null)
         {
-            backAction.action.Enable();
-        }
-
-        if (skipTrial != null)
-        {
-            skipTrial.action.Enable();
+            proceedTrial.action.Enable();
         }
         
         DisableLocomotion();
@@ -70,7 +63,7 @@ public class InputHandler : MonoBehaviour
         TrialManager.OnExplorationBlockCompleted += DisableLocomotion; // Subscribe to the event when the exploration block is completed
         ExperimenterControlScript.OnTrialSkipped += DisableLocomotion; // Subscribe to the event when the session is ended
         ObjectCollisionDetection.OnObjectCollided += DisableLocomotion; // Subscribe to the event when the object collision is detected
-        // PointingEstimationSessionGenerator.OnPointingEstimationSessionStart += DisableLocomotion; // Subscribe to the event when the session starts
+        PointingEstimationSessionGenerator.OnPointingEstimationSessionStart += DisableLocomotion; // Subscribe to the event when the session starts
     }
 
     private void OnDisable()
@@ -83,25 +76,37 @@ public class InputHandler : MonoBehaviour
         TrialManager.OnExplorationBlockCompleted -= DisableLocomotion; // Unsubscribe from the event when the exploration block is completed       
         ExperimenterControlScript.OnTrialSkipped -= DisableLocomotion; // Unsubscribe from the event when the session is ended
         ObjectCollisionDetection.OnObjectCollided -= DisableLocomotion; // Unsubscribe from the event when the object collision is detected
-        // PointingEstimationSessionGenerator.OnPointingEstimationSessionStart -= DisableLocomotion; // Unsubscribe from the event when the session starts
+        PointingEstimationSessionGenerator.OnPointingEstimationSessionStart -= DisableLocomotion; // Unsubscribe from the event when the session starts
     }
 
     void Update()
     {
-        // if (proceedAction != null && proceedAction.action.triggered)
-        // {
-        //     ProceedEvent?.Invoke(); // Trigger the proceed event
-        // } // Handled in VRDialogFlowManager
-
-        if (backAction != null && backAction.action.triggered)
-        {
-            BackEvent?.Invoke(); // Trigger the back event
-        }
-
-        if (skipTrial != null && skipTrial.action.triggered)
+        if (proceedTrial != null && proceedTrial.action.triggered)
         {
             DisableLocomotion();
-            SkipTrialEvent?.Invoke(); // Trigger the skip trial event
+            ProceedTrialEvent?.Invoke(); // Trigger the proceed trial event
+            Session.instance.CurrentTrial?.End(); // End the current trial
+        }
+    }
+    
+    public IEnumerator WaitForProceedTrialInput()
+    {
+        bool inputReceived = false;
+    
+        System.Action<InputAction.CallbackContext> inputHandler = (context) => {
+            inputReceived = true;
+        };
+
+        if (proceedTrial != null)
+        {
+            proceedTrial.action.performed += inputHandler;
+        }
+
+        yield return new WaitUntil(() => inputReceived);
+
+        if (proceedTrial != null)
+        {
+            proceedTrial.action.performed -= inputHandler;
         }
     }
     

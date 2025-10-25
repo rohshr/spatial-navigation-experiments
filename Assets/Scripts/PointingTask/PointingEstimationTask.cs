@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using UXF;
@@ -12,13 +14,20 @@ namespace PointingTask
         [SerializeField] private GameObject xrOrigin;
         [SerializeField] private GameObject rightHandController;
         private XRRayInteractor rightHandControllerRayInteractor;
+        [SerializeField] private GameObject taskObjects;
+        [Header("Audio")]
+        private AudioSource audioSource;
+        [SerializeField] private AudioClip submitSoundClip;
+        
+        private InputHandler inputHandler;
 
         private Queue<PointingTaskData> taskQueue = new Queue<PointingTaskData>();
         private PointingTaskData currentTask;
         private bool isTaskActive = false;
 
         // Events
-        public static event Action<float, float> OnPointingComplete;
+        public static event Action OnPointingTaskStart;
+        public static event Action OnPointingComplete;
         public static event Action OnAllTasksComplete;
 
         // Task data structure
@@ -33,6 +42,8 @@ namespace PointingTask
         void Start()
         {
             rightHandControllerRayInteractor = rightHandController.GetComponent<XRRayInteractor>();
+            inputHandler = GetComponent<InputHandler>();
+            audioSource = GetComponent<AudioSource>();
         }
 
         private void OnEnable()
@@ -63,11 +74,16 @@ namespace PointingTask
             }
 
             Debug.Log($"Initialized {tasks.Count} pointing tasks");
-            StartNextTask();
+            
+            // Set visibility of all task objects to false initially
+            HideAllTaskObjects();
         }
 
         public void StartNextTask()
         {
+            HideAllTaskObjects();
+            OnPointingTaskStart?.Invoke();
+            
             if (taskQueue.Count == 0)
             {
                 Debug.Log("All pointing tasks completed");
@@ -84,6 +100,12 @@ namespace PointingTask
             // Show only the reference object
             SetObjectVisibility(currentTask.referenceObject, true);
             SetObjectVisibility(currentTask.targetObject, false);
+            
+            Session.instance.BeginNextTrial();
+            
+            Session.instance.CurrentTrial.settings.SetValue("block_type", "PointingEstimation");
+            Session.instance.CurrentTrial.settings.SetValue("reference_object", currentTask.referenceObject.name);
+            Session.instance.CurrentTrial.settings.SetValue("target_object", currentTask.targetObject.name);
             
             Debug.Log($"Pointing task started. Reference: {currentTask.referenceObject.name}, Target: {currentTask.targetObject.name}. Tasks remaining: {taskQueue.Count}");
         }
@@ -118,6 +140,16 @@ namespace PointingTask
                 Debug.LogWarning("No active pointing task to submit");
                 return;
             }
+            
+            StartCoroutine(SubmitPointingRoutine());
+        }
+        private IEnumerator SubmitPointingRoutine()
+        {
+            // Play submit sound
+            if (audioSource != null && submitSoundClip != null)
+            {
+                audioSource.PlayOneShot(submitSoundClip);
+            }
 
             // Get the pointing direction from the right hand controller
             Vector3 pointingDirection = rightHandControllerRayInteractor.transform.forward;
@@ -130,16 +162,28 @@ namespace PointingTask
             // Log to UXF trial
             LogPointingData(participantAngle, correctAngle, angularError);
 
-            // Invoke event
-            OnPointingComplete?.Invoke(participantAngle, correctAngle);
-
             isTaskActive = false;
             Debug.Log($"Pointing submitted. Participant: {participantAngle:F2}°, Correct: {correctAngle:F2}°, Error: {angularError:F2}°");
 
-            // Hide the reference object before moving to next task
-            SetObjectVisibility(currentTask.referenceObject, false);
+            // // Hide the reference object before moving to next task
+            // SetObjectVisibility(currentTask.referenceObject, false);
             
-            Session.instance.BeginNextTrial();
+            // Show target object for feedback and distance estimation
+            SetObjectVisibility(currentTask.targetObject, true);
+            
+            Session.instance.CurrentTrial.End();
+            
+            // Wait for proceed input if InputHandler available
+            if (inputHandler is not null)
+            {
+                yield return StartCoroutine(inputHandler.WaitForProceedTrialInput());
+            }
+            else
+            {
+                Debug.Log("No InputHandler available; proceeding immediately.");
+            }
+            
+            OnPointingComplete?.Invoke();
             
             // Move to next task
             StartNextTask();
@@ -190,6 +234,8 @@ namespace PointingTask
         /// </summary>
         private void LogPointingData(float participantAngle, float correctAngle, float angularError)
         {
+            if (!Session.instance.hasInitialised) return;
+            
             if (Session.instance == null || Session.instance.CurrentTrial == null)
             {
                 Debug.LogWarning("UXF Session or Trial not available for logging");
@@ -198,11 +244,15 @@ namespace PointingTask
 
             Trial currentTrial = Session.instance.CurrentTrial;
 
-            currentTrial.result["reference_object"] = currentTask.referenceObject.name;
-            currentTrial.result["target_object"] = currentTask.targetObject.name;
-            currentTrial.result["participant_angle"] = participantAngle;
+            currentTrial.result["angle_estimate"] = participantAngle;
             currentTrial.result["correct_angle"] = correctAngle;
             currentTrial.result["angular_error"] = angularError;
+            
+            currentTrial.result["distance_estimate"] = 0;
+            // Log distance between player and target object
+            float distanceToTarget = Vector3.Distance(xrOrigin.transform.position, currentTask.targetObject.transform.position);
+            currentTrial.result["actual_distance"] = distanceToTarget;
+            
             currentTrial.result["spawn_position"] = currentTask.spawnLocation.position;
             currentTrial.result["reference_position"] = currentTask.referenceObject.transform.position;
             currentTrial.result["target_position"] = currentTask.targetObject.transform.position;
@@ -217,6 +267,14 @@ namespace PointingTask
             foreach (Renderer renderer in renderers)
             {
                 renderer.enabled = visible;
+            }
+        }
+        
+        private void HideAllTaskObjects()
+        {
+            foreach (Transform child in taskObjects.transform)
+            {
+                SetObjectVisibility(child.gameObject, false);
             }
         }
 

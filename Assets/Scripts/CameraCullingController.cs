@@ -1,4 +1,5 @@
 using UnityEngine;
+using PointingTask;
 
 public class CameraCullingController : MonoBehaviour
 {
@@ -13,7 +14,10 @@ public class CameraCullingController : MonoBehaviour
         TrialManager.OnExplorationBlockCompleted += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the exploration block is completed
         ExperimenterControlScript.OnTrialSkipped += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the session is ended
         ObjectCollisionDetection.OnObjectCollided += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the object collision is detected
-        InputHandler.SkipTrialEvent += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the skip trial button is pressed
+        InputHandler.ProceedTrialEvent += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the proceed trial button is pressed
+        PointingEstimationTask.OnPointingComplete += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the pointing task is completed
+        //temporary
+        PointingEstimationTask.OnPointingTaskStart += SetCullingMaskToEverything;
     }
 
     private void OnDisable()
@@ -26,7 +30,10 @@ public class CameraCullingController : MonoBehaviour
         TrialManager.OnExplorationBlockCompleted -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the exploration block is completed       
         ExperimenterControlScript.OnTrialSkipped -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the session is ended
         ObjectCollisionDetection.OnObjectCollided -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the object collision is detected
-        InputHandler.SkipTrialEvent -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the skip trial button is pressed       
+        InputHandler.ProceedTrialEvent -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the proceed trial button is pressed       
+        PointingEstimationTask.OnPointingComplete -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the pointing task is completed
+        //temporary
+        PointingEstimationTask.OnPointingTaskStart -= SetCullingMaskToEverything;
     }
 
     public void SetCullingMaskToUIOnlyWithHandController()

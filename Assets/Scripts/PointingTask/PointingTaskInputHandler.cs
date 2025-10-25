@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,12 +8,11 @@ namespace PointingTask
     public class PointingTaskInputHandler : MonoBehaviour
     {
         [SerializeField] private InputActionReference submitAction;
-        private PointingEstimationSessionGenerator sessionGenerator;
+        private PointingEstimationSessionGenerator pointingEstimationSessionGenerator;
 
         void Start()
         {
-            sessionGenerator = FindFirstObjectByType<PointingEstimationSessionGenerator>();
-        
+            pointingEstimationSessionGenerator = FindFirstObjectByType<PointingEstimationSessionGenerator>();
             if (submitAction != null)
             {
                 submitAction.action.performed += OnSubmitPerformed;
@@ -26,12 +27,12 @@ namespace PointingTask
                 submitAction.action.performed -= OnSubmitPerformed;
             }
         }
-
+        
         private void OnSubmitPerformed(InputAction.CallbackContext context)
         {
-            if (sessionGenerator != null)
+            if (pointingEstimationSessionGenerator != null)
             {
-                sessionGenerator.OnPointingSubmitted();
+                pointingEstimationSessionGenerator.OnPointingSubmitted();
             }
         }
     }

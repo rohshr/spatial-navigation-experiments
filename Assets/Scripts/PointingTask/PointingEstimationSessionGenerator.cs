@@ -71,18 +71,18 @@ namespace PointingTask
 
         private void OnEnable()
         {
-            VRDialogFlowManager.OnDialogFlowComplete += MoveToSpawnPoint;
+            VRDialogFlowManager.OnDialogFlowComplete += StartNextTrial;
             // Subscribe to pointing task completion
             PointingEstimationTask.OnAllTasksComplete += HandleAllTasksComplete;
-            // TrialManager.OnExplorationBlockCompleted += ShowNextInstructions;
+            // PointingEstimationTask.OnPointingComplete += ShowNextInstructions;
             // InputHandler.SkipTrialEvent += ShowNextInstructions;
         }
     
         private void OnDisable()
         {
-            VRDialogFlowManager.OnDialogFlowComplete -= MoveToSpawnPoint;
+            VRDialogFlowManager.OnDialogFlowComplete -= StartNextTrial;
             PointingEstimationTask.OnAllTasksComplete -= HandleAllTasksComplete;
-            // TrialManager.OnExplorationBlockCompleted -= ShowNextInstructions;
+            // PointingEstimationTask.OnPointingComplete -= ShowNextInstructions;
             // InputHandler.SkipTrialEvent -= ShowNextInstructions;
         }
     
@@ -97,12 +97,12 @@ namespace PointingTask
             OnSessionGenerate?.Invoke(instructionSequence);
         
             CreateObjectPointingBlock(session);
-            BeginPointingTasks();
+            SetupPointingTasks();
         }
     
         // Getters
 
-        public void BeginPointingTasks()
+        private void SetupPointingTasks()
         {
             // Convert ObjectPointingTask list to PointingEstimationTask.PointingTaskData list
             List<PointingEstimationTask.PointingTaskData> tasks = new List<PointingEstimationTask.PointingTaskData>();
@@ -116,7 +116,6 @@ namespace PointingTask
                     spawnLocation = task.spawnLocation
                 });
             }
-
             pointingTask.InitializeTasks(tasks);
         }
     
@@ -131,7 +130,6 @@ namespace PointingTask
         private void ConfigureSessionSettings(Session session)
         {
             InputHandler.UpdateLocomotionControls("None");
-            OnPointingEstimationSessionStart?.Invoke();
         }
     
         /// <summary>
@@ -192,15 +190,14 @@ namespace PointingTask
             pointingTask.SubmitPointing();
         }
     
-        private void MoveToSpawnPoint()
+        private void StartNextTrial()
         {
             // xrOrigin.transform.SetPositionAndRotation(
             //     spawnPoint.transform.position,
             //     spawnPoint.transform.rotation
             // );
-            Session.instance.BeginNextTrial();
             OnPointingEstimationSessionStart?.Invoke(); // To disable locomotion
-            Debug.Log($"Moved to spawn point for pointing task.");
+            pointingTask.StartNextTask();
         }
     
         /// <summary>

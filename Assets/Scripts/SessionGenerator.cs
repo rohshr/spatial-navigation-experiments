@@ -69,7 +69,7 @@ public class SessionGenerator : MonoBehaviour
         FinishPointCheck.OnFinishPointReached += ShowNextInstructions;
         ObjectCollisionDetection.OnObjectCollided += ShowNextObjectSearchInstructions;
         TrialManager.OnExplorationBlockCompleted += ShowNextInstructions;
-        InputHandler.SkipTrialEvent += ShowNextInstructions;
+        InputHandler.ProceedTrialEvent += ShowNextInstructions;
         SpawnPointCheck.OnPlayerExitedSpawnPoint += SetupGuidedExplorationFinishPoint;
         FinishPointCheck.OnPlayerFinishedGuidedExploration += EndGuidedExploration;
     }
@@ -79,7 +79,7 @@ public class SessionGenerator : MonoBehaviour
         FinishPointCheck.OnFinishPointReached -= ShowNextInstructions;
         ObjectCollisionDetection.OnObjectCollided -= ShowNextObjectSearchInstructions;
         TrialManager.OnExplorationBlockCompleted -= ShowNextInstructions;
-        InputHandler.SkipTrialEvent -= ShowNextInstructions;
+        InputHandler.ProceedTrialEvent -= ShowNextInstructions;
         SpawnPointCheck.OnPlayerExitedSpawnPoint -= SetupGuidedExplorationFinishPoint;
         FinishPointCheck.OnPlayerFinishedGuidedExploration -= EndGuidedExploration;
     }
