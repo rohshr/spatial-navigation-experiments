@@ -17532,7 +17532,7 @@ MonoBehaviour:
   enableFollowBehavior: 1
   followThresholdAngle: 30
   followSpeed: 2
-  advanceInputAction: {fileID: 9116136493208989681, guid: ecfceb69aaf2217438303cafcc21ca21, type: 3}
+  advanceInputAction: {fileID: 9116136493208989681, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   xrOrigin: {fileID: 311137099}
   cameraTransform: {fileID: 311137098}
   dialogCanvas: {fileID: 1232560589}
@@ -71162,39 +71162,55 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: customHeaders.Array.size
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: settingsToLog.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: 'customHeaders.Array.data[0]'
-      value: angle_estimation
+      value: angle_estimate
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: 'customHeaders.Array.data[1]'
-      value: distance_estimation
+      value: correct_angle
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: 'customHeaders.Array.data[2]'
-      value: angle_error
+      value: angular_error
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: 'customHeaders.Array.data[3]'
-      value: distance_error
+      value: distance_estimate
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
+      propertyPath: 'customHeaders.Array.data[4]'
+      value: actual_distance
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
+      propertyPath: 'customHeaders.Array.data[5]'
+      value: spawn_position
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
+      propertyPath: 'customHeaders.Array.data[6]'
+      value: reference_position
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
+      propertyPath: 'customHeaders.Array.data[7]'
+      value: target_position
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: 'settingsToLog.Array.data[0]'
-      value: environment
-      objectReference: {fileID: 0}
-    - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
-      propertyPath: 'settingsToLog.Array.data[1]'
       value: block_type
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
-      propertyPath: 'settingsToLog.Array.data[2]'
+      propertyPath: 'settingsToLog.Array.data[1]'
       value: reference_object
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
+      propertyPath: 'settingsToLog.Array.data[2]'
+      value: target_object
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: 'settingsToLog.Array.data[3]'
@@ -92616,6 +92632,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1355164657}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1356137991 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1192812071146067091, guid: af77953132a2bb047bb2eba2a770aaf4, type: 3}
+  m_PrefabInstance: {fileID: 3692822013738086976}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1358045172
 GameObject:
   m_ObjectHideFlags: 0
@@ -109610,6 +109631,10 @@ PrefabInstance:
       propertyPath: XROrigin
       value: 
       objectReference: {fileID: 1240300395}
+    - target: {fileID: 8451305408182454192, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
+      propertyPath: proceedTrial
+      value: 
+      objectReference: {fileID: 3680383599763556569, guid: c348712bda248c246b8c49b3db54643f, type: 3}
     - target: {fileID: 8465520115350836622, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
       propertyPath: HUDCanvas
       value: 
@@ -109630,6 +109655,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4130535618701150512, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8465520114188583785}
+    - targetCorrespondingSourceObject: {fileID: 4130535618701150512, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8465520114188583791}
   m_SourcePrefab: {fileID: 100100000, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
 --- !u!1 &1599397427
 GameObject:
@@ -146494,6 +146522,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PointingEstimationTask
   xrOrigin: {fileID: 1240300395}
   rightHandController: {fileID: 311137100}
+  taskObjects: {fileID: 1356137991}
+  submitSoundClip: {fileID: 8300000, guid: c40006d3a8081de478ea58a4a833226e, type: 3}
 --- !u!114 &8465520114188583785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146507,6 +146537,103 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PointingTask.PointingTaskInputHandler
   submitAction: {fileID: 9116136493208989681, guid: ecfceb69aaf2217438303cafcc21ca21, type: 3}
+--- !u!82 &8465520114188583791
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4130535619351568350}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
