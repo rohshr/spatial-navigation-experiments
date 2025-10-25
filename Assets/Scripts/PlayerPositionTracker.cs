@@ -55,6 +55,9 @@ public class PlayerPositionTracker : MonoBehaviour
             characterController.stepOffset = 0.3f;
         }
         
+        // Physics Ovelap Sphere for teleportation detection
+        
+        
         // // Initial position tracking
         // UpdatePlayerPosition();
     }
@@ -64,6 +67,7 @@ public class PlayerPositionTracker : MonoBehaviour
         ObjectCollisionDetection.OnObjectCollided += ResetTracking;
         FinishPointCheck.OnFinishPointReached += ResetTracking;
         TrialManager.OnExplorationBlockCompleted += ResetTracking;
+        InputHandler.ProceedTrialEvent += ResetTracking;
     }
     
     void OnDisable()
@@ -71,13 +75,16 @@ public class PlayerPositionTracker : MonoBehaviour
         ObjectCollisionDetection.OnObjectCollided -= ResetTracking;
         FinishPointCheck.OnFinishPointReached -= ResetTracking;
         TrialManager.OnExplorationBlockCompleted -= ResetTracking;
+        InputHandler.ProceedTrialEvent -= ResetTracking;
     }
 
     void Update()
     {
         // Update position tracking
         if (Session.instance.InTrial)
+        {
             UpdatePlayerPosition();
+        }
     }
     
     private void UpdatePlayerPosition()
@@ -94,8 +101,32 @@ public class PlayerPositionTracker : MonoBehaviour
             
         // Update distance travelled in meters
         if (currentPosition != previousPosition && previousPosition != Vector3.zero && currentPosition != Vector3.zero)
+        {
             distanceTravelled += Vector3.Distance(previousPosition, currentPosition);
+            
+        }
 
+    }
+    
+    void CheckTriggersAfterTeleport(GameObject player, float checkRadius)
+    {
+        // Allocate a buffer for results (adjust size as needed)
+        Collider[] hitColliders = new Collider[10];
+        int numHits = Physics.OverlapSphereNonAlloc(player.transform.position, checkRadius, hitColliders);
+
+        for (int i = 0; i < numHits; i++)
+        {
+            var _collider = hitColliders[i];
+            if (_collider != null && _collider.isTrigger)
+            {
+                var tile = _collider.GetComponent<FloorTile>();
+                if (tile != null)
+                {
+                    // Call your own method to handle trigger logic
+                    tile.HandlePlayerTileEnter(_collider);
+                }
+            }
+        }
     }
     
     private void ResetTracking()

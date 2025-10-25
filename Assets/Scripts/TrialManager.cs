@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.XR.CoreUtils;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 using UXF;
 
 public class TrialManager : MonoBehaviour
@@ -9,7 +12,9 @@ public class TrialManager : MonoBehaviour
     [Header("References")]
     // [SerializeField] private InstructionsController instructionsController;
     [SerializeField] private GameObject XROrigin;
+    [SerializeField] private GameObject TeleportationHandler;
     [SerializeField] private GameObject UIViewpoint;
+    
     private SessionGenerator sessionGenerator;
 
     private List<LocomotionExperimentBlock> currentTrialBlocks;
@@ -17,6 +22,9 @@ public class TrialManager : MonoBehaviour
     private int currentBlockIndex = 0;
     private LocomotionExperimentBlock currentBlock;
     private GameObject currentSpawnPoint;
+    
+    private TeleportationProvider teleportationProvider;
+    private GameObject teleportInteractor;
     
     // Events
     public static event Action OnBlocksCompleted;
@@ -28,6 +36,25 @@ public class TrialManager : MonoBehaviour
         currentTrialBlocks = sessionGenerator.GetExperimentBlocks();
         currentBlock = currentTrialBlocks[currentBlockIndex];
         SetSpawnPoint(currentBlock);
+        
+        // Cache the teleportation provider reference
+        if (TeleportationHandler == null)
+        {
+            Debug.LogError("TeleportationHandler is not assigned in the inspector.");
+            return;
+        }
+
+        teleportationProvider = TeleportationHandler.GetComponent<TeleportationProvider>();
+        if (teleportationProvider == null)
+        {
+            Debug.LogWarning("TeleportationProvider not found in scene");
+        }
+        
+        var leftController = InputHandler.GetLeftHandController();
+        if (leftController != null)
+        {
+            teleportInteractor = leftController.transform.Find("Teleport Interactor")?.gameObject;
+        }    
     }
     
     private void OnEnable()
@@ -79,7 +106,7 @@ public class TrialManager : MonoBehaviour
         }
     }
 
-    public void InstantiateExplorationTrial()
+    private void InstantiateExplorationTrial()
     {
         if (currentBlock?.GetBlockType() == "TimedExploration")
         {
@@ -101,6 +128,63 @@ public class TrialManager : MonoBehaviour
         {
             var guidedBlock = currentBlock as GuidedExplorationBlock;
             guidedBlock?.EnableNavigationGuides();
+        }
+    }
+    
+    /// <summary>
+    /// Cancels any ongoing teleportation movement
+    /// </summary>
+    public void CancelOngoingMovement()
+    {
+        if (!teleportationProvider)
+        {
+            Debug.LogWarning("TeleportationProvider reference is missing, cannot cancel ongoing movement.");
+            return;
+        }
+
+        // Disable the teleportation provider to interrupt any ongoing teleportation
+        teleportationProvider.enabled = false;
+    
+        // Wait a frame before re-enabling to ensure the teleportation state is reset
+        StartCoroutine(ReenableTeleportationProvider());
+        
+        // Disable teleport interactor in left hand controller
+        if (teleportInteractor)
+        {
+            teleportInteractor.SetActive(false);
+            StartCoroutine(ReenableInteractor());
+        }
+        else
+        {
+            Debug.LogWarning("Teleport Interactor not found in left hand controller.");
+        }
+        
+        Debug.Log("Canceled incomplete teleportation");
+
+        // // Also disable and re-enable locomotion components to reset state
+        // var locomotionProviders = XROrigin.GetComponentsInChildren<LocomotionProvider>();
+        // foreach (var provider in locomotionProviders)
+        // {
+        //     provider.enabled = false;
+        //     provider.enabled = true;
+        // }
+    }
+    
+    private IEnumerator ReenableTeleportationProvider()
+    {
+        yield return null; // Wait one frame
+        if (teleportationProvider != null)
+        {
+            teleportationProvider.enabled = true;
+        }
+    }
+    
+    private IEnumerator ReenableInteractor()
+    {
+        yield return null;
+        if (teleportInteractor != null)
+        {
+            teleportInteractor.SetActive(true);
         }
     }
 
@@ -148,6 +232,7 @@ public class TrialManager : MonoBehaviour
         Debug.Log($"Ending trial after {timeInSeconds} seconds.");
         yield return new WaitForSeconds(timeInSeconds);
         
+        CancelOngoingMovement();
         OnExplorationBlockCompleted?.Invoke(); // Trigger the event to notify that the exploration block is completed
         Session.instance.CurrentTrial.End();
     }
@@ -156,6 +241,7 @@ public class TrialManager : MonoBehaviour
     public void OnTrialCompleted()
     {
         Debug.Log("Trial completed, continuing dialog flow");
+        CancelOngoingMovement();
     }
     
     private void MoveToSpawnPoint(GameObject spawnPoint)
