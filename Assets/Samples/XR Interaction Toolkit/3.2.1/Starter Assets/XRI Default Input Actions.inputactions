@@ -3524,6 +3524,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Proceed Trial",
+                    "type": "Button",
+                    "id": "5df5dc34-fad7-4528-9f6d-53a082d1ae8f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -3700,6 +3709,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "PauseTrial",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "36bae3ae-376a-4df6-8426-d76c0b9dbbd2",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Proceed Trial",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
