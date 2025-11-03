@@ -1480,7 +1480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5813815959942667911, guid: 3178d1c41e488d040aef79e0ed60b516, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.37675
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5813815959942667911, guid: 3178d1c41e488d040aef79e0ed60b516, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3278,6 +3278,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 267958179661101311, guid: edf676eba1efa4a43b2b75a5aac54b4c, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3136521054510602990, guid: edf676eba1efa4a43b2b75a5aac54b4c, type: 3}
       propertyPath: m_Name
       value: DialogCanvas
@@ -3324,7 +3328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3953621157521284006, guid: edf676eba1efa4a43b2b75a5aac54b4c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.37675
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3953621157521284006, guid: edf676eba1efa4a43b2b75a5aac54b4c, type: 3}
       propertyPath: m_LocalRotation.w

@@ -16,7 +16,7 @@ using Canvas = UnityEngine.Canvas;
 public class VRDialogFlowManager : MonoBehaviour
 {
     [Tooltip("Specify how far in front of the user the dialog should appear.")]
-    [SerializeField] private float dialogDistance = 2.0f;
+    [SerializeField] private float dialogDistance = 1.0f;
     [Tooltip("Specify the visual scale of the dialog UI.")]
     [SerializeField] private float dialogScale = 1.0f;
     
