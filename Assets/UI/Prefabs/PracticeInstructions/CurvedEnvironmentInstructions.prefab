@@ -705,9 +705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4091649840815363893, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_text
-      value: "\u2022 You will be navigating from one end of a curved\n   corridor
-        to the other. \n\u2022 Your goal is to reach the door at the other end\n  
-        of the corridor as quickly as possible."
+      value: Navigate to the door at the other end of the corridor.
       objectReference: {fileID: 0}
     - target: {fileID: 4091649840815363893, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_fontSize
@@ -735,7 +733,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4091649840815363893, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_HorizontalAlignment
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4091649840815363893, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_hasFontAssetChanged
@@ -895,7 +893,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5077339543274052338, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -102.92
+      value: -83.56
       objectReference: {fileID: 0}
     - target: {fileID: 5085223240326603171, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_AnchorMax.y
