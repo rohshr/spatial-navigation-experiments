@@ -52,7 +52,7 @@ namespace PointingTask
         public static event Action<List<GameObject>> OnBlockEnd; // Pass the list of dialog prefabs to show at the end of each block
         public static event Action<List<GameObject>> OnTrialEnd; // Pass the list of dialog prefabs to show at the end of each trial (for object search tasks)
         public static event Action<GameObject> OnSessionEnd; // Pass the dialog prefab to show at the end of the session
-        public static event Action<GameObject> OnShowNextInstruction;
+        public static event Action<List<GameObject>> OnShowNextInstruction;
         public static event Action OnPointingEstimationSessionStart;
     
     
@@ -74,7 +74,7 @@ namespace PointingTask
             VRDialogFlowManager.OnDialogFlowComplete += StartNextTrial;
             // Subscribe to pointing task completion
             PointingEstimationTask.OnAllTasksComplete += HandleAllTasksComplete;
-            // PointingEstimationTask.OnPointingComplete += ShowNextInstructions;
+            PointingEstimationTask.OnPointingComplete += ShowNextPointingInstruction;
             // InputHandler.SkipTrialEvent += ShowNextInstructions;
         }
     
@@ -82,7 +82,7 @@ namespace PointingTask
         {
             VRDialogFlowManager.OnDialogFlowComplete -= StartNextTrial;
             PointingEstimationTask.OnAllTasksComplete -= HandleAllTasksComplete;
-            // PointingEstimationTask.OnPointingComplete -= ShowNextInstructions;
+            PointingEstimationTask.OnPointingComplete -= ShowNextPointingInstruction;
             // InputHandler.SkipTrialEvent -= ShowNextInstructions;
         }
     
@@ -177,6 +177,18 @@ namespace PointingTask
             GameObject instructionUI = CreateInstructionUI(instructionText);
             currentTaskIndex++;
             return instructionUI;
+        }
+        
+        private void ShowNextPointingInstruction()
+        {
+            if (currentTaskIndex >= objectPointingTasks.Count)
+            {
+                Debug.Log("No more pointing tasks remaining.");
+                OnSessionEnd?.Invoke(sessionEndDialogPrefab);
+                return;
+            }
+            var instructionSequence = new List<GameObject> { GetCurrentTaskInstruction() };
+            OnShowNextInstruction?.Invoke(instructionSequence);
         }
     
         private void HandleAllTasksComplete()

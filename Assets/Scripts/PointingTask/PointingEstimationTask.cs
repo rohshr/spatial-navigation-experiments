@@ -186,7 +186,7 @@ namespace PointingTask
             OnPointingComplete?.Invoke();
             
             // Move to next task
-            StartNextTask();
+            // StartNextTask();
         }
 
         /// <summary>
@@ -248,7 +248,12 @@ namespace PointingTask
             currentTrial.result["correct_angle"] = correctAngle;
             currentTrial.result["angular_error"] = angularError;
             
+            // Log distance between player and reference object
+            float distanceToReference = Vector3.Distance(xrOrigin.transform.position, currentTask.referenceObject.transform.position);
+            currentTrial.result["reference_distance"] = distanceToReference;
+            
             currentTrial.result["distance_estimate"] = 0;
+            
             // Log distance between player and target object
             float distanceToTarget = Vector3.Distance(xrOrigin.transform.position, currentTask.targetObject.transform.position);
             currentTrial.result["actual_distance"] = distanceToTarget;

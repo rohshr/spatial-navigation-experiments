@@ -81,12 +81,12 @@ public class InputHandler : MonoBehaviour
 
     void Update()
     {
-        if (proceedTrial != null && proceedTrial.action.triggered)
-        {
-            DisableLocomotion();
-            ProceedTrialEvent?.Invoke(); // Trigger the proceed trial event
-            Session.instance.CurrentTrial?.End(); // End the current trial
-        }
+        // if (proceedTrial != null && proceedTrial.action.triggered)
+        // {
+        //     DisableLocomotion();
+        //     ProceedTrialEvent?.Invoke(); // Trigger the proceed trial event
+        //     Session.instance.CurrentTrial?.End(); // End the current trial
+        // }
     }
     
     public IEnumerator WaitForProceedTrialInput()
