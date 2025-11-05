@@ -103,31 +103,30 @@ public class PlayerPositionTracker : MonoBehaviour
         if (currentPosition != previousPosition && previousPosition != Vector3.zero && currentPosition != Vector3.zero)
         {
             distanceTravelled += Vector3.Distance(previousPosition, currentPosition);
-            
         }
 
     }
     
-    void CheckTriggersAfterTeleport(GameObject player, float checkRadius)
-    {
-        // Allocate a buffer for results (adjust size as needed)
-        Collider[] hitColliders = new Collider[10];
-        int numHits = Physics.OverlapSphereNonAlloc(player.transform.position, checkRadius, hitColliders);
-
-        for (int i = 0; i < numHits; i++)
-        {
-            var _collider = hitColliders[i];
-            if (_collider != null && _collider.isTrigger)
-            {
-                var tile = _collider.GetComponent<FloorTile>();
-                if (tile != null)
-                {
-                    // Call your own method to handle trigger logic
-                    tile.HandlePlayerTileEnter(_collider);
-                }
-            }
-        }
-    }
+    // void CheckTriggersAfterTeleport(GameObject player, float checkRadius)
+    // {
+    //     // Allocate a buffer for results (adjust size as needed)
+    //     Collider[] hitColliders = new Collider[10];
+    //     int numHits = Physics.OverlapSphereNonAlloc(player.transform.position, checkRadius, hitColliders);
+    //
+    //     for (int i = 0; i < numHits; i++)
+    //     {
+    //         var _collider = hitColliders[i];
+    //         if (_collider != null && _collider.isTrigger)
+    //         {
+    //             var tile = _collider.GetComponent<FloorTile>();
+    //             if (tile != null)
+    //             {
+    //                 // Call your own method to handle trigger logic
+    //                 tile.HandlePlayerTileEnter(_collider);
+    //             }
+    //         }
+    //     }
+    // }
     
     private void ResetTracking()
     {
