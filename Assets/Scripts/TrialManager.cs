@@ -43,7 +43,7 @@ public class TrialManager : MonoBehaviour
             Debug.LogError("TeleportationHandler is not assigned in the inspector.");
             return;
         }
-
+        
         teleportationProvider = TeleportationHandler.GetComponent<TeleportationProvider>();
         if (teleportationProvider == null)
         {
@@ -141,7 +141,7 @@ public class TrialManager : MonoBehaviour
             Debug.LogWarning("TeleportationProvider reference is missing, cannot cancel ongoing movement.");
             return;
         }
-
+    
         // Disable the teleportation provider to interrupt any ongoing teleportation
         teleportationProvider.enabled = false;
     
@@ -160,7 +160,7 @@ public class TrialManager : MonoBehaviour
         }
         
         Debug.Log("Canceled incomplete teleportation");
-
+    
         // // Also disable and re-enable locomotion components to reset state
         // var locomotionProviders = XROrigin.GetComponentsInChildren<LocomotionProvider>();
         // foreach (var provider in locomotionProviders)
@@ -232,7 +232,7 @@ public class TrialManager : MonoBehaviour
         Debug.Log($"Ending trial after {timeInSeconds} seconds.");
         yield return new WaitForSeconds(timeInSeconds);
         
-        CancelOngoingMovement();
+        // CancelOngoingMovement();
         OnExplorationBlockCompleted?.Invoke(); // Trigger the event to notify that the exploration block is completed
         Session.instance.CurrentTrial.End();
     }
@@ -241,12 +241,16 @@ public class TrialManager : MonoBehaviour
     public void OnTrialCompleted()
     {
         Debug.Log("Trial completed, continuing dialog flow");
-        CancelOngoingMovement();
+        // CancelOngoingMovement();
     }
     
     private void MoveToSpawnPoint(GameObject spawnPoint)
     {
-        StartCoroutine(MoveToSpawnPointCoroutine(spawnPoint));
+        XROrigin.transform.SetPositionAndRotation(
+            spawnPoint.transform.position,
+            spawnPoint.transform.rotation
+        );
+        Debug.Log($"Moved to spawn point: {spawnPoint.name}");
     }
     
     private IEnumerator MoveToSpawnPointCoroutine(GameObject spawnPoint)
