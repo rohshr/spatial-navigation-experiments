@@ -10409,6 +10409,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4378647236663882706, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
+      propertyPath: m_SnapTurn
+      value: 
+      objectReference: {fileID: -7374733323251553461, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    - target: {fileID: 4378647236663882706, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
       propertyPath: m_UIScroll
       value: 
       objectReference: {fileID: 0}

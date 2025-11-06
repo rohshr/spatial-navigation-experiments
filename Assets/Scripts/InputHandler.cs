@@ -63,7 +63,7 @@ public class InputHandler : MonoBehaviour
         TrialManager.OnExplorationBlockCompleted += DisableLocomotion; // Subscribe to the event when the exploration block is completed
         ExperimenterControlScript.OnTrialSkipped += DisableLocomotion; // Subscribe to the event when the session is ended
         ObjectCollisionDetection.OnObjectCollided += DisableLocomotion; // Subscribe to the event when the object collision is detected
-        PointingEstimationSessionGenerator.OnPointingEstimationSessionStart += DisableLocomotion; // Subscribe to the event when the session starts
+        PointingEstimationSessionGenerator.OnPointingEstimationSessionStart += EnableRotationOnly;
     }
 
     private void OnDisable()
@@ -76,7 +76,7 @@ public class InputHandler : MonoBehaviour
         TrialManager.OnExplorationBlockCompleted -= DisableLocomotion; // Unsubscribe from the event when the exploration block is completed       
         ExperimenterControlScript.OnTrialSkipped -= DisableLocomotion; // Unsubscribe from the event when the session is ended
         ObjectCollisionDetection.OnObjectCollided -= DisableLocomotion; // Unsubscribe from the event when the object collision is detected
-        PointingEstimationSessionGenerator.OnPointingEstimationSessionStart -= DisableLocomotion; // Unsubscribe from the event when the session starts
+        PointingEstimationSessionGenerator.OnPointingEstimationSessionStart -= EnableRotationOnly; // Unsubscribe from the event when the session starts
     }
 
     void Update()
@@ -137,6 +137,17 @@ public class InputHandler : MonoBehaviour
         if (xrLocomotionMediator.activeSelf)
         {
             xrLocomotionMediator.SetActive(false); // Disable the XRLocomotionMediator
+        }
+    }
+
+    private void EnableRotationOnly()
+    {
+        EnableLocomotion();
+        // Enable only the turn controls in the XRLocomotionMediator
+        // Loop through all children and disable all except "Turn"
+        foreach (Transform child in xrLocomotionMediator.transform)
+        {
+            child.gameObject.SetActive(child.name == "Turn");
         }
     }
     
