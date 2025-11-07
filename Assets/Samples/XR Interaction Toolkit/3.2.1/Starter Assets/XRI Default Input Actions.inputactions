@@ -3593,17 +3593,6 @@
                 },
                 {
                     "name": "",
-                    "id": "1b7142ed-d3b0-44e7-a8a0-409f2dd06143",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Proceed",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "c7bb7d9b-3deb-4616-8903-fe057fde69e5",
                     "path": "<ValveIndexController>/trigger",
                     "interactions": "Press(pressPoint=0.7)",
@@ -3704,7 +3693,7 @@
                 {
                     "name": "",
                     "id": "37202c40-0a25-459b-8f9e-3541a7c42b11",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
