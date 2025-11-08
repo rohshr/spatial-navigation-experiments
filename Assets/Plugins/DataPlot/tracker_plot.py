@@ -773,10 +773,28 @@ class UXFTrackerPlotter:
         # Restore original output directory
         self.output_directory = original_output_dir
 
+def get_most_recent_participant_folder():
+    """Get the most recent participant folder based on modification time"""
+    base_data_path = r"C:\Users\cogni\Documents\vr-experiment-data\vr_locomotion"
+    participant_folders = [f for f in os.listdir(base_data_path) 
+                        if os.path.isdir(os.path.join(base_data_path, f))]
+    
+    if not participant_folders:
+        print("No participant folders found!")
+        return None
+    
+    # Sort folders by modification time
+    participant_folders.sort(key=lambda f: os.path.getmtime(os.path.join(base_data_path, f)), reverse=True)
+    
+    most_recent_folder = participant_folders[0]
+    print(f"Most recent participant folder: {most_recent_folder}")
+    return most_recent_folder
+
 # Usage example
 def main():
     # Set your data directory path
-    participant_id = input("Enter participant ID (same ID as folder name for participant): ")
+    participant_id = input("Enter participant ID (same ID as folder name for participant) (Default: most recent): ") or get_most_recent_participant_folder()
+
     session_id = input("Enter session ID (e.g., S001) (Default: S001): ") or "S001"
     base_data_path = r"C:\Users\cogni\Documents\vr-experiment-data\vr_locomotion"
     data_directory = os.path.join(base_data_path, participant_id, session_id.capitalize(), "trackers")
