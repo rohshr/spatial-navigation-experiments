@@ -19,6 +19,10 @@ public class FinishPointCheck : MonoBehaviour
         if (!Session.instance.InTrial) return;
         
         Debug.Log("Player reached finish point");
+        TimeSpan finalTime = GameStopwatch.StopStopwatch();
+        Debug.Log($"Total time: {finalTime.TotalSeconds} seconds");
+        Session.instance.CurrentTrial.result["total_exploration_time"] = finalTime.TotalSeconds;
+        
         if (sessionGenerator.GetCurrentBlockType() == "GuidedExploration")
         {
             Debug.Log("Disabling navigation guides and finish point.");

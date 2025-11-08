@@ -830,6 +830,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6984213208406890749, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
   m_PrefabInstance: {fileID: 311137096}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &311137100 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7406562009004157276, guid: ab8749f8cda95f94a8aa85ae98275aed, type: 3}
+  m_PrefabInstance: {fileID: 311137096}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311137098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01f69dc1cb084aa42b2f2f8cd87bc770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &347868083
 GameObject:
   m_ObjectHideFlags: 0
@@ -2278,6 +2289,50 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 361b16fcf4c408349b6a0cfbcf2b66ad, type: 3}
+--- !u!1 &1336791074
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1336791076}
+  - component: {fileID: 1336791075}
+  m_Layer: 0
+  m_Name: GameStopwatch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1336791075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336791074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0eb5b2dd36367944ace127af89bb53f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameStopwatch
+--- !u!4 &1336791076
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336791074}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.3053, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1353162801 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2077858769916290202, guid: f78ebfe796ecd0b4cbaa6f98f5352404, type: 3}
@@ -2603,11 +2658,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8085443599274712418, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
       propertyPath: 'experimentBlocks.Array.data[0]'
-      value: 4306233002047570260
+      value: 4306233002047570257
       objectReference: {fileID: 0}
     - target: {fileID: 8085443599274712418, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
       propertyPath: 'experimentBlocks.Array.data[1]'
-      value: 4306233002047570257
+      value: 4306233002047570260
       objectReference: {fileID: 0}
     - target: {fileID: 8085443599274712418, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
       propertyPath: 'experimentBlocks.Array.data[2]'
@@ -3015,6 +3070,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPositionTracker
   xrOrigin: {fileID: 7592203504741225942}
+  teleportationProvider: {fileID: 311137100}
   floorTileTag: FloorTile
   showDebugInfo: 1
 --- !u!1 &1629718725 stripped
@@ -4656,8 +4712,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
+      propertyPath: customHeaders.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: settingsToLog.Array.size
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
+      propertyPath: 'customHeaders.Array.data[0]'
+      value: total_exploration_time
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: 'settingsToLog.Array.data[0]'
@@ -4989,3 +5053,4 @@ SceneRoots:
   - {fileID: 375714751}
   - {fileID: 1136359956}
   - {fileID: 717923701}
+  - {fileID: 1336791076}

@@ -13,7 +13,7 @@ public class TrialManager : MonoBehaviour
     // [SerializeField] private InstructionsController instructionsController;
     [SerializeField] private GameObject XROrigin;
     [SerializeField] private GameObject TeleportationHandler;
-    [SerializeField] private GameObject UIViewpoint;
+    // [SerializeField] private GameObject UIViewpoint;
     
     private SessionGenerator sessionGenerator;
 
@@ -120,7 +120,8 @@ public class TrialManager : MonoBehaviour
             var timeForExploration = timeTrialBlock.GetTimeForExplorationInSeconds();
             Debug.Log("Starting timed exploration...");
             Debug.Log($"Time for exploration: {timeForExploration} seconds.");
-            Session.instance.BeginNextTrial();
+            // Session.instance.BeginNextTrial();
+            GameStopwatch.StartStopwatch();
             StartCoroutine(EndTrialAfterDelay(timeForExploration)); // Start the timer for the exploration block (after the object search block)
         }
         
@@ -193,6 +194,7 @@ public class TrialManager : MonoBehaviour
         // Determine the appropriate spawn point based on block type
         GameObject spawnPoint = GetAppropriateSpawnPoint();
         MoveToSpawnPoint(spawnPoint);
+        Session.instance.BeginNextTrial();
         InstantiateExplorationTrial();
     }
     
@@ -231,6 +233,10 @@ public class TrialManager : MonoBehaviour
     {
         Debug.Log($"Ending trial after {timeInSeconds} seconds.");
         yield return new WaitForSeconds(timeInSeconds);
+        
+        TimeSpan finalTime = GameStopwatch.StopStopwatch();
+        Debug.Log($"Total exploration time: {finalTime.TotalSeconds} seconds");
+        Session.instance.CurrentTrial.result["total_exploration_time"] = finalTime.TotalSeconds;
         
         // CancelOngoingMovement();
         OnExplorationBlockCompleted?.Invoke(); // Trigger the event to notify that the exploration block is completed

@@ -215,6 +215,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PrototypeMap
       objectReference: {fileID: 0}
+    - target: {fileID: 3794954169302928909, guid: fc5a676d2c90b3d4f8a22e369c35950d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4603156116648498359, guid: fc5a676d2c90b3d4f8a22e369c35950d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -291.391
@@ -1606,7 +1610,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: customHeaders.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: settingsToLog.Array.size
@@ -1618,10 +1622,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: 'customHeaders.Array.data[1]'
-      value: tile_changes
+      value: total_exploration_time
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: 'customHeaders.Array.data[2]'
+      value: tile_changes
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
+      propertyPath: 'customHeaders.Array.data[3]'
       value: tile_travel_sequence
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
@@ -3059,7 +3067,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8085443599274712418, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
       propertyPath: managedReferences[5957200296150565055].timeForExploration
-      value: 0.2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8085443599274712418, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
       propertyPath: managedReferences[9143267746587082986].timeForExploration
@@ -4038,6 +4046,50 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4008650712188144383, guid: af77953132a2bb047bb2eba2a770aaf4, type: 3}
   m_PrefabInstance: {fileID: 3692822013738086976}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2129398728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2129398730}
+  - component: {fileID: 2129398729}
+  m_Layer: 0
+  m_Name: GameStopwatch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2129398729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129398728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0eb5b2dd36367944ace127af89bb53f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameStopwatch
+--- !u!4 &2129398730
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129398728}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -105.35712, y: 4.082, z: -0.23281}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2305275134530613162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7542,3 +7594,4 @@ SceneRoots:
   - {fileID: 519625447}
   - {fileID: 1100014834}
   - {fileID: 1500392206}
+  - {fileID: 2129398730}

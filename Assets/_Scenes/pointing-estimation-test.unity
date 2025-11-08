@@ -50855,7 +50855,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5075208088239307515, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6497813026224163051, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
       propertyPath: leftHandController
