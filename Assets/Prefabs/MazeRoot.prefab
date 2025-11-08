@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1516363832640973984}
   - component: {fileID: 327135748116814594}
   m_Layer: 8
-  m_Name: FloorTile_5_0_3
+  m_Name: (5, 3)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,8 +123,9 @@ GameObject:
   - component: {fileID: 4647581153678366834}
   - component: {fileID: 487919276631047141}
   - component: {fileID: 1864218645352171483}
+  - component: {fileID: 83659587400980248}
   m_Layer: 8
-  m_Name: FloorTile_0_0_7
+  m_Name: (0, 7)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -222,6 +223,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &83659587400980248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265709387750579614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &271353296074091595
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,7 +249,7 @@ GameObject:
   - component: {fileID: 523827761688513020}
   - component: {fileID: 3450590599870812655}
   m_Layer: 8
-  m_Name: FloorTile_1_0_1
+  m_Name: (1, 1)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -403,7 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8d3dfed628fb341a0bee6e8a66a511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectCollisionDetection
-  XROrigin: {fileID: 0}
+  xrOrigin: {fileID: 0}
 --- !u!1 &339869515405817332
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,8 +430,9 @@ GameObject:
   - component: {fileID: 4216295722125542286}
   - component: {fileID: 184438265449688394}
   - component: {fileID: 3489805200793468678}
+  - component: {fileID: 1239471614423198513}
   m_Layer: 8
-  m_Name: FloorTile_5_0_1
+  m_Name: (5, 1)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -515,6 +530,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1239471614423198513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339869515405817332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &359741238621595211
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,8 +555,9 @@ GameObject:
   - component: {fileID: 6747402135216182238}
   - component: {fileID: 5081799777659173729}
   - component: {fileID: 8745655410430342133}
+  - component: {fileID: 4084630918156634895}
   m_Layer: 8
-  m_Name: FloorTile_8_0_7
+  m_Name: (8, 7)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -626,6 +655,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4084630918156634895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359741238621595211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &396806227855431180
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,8 +837,9 @@ GameObject:
   - component: {fileID: 2612411798428984942}
   - component: {fileID: 9084267237438990705}
   - component: {fileID: 3935017103855100863}
+  - component: {fileID: 1386217762196430219}
   m_Layer: 8
-  m_Name: FloorTile_10_0_5
+  m_Name: (10, 5)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -894,6 +937,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1386217762196430219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535521410377028301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &558589895325628408
 GameObject:
   m_ObjectHideFlags: 0
@@ -1018,8 +1074,9 @@ GameObject:
   - component: {fileID: 6015353023639106166}
   - component: {fileID: 911821636715914273}
   - component: {fileID: 617596106361629541}
+  - component: {fileID: 3093381712658291376}
   m_Layer: 8
-  m_Name: FloorTile_3_0_6
+  m_Name: (3, 6)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1117,6 +1174,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3093381712658291376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 578699888340929471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &602015051019324182
 GameObject:
   m_ObjectHideFlags: 0
@@ -1130,7 +1200,7 @@ GameObject:
   - component: {fileID: 2266432568831167642}
   - component: {fileID: 1696956166043907269}
   m_Layer: 8
-  m_Name: FloorTile_4_0_7
+  m_Name: (4, 7)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1241,7 +1311,7 @@ GameObject:
   - component: {fileID: 1018704424667465117}
   - component: {fileID: 7832705355806504576}
   m_Layer: 8
-  m_Name: FloorTile_1_0_0
+  m_Name: (1, 0)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1352,7 +1422,7 @@ GameObject:
   - component: {fileID: 5091724931778995185}
   - component: {fileID: 4538371549091605730}
   m_Layer: 8
-  m_Name: FloorTile_6_0_3
+  m_Name: (6, 3)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1462,8 +1532,9 @@ GameObject:
   - component: {fileID: 5125889485232343173}
   - component: {fileID: 4057254492792711794}
   - component: {fileID: 5204671629521169542}
+  - component: {fileID: 301863649295288007}
   m_Layer: 8
-  m_Name: FloorTile_8_0_8
+  m_Name: (8, 8)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1561,6 +1632,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &301863649295288007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735623197233340307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &819174042792767129
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,8 +1657,9 @@ GameObject:
   - component: {fileID: 9037028839283154282}
   - component: {fileID: 2028554827856685249}
   - component: {fileID: 7809154661920276167}
+  - component: {fileID: 2282210521793291239}
   m_Layer: 8
-  m_Name: FloorTile_5_0_10
+  m_Name: (5, 10)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1672,6 +1757,85 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2282210521793291239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819174042792767129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
+--- !u!1 &852352038175195646
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4048171557255780827}
+  - component: {fileID: 4749282179053327486}
+  - component: {fileID: 6113268453510140210}
+  m_Layer: 0
+  m_Name: SpawnPoint3
+  m_TagString: SpawnPoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4048171557255780827
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852352038175195646}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.0000002, y: -1, z: 1.35}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8625373827207377296}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4749282179053327486
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852352038175195646}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6113268453510140210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852352038175195646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91de7d8167d3d14fa9101edaae37207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &908812060160152141
 GameObject:
   m_ObjectHideFlags: 0
@@ -1685,7 +1849,7 @@ GameObject:
   - component: {fileID: 3708832107977934523}
   - component: {fileID: 3140011551868137573}
   m_Layer: 8
-  m_Name: FloorTile_4_0_9
+  m_Name: (4, 9)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1795,8 +1959,9 @@ GameObject:
   - component: {fileID: 929482495991957297}
   - component: {fileID: 3975382929449772073}
   - component: {fileID: 2208715466080639560}
+  - component: {fileID: 6765257953828216161}
   m_Layer: 8
-  m_Name: FloorTile_6_0_9
+  m_Name: (6, 9)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1894,6 +2059,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6765257953828216161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931418996062883716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &1002636444495976670
 GameObject:
   m_ObjectHideFlags: 0
@@ -1906,8 +2084,9 @@ GameObject:
   - component: {fileID: 2171639050478967718}
   - component: {fileID: 8253303024658901331}
   - component: {fileID: 1756811965504268172}
+  - component: {fileID: 709413184057686169}
   m_Layer: 8
-  m_Name: FloorTile_10_0_9
+  m_Name: (10, 9)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2005,6 +2184,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &709413184057686169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002636444495976670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &1100631487864505477
 GameObject:
   m_ObjectHideFlags: 0
@@ -2083,8 +2275,9 @@ GameObject:
   - component: {fileID: 6540470130396198255}
   - component: {fileID: 1310415212191332276}
   - component: {fileID: 2883202371588294724}
+  - component: {fileID: 6723959227064775732}
   m_Layer: 8
-  m_Name: FloorTile_10_0_4
+  m_Name: (10, 4)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2182,6 +2375,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6723959227064775732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269889395297169608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &1437083258726783866
 GameObject:
   m_ObjectHideFlags: 0
@@ -2195,7 +2401,7 @@ GameObject:
   - component: {fileID: 5883433682504236803}
   - component: {fileID: 8579740608080972300}
   m_Layer: 8
-  m_Name: FloorTile_3_0_4
+  m_Name: (3, 4)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2417,7 +2623,7 @@ GameObject:
   - component: {fileID: 54717602626321698}
   - component: {fileID: 7766222195777119532}
   m_Layer: 8
-  m_Name: FloorTile_9_0_6
+  m_Name: (9, 6)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2527,8 +2733,9 @@ GameObject:
   - component: {fileID: 7859740608223472805}
   - component: {fileID: 1027170264735206977}
   - component: {fileID: 631467322542184631}
+  - component: {fileID: 6211878916640972918}
   m_Layer: 8
-  m_Name: FloorTile_10_0_10
+  m_Name: (10, 10)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2626,6 +2833,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6211878916640972918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496219611086201492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &1563282838315756900
 GameObject:
   m_ObjectHideFlags: 0
@@ -2639,7 +2859,7 @@ GameObject:
   - component: {fileID: 7732352368852474844}
   - component: {fileID: 6395234441544205384}
   m_Layer: 8
-  m_Name: FloorTile_8_0_10
+  m_Name: (8, 10)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2749,8 +2969,9 @@ GameObject:
   - component: {fileID: 5937775736366935359}
   - component: {fileID: 1879901646043395667}
   - component: {fileID: 3864586138644095009}
+  - component: {fileID: 7640358643115777448}
   m_Layer: 8
-  m_Name: FloorTile_4_0_4
+  m_Name: (4, 4)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2848,6 +3069,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7640358643115777448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563409583041057611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &1598296874864448459
 GameObject:
   m_ObjectHideFlags: 0
@@ -2860,8 +3094,9 @@ GameObject:
   - component: {fileID: 3321102440724893617}
   - component: {fileID: 4303147220225186862}
   - component: {fileID: 241885053834424080}
+  - component: {fileID: 903093391908330480}
   m_Layer: 8
-  m_Name: FloorTile_4_0_2
+  m_Name: (4, 2)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2959,6 +3194,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &903093391908330480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598296874864448459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &1653046996360646732
 GameObject:
   m_ObjectHideFlags: 0
@@ -2971,8 +3219,9 @@ GameObject:
   - component: {fileID: 951514274318817163}
   - component: {fileID: 2446793259276708887}
   - component: {fileID: 4879171120023470107}
+  - component: {fileID: 5166072471471199489}
   m_Layer: 8
-  m_Name: FloorTile_9_0_7
+  m_Name: (9, 7)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3070,6 +3319,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5166072471471199489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653046996360646732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &1663184441447047212
 GameObject:
   m_ObjectHideFlags: 0
@@ -3194,8 +3456,9 @@ GameObject:
   - component: {fileID: 79705196554703393}
   - component: {fileID: 2478579985257752891}
   - component: {fileID: 1707337096512752103}
+  - component: {fileID: 5093214560892082529}
   m_Layer: 8
-  m_Name: FloorTile_10_0_8
+  m_Name: (10, 8)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3293,6 +3556,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5093214560892082529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712729169306628191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &1743990029632185562
 GameObject:
   m_ObjectHideFlags: 0
@@ -3306,7 +3582,7 @@ GameObject:
   - component: {fileID: 968428018318457373}
   - component: {fileID: 7932501600200731395}
   m_Layer: 8
-  m_Name: FloorTile_5_0_4
+  m_Name: (5, 4)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3417,7 +3693,7 @@ GameObject:
   - component: {fileID: 6865280531411299951}
   - component: {fileID: 1779707425421428041}
   m_Layer: 8
-  m_Name: FloorTile_3_0_3
+  m_Name: (3, 3)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3640,7 +3916,7 @@ GameObject:
   - component: {fileID: 682132086591527445}
   - component: {fileID: 3156363493642208033}
   m_Layer: 8
-  m_Name: FloorTile_7_0_8
+  m_Name: (7, 8)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3750,8 +4026,9 @@ GameObject:
   - component: {fileID: 4451335659063037543}
   - component: {fileID: 2031234110990209391}
   - component: {fileID: 7594702168394626366}
+  - component: {fileID: 5909687540767107925}
   m_Layer: 8
-  m_Name: FloorTile_6_0_6
+  m_Name: (6, 6)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3849,6 +4126,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5909687540767107925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022303357096422496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &2162452085674285239
 GameObject:
   m_ObjectHideFlags: 0
@@ -4030,7 +4320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8d3dfed628fb341a0bee6e8a66a511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectCollisionDetection
-  XROrigin: {fileID: 0}
+  xrOrigin: {fileID: 0}
 --- !u!1 &2252041841931269274
 GameObject:
   m_ObjectHideFlags: 0
@@ -4044,7 +4334,7 @@ GameObject:
   - component: {fileID: 6693230827328576472}
   - component: {fileID: 2757703012137091323}
   m_Layer: 8
-  m_Name: FloorTile_4_0_6
+  m_Name: (4, 6)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4154,8 +4444,9 @@ GameObject:
   - component: {fileID: 917828111794936572}
   - component: {fileID: 3702760509342821589}
   - component: {fileID: 6545430659634528316}
+  - component: {fileID: 4730498662222217934}
   m_Layer: 8
-  m_Name: FloorTile_0_0_3
+  m_Name: (0, 3)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4253,6 +4544,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4730498662222217934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2285860018143632046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &2320025563759369664
 GameObject:
   m_ObjectHideFlags: 0
@@ -4323,7 +4627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8d3dfed628fb341a0bee6e8a66a511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectCollisionDetection
-  XROrigin: {fileID: 0}
+  xrOrigin: {fileID: 0}
 --- !u!1 &2444856870181773214
 GameObject:
   m_ObjectHideFlags: 0
@@ -4337,7 +4641,7 @@ GameObject:
   - component: {fileID: 7585634738746156506}
   - component: {fileID: 514011478934224123}
   m_Layer: 8
-  m_Name: FloorTile_9_0_2
+  m_Name: (9, 2)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4448,7 +4752,7 @@ GameObject:
   - component: {fileID: 1951010230635374701}
   - component: {fileID: 3531539318560712449}
   m_Layer: 8
-  m_Name: FloorTile_1_0_8
+  m_Name: (1, 8)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4727,7 +5031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8d3dfed628fb341a0bee6e8a66a511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectCollisionDetection
-  XROrigin: {fileID: 0}
+  xrOrigin: {fileID: 0}
 --- !u!1 &2764579906956533985
 GameObject:
   m_ObjectHideFlags: 0
@@ -4741,7 +5045,7 @@ GameObject:
   - component: {fileID: 1198606040989925102}
   - component: {fileID: 7646623512044965678}
   m_Layer: 8
-  m_Name: FloorTile_5_0_9
+  m_Name: (5, 9)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4852,7 +5156,7 @@ GameObject:
   - component: {fileID: 7089108199100634562}
   - component: {fileID: 1542606703603183558}
   m_Layer: 8
-  m_Name: FloorTile_9_0_3
+  m_Name: (9, 3)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4962,8 +5266,9 @@ GameObject:
   - component: {fileID: 8876569968887059076}
   - component: {fileID: 6233245459561655344}
   - component: {fileID: 9014924835482380779}
+  - component: {fileID: 659818551199294784}
   m_Layer: 8
-  m_Name: FloorTile_9_0_1
+  m_Name: (9, 1)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5061,6 +5366,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &659818551199294784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2805024745649290208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &2834838446512760763
 GameObject:
   m_ObjectHideFlags: 0
@@ -5073,8 +5391,9 @@ GameObject:
   - component: {fileID: 353761377090804449}
   - component: {fileID: 105942629448791588}
   - component: {fileID: 5147847077298083288}
+  - component: {fileID: 2254568305358088592}
   m_Layer: 8
-  m_Name: FloorTile_7_0_5
+  m_Name: (7, 5)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5172,6 +5491,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2254568305358088592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2834838446512760763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &2861853223491566631
 GameObject:
   m_ObjectHideFlags: 0
@@ -5184,7 +5516,7 @@ GameObject:
   - component: {fileID: 9169114234653898668}
   - component: {fileID: 3794168320293529664}
   m_Layer: 0
-  m_Name: SpawnPointContinuous
+  m_Name: SpawnPoint
   m_TagString: SpawnPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5199,8 +5531,8 @@ Transform:
   m_GameObject: {fileID: 2861853223491566631}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: -1, z: -4.378}
-  m_LocalScale: {x: 1, y: 1, z: 0.5}
+  m_LocalPosition: {x: -5, y: -1, z: -4.68}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8625373827207377296}
@@ -5308,7 +5640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8d3dfed628fb341a0bee6e8a66a511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectCollisionDetection
-  XROrigin: {fileID: 0}
+  xrOrigin: {fileID: 0}
 --- !u!1 &2925791849750586464
 GameObject:
   m_ObjectHideFlags: 0
@@ -5321,8 +5653,9 @@ GameObject:
   - component: {fileID: 3762606562968924632}
   - component: {fileID: 8766899412262582496}
   - component: {fileID: 1258705522053637286}
+  - component: {fileID: 5718211848031077024}
   m_Layer: 8
-  m_Name: FloorTile_10_0_2
+  m_Name: (10, 2)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5420,6 +5753,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5718211848031077024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2925791849750586464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &2954306062537996121
 GameObject:
   m_ObjectHideFlags: 0
@@ -5433,7 +5779,7 @@ GameObject:
   - component: {fileID: 802396563836976303}
   - component: {fileID: 6164897369859012292}
   m_Layer: 8
-  m_Name: FloorTile_2_0_3
+  m_Name: (2, 3)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5531,6 +5877,72 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &2967560710184305867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5213119889141094187}
+  - component: {fileID: 4817569101058377128}
+  - component: {fileID: 1126129051302086465}
+  m_Layer: 0
+  m_Name: SpawnPoint11
+  m_TagString: SpawnPoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5213119889141094187
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2967560710184305867}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 5.01, y: -1, z: 3.38}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8625373827207377296}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!65 &4817569101058377128
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2967560710184305867}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1126129051302086465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2967560710184305867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91de7d8167d3d14fa9101edaae37207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2976591375152544003
 GameObject:
   m_ObjectHideFlags: 0
@@ -5686,8 +6098,9 @@ GameObject:
   - component: {fileID: 352618907667450867}
   - component: {fileID: 36808899078821919}
   - component: {fileID: 1685364953502531923}
+  - component: {fileID: 1189900052925825936}
   m_Layer: 8
-  m_Name: FloorTile_0_0_8
+  m_Name: (0, 8)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5785,6 +6198,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1189900052925825936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3022037489203139900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &3151938282335893131
 GameObject:
   m_ObjectHideFlags: 0
@@ -5910,7 +6336,7 @@ GameObject:
   - component: {fileID: 3490735683038444148}
   - component: {fileID: 8530801206967299844}
   m_Layer: 8
-  m_Name: FloorTile_7_0_6
+  m_Name: (7, 6)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6021,7 +6447,7 @@ GameObject:
   - component: {fileID: 1546055287431787491}
   - component: {fileID: 9062200863137534541}
   m_Layer: 8
-  m_Name: FloorTile_2_0_4
+  m_Name: (2, 4)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6131,8 +6557,9 @@ GameObject:
   - component: {fileID: 1832160373798428606}
   - component: {fileID: 8676624691819201527}
   - component: {fileID: 5980501846120979601}
+  - component: {fileID: 4397798564647025373}
   m_Layer: 8
-  m_Name: FloorTile_4_0_5
+  m_Name: (4, 5)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6230,6 +6657,85 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4397798564647025373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3350334685586330486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
+--- !u!1 &3436820092842725324
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2785968212827014894}
+  - component: {fileID: 2962269404725148642}
+  - component: {fileID: 7050117445447361442}
+  m_Layer: 0
+  m_Name: SpawnPoint5
+  m_TagString: SpawnPoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2785968212827014894
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3436820092842725324}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.01, y: -1, z: 3.38}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8625373827207377296}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2962269404725148642
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3436820092842725324}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7050117445447361442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3436820092842725324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91de7d8167d3d14fa9101edaae37207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3457959253322786566
 GameObject:
   m_ObjectHideFlags: 0
@@ -6243,7 +6749,7 @@ GameObject:
   - component: {fileID: 6253551874507926883}
   - component: {fileID: 434324430209985526}
   m_Layer: 8
-  m_Name: FloorTile_1_0_7
+  m_Name: (1, 7)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6466,7 +6972,7 @@ GameObject:
   - component: {fileID: 7558139374434350614}
   - component: {fileID: 7194569668225182773}
   m_Layer: 8
-  m_Name: FloorTile_8_0_3
+  m_Name: (8, 3)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6564,6 +7070,72 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &3519290528414070172
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2160565281743189986}
+  - component: {fileID: 1985560411032709410}
+  - component: {fileID: 7433893943747331313}
+  m_Layer: 0
+  m_Name: SpawnPoint2
+  m_TagString: SpawnPoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2160565281743189986
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3519290528414070172}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.95, y: -1, z: 0.33}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8625373827207377296}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1985560411032709410
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3519290528414070172}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7433893943747331313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3519290528414070172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91de7d8167d3d14fa9101edaae37207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3836662601388195383
 GameObject:
   m_ObjectHideFlags: 0
@@ -6576,8 +7148,9 @@ GameObject:
   - component: {fileID: 6597183654647878901}
   - component: {fileID: 5826591256244663321}
   - component: {fileID: 6115549555148393880}
+  - component: {fileID: 3577846890649602434}
   m_Layer: 8
-  m_Name: FloorTile_4_0_1
+  m_Name: (4, 1)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6675,6 +7248,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3577846890649602434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3836662601388195383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &3988577601557519645
 GameObject:
   m_ObjectHideFlags: 0
@@ -6687,8 +7273,9 @@ GameObject:
   - component: {fileID: 4716920717616822913}
   - component: {fileID: 1007301380432124519}
   - component: {fileID: 3604195234334391530}
+  - component: {fileID: 6149663969347726963}
   m_Layer: 8
-  m_Name: FloorTile_5_0_0
+  m_Name: (5, 0)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6786,6 +7373,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6149663969347726963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3988577601557519645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &4072137288849336006
 GameObject:
   m_ObjectHideFlags: 0
@@ -6799,7 +7399,7 @@ GameObject:
   - component: {fileID: 3583634288227269540}
   - component: {fileID: 8699614239000669246}
   m_Layer: 8
-  m_Name: FloorTile_2_0_7
+  m_Name: (2, 7)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6910,7 +7510,7 @@ GameObject:
   - component: {fileID: 5791153097062091263}
   - component: {fileID: 8141193941191247603}
   m_Layer: 8
-  m_Name: FloorTile_9_0_10
+  m_Name: (9, 10)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7020,8 +7620,9 @@ GameObject:
   - component: {fileID: 4572875265298990266}
   - component: {fileID: 1808594078687778860}
   - component: {fileID: 7142513025937357485}
+  - component: {fileID: 1282819140286496559}
   m_Layer: 8
-  m_Name: FloorTile_6_0_7
+  m_Name: (6, 7)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7119,6 +7720,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1282819140286496559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4215876263631259991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &4247735646850777681
 GameObject:
   m_ObjectHideFlags: 0
@@ -7132,7 +7746,7 @@ GameObject:
   - component: {fileID: 4049242715350119616}
   - component: {fileID: 106578627497437433}
   m_Layer: 8
-  m_Name: FloorTile_3_0_0
+  m_Name: (3, 0)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7540,7 +8154,7 @@ GameObject:
   - component: {fileID: 808187280482895336}
   - component: {fileID: 7287263571217718351}
   m_Layer: 8
-  m_Name: FloorTile_2_0_8
+  m_Name: (2, 8)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7651,7 +8265,7 @@ GameObject:
   - component: {fileID: 4189184788605054745}
   - component: {fileID: 368939589140117784}
   m_Layer: 8
-  m_Name: FloorTile_8_0_2
+  m_Name: (8, 2)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7874,7 +8488,7 @@ GameObject:
   - component: {fileID: 9207338475218807101}
   - component: {fileID: 5053931076544580107}
   m_Layer: 8
-  m_Name: FloorTile_1_0_9
+  m_Name: (1, 9)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8042,7 +8656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8d3dfed628fb341a0bee6e8a66a511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectCollisionDetection
-  XROrigin: {fileID: 0}
+  xrOrigin: {fileID: 0}
 --- !u!1 &4596487597492574978
 GameObject:
   m_ObjectHideFlags: 0
@@ -8056,8 +8670,9 @@ GameObject:
   - component: {fileID: 316391993727275713}
   - component: {fileID: 3270101413847793958}
   - component: {fileID: 4919952124868642065}
+  - component: {fileID: 1907805789396049681}
   m_Layer: 8
-  m_Name: FloorTile_0_0_0
+  m_Name: (0, 0)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8186,6 +8801,19 @@ MonoBehaviour:
     (-109.01, 0.20, -8.39)'
   measureDistanceTo: {fileID: 0}
   distanceDisplay: Assign a GameObject above to measure distance
+--- !u!114 &1907805789396049681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4596487597492574978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &4734987056726943655
 GameObject:
   m_ObjectHideFlags: 0
@@ -8198,8 +8826,9 @@ GameObject:
   - component: {fileID: 4940138209498877135}
   - component: {fileID: 2806645945566219681}
   - component: {fileID: 3446859386986019769}
+  - component: {fileID: 950759294706856713}
   m_Layer: 8
-  m_Name: FloorTile_0_0_10
+  m_Name: (0, 10)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8297,6 +8926,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &950759294706856713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4734987056726943655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &4814846045050138326
 GameObject:
   m_ObjectHideFlags: 0
@@ -8367,7 +9009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8d3dfed628fb341a0bee6e8a66a511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectCollisionDetection
-  XROrigin: {fileID: 0}
+  xrOrigin: {fileID: 0}
 --- !u!1 &4823986650736563875
 GameObject:
   m_ObjectHideFlags: 0
@@ -8381,7 +9023,7 @@ GameObject:
   - component: {fileID: 1534383192690699734}
   - component: {fileID: 8335850499318823947}
   m_Layer: 8
-  m_Name: FloorTile_8_0_4
+  m_Name: (8, 4)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8534,8 +9176,9 @@ GameObject:
   - component: {fileID: 3607095906143813729}
   - component: {fileID: 3695898198314686404}
   - component: {fileID: 4473575263811577098}
+  - component: {fileID: 3781325603905233679}
   m_Layer: 8
-  m_Name: FloorTile_0_0_4
+  m_Name: (0, 4)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8633,6 +9276,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3781325603905233679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4899769614917133006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &4982359771194128059
 GameObject:
   m_ObjectHideFlags: 0
@@ -8645,8 +9301,9 @@ GameObject:
   - component: {fileID: 2037636628471204043}
   - component: {fileID: 3913010243031016174}
   - component: {fileID: 4083908696212846205}
+  - component: {fileID: 4241756205650248287}
   m_Layer: 8
-  m_Name: FloorTile_7_0_7
+  m_Name: (7, 7)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8744,6 +9401,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4241756205650248287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4982359771194128059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &5028790052967852258
 GameObject:
   m_ObjectHideFlags: 0
@@ -8756,8 +9426,9 @@ GameObject:
   - component: {fileID: 7520741683820468614}
   - component: {fileID: 7505208802260785394}
   - component: {fileID: 2377385861970105993}
+  - component: {fileID: 4626831336580319732}
   m_Layer: 8
-  m_Name: FloorTile_8_0_1
+  m_Name: (8, 1)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8855,6 +9526,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4626831336580319732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5028790052967852258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &5043431913444234563
 GameObject:
   m_ObjectHideFlags: 0
@@ -8868,7 +9552,7 @@ GameObject:
   - component: {fileID: 7968932021431011898}
   - component: {fileID: 8860291376200978117}
   m_Layer: 8
-  m_Name: FloorTile_9_0_4
+  m_Name: (9, 4)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8966,6 +9650,72 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &5112410417151443857
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8283725804522557187}
+  - component: {fileID: 2149907380888871817}
+  - component: {fileID: 3573922997505733398}
+  m_Layer: 0
+  m_Name: SpawnPoint6
+  m_TagString: SpawnPoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8283725804522557187
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5112410417151443857}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.98, y: -1, z: 1.29}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8625373827207377296}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2149907380888871817
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5112410417151443857}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3573922997505733398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5112410417151443857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91de7d8167d3d14fa9101edaae37207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5145149469515871380
 GameObject:
   m_ObjectHideFlags: 0
@@ -8979,7 +9729,7 @@ GameObject:
   - component: {fileID: 3071611763294292498}
   - component: {fileID: 4401185761532126829}
   m_Layer: 8
-  m_Name: FloorTile_5_0_2
+  m_Name: (5, 2)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9090,7 +9840,7 @@ GameObject:
   - component: {fileID: 9005337034673688385}
   - component: {fileID: 4506479271940899551}
   m_Layer: 8
-  m_Name: FloorTile_9_0_8
+  m_Name: (9, 8)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9201,7 +9951,7 @@ GameObject:
   - component: {fileID: 1842784921701835060}
   - component: {fileID: 4743593662120561585}
   m_Layer: 8
-  m_Name: FloorTile_8_0_6
+  m_Name: (8, 6)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9311,8 +10061,9 @@ GameObject:
   - component: {fileID: 6377258298909952922}
   - component: {fileID: 833261038329554443}
   - component: {fileID: 2378159713427051304}
+  - component: {fileID: 8701560312785764100}
   m_Layer: 8
-  m_Name: FloorTile_3_0_8
+  m_Name: (3, 8)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9410,6 +10161,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8701560312785764100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5374838536638181617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &5382095975969665854
 GameObject:
   m_ObjectHideFlags: 0
@@ -9422,8 +10186,9 @@ GameObject:
   - component: {fileID: 8645137941735999300}
   - component: {fileID: 3988217798546286225}
   - component: {fileID: 3810056008089805918}
+  - component: {fileID: 7367776067405321470}
   m_Layer: 8
-  m_Name: FloorTile_5_0_5
+  m_Name: (5, 5)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9521,6 +10286,85 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7367776067405321470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5382095975969665854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
+--- !u!1 &5390329626515306183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6481529437310583702}
+  - component: {fileID: 6880557304146728953}
+  - component: {fileID: 3763902100473540048}
+  m_Layer: 0
+  m_Name: SpawnPoint10
+  m_TagString: SpawnPoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6481529437310583702
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5390329626515306183}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -1, y: -1, z: 5.28}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8625373827207377296}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!65 &6880557304146728953
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5390329626515306183}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3763902100473540048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5390329626515306183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91de7d8167d3d14fa9101edaae37207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5447553019537826225
 GameObject:
   m_ObjectHideFlags: 0
@@ -9533,8 +10377,9 @@ GameObject:
   - component: {fileID: 3785976910911089817}
   - component: {fileID: 690061282387010062}
   - component: {fileID: 8207852023362477900}
+  - component: {fileID: 3282899223867619066}
   m_Layer: 8
-  m_Name: FloorTile_10_0_7
+  m_Name: (10, 7)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9632,6 +10477,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3282899223867619066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5447553019537826225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &5491245312423192390
 GameObject:
   m_ObjectHideFlags: 0
@@ -9644,8 +10502,9 @@ GameObject:
   - component: {fileID: 2631062460392134846}
   - component: {fileID: 4075454363185426418}
   - component: {fileID: 3389776828507410950}
+  - component: {fileID: 641010062877194943}
   m_Layer: 8
-  m_Name: FloorTile_0_0_6
+  m_Name: (0, 6)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9743,6 +10602,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &641010062877194943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5491245312423192390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &5516664313602396308
 GameObject:
   m_ObjectHideFlags: 0
@@ -9867,7 +10739,7 @@ GameObject:
   - component: {fileID: 369374551369294100}
   - component: {fileID: 4929375739612145093}
   m_Layer: 8
-  m_Name: FloorTile_2_0_5
+  m_Name: (2, 5)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9977,8 +10849,9 @@ GameObject:
   - component: {fileID: 2556151359734272766}
   - component: {fileID: 5000041306383982812}
   - component: {fileID: 6911842936203062983}
+  - component: {fileID: 6729020729999075506}
   m_Layer: 8
-  m_Name: FloorTile_3_0_10
+  m_Name: (3, 10)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10076,6 +10949,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6729020729999075506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5574685630881747335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &5604552824892553678
 GameObject:
   m_ObjectHideFlags: 0
@@ -10089,7 +10975,7 @@ GameObject:
   - component: {fileID: 4133084940249896637}
   - component: {fileID: 2611523752323965794}
   m_Layer: 8
-  m_Name: FloorTile_10_0_0
+  m_Name: (10, 0)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10199,8 +11085,9 @@ GameObject:
   - component: {fileID: 7918244510353281943}
   - component: {fileID: 3159761712358347770}
   - component: {fileID: 3451759091829669498}
+  - component: {fileID: 6306563235827286598}
   m_Layer: 8
-  m_Name: FloorTile_0_0_1
+  m_Name: (0, 1)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10298,6 +11185,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6306563235827286598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5605122555191547760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &5744785261759158791
 GameObject:
   m_ObjectHideFlags: 0
@@ -10311,7 +11211,7 @@ GameObject:
   - component: {fileID: 4797770657945123745}
   - component: {fileID: 5408035628088979770}
   m_Layer: 8
-  m_Name: FloorTile_8_0_0
+  m_Name: (8, 0)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10421,8 +11321,9 @@ GameObject:
   - component: {fileID: 2108378792114726768}
   - component: {fileID: 674462061319613465}
   - component: {fileID: 5377234416944086995}
+  - component: {fileID: 8795295665665689582}
   m_Layer: 8
-  m_Name: FloorTile_10_0_1
+  m_Name: (10, 1)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10520,6 +11421,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8795295665665689582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5777440338942562759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &5797442483051514539
 GameObject:
   m_ObjectHideFlags: 0
@@ -10532,8 +11446,9 @@ GameObject:
   - component: {fileID: 3399050932865652973}
   - component: {fileID: 6910521207238655936}
   - component: {fileID: 4920406723750270317}
+  - component: {fileID: 5264580017109398867}
   m_Layer: 8
-  m_Name: FloorTile_1_0_10
+  m_Name: (1, 10)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10631,6 +11546,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5264580017109398867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5797442483051514539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &5808414088607930384
 GameObject:
   m_ObjectHideFlags: 0
@@ -10644,7 +11572,7 @@ GameObject:
   - component: {fileID: 2709542687317096934}
   - component: {fileID: 4877537270840796687}
   m_Layer: 8
-  m_Name: FloorTile_1_0_4
+  m_Name: (1, 4)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10771,6 +11699,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5998284540022075603}
   - {fileID: 6283344917553082166}
   - {fileID: 5276100889463541084}
   - {fileID: 2715708889706919317}
@@ -10891,7 +11820,6 @@ Transform:
   - {fileID: 5406607338844539465}
   - {fileID: 4384041861249442229}
   - {fileID: 1488664430257399766}
-  - {fileID: 5998284540022075603}
   m_Father: {fileID: 8625373827207377296}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5929700403952879197
@@ -10964,7 +11892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8d3dfed628fb341a0bee6e8a66a511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectCollisionDetection
-  XROrigin: {fileID: 0}
+  xrOrigin: {fileID: 0}
 --- !u!1 &5998655568432423639
 GameObject:
   m_ObjectHideFlags: 0
@@ -11122,7 +12050,7 @@ GameObject:
   - component: {fileID: 4396694046630970339}
   - component: {fileID: 3379906140346075920}
   m_Layer: 8
-  m_Name: FloorTile_9_0_0
+  m_Name: (9, 0)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11232,8 +12160,9 @@ GameObject:
   - component: {fileID: 4984799648331189249}
   - component: {fileID: 6542138125128106591}
   - component: {fileID: 4416023810222678863}
+  - component: {fileID: 6459746469494534206}
   m_Layer: 8
-  m_Name: FloorTile_3_0_5
+  m_Name: (3, 5)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11331,6 +12260,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6459746469494534206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6221351386334661392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &6282825589185751194
 GameObject:
   m_ObjectHideFlags: 0
@@ -11343,8 +12285,9 @@ GameObject:
   - component: {fileID: 9207065870190333915}
   - component: {fileID: 2666646001078789170}
   - component: {fileID: 326267813977117028}
+  - component: {fileID: 2398747568532542807}
   m_Layer: 8
-  m_Name: FloorTile_8_0_9
+  m_Name: (8, 9)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11442,6 +12385,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2398747568532542807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282825589185751194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &6328063486920485458
 GameObject:
   m_ObjectHideFlags: 0
@@ -11455,7 +12411,7 @@ GameObject:
   - component: {fileID: 8881345481967018443}
   - component: {fileID: 4835684812947173976}
   m_Layer: 8
-  m_Name: FloorTile_5_0_6
+  m_Name: (5, 6)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11565,8 +12521,9 @@ GameObject:
   - component: {fileID: 8851332020705465842}
   - component: {fileID: 5773685493206924233}
   - component: {fileID: 8577708344681687869}
+  - component: {fileID: 2824930085048814589}
   m_Layer: 8
-  m_Name: FloorTile_9_0_9
+  m_Name: (9, 9)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11664,6 +12621,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2824930085048814589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6334825608872303497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &6338224168132702915
 GameObject:
   m_ObjectHideFlags: 0
@@ -11676,8 +12646,9 @@ GameObject:
   - component: {fileID: 3284354345651188890}
   - component: {fileID: 5616567538819569314}
   - component: {fileID: 2323764825871493204}
+  - component: {fileID: 300320529796396449}
   m_Layer: 8
-  m_Name: FloorTile_6_0_1
+  m_Name: (6, 1)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11775,6 +12746,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &300320529796396449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6338224168132702915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &6342978487612168756
 GameObject:
   m_ObjectHideFlags: 0
@@ -11788,7 +12772,7 @@ GameObject:
   - component: {fileID: 6538485757565173271}
   - component: {fileID: 810661356009510549}
   m_Layer: 8
-  m_Name: FloorTile_2_0_1
+  m_Name: (2, 1)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11899,7 +12883,7 @@ GameObject:
   - component: {fileID: 2750481729987951415}
   - component: {fileID: 5602562631931538130}
   m_Layer: 8
-  m_Name: FloorTile_1_0_3
+  m_Name: (1, 3)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12009,8 +12993,9 @@ GameObject:
   - component: {fileID: 2286412949575628792}
   - component: {fileID: 720110166456394793}
   - component: {fileID: 6481174734429443205}
+  - component: {fileID: 2777757623166891585}
   m_Layer: 8
-  m_Name: FloorTile_7_0_2
+  m_Name: (7, 2)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12108,6 +13093,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2777757623166891585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6355145975827641139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &6360025343362541677
 GameObject:
   m_ObjectHideFlags: 0
@@ -12231,8 +13229,9 @@ GameObject:
   - component: {fileID: 217814746098802003}
   - component: {fileID: 1946461656541424866}
   - component: {fileID: 7319548465705444617}
+  - component: {fileID: 870695973478640483}
   m_Layer: 8
-  m_Name: FloorTile_3_0_2
+  m_Name: (3, 2)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12330,6 +13329,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &870695973478640483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6403865943766886441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &6468545003688294853
 GameObject:
   m_ObjectHideFlags: 0
@@ -12343,7 +13355,7 @@ GameObject:
   - component: {fileID: 5343043744068803084}
   - component: {fileID: 1201141442813742949}
   m_Layer: 8
-  m_Name: FloorTile_3_0_1
+  m_Name: (3, 1)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12454,7 +13466,7 @@ GameObject:
   - component: {fileID: 2010026292787280738}
   - component: {fileID: 7908868230357724876}
   m_Layer: 8
-  m_Name: FloorTile_6_0_2
+  m_Name: (6, 2)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12565,7 +13577,7 @@ GameObject:
   - component: {fileID: 6818099484208217920}
   - component: {fileID: 5949835672655093947}
   m_Layer: 8
-  m_Name: FloorTile_1_0_5
+  m_Name: (1, 5)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12675,8 +13687,9 @@ GameObject:
   - component: {fileID: 864051672077683031}
   - component: {fileID: 2326832161324881593}
   - component: {fileID: 3636249420204818077}
+  - component: {fileID: 1824963794891412576}
   m_Layer: 8
-  m_Name: FloorTile_4_0_3
+  m_Name: (4, 3)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12774,6 +13787,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1824963794891412576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6683231391534001534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &6693213765952283805
 GameObject:
   m_ObjectHideFlags: 0
@@ -12786,8 +13812,9 @@ GameObject:
   - component: {fileID: 4511043721282228670}
   - component: {fileID: 2013824176170804931}
   - component: {fileID: 6207005126040372028}
+  - component: {fileID: 5396269478065307864}
   m_Layer: 8
-  m_Name: FloorTile_2_0_6
+  m_Name: (2, 6)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12885,6 +13912,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5396269478065307864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6693213765952283805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &6696670906912798636
 GameObject:
   m_ObjectHideFlags: 0
@@ -12897,8 +13937,9 @@ GameObject:
   - component: {fileID: 7249065858552864052}
   - component: {fileID: 2889372798563463293}
   - component: {fileID: 5183155167394969532}
+  - component: {fileID: 8952811345752158693}
   m_Layer: 8
-  m_Name: FloorTile_4_0_10
+  m_Name: (4, 10)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12996,6 +14037,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8952811345752158693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6696670906912798636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &6830187562264791379
 GameObject:
   m_ObjectHideFlags: 0
@@ -13008,8 +14062,9 @@ GameObject:
   - component: {fileID: 5072986285536625609}
   - component: {fileID: 3777291496561452371}
   - component: {fileID: 452144975774637982}
+  - component: {fileID: 7691707257684298656}
   m_Layer: 8
-  m_Name: FloorTile_3_0_7
+  m_Name: (3, 7)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13107,6 +14162,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7691707257684298656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6830187562264791379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &6847014306317631965
 GameObject:
   m_ObjectHideFlags: 0
@@ -13119,8 +14187,9 @@ GameObject:
   - component: {fileID: 7339036161807899375}
   - component: {fileID: 7405523286149843460}
   - component: {fileID: 9177244168639541685}
+  - component: {fileID: 4862188778819307858}
   m_Layer: 8
-  m_Name: FloorTile_9_0_5
+  m_Name: (9, 5)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13218,6 +14287,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4862188778819307858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6847014306317631965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &6907186047815373234
 GameObject:
   m_ObjectHideFlags: 0
@@ -13230,8 +14312,9 @@ GameObject:
   - component: {fileID: 1299830465072986168}
   - component: {fileID: 4960214735915831169}
   - component: {fileID: 6728097440575086131}
+  - component: {fileID: 6134486952234760600}
   m_Layer: 8
-  m_Name: FloorTile_3_0_9
+  m_Name: (3, 9)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13329,6 +14412,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6134486952234760600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6907186047815373234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &7056704988179565889
 GameObject:
   m_ObjectHideFlags: 0
@@ -13341,8 +14437,9 @@ GameObject:
   - component: {fileID: 1406088781932716953}
   - component: {fileID: 7140201217782600219}
   - component: {fileID: 5602654772802684863}
+  - component: {fileID: 8879224924780817897}
   m_Layer: 8
-  m_Name: FloorTile_2_0_2
+  m_Name: (2, 2)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13440,6 +14537,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8879224924780817897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056704988179565889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &7118301694228517671
 GameObject:
   m_ObjectHideFlags: 0
@@ -13453,7 +14563,7 @@ GameObject:
   - component: {fileID: 4900709246181444610}
   - component: {fileID: 2801977967717928116}
   m_Layer: 8
-  m_Name: FloorTile_5_0_7
+  m_Name: (5, 7)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13563,8 +14673,9 @@ GameObject:
   - component: {fileID: 6617424756012838075}
   - component: {fileID: 2329495288052484156}
   - component: {fileID: 2661922280264271813}
+  - component: {fileID: 6614594043371296316}
   m_Layer: 8
-  m_Name: FloorTile_0_0_9
+  m_Name: (0, 9)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13662,6 +14773,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6614594043371296316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7156728360110916594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &7205566756083710861
 GameObject:
   m_ObjectHideFlags: 0
@@ -13730,7 +14854,73 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8d3dfed628fb341a0bee6e8a66a511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectCollisionDetection
-  XROrigin: {fileID: 0}
+  xrOrigin: {fileID: 0}
+--- !u!1 &7213733177175026690
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7463661781994816850}
+  - component: {fileID: 1587190429112175553}
+  - component: {fileID: 6070748078598374976}
+  m_Layer: 0
+  m_Name: SpawnPoint12
+  m_TagString: SpawnPoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7463661781994816850
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7213733177175026690}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5, y: -1, z: -4.68}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8625373827207377296}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1587190429112175553
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7213733177175026690}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6070748078598374976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7213733177175026690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91de7d8167d3d14fa9101edaae37207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7234333228431790115
 GameObject:
   m_ObjectHideFlags: 0
@@ -13743,8 +14933,9 @@ GameObject:
   - component: {fileID: 2177283072381794727}
   - component: {fileID: 7694637589782598406}
   - component: {fileID: 960168766826081162}
+  - component: {fileID: 7933650241823343893}
   m_Layer: 8
-  m_Name: FloorTile_0_0_5
+  m_Name: (0, 5)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13842,6 +15033,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7933650241823343893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7234333228431790115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &7244401705648492095
 GameObject:
   m_ObjectHideFlags: 0
@@ -13854,8 +15058,9 @@ GameObject:
   - component: {fileID: 2899905799953103066}
   - component: {fileID: 8274389560421823827}
   - component: {fileID: 8180485362930179067}
+  - component: {fileID: 4770323985989123903}
   m_Layer: 8
-  m_Name: FloorTile_2_0_10
+  m_Name: (2, 10)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13953,6 +15158,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4770323985989123903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7244401705648492095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &7268539765490659186
 GameObject:
   m_ObjectHideFlags: 0
@@ -13965,8 +15183,9 @@ GameObject:
   - component: {fileID: 2337196467154990956}
   - component: {fileID: 4998848665026993303}
   - component: {fileID: 8103073114145246532}
+  - component: {fileID: 6075741007002068331}
   m_Layer: 8
-  m_Name: FloorTile_6_0_5
+  m_Name: (6, 5)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14064,6 +15283,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6075741007002068331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7268539765490659186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &7395479683542088130
 GameObject:
   m_ObjectHideFlags: 0
@@ -14077,7 +15309,7 @@ GameObject:
   - component: {fileID: 4233504869183217342}
   - component: {fileID: 2508200446808214032}
   m_Layer: 8
-  m_Name: FloorTile_6_0_0
+  m_Name: (6, 0)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14187,8 +15419,9 @@ GameObject:
   - component: {fileID: 7042133695837507263}
   - component: {fileID: 3264568152507740955}
   - component: {fileID: 1744533558126983977}
+  - component: {fileID: 3656043122667842999}
   m_Layer: 8
-  m_Name: FloorTile_7_0_3
+  m_Name: (7, 3)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14286,6 +15519,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3656043122667842999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7504755039476654610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &7617979828122645347
 GameObject:
   m_ObjectHideFlags: 0
@@ -14356,7 +15602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8d3dfed628fb341a0bee6e8a66a511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectCollisionDetection
-  XROrigin: {fileID: 0}
+  xrOrigin: {fileID: 0}
 --- !u!1 &7666216621563265502
 GameObject:
   m_ObjectHideFlags: 0
@@ -14369,8 +15615,9 @@ GameObject:
   - component: {fileID: 3628590351299693814}
   - component: {fileID: 516883211302723157}
   - component: {fileID: 4541573400915484665}
+  - component: {fileID: 7111046396988851562}
   m_Layer: 8
-  m_Name: FloorTile_1_0_2
+  m_Name: (1, 2)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14468,6 +15715,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7111046396988851562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7666216621563265502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &7680422935376909276
 GameObject:
   m_ObjectHideFlags: 0
@@ -14480,8 +15740,9 @@ GameObject:
   - component: {fileID: 1042391640897147244}
   - component: {fileID: 5717546484543235856}
   - component: {fileID: 3905300274313993362}
+  - component: {fileID: 342761022216429026}
   m_Layer: 8
-  m_Name: FloorTile_10_0_3
+  m_Name: (10, 3)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14579,6 +15840,85 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &342761022216429026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7680422935376909276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
+--- !u!1 &7698257902945068680
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5893743171002094570}
+  - component: {fileID: 7533145440418795924}
+  - component: {fileID: 90626934187390208}
+  m_Layer: 0
+  m_Name: SpawnPoint7
+  m_TagString: SpawnPoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5893743171002094570
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7698257902945068680}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: -4.75}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8625373827207377296}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7533145440418795924
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7698257902945068680}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &90626934187390208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7698257902945068680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91de7d8167d3d14fa9101edaae37207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7793981993620739500
 GameObject:
   m_ObjectHideFlags: 0
@@ -14591,8 +15931,9 @@ GameObject:
   - component: {fileID: 5043467000911293315}
   - component: {fileID: 1755794539082125463}
   - component: {fileID: 2137894834419800994}
+  - component: {fileID: 6584301798893732578}
   m_Layer: 8
-  m_Name: FloorTile_4_0_0
+  m_Name: (4, 0)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14690,6 +16031,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6584301798893732578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7793981993620739500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &7802480756074142019
 GameObject:
   m_ObjectHideFlags: 0
@@ -14760,7 +16114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8d3dfed628fb341a0bee6e8a66a511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectCollisionDetection
-  XROrigin: {fileID: 0}
+  xrOrigin: {fileID: 0}
 --- !u!1 &7841937079784822300
 GameObject:
   m_ObjectHideFlags: 0
@@ -14886,7 +16240,7 @@ GameObject:
   - component: {fileID: 1241677217886710787}
   - component: {fileID: 7498827928271617900}
   m_Layer: 8
-  m_Name: FloorTile_2_0_9
+  m_Name: (2, 9)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15107,8 +16461,9 @@ GameObject:
   - component: {fileID: 7883791450706331455}
   - component: {fileID: 5925311076445686027}
   - component: {fileID: 8334923803141035549}
+  - component: {fileID: 4120121287478984540}
   m_Layer: 8
-  m_Name: FloorTile_6_0_10
+  m_Name: (6, 10)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15206,6 +16561,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4120121287478984540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7982661425665033976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &7983370646449004296
 GameObject:
   m_ObjectHideFlags: 0
@@ -15362,8 +16730,9 @@ GameObject:
   - component: {fileID: 9066053964772719689}
   - component: {fileID: 720851685915269878}
   - component: {fileID: 7519873450252532184}
+  - component: {fileID: 8157716964118413789}
   m_Layer: 8
-  m_Name: FloorTile_6_0_8
+  m_Name: (6, 8)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15461,6 +16830,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8157716964118413789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7998751576332428984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &8011447902645332749
 GameObject:
   m_ObjectHideFlags: 0
@@ -15586,7 +16968,7 @@ GameObject:
   - component: {fileID: 8915274061853646007}
   - component: {fileID: 1052352104659893976}
   m_Layer: 8
-  m_Name: FloorTile_7_0_10
+  m_Name: (7, 10)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15696,8 +17078,9 @@ GameObject:
   - component: {fileID: 6860058778195356453}
   - component: {fileID: 4744973956939453575}
   - component: {fileID: 6716725257936269992}
+  - component: {fileID: 2254897655934639152}
   m_Layer: 8
-  m_Name: FloorTile_0_0_2
+  m_Name: (0, 2)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15795,6 +17178,85 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2254897655934639152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8059056348029755502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
+--- !u!1 &8114006517027496621
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8045675836578875664}
+  - component: {fileID: 3108559572075122627}
+  - component: {fileID: 8633235100840143683}
+  m_Layer: 0
+  m_Name: SpawnPoint9
+  m_TagString: SpawnPoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8045675836578875664
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8114006517027496621}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -2.07, y: -1, z: 1.35}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8625373827207377296}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!65 &3108559572075122627
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8114006517027496621}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8633235100840143683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8114006517027496621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91de7d8167d3d14fa9101edaae37207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8160239364677756836
 GameObject:
   m_ObjectHideFlags: 0
@@ -15828,6 +17290,17 @@ Transform:
   - {fileID: 6096537917969380911}
   - {fileID: 3190735153238370395}
   - {fileID: 996609007426183379}
+  - {fileID: 2160565281743189986}
+  - {fileID: 4048171557255780827}
+  - {fileID: 4768732486995301678}
+  - {fileID: 2785968212827014894}
+  - {fileID: 8283725804522557187}
+  - {fileID: 5893743171002094570}
+  - {fileID: 31752562972964420}
+  - {fileID: 8045675836578875664}
+  - {fileID: 6481529437310583702}
+  - {fileID: 5213119889141094187}
+  - {fileID: 7463661781994816850}
   - {fileID: 3640686879669989544}
   - {fileID: 5245745682295610596}
   - {fileID: 1991480416773572701}
@@ -16382,7 +17855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8d3dfed628fb341a0bee6e8a66a511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectCollisionDetection
-  XROrigin: {fileID: 0}
+  xrOrigin: {fileID: 0}
 --- !u!1 &8423839951318736128
 GameObject:
   m_ObjectHideFlags: 0
@@ -16395,8 +17868,9 @@ GameObject:
   - component: {fileID: 9087879112813103256}
   - component: {fileID: 8938558546502748067}
   - component: {fileID: 3191255592423155317}
+  - component: {fileID: 2249940972980315082}
   m_Layer: 8
-  m_Name: FloorTile_7_0_4
+  m_Name: (7, 4)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16494,6 +17968,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2249940972980315082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8423839951318736128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &8548223326491615967
 GameObject:
   m_ObjectHideFlags: 0
@@ -16506,8 +17993,9 @@ GameObject:
   - component: {fileID: 3767344661826330735}
   - component: {fileID: 6638927940074951953}
   - component: {fileID: 2075078778122724776}
+  - component: {fileID: 6346605140656441160}
   m_Layer: 8
-  m_Name: FloorTile_7_0_1
+  m_Name: (7, 1)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16605,6 +18093,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6346605140656441160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8548223326491615967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &8580419619005587891
 GameObject:
   m_ObjectHideFlags: 0
@@ -16618,7 +18119,7 @@ GameObject:
   - component: {fileID: 3634342283342613504}
   - component: {fileID: 2941982230991417863}
   m_Layer: 8
-  m_Name: FloorTile_5_0_8
+  m_Name: (5, 8)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16875,7 +18376,7 @@ GameObject:
   - component: {fileID: 5429846644723657025}
   - component: {fileID: 3694494261561685096}
   m_Layer: 8
-  m_Name: FloorTile_6_0_4
+  m_Name: (6, 4)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16986,7 +18487,7 @@ GameObject:
   - component: {fileID: 1882181768973021228}
   - component: {fileID: 8221006739366361537}
   m_Layer: 8
-  m_Name: FloorTile_7_0_9
+  m_Name: (7, 9)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17096,8 +18597,9 @@ GameObject:
   - component: {fileID: 4337921386773682843}
   - component: {fileID: 5784745406279245910}
   - component: {fileID: 7633530346210576482}
+  - component: {fileID: 6857555697074710559}
   m_Layer: 8
-  m_Name: FloorTile_1_0_6
+  m_Name: (1, 6)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17195,6 +18697,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6857555697074710559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8878392232085185226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &8890834157263456585
 GameObject:
   m_ObjectHideFlags: 0
@@ -17207,8 +18722,9 @@ GameObject:
   - component: {fileID: 7609373229216643320}
   - component: {fileID: 7463116199283261619}
   - component: {fileID: 7954215386210739821}
+  - component: {fileID: 4691556773758110949}
   m_Layer: 8
-  m_Name: FloorTile_8_0_5
+  m_Name: (8, 5)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17306,6 +18822,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4691556773758110949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8890834157263456585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &8925991176001652324
 GameObject:
   m_ObjectHideFlags: 0
@@ -17318,8 +18847,9 @@ GameObject:
   - component: {fileID: 6807133427095422884}
   - component: {fileID: 4725090309157391339}
   - component: {fileID: 9203430630451186864}
+  - component: {fileID: 2963965136498519588}
   m_Layer: 8
-  m_Name: FloorTile_10_0_6
+  m_Name: (10, 6)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17417,6 +18947,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2963965136498519588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8925991176001652324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a9f740806a7624f9dd7ea3d027a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloorTile
+  playerTag: Player
 --- !u!1 &8927148541186812119
 GameObject:
   m_ObjectHideFlags: 0
@@ -17430,7 +18973,7 @@ GameObject:
   - component: {fileID: 580802678760658920}
   - component: {fileID: 8543185556081740091}
   m_Layer: 8
-  m_Name: FloorTile_4_0_8
+  m_Name: (4, 8)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17528,6 +19071,72 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &8972205265740432347
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4768732486995301678}
+  - component: {fileID: 1907871958078711753}
+  - component: {fileID: 611349949588709752}
+  m_Layer: 0
+  m_Name: SpawnPoint4
+  m_TagString: SpawnPoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4768732486995301678
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8972205265740432347}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -1, y: -1, z: 5.28}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8625373827207377296}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!65 &1907871958078711753
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8972205265740432347}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &611349949588709752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8972205265740432347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91de7d8167d3d14fa9101edaae37207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9004601655527785596
 GameObject:
   m_ObjectHideFlags: 0
@@ -17639,6 +19248,72 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &9006882797955264867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 31752562972964420}
+  - component: {fileID: 39259226149166243}
+  - component: {fileID: 5012152478017504010}
+  m_Layer: 0
+  m_Name: SpawnPoint8
+  m_TagString: SpawnPoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &31752562972964420
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9006882797955264867}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 4.95, y: -1, z: 0.33}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8625373827207377296}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!65 &39259226149166243
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9006882797955264867}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5012152478017504010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9006882797955264867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91de7d8167d3d14fa9101edaae37207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9109613896438001636
 GameObject:
   m_ObjectHideFlags: 0
@@ -17652,7 +19327,7 @@ GameObject:
   - component: {fileID: 3547643199682965569}
   - component: {fileID: 75052221437772094}
   m_Layer: 8
-  m_Name: FloorTile_7_0_0
+  m_Name: (7, 0)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17763,7 +19438,7 @@ GameObject:
   - component: {fileID: 1955215712291105484}
   - component: {fileID: 8254866477811270888}
   m_Layer: 8
-  m_Name: FloorTile_2_0_0
+  m_Name: (2, 0)
   m_TagString: FloorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -250,6 +250,11 @@ public class TrialManager : MonoBehaviour
             spawnPoint.transform.position,
             spawnPoint.transform.rotation
         );
+        // Log the spawn point in the visit queue
+        if (FindFirstObjectByType<FloorTile>() != null)
+        {
+            FloorTile.tileVisitQueue.Enqueue(spawnPoint);
+        }
         Debug.Log($"Moved to spawn point: {spawnPoint.name}");
     }
     

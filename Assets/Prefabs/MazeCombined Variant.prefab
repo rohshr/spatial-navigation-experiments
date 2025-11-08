@@ -3873,10 +3873,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 2861853223491566631, guid: ffe13b7989fe40447b485064367952f7, type: 3}
-      propertyPath: m_Name
-      value: SpawnPoint
-      objectReference: {fileID: 0}
     - target: {fileID: 2976591375152544003, guid: ffe13b7989fe40447b485064367952f7, type: 3}
       propertyPath: m_Name
       value: ContinuousFloor
@@ -4108,10 +4104,10 @@ PrefabInstance:
       insertIndex: 1
       addedObject: {fileID: 1468829786094191429}
     - targetCorrespondingSourceObject: {fileID: 8625373827207377296, guid: ffe13b7989fe40447b485064367952f7, type: 3}
-      insertIndex: 7
+      insertIndex: 18
       addedObject: {fileID: 7682366573250871470}
     - targetCorrespondingSourceObject: {fileID: 8625373827207377296, guid: ffe13b7989fe40447b485064367952f7, type: 3}
-      insertIndex: 8
+      insertIndex: 19
       addedObject: {fileID: 1840987824310854192}
     - targetCorrespondingSourceObject: {fileID: 6096537917969380911, guid: ffe13b7989fe40447b485064367952f7, type: 3}
       insertIndex: -1

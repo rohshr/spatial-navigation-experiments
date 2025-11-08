@@ -1,12 +1,15 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 using UXF;
 
 public class PlayerPositionTracker : MonoBehaviour
 {
     [Header("Tracking Settings")]
     [SerializeField] private GameObject xrOrigin;
+    [SerializeField] private TeleportationProvider teleportationProvider;
 
     // [SerializeField] private GameObject locomotionGameObject;
     [SerializeField] private string floorTileTag = "FloorTile"; // Tag for floor tiles
@@ -68,6 +71,7 @@ public class PlayerPositionTracker : MonoBehaviour
         FinishPointCheck.OnFinishPointReached += ResetTracking;
         TrialManager.OnExplorationBlockCompleted += ResetTracking;
         InputHandler.ProceedTrialEvent += ResetTracking;
+        teleportationProvider.locomotionEnded += TeleportationLog;
     }
     
     void OnDisable()
@@ -76,6 +80,7 @@ public class PlayerPositionTracker : MonoBehaviour
         FinishPointCheck.OnFinishPointReached -= ResetTracking;
         TrialManager.OnExplorationBlockCompleted -= ResetTracking;
         InputHandler.ProceedTrialEvent -= ResetTracking;
+        teleportationProvider.locomotionEnded -= TeleportationLog;
     }
 
     void Update()
@@ -106,6 +111,11 @@ public class PlayerPositionTracker : MonoBehaviour
         }
 
     }
+
+    private void TeleportationLog(LocomotionProvider provider)
+    {
+        Debug.Log("Player teleported.");
+    }
     
     // void CheckTriggersAfterTeleport(GameObject player, float checkRadius)
     // {
@@ -127,14 +137,19 @@ public class PlayerPositionTracker : MonoBehaviour
     //         }
     //     }
     // }
-    
-    private void ResetTracking()
+
+    private void SaveTrackingData()
     {
         // Log final results before resetting
         Session.instance.CurrentTrial.result["distance_travelled"] = distanceTravelled;
         tileChanges = FloorTile.GetTotalVisitsCount();
-        Session.instance.CurrentTrial.result["tile_changes"] = tileChanges + 1; // +1 to account for ending tile
+        Session.instance.CurrentTrial.result["tile_changes"] = tileChanges - 1; // -1 to ignore the first tile and get the number of changes instead of visits
         Session.instance.CurrentTrial.result["tile_travel_sequence"] = FloorTile.GetVisitHistoryString();
+    }
+    
+    private void ResetTracking()
+    {
+        SaveTrackingData();
         FloorTile.ClearVisitHistory();
         
         currentPosition = Vector3.zero;

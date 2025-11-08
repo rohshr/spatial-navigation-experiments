@@ -777,7 +777,7 @@ class UXFTrackerPlotter:
 def main():
     # Set your data directory path
     participant_id = input("Enter participant ID (same ID as folder name for participant): ")
-    session_id = input("Enter session ID (e.g., S001): ")
+    session_id = input("Enter session ID (e.g., S001) (Default: S001): ") or "S001"
     base_data_path = r"C:\Users\cogni\Documents\vr-experiment-data\vr_locomotion"
     data_directory = os.path.join(base_data_path, participant_id, session_id.capitalize(), "trackers")
     background_image = r"C:\Users\cogni\Documents\vr-experiment-data\map.png"

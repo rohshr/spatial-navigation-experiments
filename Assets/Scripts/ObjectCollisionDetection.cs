@@ -38,6 +38,10 @@ public class ObjectCollisionDetection : MonoBehaviour
             {
                 // Session.instance.CurrentTrial.settings.SetValue("object",gameObject.name);
                 Debug.Log($"Collision detected with target object: {gameObject.name} at {DateTime.Now}");
+                if (FindFirstObjectByType<FloorTile>() != null)
+                {
+                    FloorTile.tileVisitQueue.Enqueue(gameObject); // Log the object visit
+                }
                 OnObjectCollided?.Invoke();
                 Session.instance.CurrentTrial.End();
             }

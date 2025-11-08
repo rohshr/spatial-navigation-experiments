@@ -24,7 +24,11 @@ public class FinishPointCheck : MonoBehaviour
             Debug.Log("Disabling navigation guides and finish point.");
             OnPlayerFinishedGuidedExploration?.Invoke();
         }
-        
+        // Log the finish point visit
+        if (FindFirstObjectByType<FloorTile>() != null)
+        {
+            FloorTile.tileVisitQueue.Enqueue(gameObject);
+        }
         OnFinishPointReached?.Invoke();
         Session.instance.CurrentTrial.End();
     }

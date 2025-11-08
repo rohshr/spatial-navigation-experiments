@@ -46,6 +46,7 @@ public class FloorTile : MonoBehaviour
             OnTileVisited?.Invoke(gameObject, visitedTilesHash.Count);
         }
     }
+    
     public static int GetTotalVisitsCount()
     {
         return tileVisitQueue.Count;
