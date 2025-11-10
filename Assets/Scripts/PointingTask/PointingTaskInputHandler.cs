@@ -25,6 +25,7 @@ namespace PointingTask
             if (submitAction != null)
             {
                 submitAction.action.performed -= OnSubmitPerformed;
+                submitAction.action.Disable();
             }
         }
         

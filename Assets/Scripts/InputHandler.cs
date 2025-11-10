@@ -62,7 +62,7 @@ public class InputHandler : MonoBehaviour
         FinishPointCheck.OnFinishPointReached += DisableLocomotion; // Subscribe to the event when the finish point is reached
         TrialManager.OnExplorationBlockCompleted += DisableLocomotion; // Subscribe to the event when the exploration block is completed
         ExperimenterControlScript.OnTrialSkipped += DisableLocomotion; // Subscribe to the event when the session is ended
-        ObjectCollisionDetection.OnObjectCollided += DisableLocomotion; // Subscribe to the event when the object collision is detected
+        ObjectCollisionDetection.OnObjectFound += DisableLocomotion; // Subscribe to the event when the object collision is detected
         PointingEstimationSessionGenerator.OnPointingEstimationSessionStart += EnableRotationOnly;
     }
 
@@ -75,7 +75,7 @@ public class InputHandler : MonoBehaviour
         FinishPointCheck.OnFinishPointReached -= DisableLocomotion; // Unsubscribe from the event when the finish point is reached
         TrialManager.OnExplorationBlockCompleted -= DisableLocomotion; // Unsubscribe from the event when the exploration block is completed       
         ExperimenterControlScript.OnTrialSkipped -= DisableLocomotion; // Unsubscribe from the event when the session is ended
-        ObjectCollisionDetection.OnObjectCollided -= DisableLocomotion; // Unsubscribe from the event when the object collision is detected
+        ObjectCollisionDetection.OnObjectFound -= DisableLocomotion; // Unsubscribe from the event when the object collision is detected
         PointingEstimationSessionGenerator.OnPointingEstimationSessionStart -= EnableRotationOnly; // Unsubscribe from the event when the session starts
     }
 
@@ -139,7 +139,13 @@ public class InputHandler : MonoBehaviour
             xrLocomotionMediator.SetActive(false); // Disable the XRLocomotionMediator
         }
     }
-
+    
+    // private static void StopOnGoingLocomotion()
+    // {
+    //     if (xrLocomotionMediator != null)
+    //     {
+    //     }
+    // }
     private void EnableRotationOnly()
     {
         EnableLocomotion();

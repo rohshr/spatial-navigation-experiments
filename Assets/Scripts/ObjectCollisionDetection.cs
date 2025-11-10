@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using Unity.XR.CoreUtils;
+using UnityEngine.InputSystem;
 using UXF;
 
 public class ObjectCollisionDetection : MonoBehaviour
@@ -8,7 +10,10 @@ public class ObjectCollisionDetection : MonoBehaviour
     [SerializeField] private XROrigin xrOrigin;
     private SessionGenerator sessionGenerator;
     private GameObject objectToFind;
-    public static event Action OnObjectCollided;
+    
+    [SerializeField] private InputActionReference confirmFind;
+    
+    public static event Action OnObjectFound;
 
     private void Awake()
     {
@@ -36,23 +41,54 @@ public class ObjectCollisionDetection : MonoBehaviour
             // Check if the player is in the practice trial area
             if (xrOrigin != null)
             {
-                // Session.instance.CurrentTrial.settings.SetValue("object",gameObject.name);
-                Debug.Log($"Collision detected with target object: {gameObject.name} at {DateTime.Now}");
-                TimeSpan finalTime = GameStopwatch.StopStopwatch();
-                Debug.Log($"Total exploration time: {finalTime.TotalSeconds} seconds");
-                Session.instance.CurrentTrial.result["total_exploration_time"] = finalTime.TotalSeconds;
-                
-                if (FindFirstObjectByType<FloorTile>() != null)
-                {
-                    FloorTile.tileVisitQueue.Enqueue(gameObject); // Log the object visit
-                }
-                OnObjectCollided?.Invoke();
-                Session.instance.CurrentTrial.End();
+                StartCoroutine(HandleObjectFound());
             }
             else
             {
                 Debug.LogWarning("XROrigin is not assigned in PracticeTrialController");
             }
+        }
+    }
+    
+    private IEnumerator HandleObjectFound()
+    {
+        Debug.Log($"Collision detected with target object: {gameObject.name} at {DateTime.Now}");
+
+        yield return WaitForObjectFindConfirmation();
+    
+        Debug.Log("Object found by participant at " + System.DateTime.Now);
+
+        TimeSpan finalTime = GameStopwatch.StopStopwatch();
+        Debug.Log($"Total exploration time: {finalTime.TotalSeconds} seconds");
+        Session.instance.CurrentTrial.result["total_exploration_time"] = finalTime.TotalSeconds;
+
+        if (FindFirstObjectByType<FloorTile>() != null)
+        {
+            FloorTile.tileVisitQueue.Enqueue(gameObject);
+        }
+        OnObjectFound?.Invoke();
+        Session.instance.CurrentTrial.End();
+    }
+    
+    private IEnumerator WaitForObjectFindConfirmation()
+    {
+        bool inputReceived = false;
+        
+        System.Action<InputAction.CallbackContext> inputHandler = (context) => {
+            inputReceived = true;
+        };
+        
+        // Assume confirmFind is an InputActionReference defined elsewhere
+        if (confirmFind != null)
+        {
+            confirmFind.action.performed += inputHandler;
+        }
+        
+        yield return new WaitUntil(() => inputReceived);
+        
+        if (confirmFind != null)
+        {
+            confirmFind.action.performed -= inputHandler;
         }
     }
 }

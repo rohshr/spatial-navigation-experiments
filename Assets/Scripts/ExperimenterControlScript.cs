@@ -26,12 +26,13 @@ public class ExperimenterControlScript : MonoBehaviour
         if (forceEndSession.action.triggered)
         {
             Debug.Log("Session ended by experimenter at " + System.DateTime.Now);
+            Session.instance.CurrentTrial.End();
             Session.instance.End();
         }
 
         if (pauseTrial.action.triggered && !isPaused)
         {
-            Debug.Log("Trial paused by experimenter at " + System.DateTime.Now);
+            Debug.Log("Trial paused by experimenter at " + System.DateTime.Now);            
             isPaused = true;
         }
         else if (pauseTrial.action.triggered && isPaused)

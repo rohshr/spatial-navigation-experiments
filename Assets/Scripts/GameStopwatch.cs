@@ -51,6 +51,32 @@ public class GameStopwatch : MonoBehaviour
         
         return elapsed;
     }
+    
+    // Pause the stopwatch and log elapsed time
+    public static TimeSpan PauseStopwatch()
+    {
+        if (_instance == null)
+        {
+            UnityEngine.Debug.LogError("GameStopwatch instance not found!");
+            return TimeSpan.Zero;
+        }
+        _instance.stopwatch.Stop();
+        TimeSpan elapsed = _instance.stopwatch.Elapsed;
+        UnityEngine.Debug.Log($"Stopwatch paused. Elapsed: {elapsed.TotalSeconds:F2} seconds");
+        return elapsed;
+    }
+    
+    // Resume the stopwatch from paused state
+    public static void ResumeStopwatch()
+    {
+        if (_instance == null)
+        {
+            UnityEngine.Debug.LogError("GameStopwatch instance not found!");
+            return;
+        }
+        _instance.stopwatch.Start();
+        UnityEngine.Debug.Log("Stopwatch resumed");
+    }
 
     // Get elapsed time without stopping
     public static TimeSpan GetElapsedTime()

@@ -67,7 +67,7 @@ public class SessionGenerator : MonoBehaviour
     private void OnEnable()
     {
         FinishPointCheck.OnFinishPointReached += ShowNextInstructions;
-        ObjectCollisionDetection.OnObjectCollided += ShowNextObjectSearchInstructions;
+        ObjectCollisionDetection.OnObjectFound += ShowNextObjectSearchInstructions;
         TrialManager.OnExplorationBlockCompleted += ShowNextInstructions;
         InputHandler.ProceedTrialEvent += ShowNextInstructions;
         SpawnPointCheck.OnPlayerExitedSpawnPoint += SetupGuidedExplorationFinishPoint;
@@ -77,7 +77,7 @@ public class SessionGenerator : MonoBehaviour
     private void OnDisable()
     {
         FinishPointCheck.OnFinishPointReached -= ShowNextInstructions;
-        ObjectCollisionDetection.OnObjectCollided -= ShowNextObjectSearchInstructions;
+        ObjectCollisionDetection.OnObjectFound -= ShowNextObjectSearchInstructions;
         TrialManager.OnExplorationBlockCompleted -= ShowNextInstructions;
         InputHandler.ProceedTrialEvent -= ShowNextInstructions;
         SpawnPointCheck.OnPlayerExitedSpawnPoint -= SetupGuidedExplorationFinishPoint;

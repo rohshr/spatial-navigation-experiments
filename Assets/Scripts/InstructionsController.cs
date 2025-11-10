@@ -173,7 +173,7 @@ public class InstructionsController : MonoBehaviour
             // InputHandler.ProceedEvent += OnProceed;
             // FinishPointCheck.OnFinishPointReached += ShowInstructions;
             // ExperimenterControlScript.OnTrialSkipped += ShowInstructions;
-            // ObjectCollisionDetection.OnObjectCollided += ShowInstructions;
+            // ObjectCollisionDetection.OnObjectFound += ShowInstructions;
         }
     }
 
@@ -182,7 +182,7 @@ public class InstructionsController : MonoBehaviour
         // InputHandler.ProceedEvent -= OnProceed;
         // FinishPointCheck.OnFinishPointReached -= ShowInstructions;
         // ExperimenterControlScript.OnTrialSkipped -= ShowInstructions;
-        // ObjectCollisionDetection.OnObjectCollided -= ShowInstructions;
+        // ObjectCollisionDetection.OnObjectFound -= ShowInstructions;
     }
 
     // Method to load instructions from the JSON file

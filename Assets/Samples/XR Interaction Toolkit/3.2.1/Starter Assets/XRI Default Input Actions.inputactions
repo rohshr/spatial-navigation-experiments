@@ -3533,6 +3533,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ConfirmFind",
+                    "type": "Button",
+                    "id": "2eefb7eb-7a73-448f-a7f6-435c92eebdba",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -3709,6 +3718,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Proceed Trial",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eb1de189-2eca-4230-a8a3-e8171bd5d684",
+                    "path": "<ValveIndexController>/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ConfirmFind",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

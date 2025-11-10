@@ -9,11 +9,11 @@ public class CameraCullingController : MonoBehaviour
         VRDialogFlowManager.OnDialogFlowComplete += SetCullingMaskToEverything; // Subscribe to the event when dialog flow is completed
         // VRDialogFlowManager.OnSpecificDialogComplete += OnSpecificDialogCompleteHandler; // Subscribe to the event when a specific dialog is completed
         // VRDialogFlowManager.OnExperimentStart += SetCullingMaskToEverything; // Subscribe to the event when the experiment starts        FinishPointCheck.OnFinishPointReached += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the finish point is reached
-        VRDialogFlowManager.OnDialogPrefabDisplay += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when a dialog prefab is displayed
+        // VRDialogFlowManager.OnDialogPrefabDisplay += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when a dialog prefab is displayed
         FinishPointCheck.OnFinishPointReached += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the finish point is reached
         TrialManager.OnExplorationBlockCompleted += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the exploration block is completed
         ExperimenterControlScript.OnTrialSkipped += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the session is ended
-        ObjectCollisionDetection.OnObjectCollided += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the object collision is detected
+        ObjectCollisionDetection.OnObjectFound += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the object collision is detected
         InputHandler.ProceedTrialEvent += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the proceed trial button is pressed
         PointingEstimationTask.OnPointingComplete += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the pointing task is completed
         //temporary
@@ -25,14 +25,14 @@ public class CameraCullingController : MonoBehaviour
         VRDialogFlowManager.OnDialogFlowComplete -= SetCullingMaskToEverything; // Unsubscribe from the event when dialog flow is completed
         // VRDialogFlowManager.OnSpecificDialogComplete -= OnSpecificDialogCompleteHandler; // Unsubscribe from the event when a specific dialog is completed
         // VRDialogFlowManager.OnExperimentStart -= SetCullingMaskToEverything; // Unsubscribe from the event when the experiment starts
-        VRDialogFlowManager.OnDialogPrefabDisplay -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when a dialog prefab is displayed
+        // VRDialogFlowManager.OnDialogPrefabDisplay -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when a dialog prefab is displayed
         FinishPointCheck.OnFinishPointReached -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the finish point is reached
         TrialManager.OnExplorationBlockCompleted -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the exploration block is completed       
         ExperimenterControlScript.OnTrialSkipped -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the session is ended
-        ObjectCollisionDetection.OnObjectCollided -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the object collision is detected
+        ObjectCollisionDetection.OnObjectFound -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the object collision is detected
         InputHandler.ProceedTrialEvent -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the proceed trial button is pressed       
         PointingEstimationTask.OnPointingComplete -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the pointing task is completed
-        //temporary
+        //temporary 
         PointingEstimationTask.OnPointingTaskStart -= SetCullingMaskToEverything;
     }
 
@@ -55,6 +55,19 @@ public class CameraCullingController : MonoBehaviour
         if (mainCamera != null)
         {
             mainCamera.cullingMask = -1; // -1 sets the culling mask to everything
+        }
+        else
+        {
+            Debug.LogWarning("Main Camera is not assigned.");
+        }
+    }
+    
+    public void SetCullingMaskWithoutController()
+    {
+        if (mainCamera != null)
+        {
+            var controllerLayer = LayerMask.NameToLayer("Controller");
+            mainCamera.cullingMask = ~(1 << controllerLayer);
         }
         else
         {
