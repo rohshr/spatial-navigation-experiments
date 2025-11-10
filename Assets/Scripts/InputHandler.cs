@@ -61,6 +61,7 @@ public class InputHandler : MonoBehaviour
         VRDialogFlowManager.OnDialogPrefabDisplay += DisableLocomotion;
         FinishPointCheck.OnFinishPointReached += DisableLocomotion; // Subscribe to the event when the finish point is reached
         TrialManager.OnExplorationBlockCompleted += DisableLocomotion; // Subscribe to the event when the exploration block is completed
+        TrialManager.OnExplorationBlockCompleted += StopOnGoingLocomotion;
         ExperimenterControlScript.OnTrialSkipped += DisableLocomotion; // Subscribe to the event when the session is ended
         ObjectCollisionDetection.OnObjectFound += DisableLocomotion; // Subscribe to the event when the object collision is detected
         PointingEstimationSessionGenerator.OnPointingEstimationSessionStart += EnableRotationOnly;
@@ -74,6 +75,7 @@ public class InputHandler : MonoBehaviour
         VRDialogFlowManager.OnDialogPrefabDisplay -= DisableLocomotion;
         FinishPointCheck.OnFinishPointReached -= DisableLocomotion; // Unsubscribe from the event when the finish point is reached
         TrialManager.OnExplorationBlockCompleted -= DisableLocomotion; // Unsubscribe from the event when the exploration block is completed       
+        TrialManager.OnExplorationBlockCompleted -= StopOnGoingLocomotion;
         ExperimenterControlScript.OnTrialSkipped -= DisableLocomotion; // Unsubscribe from the event when the session is ended
         ObjectCollisionDetection.OnObjectFound -= DisableLocomotion; // Unsubscribe from the event when the object collision is detected
         PointingEstimationSessionGenerator.OnPointingEstimationSessionStart -= EnableRotationOnly; // Unsubscribe from the event when the session starts
@@ -130,6 +132,11 @@ public class InputHandler : MonoBehaviour
         {
             xrLocomotionMediator.SetActive(true); // Enable the XRLocomotionMediator
         }
+
+        if (!_leftHandController.activeSelf)
+        {
+            _leftHandController.SetActive(true);
+        }
     }
 
     private void DisableLocomotion()
@@ -140,12 +147,15 @@ public class InputHandler : MonoBehaviour
         }
     }
     
-    // private static void StopOnGoingLocomotion()
-    // {
-    //     if (xrLocomotionMediator != null)
-    //     {
-    //     }
-    // }
+    private void StopOnGoingLocomotion()
+    {
+        if (xrLocomotionMediator != null && _leftHandController != null)
+        {
+            xrLocomotionMediator.SetActive(false);
+            _leftHandController.SetActive(false);
+        }
+    }
+    
     private void EnableRotationOnly()
     {
         EnableLocomotion();
