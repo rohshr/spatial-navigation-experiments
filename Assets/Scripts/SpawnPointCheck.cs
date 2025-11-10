@@ -19,7 +19,8 @@ public class SpawnPointCheck : MonoBehaviour
             if (CompareTag("SpawnPoint"))
             {
                 Debug.Log("Player exited a trial SpawnPoint at " + DateTime.Now);
-                GameStopwatch.StartStopwatch();
+                if (sessionGenerator.GetCurrentBlockType() != "TimedExploration")
+                    GameStopwatch.StartStopwatch();
                 // Session.instance.BeginNextTrial();
                 
                 Session.instance.CurrentTrial.settings.SetValue("object", sessionGenerator.GetCurrentObjectToFind()?.name);
