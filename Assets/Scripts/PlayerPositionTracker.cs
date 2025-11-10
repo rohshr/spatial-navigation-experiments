@@ -144,7 +144,9 @@ public class PlayerPositionTracker : MonoBehaviour
         Session.instance.CurrentTrial.result["distance_travelled"] = distanceTravelled;
         tileChanges = FloorTile.GetTotalVisitsCount();
         Session.instance.CurrentTrial.result["tile_changes"] = tileChanges - 1; // -1 to ignore the first tile and get the number of changes instead of visits
+        Session.instance.CurrentTrial.result["start_position"] = FloorTile.StartPosition.name;
         Session.instance.CurrentTrial.result["tile_travel_sequence"] = FloorTile.GetVisitHistoryString();
+        Session.instance.CurrentTrial.result["finish_position"] = FloorTile.FinishPosition.name;
     }
     
     private void ResetTracking()

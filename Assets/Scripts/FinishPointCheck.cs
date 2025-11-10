@@ -31,7 +31,7 @@ public class FinishPointCheck : MonoBehaviour
         // Log the finish point visit
         if (FindFirstObjectByType<FloorTile>() != null)
         {
-            FloorTile.tileVisitQueue.Enqueue(gameObject);
+            FloorTile.FinishPosition = gameObject;
         }
         OnFinishPointReached?.Invoke();
         Session.instance.CurrentTrial.End();

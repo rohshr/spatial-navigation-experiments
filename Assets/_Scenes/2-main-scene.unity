@@ -1610,7 +1610,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: customHeaders.Array.size
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: settingsToLog.Array.size
@@ -1630,7 +1630,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: 'customHeaders.Array.data[3]'
+      value: start_position
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
+      propertyPath: 'customHeaders.Array.data[4]'
       value: tile_travel_sequence
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
+      propertyPath: 'customHeaders.Array.data[5]'
+      value: finish_position
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: 'settingsToLog.Array.data[0]'
@@ -2787,11 +2795,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8085443599274712418, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
       propertyPath: 'experimentBlocks.Array.data[0]'
-      value: 5957200296150565055
+      value: 5957200296150565039
       objectReference: {fileID: 0}
     - target: {fileID: 8085443599274712418, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
       propertyPath: 'experimentBlocks.Array.data[1]'
-      value: 5957200296150565039
+      value: 5957200296150565055
       objectReference: {fileID: 0}
     - target: {fileID: 8085443599274712418, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
       propertyPath: 'experimentBlocks.Array.data[2]'
@@ -3067,7 +3075,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8085443599274712418, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
       propertyPath: managedReferences[5957200296150565055].timeForExploration
-      value: 0.1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8085443599274712418, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
       propertyPath: managedReferences[9143267746587082986].timeForExploration

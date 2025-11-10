@@ -64,7 +64,7 @@ public class ObjectCollisionDetection : MonoBehaviour
 
         if (FindFirstObjectByType<FloorTile>() != null)
         {
-            FloorTile.tileVisitQueue.Enqueue(gameObject);
+            FloorTile.FinishPosition = gameObject;
         }
         OnObjectFound?.Invoke();
         Session.instance.CurrentTrial.End();

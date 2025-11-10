@@ -5,6 +5,9 @@ using UXF;
 public class FloorTile : MonoBehaviour
 {
     [SerializeField] private string playerTag = "Player";
+
+    public static GameObject StartPosition;
+    public static GameObject FinishPosition;
     
     // Static queue shared by all tiles - tracks the order of tiles visited
     public static Queue<GameObject> tileVisitQueue = new Queue<GameObject>();
