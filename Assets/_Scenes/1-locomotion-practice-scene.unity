@@ -1591,6 +1591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xrOrigin: {fileID: 0}
+  confirmFind: {fileID: 0}
 --- !u!65 &537562825
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1686,6 +1687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xrOrigin: {fileID: 0}
+  confirmFind: {fileID: -7651050221423979539, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!114 &608701281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1807,6 +1809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xrOrigin: {fileID: 0}
+  confirmFind: {fileID: 0}
 --- !u!135 &742344422
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1951,6 +1954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xrOrigin: {fileID: 0}
+  confirmFind: {fileID: -7651050221423979539, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!114 &875208875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2220,6 +2224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xrOrigin: {fileID: 0}
+  confirmFind: {fileID: -7651050221423979539, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!114 &1306354894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3211,6 +3216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xrOrigin: {fileID: 0}
+  confirmFind: {fileID: 0}
 --- !u!114 &1634400034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3446,6 +3452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xrOrigin: {fileID: 0}
+  confirmFind: {fileID: -7651050221423979539, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!114 &1876330917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3489,6 +3496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xrOrigin: {fileID: 0}
+  confirmFind: {fileID: 0}
 --- !u!136 &2048367662
 CapsuleCollider:
   m_ObjectHideFlags: 0
