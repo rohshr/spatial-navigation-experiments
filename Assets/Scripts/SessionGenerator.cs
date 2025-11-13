@@ -70,6 +70,7 @@ public class SessionGenerator : MonoBehaviour
         ObjectCollisionDetection.OnObjectFound += ShowNextObjectSearchInstructions;
         TrialManager.OnExplorationBlockCompleted += ShowNextInstructions;
         InputHandler.ProceedTrialEvent += ShowNextInstructions;
+        ExperimenterControlScript.OnTrialSkipped += ForceSkipTrial;
         SpawnPointCheck.OnPlayerExitedSpawnPoint += SetupGuidedExplorationFinishPoint;
         FinishPointCheck.OnPlayerFinishedGuidedExploration += EndGuidedExploration;
     }
@@ -80,6 +81,7 @@ public class SessionGenerator : MonoBehaviour
         ObjectCollisionDetection.OnObjectFound -= ShowNextObjectSearchInstructions;
         TrialManager.OnExplorationBlockCompleted -= ShowNextInstructions;
         InputHandler.ProceedTrialEvent -= ShowNextInstructions;
+        ExperimenterControlScript.OnTrialSkipped -= ForceSkipTrial;
         SpawnPointCheck.OnPlayerExitedSpawnPoint -= SetupGuidedExplorationFinishPoint;
         FinishPointCheck.OnPlayerFinishedGuidedExploration -= EndGuidedExploration;
     }
@@ -360,6 +362,18 @@ public class SessionGenerator : MonoBehaviour
         yield return new WaitForSeconds(delay);
         Debug.Log("Session ended.");
         Session.instance.End();
+    }
+
+    private void ForceSkipTrial()
+    {
+        if (GetCurrentBlockType() == "ObjectSearch")
+        {
+            ShowNextObjectSearchInstructions();
+        }
+        else
+        {
+            ShowNextInstructions();
+        }
     }
     #endregion
 

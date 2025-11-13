@@ -85,6 +85,7 @@ public class VRDialogFlowManager : MonoBehaviour
         SessionGenerator.OnBlockEnd += ShowDialogSequence;
         SessionGenerator.OnTrialEnd += ShowDialogSequence;
         SessionGenerator.OnSessionEnd += EndSession;
+        PracticeSessionManager.OnPracticeEnd += EndSession;
     }
     
     private void OnDisable()
@@ -102,6 +103,7 @@ public class VRDialogFlowManager : MonoBehaviour
         SessionGenerator.OnBlockEnd -= ShowDialogSequence;
         SessionGenerator.OnTrialEnd -= ShowDialogSequence;
         SessionGenerator.OnSessionEnd -= EndSession;
+        PracticeSessionManager.OnPracticeEnd -= EndSession;
     }
     
     private void Update()

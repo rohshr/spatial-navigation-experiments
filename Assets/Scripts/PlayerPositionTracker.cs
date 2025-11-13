@@ -71,6 +71,7 @@ public class PlayerPositionTracker : MonoBehaviour
         FinishPointCheck.OnFinishPointReached += ResetTracking;
         TrialManager.OnExplorationBlockCompleted += ResetTracking;
         InputHandler.ProceedTrialEvent += ResetTracking;
+        ExperimenterControlScript.OnTrialSkipped += ResetTracking;
         teleportationProvider.locomotionEnded += TeleportationLog;
     }
     
@@ -80,6 +81,7 @@ public class PlayerPositionTracker : MonoBehaviour
         FinishPointCheck.OnFinishPointReached -= ResetTracking;
         TrialManager.OnExplorationBlockCompleted -= ResetTracking;
         InputHandler.ProceedTrialEvent -= ResetTracking;
+        ExperimenterControlScript.OnTrialSkipped -= ResetTracking;
         teleportationProvider.locomotionEnded -= TeleportationLog;
     }
 
@@ -114,7 +116,7 @@ public class PlayerPositionTracker : MonoBehaviour
 
     private void TeleportationLog(LocomotionProvider provider)
     {
-        Debug.Log("Player teleported.");
+        // Debug.Log("Player teleported.");
     }
     
     // void CheckTriggersAfterTeleport(GameObject player, float checkRadius)
