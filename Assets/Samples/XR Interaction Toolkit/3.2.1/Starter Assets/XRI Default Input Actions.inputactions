@@ -3731,6 +3731,17 @@
                     "action": "ConfirmFind",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fcd1f05c-7ec8-4d2f-85dc-3555e3e7def4",
+                    "path": "<XRController>/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ConfirmFind",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
