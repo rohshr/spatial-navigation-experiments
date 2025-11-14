@@ -1,28 +1,39 @@
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UXF;
 
 public class FinishPointCheck : MonoBehaviour
 {
-    [FormerlySerializedAs("XROrigin")] public GameObject xrOrigin; // XROrigin player game object
-
-    public static event Action OnFinishPointReached; // Event to notify when the finish point is reached
+    private SessionGenerator sessionGenerator;
+    public static event Action OnFinishPointReached;
+    public static event Action OnPlayerFinishedGuidedExploration;
     
-    void OnTriggerEnter(Collider other)
+    private void Awake()
     {
-        if (!other.CompareTag("Player") || !Session.instance.InTrial) return;
-        // Check if the player is in the practice trial area
-        if (xrOrigin != null)
+        sessionGenerator = FindFirstObjectByType<SessionGenerator>();
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag("Player")) return;
+        if (!Session.instance.InTrial) return;
+        
+        Debug.Log("Player reached finish point");
+        TimeSpan finalTime = GameStopwatch.StopStopwatch();
+        Debug.Log($"Total time: {finalTime.TotalSeconds} seconds");
+        Session.instance.CurrentTrial.result["total_exploration_time"] = finalTime.TotalSeconds;
+        
+        if (sessionGenerator.GetCurrentBlockType() == "GuidedExploration")
         {
-            Debug.Log("Player reached the trial FinishPoint at " + DateTime.Now);
-            Session.instance.CurrentTrial.End();
-            //  XROrigin.transform.position = instructionsUIViewpoint
-            OnFinishPointReached?.Invoke(); // Trigger the event
+            Debug.Log("Disabling navigation guides and finish point.");
+            OnPlayerFinishedGuidedExploration?.Invoke();
         }
-        else
+        // Log the finish point visit
+        if (FindFirstObjectByType<FloorTile>() != null)
         {
-            Debug.LogWarning("XROrigin is not assigned in PracticeTrialController");
+            FloorTile.FinishPosition = gameObject;
         }
+        OnFinishPointReached?.Invoke();
+        Session.instance.CurrentTrial.End();
     }
 }

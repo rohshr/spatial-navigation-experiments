@@ -12,6 +12,17 @@ TagManager:
   - RightController
   - UIViewpoint
   - FloorTile
+  - QDSUIBackplateGradient
+  - QDSUISharedThemeColor
+  - QDSUIPrimaryButton
+  - QDSUISecondaryButton
+  - QDSUIAccentColor
+  - QDSUITextInvertedColor
+  - QDSUIIcon
+  - QDSUITextSecondaryInvertedColor
+  - Maze
+  - Target
+  - TeleportationHandler
   layers:
   - Default
   - TransparentFX
@@ -22,9 +33,9 @@ TagManager:
   - Controller
   - UXFUI
   - FloorTile
-  - 
-  - 
-  - 
+  - NavigationGuides
+  - Floor
+  - Objects
   - 
   - 
   - 
@@ -48,6 +59,15 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 4134134421
+    locked: 0
+  - name: Objects
+    uniqueID: 463392823
+    locked: 0
+  - name: UI
+    uniqueID: 108034913
     locked: 0
   m_RenderingLayers:
   - Default

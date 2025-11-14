@@ -1,139 +1,310 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.XR.CoreUtils;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 using UXF;
 
 public class TrialManager : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private InstructionsController instructionsController;
+    // [SerializeField] private InstructionsController instructionsController;
     [SerializeField] private GameObject XROrigin;
-    [SerializeField] private GameObject UIViewpoint;
+    [SerializeField] private GameObject TeleportationHandler;
+    // [SerializeField] private GameObject UIViewpoint;
+    
+    private SessionGenerator sessionGenerator;
 
-    [Header("Settings")]
-    [SerializeField] private List<GameObject> SpawnPointsSequence;
-    [SerializeField] private List<GameObject> ObjectSearchSequence;
-
-    private int currentSpawnPointIndex = 0;
-    private int currentObjectSearchIndex = 0;
-    private GameObject pendingSpawnPoint;
-    private GameObject pendingObjectSearch;
-    private bool objectSearchTrialsActive = false; // Flag to check if object search trials are active
-
+    private List<LocomotionExperimentBlock> currentTrialBlocks;
+    private string nextBlockType;
+    private int currentBlockIndex = 0;
+    private LocomotionExperimentBlock currentBlock;
+    private GameObject currentSpawnPoint;
+    
+    private TeleportationProvider teleportationProvider;
+    private GameObject teleportInteractor;
+    
+    // Events
+    public static event Action OnBlocksCompleted;
+    public static event Action OnExplorationBlockCompleted;
+    
+    private void Start()
+    {
+        sessionGenerator = FindFirstObjectByType<SessionGenerator>(); 
+        currentTrialBlocks = sessionGenerator.GetExperimentBlocks();
+        currentBlock = currentTrialBlocks[currentBlockIndex];
+        SetSpawnPoint(currentBlock);
+        
+        // Cache the teleportation provider reference
+        if (TeleportationHandler == null)
+        {
+            Debug.LogError("TeleportationHandler is not assigned in the inspector.");
+            return;
+        }
+        
+        teleportationProvider = TeleportationHandler.GetComponent<TeleportationProvider>();
+        if (teleportationProvider == null)
+        {
+            Debug.LogWarning("TeleportationProvider not found in scene");
+        }
+        
+        var leftController = InputHandler.GetLeftHandController();
+        if (leftController != null)
+        {
+            teleportInteractor = leftController.transform.Find("Teleport Interactor")?.gameObject;
+        }    
+    }
+    
     private void OnEnable()
     {
-        InstructionsController.OnInstructionsCompleted += HandleInstructionsCompleted;
-        FinishPointCheck.OnFinishPointReached += MoveToUIViewpoint; // Subscribe to the event when the finish point is reached
-        ExperimenterControlScript.OnTrialSkipped += MoveToUIViewpoint; // Subscribe to the event when the session is ended
-        ObjectCollisionDetection.OnObjectCollided += MoveToUIViewpoint; // Subscribe to the event when the object collision is detected
+        VRDialogFlowManager.OnDialogFlowComplete += HandleInstructionsCompleted; // Subscribe to the event when dialog flow is completed
     }
 
     private void OnDisable()
     {
-        InstructionsController.OnInstructionsCompleted -= HandleInstructionsCompleted;
-        FinishPointCheck.OnFinishPointReached -= MoveToUIViewpoint; // Unsubscribe from the event when the finish point is reached
-        ExperimenterControlScript.OnTrialSkipped -= MoveToUIViewpoint; // Unsubscribe from the event when the session is ended
-        ObjectCollisionDetection.OnObjectCollided -= MoveToUIViewpoint; // Unsubscribe from the event when the object collision is detected
+        VRDialogFlowManager.OnDialogFlowComplete -= HandleInstructionsCompleted; // Unsubscribe from the event when dialog flow is completed
     }
-
-    public void SetNextSpawnPoint()
+    
+    /// <summary>
+    /// Get the spawn point from the current block and set it as the current spawn point. Run at the start of the session and after each block ends.
+    /// </summary>
+    public void SetSpawnPoint(LocomotionExperimentBlock block)
     {
-        if (SpawnPointsSequence == null || SpawnPointsSequence.Count <= currentSpawnPointIndex)
+        if (block.GetSpawnPoint() == null)
         {
-            Debug.LogWarning($"[{nameof(TrialManager)}] No more spawn points available.");
+            Debug.LogWarning($"[{nameof(TrialManager)}]: The spawn point for block {currentBlock.blockName} is null.");
             return;
         }
+        currentSpawnPoint = block.GetSpawnPoint();
+    }
 
-        if (!objectSearchTrialsActive)
+    /// <summary>
+    /// Setup next block and spawn point for the block. Assign in UXF Rig On Block End event.
+    /// </summary>
+    public void SetupNextBlock()
+    {
+        currentBlockIndex++;
+        if (currentBlockIndex < Session.instance.blocks.Count)
         {
-            pendingSpawnPoint = SpawnPointsSequence[currentSpawnPointIndex];
-            instructionsController.SetEnvironmentInstruction(pendingSpawnPoint.name);
+            currentBlock = currentTrialBlocks[currentBlockIndex];
+
+            // if (currentBlock?.GetBlockType() == "TimedExploration")
+            // {
+            //     var timeTrialBlock = currentBlock as TimedExplorationBlock;
+            //     var timeForExploration = timeTrialBlock.GetTimeForExplorationInSeconds();
+            //     Debug.Log($"Time for exploration: {timeForExploration} seconds.");
+            //     StartCoroutine(EndTrialAfterDelay(timeForExploration)); // Start the timer for the exploration block (after the object search block)
+            // }
+            SetSpawnPoint(currentBlock);
         }
-        else if (ObjectSearchSequence == null || ObjectSearchSequence.Count <= currentObjectSearchIndex)
+        else
         {
-            Debug.LogWarning($"[{nameof(TrialManager)}] No more objects to find.");
-            objectSearchTrialsActive = false; // Reset the flag when no more object search trials are available
-            currentSpawnPointIndex++;
-            if (SpawnPointsSequence == null || SpawnPointsSequence.Count <= currentSpawnPointIndex)
+            Debug.Log("No more blocks available.");
+            OnBlocksCompleted?.Invoke(); // Trigger the event to notify that all blocks are completed
+        }
+    }
+
+    private void InstantiateExplorationTrial()
+    {
+        if (currentBlock?.GetBlockType() == "TimedExploration")
+        {
+            var timeTrialBlock = currentBlock as TimedExplorationBlock;
+
+            if (timeTrialBlock == null)
             {
-                Debug.LogWarning($"[{nameof(TrialManager)}] No more spawn points available.");
+                Debug.LogError("Time trial block not initialized.");
                 return;
             }
-            pendingSpawnPoint = SpawnPointsSequence[currentSpawnPointIndex];
-            instructionsController.SetEnvironmentInstruction(pendingSpawnPoint.name);
-            return;
+            var timeForExploration = timeTrialBlock.GetTimeForExplorationInSeconds();
+            Debug.Log("Starting timed exploration...");
+            Debug.Log($"Time for exploration: {timeForExploration} seconds.");
+            // Session.instance.BeginNextTrial();
+            GameStopwatch.StartStopwatch();
+            StartCoroutine(EndTrialAfterDelay(timeForExploration)); // Start the timer for the exploration block (after the object search block)
         }
-
-        if (pendingSpawnPoint.name == "OpenFloorSpawnPoint")
+        
+        if (currentBlock?.GetBlockType() == "GuidedExploration")
         {
-            pendingObjectSearch = ObjectSearchSequence[currentObjectSearchIndex];
-            instructionsController.SetObjectSearchInstruction(pendingObjectSearch.name);
-            objectSearchTrialsActive = true; // Set the flag to true when object search trials are active
-            return;
+            var guidedBlock = currentBlock as GuidedExplorationBlock;
+            guidedBlock?.EnableNavigationGuides();
         }
     }
-
-    public void SetNextObjectSearch()
+    
+    /// <summary>
+    /// Cancels any ongoing teleportation movement
+    /// </summary>
+    public void CancelOngoingMovement()
     {
-        if(ObjectSearchSequence == null || ObjectSearchSequence.Count <= currentObjectSearchIndex)
+        if (!teleportationProvider)
         {
-            Debug.LogWarning($"[{nameof(TrialManager)}] No more objects to search.");
+            Debug.LogWarning("TeleportationProvider reference is missing, cannot cancel ongoing movement.");
             return;
         }
-
-        pendingObjectSearch = ObjectSearchSequence[currentObjectSearchIndex];
-        instructionsController.SetObjectSearchInstruction(pendingObjectSearch.name);
+    
+        // Disable the teleportation provider to interrupt any ongoing teleportation
+        teleportationProvider.enabled = false;
+    
+        // Wait a frame before re-enabling to ensure the teleportation state is reset
+        StartCoroutine(ReenableTeleportationProvider());
+        
+        // Disable teleport interactor in left hand controller
+        if (teleportInteractor)
+        {
+            teleportInteractor.SetActive(false);
+            StartCoroutine(ReenableInteractor());
+        }
+        else
+        {
+            Debug.LogWarning("Teleport Interactor not found in left hand controller.");
+        }
+        
+        Debug.Log("Canceled incomplete teleportation");
+    
+        // // Also disable and re-enable locomotion components to reset state
+        // var locomotionProviders = XROrigin.GetComponentsInChildren<LocomotionProvider>();
+        // foreach (var provider in locomotionProviders)
+        // {
+        //     provider.enabled = false;
+        //     provider.enabled = true;
+        // }
+    }
+    
+    private IEnumerator ReenableTeleportationProvider()
+    {
+        yield return null; // Wait one frame
+        if (teleportationProvider != null)
+        {
+            teleportationProvider.enabled = true;
+        }
+    }
+    
+    private IEnumerator ReenableInteractor()
+    {
+        yield return null;
+        if (teleportInteractor != null)
+        {
+            teleportInteractor.SetActive(true);
+        }
     }
 
     private void HandleInstructionsCompleted()
     {
-        if (pendingSpawnPoint == null) return;
-        if (pendingSpawnPoint.name != "OpenFloorSpawnPoint")
+        // Determine the appropriate spawn point based on block type
+        GameObject spawnPoint = GetAppropriateSpawnPoint();
+        MoveToSpawnPoint(spawnPoint);
+        Session.instance.BeginNextTrial();
+        InstantiateExplorationTrial();
+    }
+    
+    /// <summary>
+    /// Get the appropriate spawn point based on the current block type and trial
+    /// </summary>
+    /// <returns>GameObject representing the spawn point to move to</returns>
+    private GameObject GetAppropriateSpawnPoint()
+    {
+        if (Session.instance == null || !Session.instance.hasInitialised)
         {
-            MoveToSpawnPoint(pendingSpawnPoint);
-            currentSpawnPointIndex++;
-            pendingSpawnPoint = null;
+            Debug.LogError("Session instance is not initialized.");
         }
-        else
+        if (currentBlock?.GetBlockType() == "ObjectSearch")
         {
-            if (ObjectSearchSequence == null || ObjectSearchSequence.Count <= currentObjectSearchIndex)
+            // For object search blocks, try to get the task-specific spawn location
+            var objectSearchSpawnPoint = sessionGenerator.GetCurrentObjectSearchSpawnLocation(currentBlock);
+            if (objectSearchSpawnPoint != null)
             {
-                Debug.LogWarning($"[{nameof(TrialManager)}] No more objects to search.");
-                MoveToSpawnPoint(pendingSpawnPoint);
-                currentSpawnPointIndex++;
-                pendingSpawnPoint = null;
-                objectSearchTrialsActive = false; // Reset the flag when no more object search trials are available
-                return;
+                Debug.Log($"Using object search task spawn location: {objectSearchSpawnPoint.name}");
+                return objectSearchSpawnPoint;
             }
-            MoveToSpawnPoint(pendingSpawnPoint);
-            currentObjectSearchIndex++;
-            pendingObjectSearch = null;
+            else
+            {
+                Debug.Log($"No task-specific spawn location found, using block spawn point: {currentSpawnPoint.name}");
+                return currentSpawnPoint;
+            }
         }
+        
+        // For other block types, use the standard block spawn point
+        return currentSpawnPoint;
     }
 
+
+    private IEnumerator EndTrialAfterDelay(float timeInSeconds)
+    {
+        Debug.Log($"Ending trial after {timeInSeconds} seconds.");
+        yield return new WaitForSeconds(timeInSeconds);
+        
+        TimeSpan finalTime = GameStopwatch.StopStopwatch();
+        Debug.Log($"Total exploration time: {finalTime.TotalSeconds} seconds");
+        Session.instance.CurrentTrial.result["total_exploration_time"] = finalTime.TotalSeconds;
+        
+        // CancelOngoingMovement();
+        OnExplorationBlockCompleted?.Invoke(); // Trigger the event to notify that the exploration block is completed
+        Session.instance.CurrentTrial.End();
+    }
+    
+    // This should be called from UXF's OnTrialEnd event or when trial is actually complete
+    public void OnTrialCompleted()
+    {
+        Debug.Log("Trial completed, continuing dialog flow");
+        // CancelOngoingMovement();
+    }
+    
     private void MoveToSpawnPoint(GameObject spawnPoint)
     {
         XROrigin.transform.SetPositionAndRotation(
             spawnPoint.transform.position,
             spawnPoint.transform.rotation
         );
+        // Log the spawn point in the visit queue
+        if (FindFirstObjectByType<FloorTile>() != null)
+        {
+            FloorTile.StartPosition = spawnPoint;
+        }
         Debug.Log($"Moved to spawn point: {spawnPoint.name}");
     }
-
-    public void MoveToUIViewpoint()
+    
+    private IEnumerator MoveToSpawnPointCoroutine(GameObject spawnPoint)
     {
-        if (UIViewpoint != null)
+        // Wait for end of frame to ensure physics has settled
+        yield return new WaitForEndOfFrame();
+    
+        // Disable character controller if present
+        var characterController = XROrigin.GetComponent<CharacterController>();
+        if (characterController != null)
         {
-            XROrigin.transform.SetPositionAndRotation(
-                UIViewpoint.transform.position,
-                UIViewpoint.transform.rotation
-            );
-            Debug.Log($"Moved to UIViewpoint: {UIViewpoint.name}");
+            characterController.enabled = false;
         }
-        else
+    
+        // Set position and rotation
+        XROrigin.transform.SetPositionAndRotation(
+            spawnPoint.transform.position,
+            spawnPoint.transform.rotation
+        );
+    
+        // Re-enable character controller
+        if (characterController != null)
         {
-            Debug.LogWarning($"[{nameof(TrialManager)}] UIViewpoint is not assigned.");
+            yield return null; // Wait one frame
+            characterController.enabled = true;
         }
+    
+        Debug.Log($"Moved to spawn point: {spawnPoint.name} at position {spawnPoint.transform.position}");
     }
+
+    // public void MoveToUIViewpoint()
+    // {
+    //     if (UIViewpoint != null)
+    //     {
+    //         XROrigin.transform.SetPositionAndRotation(
+    //             UIViewpoint.transform.position,
+    //             UIViewpoint.transform.rotation
+    //         );
+    //         Debug.Log($"Moved to UIViewpoint: {UIViewpoint.name}");
+    //     }
+    //     else
+    //     {
+    //         Debug.LogWarning($"[{nameof(TrialManager)}] UIViewpoint is not assigned.");
+    //     }
+    // }
 }

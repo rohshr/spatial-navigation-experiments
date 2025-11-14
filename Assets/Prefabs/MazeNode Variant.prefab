@@ -24,9 +24,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1048713308030996990}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 0.0002446883, y: -0.002574867, z: -0.0004999992}
+  m_LocalScale: {x: 0.010036435, y: 0.010000002, z: 0.009923567}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1565918072651328325}
@@ -97,7 +97,7 @@ Transform:
   - {fileID: 6168198979176633874}
   - {fileID: 8246996755983752453}
   - {fileID: 2454113588194516842}
-  m_Father: {fileID: 3722751753920874671}
+  m_Father: {fileID: 924932079123949019}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &55627333330318486
 PrefabInstance:
@@ -2117,6 +2117,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnPointNode
       objectReference: {fileID: 0}
+    - target: {fileID: 2976591375152544003, guid: ffe13b7989fe40447b485064367952f7, type: 3}
+      propertyPath: m_Name
+      value: NodeFloor
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976591375152544003, guid: ffe13b7989fe40447b485064367952f7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976591375152544003, guid: ffe13b7989fe40447b485064367952f7, type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     - target: {fileID: 3237158283159276030, guid: ffe13b7989fe40447b485064367952f7, type: 3}
       propertyPath: boundsDisplay
       value: 'Center: (-49.91, 2.00, 11.71)
@@ -2126,14 +2138,29 @@ PrefabInstance:
         Max:
         (-38.81, 4.00, 11.81)'
       objectReference: {fileID: 0}
+    - target: {fileID: 3640686879669989544, guid: ffe13b7989fe40447b485064367952f7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4919952124868642065, guid: ffe13b7989fe40447b485064367952f7, type: 3}
+      propertyPath: sizeDisplay
+      value: 'Width (X): 2.00 m (6'' 6.7")
+
+        Height (Y): 60.0 cm (2.0 ft)
+
+        Depth
+        (Z): 2.00 m (6'' 6.7")
+
+        Diagonal: 2.89 m (9'' 5.8")'
+      objectReference: {fileID: 0}
     - target: {fileID: 4919952124868642065, guid: ffe13b7989fe40447b485064367952f7, type: 3}
       propertyPath: boundsDisplay
       value: 'Center: (-60.01, 0.10, -9.39)
 
-        Min: (-61.01, 0.00, -10.39)
+        Min: (-61.01, -0.20, -10.39)
 
         Max:
-        (-59.01, 0.20, -8.39)'
+        (-59.01, 0.40, -8.39)'
       objectReference: {fileID: 0}
     - target: {fileID: 7033048129034384727, guid: ffe13b7989fe40447b485064367952f7, type: 3}
       propertyPath: boundsDisplay
@@ -2200,14 +2227,53 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8625373827207377296, guid: ffe13b7989fe40447b485064367952f7, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 5245745682295610596, guid: ffe13b7989fe40447b485064367952f7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2101877433631407647}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5605122555191547760, guid: ffe13b7989fe40447b485064367952f7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5424758019543660219}
   m_SourcePrefab: {fileID: 100100000, guid: ffe13b7989fe40447b485064367952f7, type: 3}
---- !u!4 &3722751753920874671 stripped
+--- !u!1 &708121156891700815 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5605122555191547760, guid: ffe13b7989fe40447b485064367952f7, type: 3}
+  m_PrefabInstance: {fileID: 4907416390871234879}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5424758019543660219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708121156891700815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62c8b19394034164c82ff72b06ec3858, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp-firstpass::MeasurementTool.ObjectMeasurement
+  displayUnit: 0
+  showBothUnits: 1
+  showInInspector: 1
+  sizeDisplay: 'Width (X): 2.00 m (6'' 6.7")
+
+    Height (Y): 60.0 cm (2.0 ft)
+
+    Depth
+    (Z): 2.00 m (6'' 6.7")
+
+    Diagonal: 2.89 m (9'' 5.8")'
+  boundsDisplay: 'Center: (-60.01, 0.10, -7.39)
+
+    Min: (-61.01, -0.20, -8.39)
+
+    Max:
+    (-59.01, 0.40, -6.39)'
+  measureDistanceTo: {fileID: 0}
+  distanceDisplay: Assign a GameObject above to measure distance
+--- !u!4 &924932079123949019 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8625373827207377296, guid: ffe13b7989fe40447b485064367952f7, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5245745682295610596, guid: ffe13b7989fe40447b485064367952f7, type: 3}
   m_PrefabInstance: {fileID: 4907416390871234879}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4911656703344403035

@@ -136,6 +136,7 @@ namespace UXF
             status = TrialStatus.Done;
             endTime = Time.time;
             result["end_time"] = endTime;
+            result["duration"] = endTime - startTime;
             
             if (saveData)
             {

@@ -1,36 +1,57 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using PointingTask;
+using Unity.AppUI.UI;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.InputSystem;
 using Unity.XR.CoreUtils;
+using UXF;
+using Canvas = UnityEngine.Canvas;
 
+/// <summary>
+/// VRDialogFlowManager - Manages sequential dialog presentation in VR environments with smooth transitions and user follow behavior
+/// </summary>
 public class VRDialogFlowManager : MonoBehaviour
 {
-    [Header("Dialog Configuration")]
-    [SerializeField] private List<GameObject> dialogPrefabs = new List<GameObject>();
-    [SerializeField] private float dialogDistance = 2.0f;
+    [Tooltip("Specify how far in front of the user the dialog should appear.")]
+    [SerializeField] private float dialogDistance = 1.0f;
+    [Tooltip("Specify the visual scale of the dialog UI.")]
     [SerializeField] private float dialogScale = 1.0f;
     
+    [Header("Flow Configuration")]
+    private List<GameObject> dialogPrefabsSequence = new List<GameObject>();
+    private Queue<GameObject> dialogQueue = new Queue<GameObject>();
+    
+    
     [Header("Follow Behavior")]
-    [SerializeField] private float followThresholdAngle = 45.0f;
-    [SerializeField] private float followSpeed = 2.0f;
-    [SerializeField] private float followSmoothTime = 0.3f;
+    [Tooltip("Enable or disable the follow behavior for the dialog UI. When enabled, the dialog will smoothly follow the user's head movements.")]
     [SerializeField] private bool enableFollowBehavior = true;
+    [Tooltip("Angle threshold (in degrees) to trigger follow behavior when the user turns their head. The UI dialog will follow user's view if they look away beyond this angle.")]
+    [SerializeField] private float followThresholdAngle = 30.0f;
+    [Tooltip("Speed at which the dialog UI follows the user's head movement.")]
+    [SerializeField] private float followSpeed = 2.0f;
     
     [Header("Input Configuration")]
+    [Tooltip("Input action reference for advancing the dialog. This should be set up in the Input System.")]
     [SerializeField] private InputActionReference advanceInputAction;
     
     [Header("References")]
-    [SerializeField] private Transform cameraTransform;
-    [SerializeField] private Canvas dialogCanvas;
+    [Tooltip("Reference to the XR Origin in the scene. This is used to get the user's head position and orientation.")]
     [SerializeField] private XROrigin xrOrigin;
+    [Tooltip("Reference to the main camera. This is the camera GameObject inside the XR Origin.")]
+    [SerializeField] private Transform cameraTransform;
+    [Tooltip("Reference to the canvas that will display the UI dialogs.")]
+    [SerializeField] private Canvas dialogCanvas;
     
     // Private variables
     private int currentDialogIndex = 0;
     private GameObject currentDialogInstance;
     private bool isTransitioning = false;
-    private bool experimentStarted = false;
+    private bool trialStarted = false; // Flag to indicate if a trial is in session
+    private bool sessionEnded = false; // Flag to indicate if the session has ended
+    private GameObject endSessionDialogPrefab; // Dialog prefab to show at session end
     
     // Follow behavior variables
     private Vector3 targetPosition;
@@ -40,14 +61,13 @@ public class VRDialogFlowManager : MonoBehaviour
     private Coroutine followCoroutine;
     
     // Events
-    public System.Action OnDialogFlowComplete;
-    public System.Action<int> OnDialogChanged;
-    public System.Action OnExperimentStart;
+    public static event System.Action OnDialogFlowComplete;
+    public static event System.Action OnDialogPrefabChanged;
+    public static event Action OnDialogPrefabDisplay; // Event triggered when any dialog prefab is displayed
     
     private void Start()
     {
         InitializeDialogSystem();
-        SetupInputActions();
     }
     
     private void OnEnable()
@@ -56,6 +76,16 @@ public class VRDialogFlowManager : MonoBehaviour
         {
             advanceInputAction.action.Enable();
         }
+        SessionGenerator.OnPlayStart += ShowDialogPrefab;
+        SessionGenerator.OnSessionGenerate += ShowDialogSequence;
+        PointingEstimationSessionGenerator.OnPlayStart += ShowDialogPrefab;
+        PointingEstimationSessionGenerator.OnSessionGenerate += ShowDialogSequence;
+        PointingEstimationSessionGenerator.OnShowNextInstruction += ShowDialogSequence;
+        PointingEstimationSessionGenerator.OnSessionEnd += ShowDialogPrefab;
+        SessionGenerator.OnBlockEnd += ShowDialogSequence;
+        SessionGenerator.OnTrialEnd += ShowDialogSequence;
+        SessionGenerator.OnSessionEnd += EndSession;
+        PracticeSessionManager.OnPracticeEnd += EndSession;
     }
     
     private void OnDisable()
@@ -64,67 +94,48 @@ public class VRDialogFlowManager : MonoBehaviour
         {
             advanceInputAction.action.Disable();
         }
+        SessionGenerator.OnPlayStart -= ShowDialogPrefab;
+        SessionGenerator.OnSessionGenerate -= ShowDialogSequence;
+        PointingEstimationSessionGenerator.OnPlayStart -= ShowDialogPrefab;
+        PointingEstimationSessionGenerator.OnSessionGenerate -= ShowDialogSequence;
+        PointingEstimationSessionGenerator.OnShowNextInstruction -= ShowDialogSequence;
+        PointingEstimationSessionGenerator.OnSessionEnd -= ShowDialogPrefab;
+        SessionGenerator.OnBlockEnd -= ShowDialogSequence;
+        SessionGenerator.OnTrialEnd -= ShowDialogSequence;
+        SessionGenerator.OnSessionEnd -= EndSession;
+        PracticeSessionManager.OnPracticeEnd -= EndSession;
     }
     
     private void Update()
     {
-        if (!experimentStarted && !isTransitioning)
+        if (!isTransitioning && currentDialogInstance != null)
         {
-            if (enableFollowBehavior && currentDialogInstance != null)
+            if (enableFollowBehavior)
             {
                 CheckFollowBehavior();
             }
         }
     }
     
-    private void SetupInputActions()
+    private IEnumerator WaitForAdvanceInput()
     {
+        bool inputReceived = false;
+    
+        System.Action<InputAction.CallbackContext> inputHandler = (context) => {
+            inputReceived = true;
+        };
+
         if (advanceInputAction != null)
         {
-            advanceInputAction.action.performed += OnAdvanceInputPerformed;
+            advanceInputAction.action.performed += inputHandler;
         }
-        else
+
+        yield return new WaitUntil(() => inputReceived);
+
+        if (advanceInputAction != null)
         {
-            Debug.LogWarning("VRDialogFlowManager: No advance input action assigned!");
+            advanceInputAction.action.performed -= inputHandler;
         }
-    }
-    
-    private void InitializeDialogSystem()
-    {
-        // Get XR Origin reference if not assigned
-        if (xrOrigin == null)
-        {
-            xrOrigin = FindFirstObjectByType<XROrigin>();
-        }
-        
-        // Get camera reference if not assigned
-        if (cameraTransform == null)
-        {
-            if (xrOrigin != null)
-            {
-                cameraTransform = xrOrigin.Camera.transform;
-            }
-            else
-            {
-                cameraTransform = Camera.main?.transform;
-            }
-        }
-        
-        // Create canvas if not assigned
-        if (dialogCanvas == null)
-        {
-            CreateDialogCanvas();
-        }
-        
-        // Validate dialog prefabs
-        if (dialogPrefabs.Count == 0)
-        {
-            Debug.LogError("VRDialogFlowManager: No dialog prefabs assigned!");
-            return;
-        }
-        
-        // Start with first dialog
-        ShowDialog(0);
     }
     
     private void CreateDialogCanvas()
@@ -141,76 +152,6 @@ public class VRDialogFlowManager : MonoBehaviour
         
         // Add GraphicRaycaster for UI interactions
         canvasObject.AddComponent<UnityEngine.UI.GraphicRaycaster>();
-    }
-    
-    private void ShowDialog(int dialogIndex)
-    {
-        if (dialogIndex < 0 || dialogIndex >= dialogPrefabs.Count)
-        {
-            Debug.LogError($"VRDialogFlowManager: Invalid dialog index {dialogIndex}");
-            return;
-        }
-        
-        StartCoroutine(ShowDialogCoroutine(dialogIndex));
-    }
-    
-    private IEnumerator ShowDialogCoroutine(int dialogIndex)
-    {
-        isTransitioning = true;
-        
-        // Store the previous dialog's transform before destroying it
-        Vector3 previousPosition = targetPosition;
-        Quaternion previousRotation = targetRotation;
-        
-        // Hide current dialog with fade out
-        if (currentDialogInstance != null)
-        {
-            previousPosition = currentDialogInstance.transform.position;
-            previousRotation = currentDialogInstance.transform.rotation;
-            yield return StartCoroutine(FadeDialog(currentDialogInstance, false));
-            Destroy(currentDialogInstance);
-        }
-        
-        // Update index
-        currentDialogIndex = dialogIndex;
-        
-        // Calculate position and rotation
-        CalculateDialogTransform();
-        
-        // Instantiate new dialog
-        currentDialogInstance = Instantiate(dialogPrefabs[dialogIndex], dialogCanvas.transform);
-        
-        // Immediately set transform without any interpolation
-        var rectTransform = currentDialogInstance.GetComponent<RectTransform>();
-        if (rectTransform != null)
-        {
-            rectTransform.position = previousPosition;
-            rectTransform.rotation = previousRotation;
-            rectTransform.localScale = Vector3.one * dialogScale;
-        }
-        else
-        {
-            currentDialogInstance.transform.position = previousPosition;
-            currentDialogInstance.transform.rotation = previousRotation;
-            currentDialogInstance.transform.localScale = Vector3.one * dialogScale;
-        }
-        
-        // Force immediate transform update
-        Canvas.ForceUpdateCanvases();
-        
-        // Fade in new dialog
-        yield return StartCoroutine(FadeDialog(currentDialogInstance, true));
-        
-        isTransitioning = false;
-        
-        // Invoke event
-        OnDialogChanged?.Invoke(currentDialogIndex);
-        
-        // Start follow behavior
-        if (enableFollowBehavior)
-        {
-            StartFollowBehavior();
-        }
     }
     
     private void CalculateDialogTransform()
@@ -245,90 +186,6 @@ public class VRDialogFlowManager : MonoBehaviour
         canvasTransform.rotation = Quaternion.LookRotation(-lookDirection, Vector3.up);
     }
     
-    private IEnumerator FadeDialog(GameObject dialog, bool fadeIn)
-    {
-        if (dialog == null) yield break;
-        
-        CanvasGroup canvasGroup = dialog.GetComponent<CanvasGroup>();
-        if (canvasGroup == null)
-        {
-            canvasGroup = dialog.AddComponent<CanvasGroup>();
-        }
-        
-        float startAlpha = fadeIn ? 0f : 1f;
-        float targetAlpha = fadeIn ? 1f : 0f;
-        float duration = 0.3f;
-        float elapsed = 0f;
-        
-        canvasGroup.alpha = startAlpha;
-        
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            float t = elapsed / duration;
-            canvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, t);
-            yield return null;
-        }
-        
-        canvasGroup.alpha = targetAlpha;
-    }
-    
-    private void OnAdvanceInputPerformed(InputAction.CallbackContext context)
-    {
-        if (!experimentStarted && !isTransitioning)
-        {
-            AdvanceDialog();
-        }
-    }
-    
-    private void AdvanceDialog()
-    {
-        if (isTransitioning) return;
-        
-        if (currentDialogIndex < dialogPrefabs.Count - 1)
-        {
-            // Recalculate position based on current camera view before showing next dialog
-            // CalculateCanvasTransform();
-            CalculateDialogTransform();
-            // Show next dialog
-            ShowDialog(currentDialogIndex + 1);
-        }
-        else
-        {
-            // All dialogs complete
-            CompleteDialogFlow();
-        }
-    }
-    
-    private void CompleteDialogFlow()
-    {
-        StartCoroutine(CompleteDialogFlowCoroutine());
-    }
-    
-    private IEnumerator CompleteDialogFlowCoroutine()
-    {
-        isTransitioning = true;
-        
-        // Stop follow behavior
-        StopFollowBehavior();
-        
-        // Fade out final dialog
-        if (currentDialogInstance != null)
-        {
-            yield return StartCoroutine(FadeDialog(currentDialogInstance, false));
-            Destroy(currentDialogInstance);
-            currentDialogInstance = null;
-        }
-        
-        experimentStarted = true;
-        
-        // Invoke completion events
-        OnDialogFlowComplete?.Invoke();
-        OnExperimentStart?.Invoke();
-        
-        Debug.Log("VR Dialog Flow Complete - Experiment Starting");
-    }
-    
     private void CheckFollowBehavior()
     {
         if (currentDialogInstance == null || cameraTransform == null) return;
@@ -357,7 +214,11 @@ public class VRDialogFlowManager : MonoBehaviour
     
     private IEnumerator SmoothFollowDialog()
     {
-        if (currentDialogInstance == null) yield break;
+        if (currentDialogInstance == null)
+        {
+            followCoroutine = null;
+            yield break;
+        }
         
         Transform dialogTransform = currentDialogInstance.transform;
         Vector3 startPosition = dialogTransform.position;
@@ -380,8 +241,11 @@ public class VRDialogFlowManager : MonoBehaviour
             yield return null;
         }
         
-        dialogTransform.position = targetPosition;
-        dialogTransform.rotation = targetRotation;
+        if (currentDialogInstance != null && dialogTransform != null)
+        {
+            dialogTransform.position = targetPosition;
+            dialogTransform.rotation = targetRotation;
+        }
         
         followCoroutine = null;
     }
@@ -401,22 +265,210 @@ public class VRDialogFlowManager : MonoBehaviour
         }
     }
     
-    // Public methods for external control
-    public void RestartDialogFlow()
+    private IEnumerator FadeDialog(GameObject dialog, bool fadeIn)
     {
-        StopAllCoroutines();
-        followCoroutine = null;
+        if (dialog == null) yield break;
         
+        CanvasGroup canvasGroup = dialog.GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+        {
+            canvasGroup = dialog.AddComponent<CanvasGroup>();
+        }
+        
+        float startAlpha = fadeIn ? 0f : 1f;
+        float targetAlpha = fadeIn ? 1f : 0f;
+        float duration = 0.3f;
+        float elapsed = 0f;
+        
+        canvasGroup.alpha = startAlpha;
+        
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            canvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, t);
+            yield return null;
+        }
+        
+        canvasGroup.alpha = targetAlpha;
+    }
+    
+    private void InitializeDialogSystem()
+    {
+        // Get XR Origin reference if not assigned
+        if (xrOrigin == null)
+        {
+            xrOrigin = FindFirstObjectByType<XROrigin>();
+        }
+        
+        // Get camera reference if not assigned
+        if (cameraTransform == null)
+        {
+            if (xrOrigin != null)
+            {
+                cameraTransform = xrOrigin.Camera.transform;
+            }
+            else
+            {
+                cameraTransform = Camera.main?.transform;
+            }
+        }
+        
+        // Create canvas if not assigned
+        if (dialogCanvas == null)
+        {
+            CreateDialogCanvas();
+        }
+        
+        // Start with first dialog
+        dialogPrefabsSequence.Clear();
+        dialogQueue.Clear();
+    }
+    
+    // Method to show a single dialog
+    public void ShowDialogPrefab(GameObject dialogPrefab)
+    {
+        Debug.Log($"Showing dialog: {dialogPrefab.name}");
+        if (dialogPrefab == null)
+        {
+            Debug.LogError("VRDialogFlowManager: Cannot show dialog - prefab is null");
+            return;
+        }
+        
+        StartCoroutine(ShowDialogPrefabCoroutine(dialogPrefab));
+    }
+    
+    private IEnumerator ShowDialogPrefabCoroutine(GameObject dialogPrefab)
+    {
+        OnDialogPrefabDisplay?.Invoke();
+        isTransitioning = true;
+        
+        // Store the previous dialog's transform before destroying it
+        Vector3 previousPosition = targetPosition;
+        Quaternion previousRotation = targetRotation;
+        
+        // Hide current dialog with fade out
         if (currentDialogInstance != null)
         {
+            StopFollowBehavior();
+            yield return StartCoroutine(FadeDialog(currentDialogInstance, false));
             Destroy(currentDialogInstance);
         }
         
-        currentDialogIndex = 0;
-        isTransitioning = false;
-        experimentStarted = false;
+        // Calculate position and rotation
+        CalculateDialogTransform();
         
-        ShowDialog(0);
+        // Instantiate new dialog
+        currentDialogInstance = Instantiate(dialogPrefab, dialogCanvas.transform);
+        
+        // Immediately set transform without any interpolation
+        var rectTransform = currentDialogInstance.GetComponent<RectTransform>();
+        if (rectTransform != null)
+        {
+            rectTransform.position = targetPosition;
+            rectTransform.rotation = targetRotation;
+            rectTransform.localScale = Vector3.one * dialogScale;
+        }
+        else
+        {
+            currentDialogInstance.transform.position = targetPosition;
+            currentDialogInstance.transform.rotation = targetRotation;
+            currentDialogInstance.transform.localScale = Vector3.one * dialogScale;
+        }
+        
+        // Force immediate transform update
+        Canvas.ForceUpdateCanvases();
+        
+        // Fade in new dialog
+        yield return StartCoroutine(FadeDialog(currentDialogInstance, true));
+        
+        isTransitioning = false;
+        
+        // Invoke event
+        OnDialogPrefabChanged?.Invoke();
+        
+        // Start follow behavior
+        if (enableFollowBehavior)
+        {
+            StartFollowBehavior();
+        }
+
+        if (dialogPrefab != endSessionDialogPrefab)
+        {
+            yield return StartCoroutine(WaitForAdvanceInput());
+        }
+    }
+    
+    // Method to call at the end of the session
+    private void EndSession(GameObject endDialogPrefab)
+    {
+        sessionEnded = true;
+        endSessionDialogPrefab = endDialogPrefab;
+    }
+    
+    // Method to show multiple dialogs in sequence
+    private void ShowDialogSequence(List<GameObject> dialogPrefabs)
+    {
+        dialogQueue.Clear();
+        foreach (GameObject dialog in dialogPrefabs)
+        {
+            if (dialog != null)
+            {
+                dialogQueue.Enqueue(dialog);
+            }
+        }
+        
+        if (dialogQueue.Count > 0)
+        {
+            StartCoroutine(ProcessDialogQueue());
+        }
+    }
+    
+    private IEnumerator ProcessDialogQueue()
+    {
+        Debug.Log($"Processing dialog queue with {dialogQueue.Count} dialogs");
+        while (dialogQueue.Count > 0)
+        {
+            Debug.Log($"Current dialog in queue: {dialogQueue.Peek().name}");
+            GameObject dialogPrefab = dialogQueue.Dequeue();
+            yield return StartCoroutine(ShowDialogPrefabCoroutine(dialogPrefab));
+        }
+        
+        // All dialogs complete
+        if (sessionEnded)
+        {
+            yield return StartCoroutine(ShowDialogPrefabCoroutine(endSessionDialogPrefab));
+            yield break;
+        }
+        
+        StartCoroutine(CompleteDialogPrefabFlowCoroutine());
+    }
+    
+    private void CompleteDialogPrefabFlow()
+    {
+        StartCoroutine(CompleteDialogPrefabFlowCoroutine());
+    }
+    
+    private IEnumerator CompleteDialogPrefabFlowCoroutine()
+    {
+        isTransitioning = true;
+        
+        // Stop follow behavior
+        StopFollowBehavior();
+        
+        // Fade out final dialog
+        if (currentDialogInstance != null)
+        {
+            yield return StartCoroutine(FadeDialog(currentDialogInstance, false));
+            Destroy(currentDialogInstance);
+        }
+        
+        trialStarted = true;
+        
+        // Invoke completion events
+        OnDialogFlowComplete?.Invoke();
+        
+        Debug.Log("VR Dialog Flow Complete - Experiment Starting");
     }
     
     public void SetDialogDistance(float distance)
@@ -434,29 +486,23 @@ public class VRDialogFlowManager : MonoBehaviour
         followSpeed = Mathf.Max(0.1f, speed);
     }
     
-    public void ToggleFollowBehavior(bool enabled)
+    public void ToggleFollowBehavior(bool followStatus)
     {
-        enableFollowBehavior = enabled;
-        if (!enabled)
+        enableFollowBehavior = followStatus;
+        if (!followStatus)
         {
             StopFollowBehavior();
         }
     }
     
     // Getters
-    public bool IsExperimentStarted => experimentStarted;
+    public bool IsTrialStarted => trialStarted;
     public bool IsTransitioning => isTransitioning;
     public int CurrentDialogIndex => currentDialogIndex;
-    public int TotalDialogs => dialogPrefabs.Count;
+    public int TotalDialogs => dialogQueue.Count;
     
     private void OnDestroy()
     {
         StopAllCoroutines();
-        
-        // Unsubscribe from input actions
-        if (advanceInputAction != null)
-        {
-            advanceInputAction.action.performed -= OnAdvanceInputPerformed;
-        }
     }
 }

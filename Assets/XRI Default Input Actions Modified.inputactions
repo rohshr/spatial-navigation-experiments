@@ -3575,17 +3575,6 @@
                 },
                 {
                     "name": "",
-                    "id": "1b7142ed-d3b0-44e7-a8a0-409f2dd06143",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Proceed",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "86b8489e-123f-4655-a287-8f8c3075d7cc",
                     "path": "<XRController>{LeftHand}/{SecondaryButton}",
                     "interactions": "",
