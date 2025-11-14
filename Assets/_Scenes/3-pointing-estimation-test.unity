@@ -35569,7 +35569,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: customHeaders.Array.size
-      value: 9
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: settingsToLog.Array.size
@@ -35577,39 +35577,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: 'customHeaders.Array.data[0]'
-      value: angle_estimate
+      value: viewing_angle
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: 'customHeaders.Array.data[1]'
-      value: correct_angle
+      value: pointing_angle_estimate
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: 'customHeaders.Array.data[2]'
-      value: angular_error
+      value: correct_angle
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: 'customHeaders.Array.data[3]'
-      value: reference_distance
+      value: angular_error
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: 'customHeaders.Array.data[4]'
-      value: distance_estimate
+      value: reference_distance
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: 'customHeaders.Array.data[5]'
-      value: actual_distance
+      value: distance_estimate
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: 'customHeaders.Array.data[6]'
-      value: spawn_position
+      value: distance_estimate_m
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: 'customHeaders.Array.data[7]'
-      value: reference_position
+      value: actual_distance
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: 'customHeaders.Array.data[8]'
-      value: target_position
+      value: distance_error
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
+      propertyPath: 'customHeaders.Array.data[9]'
+      value: spawn_position
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: 'settingsToLog.Array.data[0]'
@@ -35630,6 +35634,14 @@ PrefabInstance:
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: 'settingsToLog.Array.data[4]'
       value: object
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
+      propertyPath: 'customHeaders.Array.data[10]'
+      value: reference_position
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
+      propertyPath: 'customHeaders.Array.data[11]'
+      value: target_position
       objectReference: {fileID: 0}
     - target: {fileID: 6731918751299528505, guid: 984ab851bf02c3f46a4c80984a494d95, type: 3}
       propertyPath: 'trackedObjects.Array.data[0]'
@@ -66940,9 +66952,6 @@ MonoBehaviour:
     targetObject: {fileID: 254697796}
     spawnLocation: {fileID: 1767519826}
   - referenceObject: {fileID: 254697796}
-    targetObject: {fileID: 1045325668}
-    spawnLocation: {fileID: 1767519826}
-  - referenceObject: {fileID: 1045325668}
     targetObject: {fileID: 706426264}
     spawnLocation: {fileID: 1767519826}
   - referenceObject: {fileID: 706426264}
@@ -66952,9 +66961,6 @@ MonoBehaviour:
     targetObject: {fileID: 1446942417}
     spawnLocation: {fileID: 1767519826}
   - referenceObject: {fileID: 1446942417}
-    targetObject: {fileID: 2017055516}
-    spawnLocation: {fileID: 1767519826}
-  - referenceObject: {fileID: 2017055516}
     targetObject: {fileID: 1921611919}
     spawnLocation: {fileID: 1767519826}
   - referenceObject: {fileID: 1921611919}

@@ -153,14 +153,18 @@ namespace PointingTask
 
             // Get the pointing direction from the right hand controller
             Vector3 pointingDirection = rightHandControllerRayInteractor.transform.forward;
+            
+            // Get the direction the player is facing
+            Vector3 viewingDirection = xrOrigin.transform.forward;
 
             // Calculate angles
             float participantAngle = CalculateAngleFromCenter(pointingDirection, currentTask.spawnLocation.position);
+            float participantViewingAngle = CalculateAngleFromCenter(viewingDirection, currentTask.spawnLocation.position);
             float correctAngle = CalculateCorrectAngle();
             float angularError = Mathf.Abs(Mathf.DeltaAngle(participantAngle, correctAngle));
 
             // Log to UXF trial
-            LogPointingData(participantAngle, correctAngle, angularError);
+            LogPointingData(participantAngle, correctAngle, angularError, participantViewingAngle);
 
             isTaskActive = false;
             Debug.Log($"Pointing submitted. Participant: {participantAngle:F2}°, Correct: {correctAngle:F2}°, Error: {angularError:F2}°");
@@ -232,7 +236,7 @@ namespace PointingTask
         /// <summary>
         /// Log pointing data to UXF trial.
         /// </summary>
-        private void LogPointingData(float participantAngle, float correctAngle, float angularError)
+        private void LogPointingData(float participantAngle, float correctAngle, float angularError, float participantViewingAngle)
         {
             if (!Session.instance.hasInitialised) return;
             
@@ -244,7 +248,8 @@ namespace PointingTask
 
             Trial currentTrial = Session.instance.CurrentTrial;
 
-            currentTrial.result["angle_estimate"] = participantAngle;
+            currentTrial.result["viewing_angle"] = participantViewingAngle;
+            currentTrial.result["pointing_angle_estimate"] = participantAngle;
             currentTrial.result["correct_angle"] = correctAngle;
             currentTrial.result["angular_error"] = angularError;
             
@@ -252,11 +257,13 @@ namespace PointingTask
             float distanceToReference = Vector3.Distance(xrOrigin.transform.position, currentTask.referenceObject.transform.position);
             currentTrial.result["reference_distance"] = distanceToReference;
             
-            currentTrial.result["distance_estimate"] = 0;
+            currentTrial.result["distance_estimate_ft"] = 0;
+            currentTrial.result["distance_estimate_m"] = 0;
             
             // Log distance between player and target object
             float distanceToTarget = Vector3.Distance(xrOrigin.transform.position, currentTask.targetObject.transform.position);
             currentTrial.result["actual_distance"] = distanceToTarget;
+            currentTrial.result["distance_error"] = 0;
             
             currentTrial.result["spawn_position"] = currentTask.spawnLocation.position;
             currentTrial.result["reference_position"] = currentTask.referenceObject.transform.position;
@@ -279,6 +286,12 @@ namespace PointingTask
         {
             foreach (Transform child in taskObjects.transform)
             {
+                // Set the cat statue to be always visible
+                if (child.gameObject.name == "Cat Statue")
+                {
+                    SetObjectVisibility(child.gameObject, true);
+                    continue;
+                }
                 SetObjectVisibility(child.gameObject, false);
             }
         }
