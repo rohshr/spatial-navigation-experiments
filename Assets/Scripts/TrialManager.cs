@@ -70,14 +70,45 @@ public class TrialManager : MonoBehaviour
     /// <summary>
     /// Get the spawn point from the current block and set it as the current spawn point. Run at the start of the session and after each block ends.
     /// </summary>
-    public void SetSpawnPoint(LocomotionExperimentBlock block)
+    private void SetSpawnPoint(LocomotionExperimentBlock block)
     {
+        DisableAllSpawnPoints();
         if (block.GetSpawnPoint() == null)
         {
             Debug.LogWarning($"[{nameof(TrialManager)}]: The spawn point for block {currentBlock.blockName} is null.");
             return;
         }
         currentSpawnPoint = block.GetSpawnPoint();
+        EnableSpawnPoint(currentSpawnPoint);
+    }
+    
+    /// <summary>
+    /// Disable all spawn points in the scene using SpawnPoint Tag. Call at the start of the session.
+    /// </summary>
+    private static void DisableAllSpawnPoints()
+    {
+        var spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        foreach (var spawnPoint in spawnPoints)
+        {
+            spawnPoint.gameObject.SetActive(false);
+        }
+        Debug.Log("Disabled all spawn points in the scene.");
+    }
+    
+    /// <summary>
+    ///  Enable a specific spawn point
+    /// </summary>
+    private void EnableSpawnPoint(GameObject spawnPoint)
+    {
+        if (spawnPoint != null)
+        {
+            spawnPoint.SetActive(true);
+            Debug.Log($"Enabled spawn point: {spawnPoint.name}");
+        }
+        else
+        {
+            Debug.LogWarning("Spawn point is null, cannot enable.");
+        }
     }
 
     /// <summary>
@@ -193,6 +224,7 @@ public class TrialManager : MonoBehaviour
     {
         // Determine the appropriate spawn point based on block type
         GameObject spawnPoint = GetAppropriateSpawnPoint();
+        EnableSpawnPoint(spawnPoint);
         MoveToSpawnPoint(spawnPoint);
         Session.instance.BeginNextTrial();
         InstantiateExplorationTrial();
@@ -208,6 +240,9 @@ public class TrialManager : MonoBehaviour
         {
             Debug.LogError("Session instance is not initialized.");
         }
+
+        DisableAllSpawnPoints();
+        
         if (currentBlock?.GetBlockType() == "ObjectSearch")
         {
             // For object search blocks, try to get the task-specific spawn location
