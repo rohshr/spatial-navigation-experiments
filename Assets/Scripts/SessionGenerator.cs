@@ -342,7 +342,7 @@ public class SessionGenerator : MonoBehaviour
     private void SetupGuidedExplorationFinishPoint()
     {
         var currentBlock = experimentBlocks[Session.instance.CurrentBlock.number - 1] as GuidedExplorationBlock;
-        currentBlock?.EnableFinishPoint();
+        currentBlock?.EnableFinishPoint(this);
     }
 
     private void EndGuidedExploration()
