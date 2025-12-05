@@ -20,6 +20,8 @@ public class FloorTile : MonoBehaviour
     public static event System.Action<GameObject> OnNewTileDiscovered; // Only fires for first-time visits
     
     private bool hasBeenVisited = false;
+    private static int lastVisitFrame = -1;
+    private static GameObject lastVisitedTile = null;
     
     void OnTriggerEnter(Collider other)
     {
@@ -32,6 +34,15 @@ public class FloorTile : MonoBehaviour
     {
         if (other.CompareTag(playerTag) && Session.instance.InTrial)
         {
+            // Only process one tile per frame
+            if (Time.frameCount == lastVisitFrame && lastVisitedTile != null && lastVisitedTile != gameObject)
+            {
+                Debug.LogWarning($"Ignoring overlapping tile {gameObject.name} - already processed {lastVisitedTile.name} this frame");
+                return;
+            }
+
+            lastVisitFrame = Time.frameCount;
+            lastVisitedTile = gameObject;
             // Add to visit queue (tracks order and allows duplicates)
             tileVisitQueue.Enqueue(gameObject);
             
