@@ -284,13 +284,20 @@ public class VRDialogFlowManager : MonoBehaviour
         
         while (elapsed < duration)
         {
+            if (dialog == null || canvasGroup == null)
+            {
+                yield break;
+            }
             elapsed += Time.deltaTime;
             float t = elapsed / duration;
             canvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, t);
             yield return null;
         }
         
-        canvasGroup.alpha = targetAlpha;
+        if (dialog != null && canvasGroup != null)
+        {
+            canvasGroup.alpha = targetAlpha;
+        }
     }
     
     private void InitializeDialogSystem()
