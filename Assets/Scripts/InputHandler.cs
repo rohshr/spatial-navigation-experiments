@@ -132,6 +132,11 @@ public class InputHandler : MonoBehaviour
         {
             xrLocomotionMediator.SetActive(true); // Enable the XRLocomotionMediator
         }
+        
+        // if pointing task is active, do not enable locomotion
+        var pointingTask = GetComponent<PointingEstimationTask>();
+        if (pointingTask != null && pointingTask.isActiveAndEnabled)
+            return;
 
         if (!_leftHandController.activeSelf)
         {
