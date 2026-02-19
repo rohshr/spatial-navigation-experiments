@@ -92,7 +92,8 @@ namespace PointingTask
             currentTaskIndex = 0;
             ConfigureSessionSettings(session);
             var instructionSequence = BuildSessionInstructionSequence();
-        
+            pointingTask.ConfigureControllerSettings();
+            
             // Invoke event to send the instruction sequence to VRDialogFlowManager
             OnSessionGenerate?.Invoke(instructionSequence);
         

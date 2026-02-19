@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -110,11 +111,19 @@ public class GuidedExplorationBlock : LocomotionExperimentBlock
     /// <summary>
     /// Enable the finish point when the player exits the spawn point.
     /// </summary>
-    public void EnableFinishPoint()
+    public void EnableFinishPoint(MonoBehaviour coroutineRunner)
+    {
+        // Wait for 30 seconds before enabling the finish point
+        float delayInSeconds = 30f;
+        coroutineRunner.StartCoroutine(EnableFinishPointAfterDelay(delayInSeconds));
+    }
+    
+    private IEnumerator EnableFinishPointAfterDelay(float delayInSeconds)
     {
         if (environmentFinishPoint != null)
         {
             Debug.Log("Enabling finish point...");
+            yield return new WaitForSeconds(delayInSeconds);
             environmentFinishPoint.SetActive(true);
         }
         else

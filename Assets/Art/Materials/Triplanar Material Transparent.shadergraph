@@ -17,6 +17,9 @@
         },
         {
             "m_Id": "9539dc6268364955981bff581e1b4681"
+        },
+        {
+            "m_Id": "6e06854db319443986c044f3bb1ed505"
         }
     ],
     "m_Keywords": [],
@@ -98,6 +101,9 @@
         },
         {
             "m_Id": "3f77a99c84774a8c9c67a68db2b41879"
+        },
+        {
+            "m_Id": "31da8c9ce36f4641b2b6ca5eccf18d9d"
         }
     ],
     "m_GroupDatas": [],
@@ -143,6 +149,20 @@
                     "m_Id": "c7ab9ea6871d466e8a14bbd7745333fe"
                 },
                 "m_SlotId": 5
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "31da8c9ce36f4641b2b6ca5eccf18d9d"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "3f77a99c84774a8c9c67a68db2b41879"
+                },
+                "m_SlotId": 0
             }
         },
         {
@@ -553,6 +573,21 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "104770ed174a4c77ad1c9492521b7422",
+    "m_Id": 0,
+    "m_DisplayName": "Transparency",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "130b2ce955f441e5aae60600550adc49",
     "m_Id": 0,
@@ -808,6 +843,42 @@
 }
 
 {
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "31da8c9ce36f4641b2b6ca5eccf18d9d",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": 75.31372833251953,
+            "y": 495.42303466796877,
+            "width": 0.0,
+            "height": 0.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "104770ed174a4c77ad1c9492521b7422"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "6e06854db319443986c044f3bb1ed505"
+    }
+}
+
+{
     "m_SGVersion": 1,
     "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalTarget",
     "m_ObjectId": "32084d676ede4701a24db25119fc7424",
@@ -816,7 +887,7 @@
         "m_Id": "67a485de46cd45098239dc7af93ae9ff"
     },
     "m_AllowMaterialOverride": false,
-    "m_SurfaceType": 0,
+    "m_SurfaceType": 1,
     "m_ZTestMode": 4,
     "m_ZWriteControl": 0,
     "m_AlphaMode": 0,
@@ -1417,6 +1488,46 @@
         "m_SerializableColors": []
     },
     "m_SerializedDescriptor": "SurfaceDescription.Occlusion"
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "6e06854db319443986c044f3bb1ed505",
+    "m_Guid": {
+        "m_GuidSerialized": "aeb6dcba-59a9-48a5-ae78-a45460ad6fa5"
+    },
+    "m_Name": "Transparency",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Transparency",
+    "m_DefaultReferenceName": "_Transparency",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_PerRendererData": false,
+    "m_customAttributes": [],
+    "m_Value": 0.0,
+    "m_FloatType": 0,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    },
+    "m_SliderType": 0,
+    "m_SliderPower": 3.0,
+    "m_EnumType": 0,
+    "m_CSharpEnumString": "",
+    "m_EnumNames": [
+        "Default"
+    ],
+    "m_EnumValues": [
+        0
+    ]
 }
 
 {
@@ -2337,6 +2448,9 @@
         },
         {
             "m_Id": "9539dc6268364955981bff581e1b4681"
+        },
+        {
+            "m_Id": "6e06854db319443986c044f3bb1ed505"
         }
     ]
 }

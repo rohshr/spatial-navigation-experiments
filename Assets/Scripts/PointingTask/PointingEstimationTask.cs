@@ -13,7 +13,9 @@ namespace PointingTask
         [Header("XR Components")]
         [SerializeField] private GameObject xrOrigin;
         [SerializeField] private GameObject rightHandController;
-        private XRRayInteractor rightHandControllerRayInteractor;
+        [SerializeField] private GameObject leftHandController;
+        private string preferredHand = "right";
+        private XRRayInteractor handControllerRayInteractor;
         [SerializeField] private GameObject taskObjects;
         [Header("Audio")]
         private AudioSource audioSource;
@@ -41,7 +43,6 @@ namespace PointingTask
 
         void Start()
         {
-            rightHandControllerRayInteractor = rightHandController.GetComponent<XRRayInteractor>();
             inputHandler = GetComponent<InputHandler>();
             audioSource = GetComponent<AudioSource>();
         }
@@ -56,11 +57,34 @@ namespace PointingTask
             PointingEstimationSessionGenerator.OnPointingEstimationSessionStart -= ActivatePointer;
         }
 
+        // Configure controller settings based on participant preferences
+        public void ConfigureControllerSettings()
+        {
+            preferredHand = Session.instance.participantDetails["preferred_hand"]?.ToString().ToLower() ?? "right";
+            SetPreferredHand();
+        }
+        
+        public void SetPreferredHand()
+        {
+            if (preferredHand.Equals("right", StringComparison.OrdinalIgnoreCase))
+            {
+                rightHandController.SetActive(true);
+                leftHandController.SetActive(false);
+                handControllerRayInteractor = rightHandController.GetComponent<XRRayInteractor>();
+            }
+            else
+            {
+                rightHandController.SetActive(false);
+                leftHandController.SetActive(true);
+                handControllerRayInteractor = leftHandController.GetComponent<XRRayInteractor>();
+            }
+        }
+
         private void ActivatePointer()
         {
-            if (rightHandControllerRayInteractor != null)
+            if (handControllerRayInteractor != null)
             {
-                rightHandControllerRayInteractor.enabled = true;
+                handControllerRayInteractor.enabled = true;
                 Debug.Log("XR Ray Interactor activated");
             }
         }
@@ -151,8 +175,8 @@ namespace PointingTask
                 audioSource.PlayOneShot(submitSoundClip);
             }
 
-            // Get the pointing direction from the right hand controller
-            Vector3 pointingDirection = rightHandControllerRayInteractor.transform.forward;
+            // Get the pointing direction from the hand controller
+            Vector3 pointingDirection = handControllerRayInteractor.transform.forward;
             
             // Get the direction the player is facing
             Vector3 viewingDirection = xrOrigin.transform.forward;

@@ -705,7 +705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4091649840815363893, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_text
-      value: Find and navigate to each of the four objects in turn.
+      value: Find and navigate to the prompted objects.
       objectReference: {fileID: 0}
     - target: {fileID: 4091649840815363893, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_fontSize
@@ -893,7 +893,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5077339543274052338, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -83.56
+      value: -73.88
       objectReference: {fileID: 0}
     - target: {fileID: 5085223240326603171, guid: 9cde343ca5e21f542982ff876a7bd479, type: 3}
       propertyPath: m_AnchorMax.y

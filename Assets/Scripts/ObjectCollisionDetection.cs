@@ -10,6 +10,7 @@ public class ObjectCollisionDetection : MonoBehaviour
     [SerializeField] private XROrigin xrOrigin;
     private SessionGenerator sessionGenerator;
     private GameObject objectToFind;
+    private bool objectFound = false;
     
     [SerializeField] private InputActionReference confirmFind;
     
@@ -30,17 +31,24 @@ public class ObjectCollisionDetection : MonoBehaviour
         if(Session.instance.hasInitialised && sessionGenerator.GetCurrentBlockType() != "ObjectSearch")
             return;
         
+        if (objectFound)
+        {
+            return; // Already processing this object, ignore duplicate triggers
+        }
         objectToFind = sessionGenerator.GetCurrentObjectToFind();
+        
         if (gameObject != objectToFind)
         {
             Debug.Log($"Encountered non-target object: {gameObject.name} at {DateTime.Now}");
             return;
         }
+        
         if (other.CompareTag("Player") && Session.instance.InTrial)
         {
             // Check if the player is in the practice trial area
-            if (xrOrigin != null)
+            if (xrOrigin != null && objectToFind != null)
             {
+                objectFound = true;
                 StartCoroutine(HandleObjectFound());
             }
             else
@@ -67,6 +75,7 @@ public class ObjectCollisionDetection : MonoBehaviour
             FloorTile.FinishPosition = gameObject;
         }
         OnObjectFound?.Invoke();
+        objectFound = false; // Reset flag
         Session.instance.CurrentTrial.End();
     }
     

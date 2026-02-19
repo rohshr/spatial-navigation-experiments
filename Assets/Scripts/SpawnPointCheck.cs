@@ -30,6 +30,9 @@ public class SpawnPointCheck : MonoBehaviour
                     Debug.Log("Guided Exploration block detected. Starting dialog flow.");
                     OnPlayerExitedSpawnPoint?.Invoke();
                 }
+                
+                // Disable spawn point after use
+                gameObject.SetActive(false);
             }
             else if (CompareTag("UIViewpoint"))
             {
