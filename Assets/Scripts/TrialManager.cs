@@ -228,6 +228,12 @@ public class TrialManager : MonoBehaviour
         EnableSpawnPoint(spawnPoint);
         MoveToSpawnPoint(spawnPoint);
         Session.instance.BeginNextTrial();
+        
+        if (currentBlock is GuidedRouteBlock routeBlock)
+        {
+            sessionGenerator.EnableCurrentObjectRouteNavigationGuides(routeBlock);
+        }
+
         InstantiateExplorationTrial();
     }
     

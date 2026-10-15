@@ -96,6 +96,16 @@ public class ObjectRouteHandler
         return currentTask?.objectGuidedRouteStartLocation ?? block.environmentSpawnPoint;
     }
     
+    public void EnableCurrentNavigationGuides(GuidedRouteBlock block)
+    {
+        GetObjectGuidedRoute(block, objectRouteIndex)?.EnableNavigationGuides();
+    }
+
+    public void DisableCurrentNavigationGuides(GuidedRouteBlock block)
+    {
+        GetObjectGuidedRoute(block, objectRouteIndex)?.DisableNavigationGuides();
+    }
+    
     /// <summary>
     /// Reset the handler for a new session
     /// </summary>

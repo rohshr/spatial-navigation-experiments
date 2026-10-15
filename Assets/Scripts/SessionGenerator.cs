@@ -188,6 +188,16 @@ public class SessionGenerator : MonoBehaviour
     /// <returns>GameObject for object in current object route.</returns>
     public GameObject GetCurrentObjectToReach() => objectRouteHandler.CurrentObjectToReach;
 
+    public void EnableCurrentObjectRouteNavigationGuides(GuidedRouteBlock block)
+    {
+        objectRouteHandler.EnableCurrentNavigationGuides(block);
+    }
+
+    public void DisableCurrentObjectRouteNavigationGuides(GuidedRouteBlock block)
+    {
+        objectRouteHandler.DisableCurrentNavigationGuides(block);
+    }
+    
     public string GetCurrentBlockType()
     {
         if (Session.instance != null)
@@ -325,10 +335,20 @@ public class SessionGenerator : MonoBehaviour
             objectSearchHandler.Reset();
             instructions.AddRange(objectSearchHandler.GetInitialObjectSearchInstructions(block));
         }
-        else if (block is GuidedRouteBlock)
+        else if (block is GuidedRouteBlock routeBlock)
         {
             objectRouteHandler.Reset();
-            instructions.AddRange(objectRouteHandler.GetInitialObjectRouteInstructions(block));
+            
+            if (routeBlock.objectGuidedRoutes != null)
+            {
+                foreach (var route in routeBlock.objectGuidedRoutes)
+                {
+                    route?.DisableNavigationGuides();
+                }
+            }
+            
+            instructions.AddRange(
+                objectRouteHandler.GetInitialObjectRouteInstructions(routeBlock));
         }
 
         return instructions;
@@ -385,7 +405,17 @@ public class SessionGenerator : MonoBehaviour
 
     private void ShowNextObjectRouteInstructions()
     {
-        var (objectRouteInstructions, isSessionComplete) = objectRouteHandler.GetNextObjectRouteInstructions(activeBlocks); //isSessionComplete specifies if the session should complete after the last object route task/ when there is no more blocks after the current object route block.
+        var currentBlockIndex = Session.instance.CurrentBlock.number - 1;
+
+        if (currentBlockIndex >= 0 &&
+            currentBlockIndex < activeBlocks.Count &&
+            activeBlocks[currentBlockIndex] is GuidedRouteBlock routeBlock)
+        {
+            DisableCurrentObjectRouteNavigationGuides(routeBlock);
+        }
+        
+        var (objectRouteInstructions, isSessionComplete) = 
+            objectRouteHandler.GetNextObjectRouteInstructions(activeBlocks); //isSessionComplete specifies if the session should complete after the last object route task/ when there is no more blocks after the current object route block.
         
         if (isSessionComplete)
         {
