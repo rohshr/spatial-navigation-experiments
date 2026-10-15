@@ -22,6 +22,39 @@ public class ObjectSearchTask : TrialTask
     [Tooltip("Object to be found")]
     public GameObject objectToFind; // Reference to the object to be found
 }
+
+[System.Serializable]
+public class ObjectGuidedRoute : TrialTask
+{
+    [Tooltip("Location to start the route to the object")]   
+    public GameObject objectGuidedRouteStartLocation;
+    [Tooltip("Object to be reached")]
+    public GameObject objectToReach; // Reference to the object to be reached
+    [Tooltip("Reference to the environment navigation guides (e.g., arrows, lights) to assist the participant in navigation. Assign the parent GameObject which contains all the guides as children.")]
+    public GameObject routeNavigationGuides;
+    
+    public void EnableNavigationGuides()
+    {
+        if (routeNavigationGuides != null)
+        {
+            Debug.Log("Enabling navigation guides...");
+            routeNavigationGuides.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("Navigation guides not found in the scene.");
+        }
+    }
+    
+    public void DisableNavigationGuides()
+    {
+        if (routeNavigationGuides != null)
+        {
+            Debug.Log("Disabling navigation guides...");
+            routeNavigationGuides.SetActive(false);
+        }
+    }
+}
     
 /// <summary>
 /// Generic locomotion experiment block class. Specific block types (e.g., ObjectSearchBlock, ExplorationBlock) will inherit from this class.
@@ -161,5 +194,32 @@ public class GuidedExplorationBlock : LocomotionExperimentBlock
             Debug.Log("Disabling navigation guides...");
             environmentNavigationGuides.SetActive(false);
         }
+    }
+}
+
+[System.Serializable]
+public class GuidedRouteBlock : LocomotionExperimentBlock
+{
+    [Header("Guided Routes Configuration")]
+    [Tooltip("List of guided object search tasks to include in the block. Each task should specify the object to find and associated instructions.")]
+    public List<ObjectGuidedRoute> objectGuidedRoutes = new List<ObjectGuidedRoute>();
+    public override int GetTrialCount() => objectGuidedRoutes.Count;
+    public override string GetBlockType() => "GuidedRoutes";
+    
+    /// <summary>
+    /// Get the instruction sequence for an object guided route in an object guided route block.
+    /// </summary>
+    /// <returns></returns>
+    public List<GameObject> GetObjectGuidedRouteSequence()
+    {
+        var objectGuidedRouteSequence = new List<GameObject>();
+    
+        objectGuidedRouteSequence.AddRange(
+            objectGuidedRoutes
+                .Where(route => route.objectToReach != null)
+                .Select(route => route.objectToReach)
+        );
+    
+        return objectGuidedRouteSequence;
     }
 }

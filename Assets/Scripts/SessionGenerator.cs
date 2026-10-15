@@ -57,7 +57,22 @@ public class SessionGenerator : MonoBehaviour
     private string locomotionMethodFromUI;
     private string preferredHandFromUI;
     private ObjectSearchHandler objectSearchHandler = new ObjectSearchHandler();
-    
+    private ObjectRouteHandler objectRouteHandler = new ObjectRouteHandler();
+    private List<LocomotionExperimentBlock> activeBlocks;
+
+    private void BuildActiveBlocks()
+    {
+        activeBlocks = experimentBlocks
+            .Where(block => block != null && !block.skipBlock)
+            .ToList();
+    }
+
+    public List<LocomotionExperimentBlock> GetActiveBlocks() => activeBlocks;
+
+    void Awake()
+    {
+        BuildActiveBlocks();
+    }
     
     void Start()
     {
@@ -66,9 +81,10 @@ public class SessionGenerator : MonoBehaviour
 
     private void OnEnable()
     {
-        FinishPointCheck.OnFinishPointReached += ShowNextInstructions;
+        // FinishPointCheck.OnFinishPointReached += ShowNextInstructions;
         ObjectCollisionDetection.OnObjectFound += ShowNextObjectSearchInstructions;
-        TrialManager.OnExplorationBlockCompleted += ShowNextInstructions;
+        ObjectCollisionDetection.OnObjectReached += ShowNextObjectRouteInstructions;
+        // TrialManager.OnExplorationBlockCompleted += ShowNextInstructions;
         InputHandler.ProceedTrialEvent += ShowNextInstructions;
         ExperimenterControlScript.OnTrialSkipped += ForceSkipTrial;
         SpawnPointCheck.OnPlayerExitedSpawnPoint += SetupGuidedExplorationFinishPoint;
@@ -77,9 +93,10 @@ public class SessionGenerator : MonoBehaviour
     
     private void OnDisable()
     {
-        FinishPointCheck.OnFinishPointReached -= ShowNextInstructions;
+        // FinishPointCheck.OnFinishPointReached -= ShowNextInstructions;
         ObjectCollisionDetection.OnObjectFound -= ShowNextObjectSearchInstructions;
-        TrialManager.OnExplorationBlockCompleted -= ShowNextInstructions;
+        ObjectCollisionDetection.OnObjectReached -= ShowNextObjectRouteInstructions;
+        // TrialManager.OnExplorationBlockCompleted -= ShowNextInstructions;
         InputHandler.ProceedTrialEvent -= ShowNextInstructions;
         ExperimenterControlScript.OnTrialSkipped -= ForceSkipTrial;
         SpawnPointCheck.OnPlayerExitedSpawnPoint -= SetupGuidedExplorationFinishPoint;
@@ -89,8 +106,13 @@ public class SessionGenerator : MonoBehaviour
     // Session Start
     public void GenerateExperiment(Session session)
     {
+        BuildActiveBlocks();
+        
         // Reset the object search handler for a new session
         objectSearchHandler.Reset();
+        
+        // Reset the object route handler for a new session
+        objectRouteHandler.Reset();
         
         ConfigureSessionSettings(session);
         ConfigureLocomotion();
@@ -104,32 +126,32 @@ public class SessionGenerator : MonoBehaviour
     
     // Getters
 
-    /// <summary>
-    /// Get the list of trial blocks defined for the session.
-    /// </summary>
-    /// <returns></returns>
-    public List<LocomotionExperimentBlock> GetExperimentBlocks() => experimentBlocks;
+    // /// <summary>
+    // /// Get the list of trial blocks defined for the session.
+    // /// </summary>
+    // /// <returns></returns>
+    // public List<LocomotionExperimentBlock> GetExperimentBlocks() => experimentBlocks;
     
-    /// <summary>
-    /// Get the spawn points sequence for the environments in the blocks.
-    /// </summary>
-    /// <returns></returns>
-    public List<GameObject> GetSpawnPointsSequence()
-    {
-        var spawnPointsSequence = new List<GameObject>();
-        foreach (var block in experimentBlocks)
-        {
-            if (block?.environmentSpawnPoint != null)
-            {
-                spawnPointsSequence.Add(block.environmentSpawnPoint);
-            }
-            else
-            {
-                Debug.LogWarning($"Block {block} does not have an spawn point assigned.");
-            }
-        }
-        return spawnPointsSequence;
-    }
+    // /// <summary>
+    // /// Get the spawn points sequence for the environments in the blocks.
+    // /// </summary>
+    // /// <returns></returns>
+    // public List<GameObject> GetSpawnPointsSequence()
+    // {
+    //     var spawnPointsSequence = new List<GameObject>();
+    //     foreach (var block in experimentBlocks)
+    //     {
+    //         if (block?.environmentSpawnPoint != null)
+    //         {
+    //             spawnPointsSequence.Add(block.environmentSpawnPoint);
+    //         }
+    //         else
+    //         {
+    //             Debug.LogWarning($"Block {block} does not have an spawn point assigned.");
+    //         }
+    //     }
+    //     return spawnPointsSequence;
+    // }
     
     /// <summary>
     /// Get the instrcutions sequence for an object searches in an object search block.
@@ -159,12 +181,18 @@ public class SessionGenerator : MonoBehaviour
     /// </summary>
     /// <returns>GameObject for object in current object search task.</returns>
     public GameObject GetCurrentObjectToFind() => objectSearchHandler.CurrentObjectToFind;
+    
+    /// <summary>
+    /// Return the current object that the participant needs to reach in an object route.
+    /// </summary>
+    /// <returns>GameObject for object in current object route.</returns>
+    public GameObject GetCurrentObjectToReach() => objectRouteHandler.CurrentObjectToReach;
 
     public string GetCurrentBlockType()
     {
         if (Session.instance != null)
         {
-            return (experimentBlocks[Session.instance.CurrentBlock.number - 1].GetBlockType());
+            return (activeBlocks[Session.instance.CurrentBlock.number - 1].GetBlockType());
         }
         return null;
     }
@@ -178,7 +206,16 @@ public class SessionGenerator : MonoBehaviour
     {
         return objectSearchHandler.GetCurrentObjectSearchSpawnLocation(block);
     }
-
+    
+     /// <summary>
+    /// Get the spawn location for the current object route using a specific block
+    /// </summary>
+    /// <param name="block">The block to get the spawn location from</param>
+    /// <returns>GameObject for the current object route spawn location, or null if not applicable</returns>
+    public GameObject GetCurrentObjectRouteSpawnLocation(LocomotionExperimentBlock block)
+    {
+        return objectRouteHandler.GetCurrentObjectRouteSpawnLocation(block);
+    }
     
     public void EndExperiment()
     {
@@ -247,13 +284,11 @@ public class SessionGenerator : MonoBehaviour
         else
             Debug.LogWarning($"No locomotion instruction dialog found for method: {locomotionMethodFromUI}");
 
-        if (experimentBlocks.Count > 0 && experimentBlocks[0]?.startMessageDialogPrefab != null)
+        if (activeBlocks.Count > 0)
         {
-            instructionSequence.Add(experimentBlocks[0].startMessageDialogPrefab);
-            var objectSearchInstructions = objectSearchHandler.GetInitialObjectSearchInstructions(experimentBlocks[0]);
-            instructionSequence.AddRange(objectSearchInstructions);
+            instructionSequence.AddRange(BuildBlockStartInstructions(activeBlocks[0]));
         }
-        else if (experimentBlocks.Count == 0)
+        else if (activeBlocks.Count == 0)
         {
             Debug.LogWarning("No blocks defined in the session generator.");
         }
@@ -267,7 +302,7 @@ public class SessionGenerator : MonoBehaviour
     /// <param name="session"></param>
     private void CreateBlocks(Session session)
     {
-        foreach (var block in experimentBlocks)
+        foreach (var block in activeBlocks)
         {
             if (!block.skipBlock)
             {
@@ -276,6 +311,27 @@ public class SessionGenerator : MonoBehaviour
                 newBlock.settings.SetValue("environment", block.environment.ToString().ToLower());
             }
         }
+    }
+    
+    public List<GameObject> BuildBlockStartInstructions(LocomotionExperimentBlock block)
+    {
+        var instructions = new List<GameObject>();
+
+        if (block.startMessageDialogPrefab != null)
+            instructions.Add(block.startMessageDialogPrefab);
+
+        if (block is ObjectSearchBlock)
+        {
+            objectSearchHandler.Reset();
+            instructions.AddRange(objectSearchHandler.GetInitialObjectSearchInstructions(block));
+        }
+        else if (block is GuidedRouteBlock)
+        {
+            objectRouteHandler.Reset();
+            instructions.AddRange(objectRouteHandler.GetInitialObjectRouteInstructions(block));
+        }
+
+        return instructions;
     }
     
     /// <summary>
@@ -289,28 +345,16 @@ public class SessionGenerator : MonoBehaviour
 
         if (previousBlockIndex >= 0)
         {
-            var lastBlock = experimentBlocks[previousBlockIndex];
+            var lastBlock = activeBlocks[previousBlockIndex];
             if (lastBlock?.endMessageDialogPrefab != null)
             {
                 instructionSequence.Add(lastBlock.endMessageDialogPrefab);
             }
         }
-        if (nextBlockIndex < Session.instance.blocks.Count)
+        if (nextBlockIndex < activeBlocks.Count)
         {
-            var nextBlock = experimentBlocks[nextBlockIndex];
-            
-            if (nextBlock?.startMessageDialogPrefab != null)
-            {
-                instructionSequence.Add(nextBlock.startMessageDialogPrefab);
-            }
-            // If the next block is an ObjectSearch block, add the instructions for the first object search task.
-            if (nextBlock?.GetBlockType() == "ObjectSearch")
-            {
-                objectSearchHandler.Reset();
-
-                var objectSearchInstructions = objectSearchHandler.GetInitialObjectSearchInstructions(nextBlock);
-                instructionSequence.AddRange(objectSearchInstructions);
-            }
+            var nextBlock = activeBlocks[nextBlockIndex];
+            instructionSequence.AddRange(BuildBlockStartInstructions(nextBlock));
         }
         else
         {
@@ -321,7 +365,7 @@ public class SessionGenerator : MonoBehaviour
 
     private void ShowNextObjectSearchInstructions()
     {
-        var (objectSearchInstructions, isSessionComplete) = objectSearchHandler.GetNextObjectSearchInstructions(experimentBlocks); //isSessionComplete specifies if the session should complete after the last object search task/ when there is no more blocks after the current object search block.
+        var (objectSearchInstructions, isSessionComplete) = objectSearchHandler.GetNextObjectSearchInstructions(activeBlocks); //isSessionComplete specifies if the session should complete after the last object search task/ when there is no more blocks after the current object search block.
         
         if (isSessionComplete)
         {
@@ -338,16 +382,56 @@ public class SessionGenerator : MonoBehaviour
         
         OnTrialEnd?.Invoke(objectSearchInstructions);
     }
+
+    private void ShowNextObjectRouteInstructions()
+    {
+        var (objectRouteInstructions, isSessionComplete) = objectRouteHandler.GetNextObjectRouteInstructions(activeBlocks); //isSessionComplete specifies if the session should complete after the last object route task/ when there is no more blocks after the current object route block.
+        
+        if (isSessionComplete)
+        {
+            OnSessionEnd?.Invoke(sessionEndDialogPrefab);
+            // Add any remaining instructions first, then trigger session end
+            if (objectRouteInstructions.Count > 0)
+            {
+                OnTrialEnd?.Invoke(objectRouteInstructions);
+            }
+            
+            Debug.Log("No more blocks available. Session ended.");
+            return;
+        }
+        
+        OnTrialEnd?.Invoke(objectRouteInstructions);
+    }
+    
+    public bool ShowBlockStartInstructions(int blockIndex)
+    {
+        if (blockIndex < 0 || blockIndex >= activeBlocks.Count)
+            return false;
+
+        var instructions = new List<GameObject>();
+
+        var previousBlock = activeBlocks[blockIndex - 1];
+        if (previousBlock.endMessageDialogPrefab != null)
+            instructions.Add(previousBlock.endMessageDialogPrefab);
+
+        instructions.AddRange(BuildBlockStartInstructions(activeBlocks[blockIndex]));
+
+        if (instructions.Count == 0)
+            return false;
+
+        OnBlockEnd?.Invoke(instructions);
+        return true;
+    }
     
     private void SetupGuidedExplorationFinishPoint()
     {
-        var currentBlock = experimentBlocks[Session.instance.CurrentBlock.number - 1] as GuidedExplorationBlock;
+        var currentBlock = activeBlocks[Session.instance.CurrentBlock.number - 1] as GuidedExplorationBlock;
         currentBlock?.EnableFinishPoint(this);
     }
 
     private void EndGuidedExploration()
     {
-        var currentBlock = experimentBlocks[Session.instance.CurrentBlock.number - 1] as GuidedExplorationBlock;
+        var currentBlock = activeBlocks[Session.instance.CurrentBlock.number - 1] as GuidedExplorationBlock;
         currentBlock?.DisableNavigationGuides();
         currentBlock?.DisableFinishPoint();
     }
@@ -369,6 +453,10 @@ public class SessionGenerator : MonoBehaviour
         if (GetCurrentBlockType() == "ObjectSearch")
         {
             ShowNextObjectSearchInstructions();
+        }
+        else if (GetCurrentBlockType() == "GuidedRoutes")
+        {
+            ShowNextObjectRouteInstructions();
         }
         else
         {

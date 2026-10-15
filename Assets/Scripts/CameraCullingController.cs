@@ -14,6 +14,7 @@ public class CameraCullingController : MonoBehaviour
         TrialManager.OnExplorationBlockCompleted += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the exploration block is completed
         ExperimenterControlScript.OnTrialSkipped += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the session is ended
         ObjectCollisionDetection.OnObjectFound += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the object collision is detected
+        ObjectCollisionDetection.OnObjectReached += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the object collision is detected in object route
         InputHandler.ProceedTrialEvent += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the proceed trial button is pressed
         PointingEstimationTask.OnPointingComplete += SetCullingMaskToUIOnlyWithHandController; // Subscribe to the event when the pointing task is completed
         //temporary
@@ -30,6 +31,7 @@ public class CameraCullingController : MonoBehaviour
         TrialManager.OnExplorationBlockCompleted -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the exploration block is completed       
         ExperimenterControlScript.OnTrialSkipped -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the session is ended
         ObjectCollisionDetection.OnObjectFound -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the object collision is detected
+        ObjectCollisionDetection.OnObjectReached -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the object collision is detected in object route
         InputHandler.ProceedTrialEvent -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the proceed trial button is pressed       
         PointingEstimationTask.OnPointingComplete -= SetCullingMaskToUIOnlyWithHandController; // Unsubscribe from the event when the pointing task is completed
         //temporary 
