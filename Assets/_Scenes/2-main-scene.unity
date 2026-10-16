@@ -2895,19 +2895,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8085443599274712418, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
       propertyPath: 'experimentBlocks.Array.data[0]'
-      value: 4199523427941613729
-      objectReference: {fileID: 0}
-    - target: {fileID: 8085443599274712418, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
-      propertyPath: 'experimentBlocks.Array.data[1]'
-      value: 4306233158732349441
-      objectReference: {fileID: 0}
-    - target: {fileID: 8085443599274712418, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
-      propertyPath: 'experimentBlocks.Array.data[2]'
       value: 5957200296150565039
       objectReference: {fileID: 0}
     - target: {fileID: 8085443599274712418, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
-      propertyPath: 'experimentBlocks.Array.data[3]'
+      propertyPath: 'experimentBlocks.Array.data[1]'
       value: 5957200296150565055
+      objectReference: {fileID: 0}
+    - target: {fileID: 8085443599274712418, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
+      propertyPath: 'experimentBlocks.Array.data[2]'
+      value: 4199523427941613729
+      objectReference: {fileID: 0}
+    - target: {fileID: 8085443599274712418, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
+      propertyPath: 'experimentBlocks.Array.data[3]'
+      value: 4306233158732349441
       objectReference: {fileID: 0}
     - target: {fileID: 8085443599274712418, guid: 5264ec812d9987648a11e8820cea05bc, type: 3}
       propertyPath: 'managedReferences[4199523427941613570]'
