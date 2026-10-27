@@ -3542,6 +3542,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ConfirmReached",
+                    "type": "Button",
+                    "id": "b6605da6-037a-4796-8170-65033ae20ff8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -3740,6 +3749,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ConfirmFind",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "71374957-30ee-443c-b063-ce53c686385b",
+                    "path": "<XRController>/{SecondaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ConfirmReached",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

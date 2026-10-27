@@ -22,10 +22,13 @@ public class ObjectSearchHandler
         objectSearchIndex = 0;
         var firstTask = GetObjectSearchTask(objectSearchBlock, objectSearchIndex);
         
-        if (firstTask != null && firstTask?.taskInstructionsDialogPrefab != null)
+        if (firstTask != null)
         {
             objectToFind = firstTask.objectToFind;
-            instructions.Add(firstTask.taskInstructionsDialogPrefab);
+            if (firstTask?.taskInstructionsDialogPrefab != null)
+            {
+                instructions.Add(firstTask.taskInstructionsDialogPrefab);
+            }
         }
         
         return instructions;
@@ -59,32 +62,19 @@ public class ObjectSearchHandler
         {
             // More tasks in current block
             var nextTask = GetObjectSearchTask(objectSearchBlock, nextTaskIndex);
-            if (nextTask?.taskInstructionsDialogPrefab != null)
+            if (nextTask != null)
             {
-                instructions.Add(nextTask.taskInstructionsDialogPrefab);
                 objectToFind = nextTask.objectToFind;
+                if (nextTask?.taskInstructionsDialogPrefab != null)
+                {
+                    instructions.Add(nextTask.taskInstructionsDialogPrefab);
+                }
             }
         }
         else
         {
-            // No more tasks in current block, check for next block
-            var currentBlockIndex = Session.instance.CurrentBlock.number - 1;
-            var nextBlockIndex = currentBlockIndex + 1;
-            
-            if (nextBlockIndex < experimentBlocks.Count)
-            {
-                // There is a next block
-                var nextBlock = experimentBlocks[nextBlockIndex];
-                if (nextBlock?.startMessageDialogPrefab != null)
-                {
-                    instructions.Add(nextBlock.startMessageDialogPrefab);
-                }
-            }
-            else
-            {
-                // No more blocks, session should end
-                isSessionComplete = true;
-            }
+            // CurrentBlock.number is 1-based, so it equals the next block's 0-based index.
+            isSessionComplete = Session.instance.CurrentBlock.number >= experimentBlocks.Count;
         }
         
         return (instructions, isSessionComplete);
@@ -158,23 +148,6 @@ public class ObjectSearchHandler
     private bool IsValidTaskIndex(ObjectSearchBlock block, int index)
     {
         return block?.objectSearchTasks != null && index >= 0 && index < block.objectSearchTasks.Count;
-    }
-    
-    private List<GameObject> GetNextBlockStartInstructions(List<LocomotionExperimentBlock> experimentBlocks)
-    {
-        var instructions = new List<GameObject>();
-        var nextBlockIndex = Session.instance.CurrentBlock.number; // 1-based index
-        
-        if (nextBlockIndex < experimentBlocks.Count)
-        {
-            var nextBlock = experimentBlocks[nextBlockIndex];
-            if (nextBlock?.startMessageDialogPrefab != null)
-            {
-                instructions.Add(nextBlock.startMessageDialogPrefab);
-            }
-        }
-        
-        return instructions;
     }
     
     #endregion

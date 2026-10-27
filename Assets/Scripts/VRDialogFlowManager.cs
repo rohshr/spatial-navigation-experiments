@@ -52,6 +52,7 @@ public class VRDialogFlowManager : MonoBehaviour
     private bool trialStarted = false; // Flag to indicate if a trial is in session
     private bool sessionEnded = false; // Flag to indicate if the session has ended
     private GameObject endSessionDialogPrefab; // Dialog prefab to show at session end
+    private bool isProcessingDialogQueue;
     
     // Follow behavior variables
     private Vector3 targetPosition;
@@ -82,7 +83,7 @@ public class VRDialogFlowManager : MonoBehaviour
         PointingEstimationSessionGenerator.OnSessionGenerate += ShowDialogSequence;
         PointingEstimationSessionGenerator.OnShowNextInstruction += ShowDialogSequence;
         PointingEstimationSessionGenerator.OnSessionEnd += ShowDialogPrefab;
-        SessionGenerator.OnBlockEnd += ShowDialogSequence;
+        SessionGenerator.OnBlockEnd += QueueDialogSequence;
         SessionGenerator.OnTrialEnd += ShowDialogSequence;
         SessionGenerator.OnSessionEnd += EndSession;
         PracticeSessionManager.OnPracticeEnd += EndSession;
@@ -100,7 +101,7 @@ public class VRDialogFlowManager : MonoBehaviour
         PointingEstimationSessionGenerator.OnSessionGenerate -= ShowDialogSequence;
         PointingEstimationSessionGenerator.OnShowNextInstruction -= ShowDialogSequence;
         PointingEstimationSessionGenerator.OnSessionEnd -= ShowDialogPrefab;
-        SessionGenerator.OnBlockEnd -= ShowDialogSequence;
+        SessionGenerator.OnBlockEnd -= QueueDialogSequence;
         SessionGenerator.OnTrialEnd -= ShowDialogSequence;
         SessionGenerator.OnSessionEnd -= EndSession;
         PracticeSessionManager.OnPracticeEnd -= EndSession;
@@ -434,6 +435,7 @@ public class VRDialogFlowManager : MonoBehaviour
     private IEnumerator ProcessDialogQueue()
     {
         Debug.Log($"Processing dialog queue with {dialogQueue.Count} dialogs");
+        isProcessingDialogQueue = true;
         while (dialogQueue.Count > 0)
         {
             Debug.Log($"Current dialog in queue: {dialogQueue.Peek().name}");
@@ -445,10 +447,12 @@ public class VRDialogFlowManager : MonoBehaviour
         if (sessionEnded)
         {
             yield return StartCoroutine(ShowDialogPrefabCoroutine(endSessionDialogPrefab));
+            isProcessingDialogQueue = false;
             yield break;
         }
         
-        StartCoroutine(CompleteDialogPrefabFlowCoroutine());
+        yield return StartCoroutine(CompleteDialogPrefabFlowCoroutine());
+        isProcessingDialogQueue = false;
     }
     
     private void CompleteDialogPrefabFlow()
@@ -476,6 +480,18 @@ public class VRDialogFlowManager : MonoBehaviour
         OnDialogFlowComplete?.Invoke();
         
         Debug.Log("VR Dialog Flow Complete - Experiment Starting");
+    }
+    
+    private void QueueDialogSequence(List<GameObject> dialogPrefabs)
+    {
+        foreach (var dialog in dialogPrefabs)
+        {
+            if (dialog != null)
+                dialogQueue.Enqueue(dialog);
+        }
+
+        if (!isProcessingDialogQueue && dialogQueue.Count > 0)
+            StartCoroutine(ProcessDialogQueue());
     }
     
     public void SetDialogDistance(float distance)

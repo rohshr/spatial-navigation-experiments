@@ -23,7 +23,14 @@ public class SpawnPointCheck : MonoBehaviour
                     GameStopwatch.StartStopwatch();
                 // Session.instance.BeginNextTrial();
                 
-                Session.instance.CurrentTrial.settings.SetValue("object", sessionGenerator.GetCurrentObjectToFind()?.name);
+                if (sessionGenerator.GetCurrentBlockType() == "ObjectSearch")
+                    Session.instance.CurrentTrial.settings.SetValue("object", sessionGenerator.GetCurrentObjectToFind()?.name);
+
+                if (sessionGenerator.GetCurrentBlockType() == "GuidedRoutes")
+                {
+                    Debug.Log(sessionGenerator.GetCurrentObjectToReach()?.name);
+                    Session.instance.CurrentTrial.settings.SetValue("object", sessionGenerator.GetCurrentObjectToReach()?.name);
+                }
 
                 if (sessionGenerator.GetCurrentBlockType() == "GuidedExploration")
                 {

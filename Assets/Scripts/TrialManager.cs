@@ -33,7 +33,7 @@ public class TrialManager : MonoBehaviour
     private void Start()
     {
         sessionGenerator = FindFirstObjectByType<SessionGenerator>(); 
-        currentTrialBlocks = sessionGenerator.GetExperimentBlocks();
+        currentTrialBlocks = sessionGenerator.GetActiveBlocks();
         currentBlock = currentTrialBlocks[currentBlockIndex];
         SetSpawnPoint(currentBlock);
         
@@ -117,7 +117,7 @@ public class TrialManager : MonoBehaviour
     public void SetupNextBlock()
     {
         currentBlockIndex++;
-        if (currentBlockIndex < Session.instance.blocks.Count)
+        if (currentBlockIndex < currentTrialBlocks.Count)
         {
             currentBlock = currentTrialBlocks[currentBlockIndex];
 
@@ -129,6 +129,7 @@ public class TrialManager : MonoBehaviour
             //     StartCoroutine(EndTrialAfterDelay(timeForExploration)); // Start the timer for the exploration block (after the object search block)
             // }
             SetSpawnPoint(currentBlock);
+            sessionGenerator.ShowBlockStartInstructions(currentBlockIndex);
         }
         else
         {
@@ -227,6 +228,12 @@ public class TrialManager : MonoBehaviour
         EnableSpawnPoint(spawnPoint);
         MoveToSpawnPoint(spawnPoint);
         Session.instance.BeginNextTrial();
+        
+        if (currentBlock is GuidedRouteBlock routeBlock)
+        {
+            sessionGenerator.EnableCurrentObjectRouteNavigationGuides(routeBlock);
+        }
+
         InstantiateExplorationTrial();
     }
     
@@ -251,6 +258,21 @@ public class TrialManager : MonoBehaviour
             {
                 Debug.Log($"Using object search task spawn location: {objectSearchSpawnPoint.name}");
                 return objectSearchSpawnPoint;
+            }
+            else
+            {
+                Debug.Log($"No task-specific spawn location found, using block spawn point: {currentSpawnPoint.name}");
+                return currentSpawnPoint;
+            }
+        }
+        else if (currentBlock?.GetBlockType() == "GuidedRoutes")
+        {
+            // For guided route blocks, try to get the task-specific spawn location
+            var objectRouteSpawnPoint = sessionGenerator.GetCurrentObjectRouteSpawnLocation(currentBlock);
+            if (objectRouteSpawnPoint != null)
+            {
+                Debug.Log($"Using object route task spawn location: {objectRouteSpawnPoint.name}");
+                return objectRouteSpawnPoint;
             }
             else
             {
