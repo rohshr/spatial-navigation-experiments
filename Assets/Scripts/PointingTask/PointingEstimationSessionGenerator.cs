@@ -58,6 +58,7 @@ namespace PointingTask
     
         // Private variables
         private PointingEstimationTask pointingTask;
+        private List<ObjectPointingTask> activeTaskSequence;
     
         void Start()
         {
@@ -89,6 +90,8 @@ namespace PointingTask
         // Session Start
         public void GenerateExperiment(Session session)
         {
+            activeTaskSequence = new List<ObjectPointingTask>(objectPointingTasks);
+            ShuffleForParticipant(activeTaskSequence, session.ppid);
             currentTaskIndex = 0;
             ConfigureSessionSettings(session);
             var instructionSequence = BuildSessionInstructionSequence();
@@ -108,7 +111,7 @@ namespace PointingTask
             // Convert ObjectPointingTask list to PointingEstimationTask.PointingTaskData list
             List<PointingEstimationTask.PointingTaskData> tasks = new List<PointingEstimationTask.PointingTaskData>();
 
-            foreach (var task in objectPointingTasks)
+            foreach (var task in activeTaskSequence)
             {
                 tasks.Add(new PointingEstimationTask.PointingTaskData
                 {
@@ -151,7 +154,7 @@ namespace PointingTask
         /// <param name="session"></param>
         private void CreateObjectPointingBlock(Session session)
         {
-            session.CreateBlock(objectPointingTasks.Count);
+            session.CreateBlock(activeTaskSequence.Count);
         }
     
         public GameObject CreateInstructionUI(string text)
@@ -174,7 +177,7 @@ namespace PointingTask
         /// </summary>
         private GameObject GetCurrentTaskInstruction()
         {
-            var instructionText = "Using " + objectPointingTasks[currentTaskIndex].referenceObject.name + " as reference, point to the " + objectPointingTasks[currentTaskIndex].targetObject.name;
+            var instructionText = "Using " + activeTaskSequence[currentTaskIndex].referenceObject.name + " as reference, point to the " + activeTaskSequence[currentTaskIndex].targetObject.name;
             GameObject instructionUI = CreateInstructionUI(instructionText);
             currentTaskIndex++;
             return instructionUI;
@@ -182,7 +185,7 @@ namespace PointingTask
         
         private void ShowNextPointingInstruction()
         {
-            if (currentTaskIndex >= objectPointingTasks.Count)
+            if (currentTaskIndex >= activeTaskSequence.Count)
             {
                 Debug.Log("No more pointing tasks remaining.");
                 OnSessionEnd?.Invoke(sessionEndDialogPrefab);
@@ -211,6 +214,28 @@ namespace PointingTask
             // );
             OnPointingEstimationSessionStart?.Invoke(); // To disable locomotion
             pointingTask.StartNextTask();
+        }
+        
+        private static void ShuffleForParticipant<T>(List<T> items, string participantId)
+        {
+            if (string.IsNullOrWhiteSpace(participantId))
+                throw new ArgumentException("A participant ID is required to create a repeatable task sequence.");
+
+            unchecked
+            {
+                uint hash = 2166136261;
+                foreach (char character in participantId)
+                {
+                    hash = (hash ^ character) * 16777619;
+                }
+
+                var random = new System.Random((int)hash);
+                for (int i = items.Count - 1; i > 0; i--)
+                {
+                    int j = random.Next(i + 1);
+                    (items[i], items[j]) = (items[j], items[i]);
+                }
+            }
         }
     
         /// <summary>

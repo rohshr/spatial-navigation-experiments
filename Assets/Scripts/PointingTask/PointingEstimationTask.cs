@@ -100,12 +100,12 @@ namespace PointingTask
             Debug.Log($"Initialized {tasks.Count} pointing tasks");
             
             // Set visibility of all task objects to false initially
-            HideAllTaskObjects();
+            // HideAllTaskObjects();
         }
 
         public void StartNextTask()
         {
-            HideAllTaskObjects();
+            // HideAllTaskObjects();
             OnPointingTaskStart?.Invoke();
             
             if (taskQueue.Count == 0)
